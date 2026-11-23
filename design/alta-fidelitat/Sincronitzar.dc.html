@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<title>Sincronitzar</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&amp;family=Roboto:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a,button{-webkit-tap-highlight-color:transparent}
+.m3-btn,.m3-icon,.m3-row,.m3-nav{outline:none}
+.m3-btn::after,.m3-icon::after,.m3-row::after{content:"";position:absolute;inset:0;border-radius:inherit;background:currentColor;opacity:0;pointer-events:none;transition:opacity .15s linear}
+.m3-btn:hover::after,.m3-icon:hover::after{opacity:.08}
+.m3-row:hover::after{opacity:.05}
+.m3-btn:active::after,.m3-icon:active::after,.m3-row:active::after{opacity:.12}
+.m3-row{border-radius:12px}
+.m3-shape{transition:border-radius .35s cubic-bezier(.34,1.56,.64,1),background-color .2s linear}
+.m3-btn{transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-btn:active{transform:scale(.97)}[role=group] .m3-btn:active{transform:none}
+.m3-btn:active>.m3-shape,.m3-btn.m3-shape:active{border-radius:16px!important}
+.m3-btn:active>.m3-shape[style*="width: 49.4px"]{border-radius:20px!important}
+.m3-btn:focus-visible,.m3-icon:focus-visible,.m3-row:focus-visible,.m3-nav:focus-visible{outline:3px solid #755B00;outline-offset:2px}
+.m3-nav::before{content:"";position:absolute;left:22.25px;top:8px;width:56px;height:32px;border-radius:16px;background:#1C1B1B;opacity:0;transition:opacity .15s linear}
+.m3-nav:hover::before{opacity:.08}
+.m3-nav:active::before{opacity:.12}
+.m3-ind{animation:m3ind .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes m3ind{from{transform:scaleX(.4);opacity:.4}to{transform:none;opacity:1}}
+.m3-fab{transition:background-color .2s linear,border-radius .35s cubic-bezier(.34,1.56,.64,1),transform .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-fab:hover{box-shadow:0 2px 3px rgba(0,0,0,.3),0 6px 10px 4px rgba(0,0,0,.15)!important}
+.m3-fab:active{transform:scale(.94)}
+.m3-fab:focus-visible{outline:3px solid #1C1B1B;outline-offset:3px}
+.m3-fab svg{transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.m3-scrim{animation:m3fade .2s linear}
+@keyframes m3fade{from{opacity:0}to{opacity:1}}
+.m3-dial a{animation:m3pop .38s cubic-bezier(.34,1.56,.64,1) both}
+.m3-dial a:nth-child(4){animation-delay:0ms}.m3-dial a:nth-child(3){animation-delay:35ms}.m3-dial a:nth-child(2){animation-delay:70ms}.m3-dial a:nth-child(1){animation-delay:105ms}
+@keyframes m3pop{from{opacity:0;transform:translateY(16px) scale(.85)}to{opacity:1;transform:none}}
+.m3-dial a{position:relative;transition:border-radius .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-dial a::after{content:"";position:absolute;inset:0;border-radius:inherit;background:#F6C945;opacity:0;transition:opacity .15s linear}
+.m3-dial a:hover::after{opacity:.1}.m3-dial a:active::after{opacity:.16}
+.m3-dial a:active{border-radius:16px!important}
+.m3-dial a:focus-visible{outline:3px solid #1C1B1B;outline-offset:2px}
+.m3-in{outline:none;transition:border-color .15s linear}.m3-in:focus{border:2px solid #1E5739!important;padding:0 11px!important}.m3-in.err,.m3-in.err:focus{border:2px solid #BA1A1A!important;padding:0 11px!important}
+.m3-sheet{animation:m3up .38s cubic-bezier(.2,0,0,1) both}@keyframes m3up{from{transform:translateY(100%)}to{transform:none}}.m3-snack{animation:m3pop .35s cubic-bezier(.34,1.56,.64,1) both}
+.m3-icon[style*="width: 40px; height: 40px"]::before{content:"";position:absolute;inset:-4px}
+.m3-row[style*="width: 36px; height: 48px"]::before{content:"";position:absolute;inset:0 -6px}
+.m3-btn[style*="height: 36px"]::before,.m3-btn[style*="height: 40px"]::before{content:"";position:absolute;inset:-6px 0}
+</style>
+</helmet>
+<div style="position: relative; width: 402px; height: 874px; overflow: hidden; background: #FFFBF0; font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif; color: #1C1B1B"><div style="position: absolute; left: 0px; top: 0px; width: 402px; height: 64px"><div style="position: absolute; left: 0px; top: 0px; width: 402px; height: 64px; box-sizing: border-box; border-style: solid; border-color: transparent; border-width: 0px 0px 1px 0px"></div><a class="m3-icon" href="El-meu-espai.dc.html" aria-label="Enrere" style="position: absolute; left: 4px; top: 8px; width: 48px; height: 48px; display: block; color: inherit; text-decoration: none; cursor: pointer; border-radius: 9999px"><svg aria-hidden="true" style="position: absolute; left: 0px; top: 0px; width: 48px; height: 48px" width='48' height='48' viewBox='0 0 48 48' fill='none'><path d='M33.33 24H14.66M21.66 17L14.66 24L21.66 31' stroke-width='2.04' stroke-linecap='round' stroke-linejoin='round' stroke='#434844'></path></svg></a><h1 style="margin: 0; position: absolute; left: 56px; top: 18px; font-family: 'Nunito', sans-serif; font-size: 22px; font-weight: 600; color: #1C1B1B; line-height: 28px; white-space: nowrap">Sincronitzar</h1></div><div style="position: absolute; left: 0px; top: 64px; width: 402px; height: 738px"><div style="position: absolute; left: 16px; top: 16px; width: 370px; font-size: 16px; font-weight: 400; color: #1C1B1B; line-height: normal; white-space: normal">Així no has d’apuntar el mateix a diversos llocs.</div><div style="position: absolute; left: 16px; top: 47px; width: 370px; height: 55px"><div style="position: absolute; left: 0px; top: 0px; width: 370px; height: 55px; box-sizing: border-box; border-style: solid; border-color: #C4C7C3; border-width: 0px 0px 1px 0px"></div><div style="position: absolute; left: 4px; top: 8px; width: 318px; font-size: 16px; font-weight: 500; color: #1C1B1B; line-height: normal; white-space: normal">Estat</div><div style="position: absolute; left: 4px; top: 29px; font-size: 14px; font-weight: 400; color: #434844; line-height: normal; white-space: nowrap">Sincronitzada avui</div></div><div style="position: absolute; left: 16px; top: 81px; width: 370px; height: 657px"><div style="position: absolute; left: 0px; top: 45px; font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 500; color: #1C1B1B; line-height: normal; white-space: nowrap">{{ f.heading }}</div><sc-if value="{{ f.editing }}" hint-placeholder-val="{{ false }}"><button class="m3-btn" type="button" onClick="{{ f.cancelEdit }}" style="position: absolute; left: 274px; top: 36px; width: 96px; height: 40px; margin: 0; padding: 0 16px; border-radius: 9999px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; border: 0; background: transparent; color: #1E5739">Cancel·lar</button></sc-if><label for="ct-email" style="position: absolute; left: 0px; top: 79px; font-size: 14px; font-weight: 500; color: #1C1B1B; line-height: normal; white-space: nowrap">Correu electrònic</label><input id="ct-email" type="email" placeholder="nom@exemple.com" value="{{ f.email }}" onChange="{{ f.setEmail }}" style="position: absolute; left: 0px; top: 100px; width: 370px; height: 48px; box-sizing: border-box; margin: 0; padding: 0 12px; border: 1px solid #747874; border-radius: 4px; background: transparent; font-family: inherit; font-size: 16px; font-weight: 400; color: #1C1B1B"><label for="ct-nom" style="position: absolute; left: 0px; top: 160px; font-size: 14px; font-weight: 500; color: #1C1B1B; line-height: normal; white-space: nowrap">Nom d’usuari</label><input id="ct-nom" type="text" placeholder="Escriu el nom d’usuari" value="{{ f.nom }}" onChange="{{ f.setNom }}" style="position: absolute; left: 0px; top: 181px; width: 370px; height: 48px; box-sizing: border-box; margin: 0; padding: 0 12px; border: 1px solid #747874; border-radius: 4px; background: transparent; font-family: inherit; font-size: 16px; font-weight: 400; color: #1C1B1B"><button class="m3-shape m3-btn" type="button" onClick="{{ f.add }}" style="position: absolute; left: 0px; top: 326px; width: 370px; height: 48px; box-sizing: border-box; margin: 0; padding: 0; background: #1E5739; border: 0px solid transparent; border-radius: 9999px; font-family: inherit; font-size: 16px; font-weight: 600; color: #FFFFFF; line-height: normal; cursor: pointer">{{ f.btnLabel }}</button><div style="position: absolute; left: 0px; top: 398px; font-size: 14px; font-weight: 500; color: #434844; line-height: normal; white-space: nowrap; padding-bottom: 4px; border-bottom: 1px solid #C4C7C3">Contactes afegits</div><div style="position: absolute; left: 0px; top: 431px; width: 370px; height: 218px; overflow-y: auto"><sc-if value="{{ f.empty }}" hint-placeholder-val="{{ true }}"><div style="padding: 12px 4px; font-size: 14px; font-weight: 400; color: #434844; line-height: normal">Encara no has afegit cap contacte.</div></sc-if><sc-for list="{{ f.contactes }}" as="c" hint-placeholder-count="0"><div style="position: relative; height: 55px; box-sizing: border-box; border-bottom: 1px solid #C4C7C3"><div style="position: absolute; left: 4px; top: 8px; width: 274px; font-size: 16px; font-weight: 500; color: #1C1B1B; line-height: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ c.nom }}</div><div style="position: absolute; left: 4px; top: 29px; width: 274px; font-size: 14px; font-weight: 400; color: #434844; line-height: normal; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ c.detall }}</div><button class="m3-icon" type="button" aria-label="Editar contacte: {{ c.nom }}" onClick="{{ c.edit }}" style="position: absolute; top: 7px; width: 40px; height: 40px; margin: 0; padding: 0; border: 0; border-radius: 9999px; background: transparent; cursor: pointer; left: 282px"><svg aria-hidden="true" style="position: absolute; left: 10px; top: 10px" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 19h3.5L19 8.5 15.5 5 5 15.5z" stroke="#434844" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><button class="m3-icon" type="button" aria-label="Esborrar contacte: {{ c.nom }}" onClick="{{ c.del }}" style="position: absolute; top: 7px; width: 40px; height: 40px; margin: 0; padding: 0; border: 0; border-radius: 9999px; background: transparent; cursor: pointer; left: 324px"><svg aria-hidden="true" style="position: absolute; left: 10px; top: 10px" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 7h14M10 4h4M7 7l1 13h8l1-13M10 11v5M14 11v5" stroke="#BA1A1A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></button></div></sc-for></div><div style="position: absolute; left: 0px; top: 241px; width: 370px; height: 69px"><div style="position: absolute; left: 0px; top: 0px; font-size: 14px; font-weight: 500; color: #1C1B1B; line-height: normal; white-space: nowrap">Rol</div><button class="m3-row" type="button" aria-haspopup="listbox" aria-expanded="{{ dd.rol.open }}" aria-label="Rol: {{ dd.rol.label }}" onClick="{{ dd.rol.toggle }}" style="position: absolute; left: 0px; top: 21px; width: 370px; height: 48px; box-sizing: border-box; margin: 0; padding: 0; background: transparent; border: 1px solid #747874; border-radius: 4px; cursor: pointer; font-family: inherit; text-align: left; color: inherit"><span style="position: absolute; left: 12px; top: 13.5px; font-size: 16px; font-weight: 400; color: #434844; line-height: normal; white-space: nowrap">{{ dd.rol.label }}</span><svg aria-hidden="true" style="position: absolute; left: 336px; top: 13px; width: 20px; height: 20px" width='20' height='20' viewBox='0 0 20 20' fill='none'><path d='M5 7.5H15L10 14.16L5 7.5Z' fill='#434844'></path></svg></button><sc-if value="{{ dd.rol.open }}" hint-placeholder-val="{{ false }}"><div role="listbox" aria-label="Rol" style="position: absolute; left: 0px; top: 69px; width: 370px; height: 122px; box-sizing: border-box; background: #F1EDEC; border: 1px solid transparent; z-index: 2; border-radius: 12px; box-shadow: 0 2px 6px 2px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.3); overflow: hidden"><sc-for list="{{ dd.rol.options }}" as="op" hint-placeholder-count="3"><button class="m3-row" type="button" role="option" aria-selected="{{ op.selected }}" onClick="{{ op.pick }}" style="position: absolute; left: 0px; top: {{ op.top }}; width: 368px; height: 40px; box-sizing: border-box; margin: 0; padding: 0; border: 0; border-bottom: {{ op.border }}; background: transparent; cursor: pointer; font-family: inherit; text-align: left; color: inherit"><span style="position: absolute; left: 12px; top: 10px; font-size: 16px; font-weight: {{ op.weight }}; color: #1C1B1B; line-height: normal; white-space: nowrap">{{ op.name }}</span></button></sc-for></div></sc-if></div></div></div><div class="m3-navbar" style="position: absolute; left: 0px; top: 802px; width: 402px; height: 72px"><div style="position: absolute; left: 0px; top: 0px; width: 402px; height: 72px; box-sizing: border-box; border-style: solid; border-color: transparent; border-width: 1px 0px 0px 0px; background: #E0E3DF"></div><a class="m3-nav" href="Main.dc.html" style="position: absolute; left: 0px; top: 1px; width: 100.5px; height: 71px; display: block; color: inherit; text-decoration: none; cursor: pointer"><svg aria-hidden="true" style="position: absolute; left: 38.3px; top: 12px; width: 24px; height: 24px" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 11.5L12 4L21 11.5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path><path d="M5.5 9.5V20H18.5V9.5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path><path d="M10 20V14H14V20" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path></svg><div style="position: absolute; left: 38.3px; top: 46px; font-size: 12px; font-weight: 500; color: #434844; line-height: normal; white-space: nowrap">Inici</div></a><a class="m3-nav" href="Calendari.dc.html" style="position: absolute; left: 100.5px; top: 1px; width: 100.5px; height: 71px; display: block; color: inherit; text-decoration: none; cursor: pointer"><svg aria-hidden="true" style="position: absolute; left: 38.3px; top: 12px; width: 24px; height: 24px" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 4H19C20.10 4 21 4.89 21 6V19C21 20.10 20.10 21 19 21H5C3.89 21 3 20.10 3 19V6C3 4.89 3.89 4 5 4Z" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path><path d="M3 9H9M9 9H15M9 9V15M15 9H21M15 9V15M3 15H9M9 15H15M9 15V21M15 15H21M15 15V21M8 2V6M16 2V6" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path></svg><div style="position: absolute; left: 22.8px; top: 46px; font-size: 12px; font-weight: 500; color: #434844; line-height: normal; white-space: nowrap">Calendari</div></a><a class="m3-nav" href="Tasques.dc.html" style="position: absolute; left: 201px; top: 1px; width: 100.5px; height: 71px; display: block; color: inherit; text-decoration: none; cursor: pointer"><svg aria-hidden="true" style="position: absolute; left: 38.3px; top: 12px; width: 24px; height: 24px" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 6H21M9 12H21M9 18H21" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path><path d="M4 7.5C4.82 7.5 5.5 6.82 5.5 6C5.5 5.17 4.82 4.5 4 4.5C3.17 4.5 2.5 5.17 2.5 6C2.5 6.82 3.17 7.5 4 7.5Z" fill="#434844"></path><path d="M4 13.5C4.82 13.5 5.5 12.82 5.5 12C5.5 11.17 4.82 10.5 4 10.5C3.17 10.5 2.5 11.17 2.5 12C2.5 12.82 3.17 13.5 4 13.5Z" fill="#434844"></path><path d="M4 19.5C4.82 19.5 5.5 18.82 5.5 18C5.5 17.17 4.82 16.5 4 16.5C3.17 16.5 2.5 17.17 2.5 18C2.5 18.82 3.17 19.5 4 19.5Z" fill="#434844"></path></svg><div style="position: absolute; left: 25.8px; top: 46px; font-size: 12px; font-weight: 500; color: #434844; line-height: normal; white-space: nowrap">Tasques</div></a><a class="m3-nav" href="IA.dc.html" style="position: absolute; left: 301.5px; top: 1px; width: 100.5px; height: 71px; display: block; color: inherit; text-decoration: none; cursor: pointer"><svg aria-hidden="true" style="position: absolute; left: 38.3px; top: 12px; width: 24px; height: 24px" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M10 5C10.6 9 12 10.4 16 11C12 11.6 10.6 13 10 17C9.4 13 8 11.6 4 11C8 10.4 9.4 9 10 5Z" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path><path d="M18 2C18.2 3.5 18.8 4.1 20.3 4.3C18.8 4.5 18.2 5.1 18 6.6C17.8 5.1 17.2 4.5 15.7 4.3C17.2 4.1 17.8 3.5 18 2Z" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path><path d="M19 15C19.2 16.4 19.7 16.9 21 17C19.7 17.2 19.2 17.7 19 19C18.8 17.7 18.3 17.2 17 17C18.3 16.9 18.8 16.4 19 15Z" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path></svg><div style="position: absolute; left: 44.3px; top: 46px; font-size: 12px; font-weight: 500; color: #434844; line-height: normal; white-space: nowrap">IA</div></a></div><sc-if value="{{ f.delOpen }}" hint-placeholder-val="{{ false }}"><button type="button" class="m3-scrim" aria-label="Tancar" onClick="{{ f.delCancel }}" style="position: absolute; left: 0px; top: 0px; width: 402px; height: 874px; margin: 0; padding: 0; border: 0; background: rgba(0,0,0,0.32); cursor: default; z-index: 30"></button><div role="dialog" aria-modal="true" aria-labelledby="dl-t" style="position: absolute; left: 33px; top: 300px; width: 336px; box-sizing: border-box; padding: 24px; background: #EBE7E6; border-radius: 28px; box-shadow: 0 4px 12px rgba(0,0,0,.2); display: flex; flex-direction: column; gap: 16px; z-index: 31"><div id="dl-t" style="font-family: 'Nunito', sans-serif; font-size: 24px; font-weight: 500; line-height: 32px; text-align: center; color: #1C1B1B">Esborrar contacte?</div><div style="font-size: 14px; line-height: 20px; color: #434844">Vols esborrar <strong style="color: #1C1B1B">{{ f.delName }}</strong> dels teus contactes? Aquesta acció no es pot desfer.</div><div style="display: flex; justify-content: flex-end; gap: 8px"><button class="m3-btn" type="button" onClick="{{ f.delCancel }}" style="position: relative; height: 40px; margin: 0; padding: 0 16px; border-radius: 9999px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; border: 0; background: transparent; color: #1E5739">Cancel·lar</button><button class="m3-btn" type="button" onClick="{{ f.delOk }}" style="position: relative; height: 40px; margin: 0; padding: 0 16px; border-radius: 9999px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; border: 0; background: #BA1A1A; color: #FFFFFF">Esborrar</button></div></div></sc-if></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":402,"height":874}}'>
+class Component extends DCLogic {
+renderVals() {
+const st = this.state || {};
+const vals = st.vals || {};
+const obert = st.obert || null;
+const defs = {"rol": {"opts": [["pares", "Pares"], ["professor", "Professor"], ["alumne", "Alumne"]], "def": null, "ph": "Tria el rol"}};
+const dd = {};
+Object.keys(defs).forEach((k) => {
+const d = defs[k];
+const value = vals[k] || d.def;
+const isOpen = obert === k;
+const cur = d.opts.filter((o) => o[0] === value)[0];
+dd[k] = {
+open: isOpen,
+label: cur ? cur[1] : d.ph,
+toggle: () => this.setState({ obert: isOpen ? null : k }),
+options: d.opts.map((o, i) => ({
+name: o[1],
+selected: o[0] === value,
+weight: o[0] === value ? 600 : 400,
+top: (i * 40) + 'px',
+border: i < d.opts.length - 1 ? '1px solid #C4C7C3' : '0',
+pick: () => this.setState({ vals: Object.assign({}, vals, { [k]: o[0] }), obert: null })
+}))
+};
+});
+const email = st.email || '';
+const nom = st.nom || '';
+const contactes = st.contactes || [];
+const editIdx = st.editIdx === undefined ? null : st.editIdx;
+const delIdx = st.delIdx === undefined ? null : st.delIdx;
+const rolCur = defs.rol.opts.filter((o) => o[0] === vals.rol)[0];
+const syBusy = !!st.syBusy;
+const sy = { busy: syBusy, spin: syBusy ? 'm3-spin' : '', op: syBusy ? 0.6 : 1,
+label: syBusy ? 'Sincronitzant…' : 'Sincronitzar les tasques compartides',
+status: syBusy ? 'Sincronitzant amb els contactes…' : (st.syDone ? '✓ Sincronitzat ara mateix' : 'Última sincronització: avui, 8:15'),
+go: () => { if (syBusy) return; this.setState({ syBusy: true }); clearTimeout(this._syT); this._syT = setTimeout(() => this.setState({ syBusy: false, syDone: true }), 1600); } };
+const tab = st.tab || 'avisos';
+const tabs = {};
+const is = {};
+['avisos', 'compartir', 'personalitzar', 'sincronitzar'].forEach((k) => {
+const on = k === tab;
+is[k] = on;
+tabs[k] = { on: on, weight: on ? 700 : 400, go: () => this.setState({ tab: k, obert: null, pzObert: false, pzAssig: null, editIdx: null, delIdx: null }) };
+});
+const PZ_COLORS = [['taronja', 'Taronja', '#CC5500', '#FFFFFF'], ['groc', 'Groc', '#B08800', '#1C1B1B'], ['lila', 'Lila', '#9A6ADE', '#1C1B1B'], ['verd', 'Verd', '#2E8540', '#FFFFFF'], ['turquesa', 'Turquesa', '#00879A', '#FFFFFF'], ['rosa', 'Rosa', '#D02670', '#FFFFFF'], ['blau', 'Blau', '#1F4FB8', '#FFFFFF']];
+const PZ_ASSIG = [['Castellà', 'taronja'], ['Català', 'groc'], ['Anglès', 'lila'], ['Socials', 'verd'], ['Plàstica', 'turquesa'], ['Música', 'rosa'], ['Mates', 'blau']];
+const PZ_GRUP = [['assignatures', 'Assignatures'], ['prioritat', 'Prioritat'], ['data', 'Data de lliurament']];
+const PZ_ETIQ = [['perfer', 'Per fer', 'Tasques pendents', true], ['feta', 'Feta', 'Tasques acabades', true], ['alta', 'Prioritat alta', 'Cal fer-la primer', true], ['baixa', 'Prioritat baixa', 'Pot esperar', false]];
+const pzs = st.pz || {};
+const pzSet = (patch, extra) => {
+const cur = (this.state && this.state.pz) || {};
+this.setState(Object.assign({ pz: Object.assign({}, cur, patch) }, extra || {}));
+};
+const grupVal = pzs.grup || 'assignatures';
+const pzObert = !!st.pzObert;
+const grupCur = PZ_GRUP.filter((g) => g[0] === grupVal)[0];
+const marcaVal = pzs.marca || 'colors';
+const cmap = pzs.colors || {};
+const obertA = st.pzAssig || null;
+const assig = PZ_ASSIG.map((a) => {
+const cid = cmap[a[0]] || a[1];
+const c = PZ_COLORS.filter((x) => x[0] === cid)[0];
+const open = obertA === a[0];
+return {
+name: a[0], color: c[2], colorName: c[1], open: open, rot: open ? 180 : 0,
+toggle: () => this.setState({ pzAssig: open ? null : a[0] }),
+swatches: PZ_COLORS.map((x) => ({
+name: x[1], color: x[2], on: x[0] === cid, check: x[3],
+ring: x[0] === cid ? '0 0 0 2px #FFFBF0, 0 0 0 4px #1C1B1B' : 'inset 0 0 0 1px #747874',
+pick: () => { if (x[0] !== cid) pzSet({ colors: Object.assign({}, cmap, { [a[0]]: x[0] }) }); }
+}))
+};
+});
+const emap = pzs.etiq || {};
+const etiq = PZ_ETIQ.map((e) => {
+const on = Object.prototype.hasOwnProperty.call(emap, e[0]) ? emap[e[0]] : e[3];
+return {
+name: e[1], desc: e[2], on: on,
+track: on ? '#1E5739' : '#747874', trackBg: on ? '#1E5739' : '#E0E3DF', thumb: on ? '#FFFFFF' : '#747874',
+thumbSize: on ? '24px' : '16px', thumbTop: on ? '2px' : '6px', thumbLeft: on ? '22px' : '6px',
+toggle: () => pzSet({ etiq: Object.assign({}, emap, { [e[0]]: !on }) })
+};
+});
+const mates = assig.filter((a) => a.name === 'Mates')[0];
+const pz = {
+grup: {
+open: pzObert, label: grupCur[1],
+toggle: () => this.setState({ pzObert: !pzObert }),
+options: PZ_GRUP.map((g) => ({
+name: g[1], selected: g[0] === grupVal, weight: g[0] === grupVal ? 600 : 400, bg: g[0] === grupVal ? '#F6C945' : 'transparent',
+pick: () => { if (g[0] === grupVal) { this.setState({ pzObert: false }); } else { pzSet({ grup: g[0] }, { pzObert: false }); } }
+}))
+},
+marca: [['colors', 'Colors'], ['etiquetes', 'Etiquetes']].map((m, i) => {
+const on = m[0] === marcaVal;
+return {
+label: m[1], on: on, bg: on ? '#1E5739' : 'transparent', fg: on ? '#FFFFFF' : '#1C1B1B',
+weight: on ? 600 : 500, divider: i === 0 ? '0' : '1px solid #747874',
+pick: () => { if (!on) pzSet({ marca: m[0] }, { pzAssig: null }); }
+};
+}),
+isColors: marcaVal === 'colors',
+isEtiq: marcaVal === 'etiquetes',
+assig: assig,
+etiq: etiq,
+prev: {
+grup: grupVal === 'assignatures' ? 'Mates' : (grupVal === 'prioritat' ? 'Prioritat alta' : 'Per a avui'),
+colors: marcaVal === 'colors', etiquetes: marcaVal === 'etiquetes', color: mates.color,
+chips: etiq.filter((e) => e.on && (e.name === 'Per fer' || e.name === 'Prioritat alta')).map((e) => ({ name: e.name }))
+}
+};
+return {
+sy: sy, pz: pz, tabs: tabs, is: is, dd: dd,
+f: {
+email: email,
+nom: nom,
+setEmail: (e) => this.setState({ email: e.target.value }),
+setNom: (e) => this.setState({ nom: e.target.value }),
+add: () => {
+const em = email.trim();
+const nm = nom.trim();
+if (!em && !nm) return;
+const detall = [em, rolCur ? rolCur[1] : ''].filter((x) => x).join(' · ');
+const item = { nom: nm || em, detall: detall, em: em, nm: nm, rol: vals.rol || null };
+const list = editIdx === null ? contactes.concat([item]) : contactes.map((c, i) => i === editIdx ? item : c);
+this.setState({ contactes: list, email: '', nom: '', vals: {}, obert: null, editIdx: null });
+},
+editing: editIdx !== null,
+heading: editIdx !== null ? 'Editar contacte' : 'Afegir contacte',
+btnLabel: editIdx !== null ? 'Desar canvis' : 'Afegir contacte',
+cancelEdit: () => this.setState({ email: '', nom: '', vals: {}, obert: null, editIdx: null }),
+delOpen: delIdx !== null && !!contactes[delIdx],
+delName: delIdx !== null && contactes[delIdx] ? contactes[delIdx].nom : '',
+delCancel: () => this.setState({ delIdx: null }),
+delOk: () => this.setState({ contactes: contactes.filter((c, i) => i !== delIdx), delIdx: null, editIdx: editIdx === delIdx ? null : editIdx }),
+contactes: contactes.map((c, i) => Object.assign({}, c, {
+edit: () => this.setState({ email: c.em || '', nom: c.nm || '', vals: c.rol ? { rol: c.rol } : {}, obert: null, editIdx: i }),
+del: () => this.setState({ delIdx: i })
+})),
+empty: contactes.length === 0
+}
+};
+}
+}
+</script>
+</body>
+</html>

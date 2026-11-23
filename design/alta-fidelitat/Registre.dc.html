@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<title>Registre</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&amp;family=Roboto:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a,button{-webkit-tap-highlight-color:transparent}
+.m3-btn,.m3-icon,.m3-row,.m3-nav{outline:none}
+.m3-btn::after,.m3-icon::after,.m3-row::after{content:"";position:absolute;inset:0;border-radius:inherit;background:currentColor;opacity:0;pointer-events:none;transition:opacity .15s linear}
+.m3-btn:hover::after,.m3-icon:hover::after{opacity:.08}
+.m3-row:hover::after{opacity:.05}
+.m3-btn:active::after,.m3-icon:active::after,.m3-row:active::after{opacity:.12}
+.m3-row{border-radius:12px}
+.m3-shape{transition:border-radius .35s cubic-bezier(.34,1.56,.64,1),background-color .2s linear}
+.m3-btn{transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-btn:active{transform:scale(.97)}[role=group] .m3-btn:active{transform:none}
+.m3-btn:active>.m3-shape,.m3-btn.m3-shape:active{border-radius:16px!important}
+.m3-btn:active>.m3-shape[style*="width: 49.4px"]{border-radius:20px!important}
+.m3-btn:focus-visible,.m3-icon:focus-visible,.m3-row:focus-visible,.m3-nav:focus-visible{outline:3px solid #755B00;outline-offset:2px}
+.m3-nav::before{content:"";position:absolute;left:22.25px;top:8px;width:56px;height:32px;border-radius:16px;background:#1C1B1B;opacity:0;transition:opacity .15s linear}
+.m3-nav:hover::before{opacity:.08}
+.m3-nav:active::before{opacity:.12}
+.m3-ind{animation:m3ind .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes m3ind{from{transform:scaleX(.4);opacity:.4}to{transform:none;opacity:1}}
+.m3-fab{transition:background-color .2s linear,border-radius .35s cubic-bezier(.34,1.56,.64,1),transform .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-fab:hover{box-shadow:0 2px 3px rgba(0,0,0,.3),0 6px 10px 4px rgba(0,0,0,.15)!important}
+.m3-fab:active{transform:scale(.94)}
+.m3-fab:focus-visible{outline:3px solid #1C1B1B;outline-offset:3px}
+.m3-fab svg{transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.m3-scrim{animation:m3fade .2s linear}
+@keyframes m3fade{from{opacity:0}to{opacity:1}}
+.m3-dial a{animation:m3pop .38s cubic-bezier(.34,1.56,.64,1) both}
+.m3-dial a:nth-child(4){animation-delay:0ms}.m3-dial a:nth-child(3){animation-delay:35ms}.m3-dial a:nth-child(2){animation-delay:70ms}.m3-dial a:nth-child(1){animation-delay:105ms}
+@keyframes m3pop{from{opacity:0;transform:translateY(16px) scale(.85)}to{opacity:1;transform:none}}
+.m3-dial a{position:relative;transition:border-radius .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-dial a::after{content:"";position:absolute;inset:0;border-radius:inherit;background:#F6C945;opacity:0;transition:opacity .15s linear}
+.m3-dial a:hover::after{opacity:.1}.m3-dial a:active::after{opacity:.16}
+.m3-dial a:active{border-radius:16px!important}
+.m3-dial a:focus-visible{outline:3px solid #1C1B1B;outline-offset:2px}
+.m3-in{outline:none;transition:border-color .15s linear}.m3-in:focus{border:2px solid #1E5739!important;padding:0 11px!important}.m3-in.err,.m3-in.err:focus{border:2px solid #BA1A1A!important;padding:0 11px!important}
+.m3-sheet{animation:m3up .38s cubic-bezier(.2,0,0,1) both}@keyframes m3up{from{transform:translateY(100%)}to{transform:none}}.m3-snack{animation:m3pop .35s cubic-bezier(.34,1.56,.64,1) both}
+.m3-icon[style*="width: 40px; height: 40px"]::before{content:"";position:absolute;inset:-4px}
+.m3-row[style*="width: 36px; height: 48px"]::before{content:"";position:absolute;inset:0 -6px}
+.m3-btn[style*="height: 36px"]::before,.m3-btn[style*="height: 40px"]::before{content:"";position:absolute;inset:-6px 0}
+</style>
+</helmet>
+<div style="position: relative; width: 402px; height: 874px; overflow: hidden; background: #FFFBF0; font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif; color: #1C1B1B"><div style="position: absolute; left: 0px; top: 0px; width: 402px; height: 64px"><div style="position: absolute; left: 0px; top: 0px; width: 402px; height: 64px; box-sizing: border-box; border-style: solid; border-color: transparent; border-width: 0px 0px 1px 0px"></div><a class="m3-icon" href="Iniciar-sessio.dc.html" aria-label="Enrere" style="position: absolute; left: 4px; top: 8px; width: 48px; height: 48px; display: block; color: inherit; text-decoration: none; cursor: pointer; border-radius: 9999px"><svg aria-hidden="true" style="position: absolute; left: 0px; top: 0px; width: 48px; height: 48px" width='48' height='48' viewBox='0 0 48 48' fill='none'><path d='M33.33 24H14.66M21.66 17L14.66 24L21.66 31' stroke-width='2.04' stroke-linecap='round' stroke-linejoin='round' stroke='#434844'></path></svg></a><h1 style="margin: 0; position: absolute; left: 56px; top: 18px; font-family: 'Nunito', sans-serif; font-size: 22px; font-weight: 600; color: #1C1B1B; line-height: 28px; white-space: nowrap">Registre</h1></div><div style="position: absolute; left: 0px; top: 64px; width: 402px; height: 810px"><div style="position: absolute; left: 16px; top: 16px; width: 370px; display: flex; flex-direction: column; gap: 14px"><div><label for="f-nom" style="display: block; font-size: 14px; font-weight: 500; color: #1C1B1B; margin-bottom: 5px">Nom</label><div style="position: relative"><input id="f-nom" class="m3-in {{ v.nomCls }}" type="text" autocomplete="name" placeholder="Escriu el teu nom" value="{{ v.nom }}" onChange="{{ v.set_nom }}" aria-invalid="{{ v.nomBad }}" style="display: block; width: 100%; height: 48px; box-sizing: border-box; margin: 0; padding: 0 12px; border: 1px solid #747874; border-radius: 4px; background: transparent; font-family: inherit; font-size: 16px; color: #1C1B1B"></div><sc-if value="{{ v.nomBad }}" hint-placeholder-val="{{ false }}"><div role="alert" style="margin-top: 4px; padding-left: 12px; font-size: 12px; color: #BA1A1A">{{ v.nomErr }}</div></sc-if><sc-if value="{{ v.nomHelp }}" hint-placeholder-val="{{ false }}"><div style="margin-top: 4px; padding-left: 12px; font-size: 12px; color: #434844">{{ v.nomHelpTxt }}</div></sc-if></div><div><span id="f-rol-l" style="display: block; font-size: 14px; font-weight: 500; color: #1C1B1B; margin-bottom: 5px">Rol</span><button type="button" class="m3-row" aria-labelledby="f-rol-l" aria-haspopup="listbox" aria-expanded="{{ v.rolOpen }}" onClick="{{ v.toggleRol }}" style="position: relative; display: flex; align-items: center; justify-content: space-between; width: 100%; height: 48px; box-sizing: border-box; margin: 0; padding: 0 12px; border: {{ v.rolBorder }}; border-radius: 4px; background: transparent; font-family: inherit; font-size: 16px; color: {{ v.rolColor }}; text-align: left; cursor: pointer"><span>{{ v.rolLabel }}</span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex: none; transform: rotate({{ v.rolRot }}deg); transition: transform .2s"><path d="M5 7.5H15L10 14.16L5 7.5Z" fill="#434844"></path></svg></button><sc-if value="{{ v.rolOpen }}" hint-placeholder-val="{{ false }}"><div role="listbox" aria-label="Rol" style="position: absolute; left: 0px; width: 370px; margin-top: 4px; background: #F6F3F2; border-radius: 12px; box-shadow: 0 2px 6px 2px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.3); overflow: hidden; z-index: 5"><sc-for list="{{ v.rols }}" as="r" hint-placeholder-count="3"><button class="m3-row" type="button" role="option" aria-selected="{{ r.sel }}" onClick="{{ r.pick }}" style="position: relative; display: flex; align-items: center; gap: 10px; width: 100%; height: 44px; box-sizing: border-box; margin: 0; padding: 0 12px; border: 0; border-radius: 0; background: {{ r.bg }}; font-family: inherit; font-size: 16px; font-weight: {{ r.weight }}; color: #1C1B1B; text-align: left; cursor: pointer">{{ r.name }}</button></sc-for></div></sc-if><sc-if value="{{ v.rolBad }}" hint-placeholder-val="{{ false }}"><div role="alert" style="margin-top: 4px; padding-left: 12px; font-size: 12px; color: #BA1A1A">Tria un rol.</div></sc-if></div><div><label for="f-email" style="display: block; font-size: 14px; font-weight: 500; color: #1C1B1B; margin-bottom: 5px">Correu electrònic</label><div style="position: relative"><input id="f-email" class="m3-in {{ v.emailCls }}" type="email" autocomplete="email" placeholder="nom@exemple.com" value="{{ v.email }}" onChange="{{ v.set_email }}" aria-invalid="{{ v.emailBad }}" style="display: block; width: 100%; height: 48px; box-sizing: border-box; margin: 0; padding: 0 12px; border: 1px solid #747874; border-radius: 4px; background: transparent; font-family: inherit; font-size: 16px; color: #1C1B1B"></div><sc-if value="{{ v.emailBad }}" hint-placeholder-val="{{ false }}"><div role="alert" style="margin-top: 4px; padding-left: 12px; font-size: 12px; color: #BA1A1A">{{ v.emailErr }}</div></sc-if><sc-if value="{{ v.emailHelp }}" hint-placeholder-val="{{ false }}"><div style="margin-top: 4px; padding-left: 12px; font-size: 12px; color: #434844">{{ v.emailHelpTxt }}</div></sc-if></div><div><label for="f-pw" style="display: block; font-size: 14px; font-weight: 500; color: #1C1B1B; margin-bottom: 5px">Contrasenya</label><div style="position: relative"><input id="f-pw" class="m3-in {{ v.pwCls }}" type="{{ v.pwType }}" autocomplete="new-password" placeholder="Escriu una contrasenya" value="{{ v.pw }}" onChange="{{ v.set_pw }}" aria-invalid="{{ v.pwBad }}" style="display: block; width: 100%; height: 48px; box-sizing: border-box; margin: 0; padding: 0 12px; border: 1px solid #747874; border-radius: 4px; background: transparent; font-family: inherit; font-size: 16px; color: #1C1B1B; padding-right: 48px"><button class="m3-icon" type="button" aria-label="{{ v.pwEyeLabel }}" onClick="{{ v.pwEye }}" style="position: absolute; right: 4px; top: 4px; width: 40px; height: 40px; margin: 0; padding: 0; border: 0; border-radius: 9999px; background: transparent; cursor: pointer"><svg aria-hidden="true" style="position: absolute; left: 8px; top: 8px" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#434844" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><sc-if value="{{ v.pwShow }}" hint-placeholder-val="{{ false }}"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"></path><circle cx="12" cy="12" r="3"></circle></sc-if><sc-if value="{{ v.pwHide }}" hint-placeholder-val="{{ true }}"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"></path><circle cx="12" cy="12" r="3"></circle><path d="M4 4l16 16"></path></sc-if></svg></button></div><sc-if value="{{ v.pwBad }}" hint-placeholder-val="{{ false }}"><div role="alert" style="margin-top: 4px; padding-left: 12px; font-size: 12px; color: #BA1A1A">{{ v.pwErr }}</div></sc-if><sc-if value="{{ v.pwHelp }}" hint-placeholder-val="{{ false }}"><div style="margin-top: 4px; padding-left: 12px; font-size: 12px; color: #434844">{{ v.pwHelpTxt }}</div></sc-if></div><div><label for="f-pw2" style="display: block; font-size: 14px; font-weight: 500; color: #1C1B1B; margin-bottom: 5px">Repeteix la contrasenya</label><div style="position: relative"><input id="f-pw2" class="m3-in {{ v.pw2Cls }}" type="{{ v.pw2Type }}" autocomplete="new-password" placeholder="Torna-la a escriure" value="{{ v.pw2 }}" onChange="{{ v.set_pw2 }}" aria-invalid="{{ v.pw2Bad }}" style="display: block; width: 100%; height: 48px; box-sizing: border-box; margin: 0; padding: 0 12px; border: 1px solid #747874; border-radius: 4px; background: transparent; font-family: inherit; font-size: 16px; color: #1C1B1B; padding-right: 48px"><button class="m3-icon" type="button" aria-label="{{ v.pw2EyeLabel }}" onClick="{{ v.pw2Eye }}" style="position: absolute; right: 4px; top: 4px; width: 40px; height: 40px; margin: 0; padding: 0; border: 0; border-radius: 9999px; background: transparent; cursor: pointer"><svg aria-hidden="true" style="position: absolute; left: 8px; top: 8px" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#434844" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><sc-if value="{{ v.pw2Show }}" hint-placeholder-val="{{ false }}"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"></path><circle cx="12" cy="12" r="3"></circle></sc-if><sc-if value="{{ v.pw2Hide }}" hint-placeholder-val="{{ true }}"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"></path><circle cx="12" cy="12" r="3"></circle><path d="M4 4l16 16"></path></sc-if></svg></button></div><sc-if value="{{ v.pw2Bad }}" hint-placeholder-val="{{ false }}"><div role="alert" style="margin-top: 4px; padding-left: 12px; font-size: 12px; color: #BA1A1A">{{ v.pw2Err }}</div></sc-if><sc-if value="{{ v.pw2Help }}" hint-placeholder-val="{{ false }}"><div style="margin-top: 4px; padding-left: 12px; font-size: 12px; color: #434844">{{ v.pw2HelpTxt }}</div></sc-if></div></div><sc-if value="{{ v.ok }}" hint-placeholder-val="{{ true }}"><a class="m3-btn" href="Compte-creat.dc.html" style="position: absolute; left: 16px; top: 674px; width: 370px; height: 48px; display: block; color: inherit; text-decoration: none; cursor: pointer; border-radius: 9999px"><div class="m3-shape" style="position: absolute; left: 0px; top: 0px; width: 370px; height: 48px; box-sizing: border-box; background: #1E5739; border-radius: 9999px"></div><div style="position: absolute; left: 0px; top: 0px; width: 370px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; color: #FFFFFF">Crear el compte</div></a></sc-if><sc-if value="{{ v.notOk }}" hint-placeholder-val="{{ false }}"><button class="m3-btn" type="button" onClick="{{ v.submit }}" style="position: absolute; left: 16px; top: 674px; width: 370px; height: 48px; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; font-family: inherit; border-radius: 9999px"><div class="m3-shape" style="position: absolute; left: 0px; top: 0px; width: 370px; height: 48px; box-sizing: border-box; background: #1E5739; border-radius: 9999px"></div><div style="position: absolute; left: 0px; top: 0px; width: 370px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; color: #FFFFFF">Crear el compte</div></button></sc-if></div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":402,"height":874}}'>
+class Component extends DCLogic {
+renderVals() {
+const DEF = { nom: '', email: '', pw: '', pw2: '' };
+const st = this.state || {};
+const val = (k) => st[k] === undefined ? DEF[k] : st[k];
+const tried = !!st.tried;
+const v = { tried: tried };
+const set = (k) => (e) => this.setState({ [k]: e.target.value });
+const errs = {};
+Object.keys(DEF).forEach((k) => { v[k] = val(k); v['set_' + k] = set(k); });
+const CHECK = { nom: (x) => !x.trim() ? 'Escriu el teu nom.' : null, email: (x) => !x.trim() ? 'Escriu el correu electrònic.' : (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x.trim()) ? null : 'Format de correu no vàlid (ex.: nom@exemple.cat).'),
+pw: (x) => x.length < 8 ? 'Ha de tenir almenys 8 caràcters.' : null,
+pw2: (x) => !x ? 'Torna a escriure la contrasenya.' : (x !== v.pw ? 'Les contrasenyes no coincideixen.' : null) };
+Object.keys(CHECK).forEach((k) => {
+const msg = CHECK[k](v[k]);
+errs[k] = msg;
+const show = !!msg && (tried || (st[k] !== undefined && v[k] !== ''));
+v[k + 'Bad'] = show; v[k + 'Err'] = msg || ''; v[k + 'Cls'] = show ? 'err' : '';
+});
+['pw', 'pw2'].forEach((k) => { const s = !!st[k + 'Vis'];
+v[k + 'Type'] = s ? 'text' : 'password'; v[k + 'Show'] = s; v[k + 'Hide'] = !s; v[k + 'EyeLabel'] = s ? 'Amagar la contrasenya' : 'Mostrar la contrasenya';
+v[k + 'Eye'] = () => this.setState({ [k + 'Vis']: !s }); });
+v.pwHelp = !v.pwBad; v.pwHelpTxt = 'Mínim 8 caràcters.'; v.nomHelp = false; v.emailHelp = false; v.pw2Help = !v.pw2Bad && !!v.pw2 && v.pw2 === v.pw; v.pw2HelpTxt = '✓ Les contrasenyes coincideixen.';
+const rol = st.rol === undefined ? null : st.rol; const rolOpen = !!st.rolOpen;
+v.rolOpen = rolOpen; v.rolLabel = rol || 'Tria el teu rol'; v.rolColor = rol ? '#1C1B1B' : '#434844'; v.rolRot = rolOpen ? 180 : 0;
+v.rolBad = tried && !rol; v.rolBorder = v.rolBad ? '2px solid #BA1A1A' : (rolOpen ? '2px solid #1E5739' : '1px solid #747874');
+v.toggleRol = () => this.setState({ rolOpen: !rolOpen });
+v.rols = ['Alumne', 'Pares', 'Profe'].map((r) => ({ name: r, sel: r === rol, weight: r === rol ? 600 : 400, bg: r === rol ? '#F6C945' : 'transparent', pick: () => this.setState({ rol: r, rolOpen: false }) }));
+const ok = !Object.keys(errs).some((k) => errs[k]) && !!rol;
+v.ok = ok; v.notOk = !ok; v.submit = () => this.setState({ tried: true, rolOpen: false });
+return { v: v };
+}
+}
+</script>
+</body>
+</html>

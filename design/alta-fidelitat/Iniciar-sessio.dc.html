@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<title>Iniciar sessió</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&amp;family=Roboto:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a,button{-webkit-tap-highlight-color:transparent}
+.m3-btn,.m3-icon,.m3-row,.m3-nav{outline:none}
+.m3-btn::after,.m3-icon::after,.m3-row::after{content:"";position:absolute;inset:0;border-radius:inherit;background:currentColor;opacity:0;pointer-events:none;transition:opacity .15s linear}
+.m3-btn:hover::after,.m3-icon:hover::after{opacity:.08}
+.m3-row:hover::after{opacity:.05}
+.m3-btn:active::after,.m3-icon:active::after,.m3-row:active::after{opacity:.12}
+.m3-row{border-radius:12px}
+.m3-shape{transition:border-radius .35s cubic-bezier(.34,1.56,.64,1),background-color .2s linear}
+.m3-btn{transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-btn:active{transform:scale(.97)}
+.m3-btn:active>.m3-shape,.m3-btn.m3-shape:active{border-radius:16px!important}
+.m3-btn:focus-visible,.m3-icon:focus-visible,.m3-row:focus-visible,.m3-nav:focus-visible{outline:3px solid #755B00;outline-offset:2px}
+.m3-icon[style*="width: 40px; height: 40px"]::before{content:"";position:absolute;inset:-4px}
+.m3-row[style*="width: 65px; height: 17px"]::before{content:"";position:absolute;inset:-16px -4px}
+.m3-in{outline:none;transition:border-color .15s linear}.m3-in:focus{border:2px solid #1E5739!important;padding:0 11px!important}.m3-in.err,.m3-in.err:focus{border:2px solid #BA1A1A!important;padding:0 11px!important}
+</style>
+</helmet>
+<div style="position: relative; width: 402px; height: 874px; overflow: hidden; background: #FFFBF0; font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif; color: #1C1B1B"><svg aria-hidden="true" style="position: absolute; left: 161px; top: 186px; width: 80px; height: 80px" width="80" height="80" viewBox="0 0 512 512"><circle cx="256" cy="256" r="256" fill="#387050"></circle><g transform="translate(25.6 25.6) scale(0.9)"><text x="210" y="412" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="800" font-size="340" fill="#FFFFFF">A</text><circle cx="352" cy="164" r="84" fill="#F6C945" stroke="#387050" stroke-width="14"></circle><rect x="312" y="151" width="80" height="26" rx="13" fill="#387050"></rect><rect x="339" y="124" width="26" height="80" rx="13" fill="#387050"></rect></g></svg><h1 style="position: absolute; left: 16px; top: 284px; width: 370px; margin: 0; font-family: 'Nunito', sans-serif; font-size: 36px; font-weight: 800; letter-spacing: -0.01em; color: #387050; line-height: 44px; text-align: center; white-space: nowrap">Apunta<span style="margin-left: -0.02em">+</span></h1><div style="position: absolute; left: 16px; top: 380px; width: 370px; display: flex; flex-direction: column; gap: 16px"><div><label for="f-email" style="display: block; font-size: 14px; font-weight: 500; color: #1C1B1B; margin-bottom: 5px">Correu electrònic</label><div style="position: relative"><input id="f-email" class="m3-in {{ v.emailCls }}" type="email" autocomplete="email" placeholder="nom@exemple.com" value="{{ v.email }}" onChange="{{ v.set_email }}" aria-invalid="{{ v.emailBad }}" style="display: block; width: 100%; height: 48px; box-sizing: border-box; margin: 0; padding: 0 12px; border: 1px solid #747874; border-radius: 4px; background: transparent; font-family: inherit; font-size: 16px; color: #1C1B1B"></div><sc-if value="{{ v.emailBad }}" hint-placeholder-val="{{ false }}"><div role="alert" style="margin-top: 4px; padding-left: 12px; font-size: 12px; color: #BA1A1A">{{ v.emailErr }}</div></sc-if><sc-if value="{{ v.emailHelp }}" hint-placeholder-val="{{ false }}"><div style="margin-top: 4px; padding-left: 12px; font-size: 12px; color: #434844">{{ v.emailHelpTxt }}</div></sc-if></div><div><label for="f-pw" style="display: block; font-size: 14px; font-weight: 500; color: #1C1B1B; margin-bottom: 5px">Contrasenya</label><div style="position: relative"><input id="f-pw" class="m3-in {{ v.pwCls }}" type="{{ v.pwType }}" autocomplete="current-password" placeholder="Escriu la contrasenya" value="{{ v.pw }}" onChange="{{ v.set_pw }}" aria-invalid="{{ v.pwBad }}" style="display: block; width: 100%; height: 48px; box-sizing: border-box; margin: 0; padding: 0 12px; border: 1px solid #747874; border-radius: 4px; background: transparent; font-family: inherit; font-size: 16px; color: #1C1B1B; padding-right: 48px"><button class="m3-icon" type="button" aria-label="{{ v.pwEyeLabel }}" onClick="{{ v.pwEye }}" style="position: absolute; right: 4px; top: 4px; width: 40px; height: 40px; margin: 0; padding: 0; border: 0; border-radius: 9999px; background: transparent; cursor: pointer"><svg aria-hidden="true" style="position: absolute; left: 8px; top: 8px" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#434844" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><sc-if value="{{ v.pwShow }}" hint-placeholder-val="{{ false }}"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"></path><circle cx="12" cy="12" r="3"></circle></sc-if><sc-if value="{{ v.pwHide }}" hint-placeholder-val="{{ true }}"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"></path><circle cx="12" cy="12" r="3"></circle><path d="M4 4l16 16"></path></sc-if></svg></button></div><sc-if value="{{ v.pwBad }}" hint-placeholder-val="{{ false }}"><div role="alert" style="margin-top: 4px; padding-left: 12px; font-size: 12px; color: #BA1A1A">{{ v.pwErr }}</div></sc-if><sc-if value="{{ v.pwHelp }}" hint-placeholder-val="{{ false }}"><div style="margin-top: 4px; padding-left: 12px; font-size: 12px; color: #434844">{{ v.pwHelpTxt }}</div></sc-if></div></div><sc-if value="{{ v.ok }}" hint-placeholder-val="{{ true }}"><a class="m3-btn" href="Main.dc.html" style="position: absolute; left: 16px; top: 600px; width: 370px; height: 48px; display: block; color: inherit; text-decoration: none; cursor: pointer; border-radius: 9999px"><div class="m3-shape" style="position: absolute; left: 0px; top: 0px; width: 370px; height: 48px; box-sizing: border-box; background: #1E5739; border-radius: 9999px"></div><div style="position: absolute; left: 0px; top: 0px; width: 370px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; color: #FFFFFF">Entrar</div></a></sc-if><sc-if value="{{ v.notOk }}" hint-placeholder-val="{{ false }}"><button class="m3-btn" type="button" onClick="{{ v.submit }}" style="position: absolute; left: 16px; top: 600px; width: 370px; height: 48px; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; font-family: inherit; border-radius: 9999px"><div class="m3-shape" style="position: absolute; left: 0px; top: 0px; width: 370px; height: 48px; box-sizing: border-box; background: #1E5739; border-radius: 9999px"></div><div style="position: absolute; left: 0px; top: 0px; width: 370px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; color: #FFFFFF">Entrar</div></button></sc-if><div style="position: absolute; left: 105px; top: 819px; font-size: 14px; font-weight: 400; color: #434844; line-height: normal; white-space: nowrap">No tens compte?</div><a class="m3-row" href="Registre.dc.html" style="position: absolute; left: 226px; top: 819px; width: 65px; height: 17px; display: block; color: inherit; text-decoration: none; cursor: pointer"><div style="position: absolute; left: 0px; top: 0px; font-size: 14px; font-weight: 600; color: #1E5739; line-height: normal; white-space: nowrap; text-decoration: underline">Registra’t</div></a></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":402,"height":874}}'>
+class Component extends DCLogic {
+renderVals() {
+const DEF = { email: '', pw: '' };
+const st = this.state || {};
+const val = (k) => st[k] === undefined ? DEF[k] : st[k];
+const tried = !!st.tried;
+const v = { tried: tried };
+const set = (k) => (e) => this.setState({ [k]: e.target.value });
+const errs = {};
+Object.keys(DEF).forEach((k) => { v[k] = val(k); v['set_' + k] = set(k); });
+const CHECK = { email: (x) => !x.trim() ? 'Escriu el correu electrònic.' : (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x.trim()) ? null : 'Format de correu no vàlid (ex.: nom@exemple.cat).'), pw: (x) => !x ? 'Escriu la contrasenya.' : null };
+Object.keys(CHECK).forEach((k) => {
+const msg = CHECK[k](v[k]);
+errs[k] = msg;
+const show = !!msg && (tried || (st[k] !== undefined && v[k] !== ''));
+v[k + 'Bad'] = show; v[k + 'Err'] = msg || ''; v[k + 'Cls'] = show ? 'err' : '';
+});
+['pw', 'pw2'].forEach((k) => { if (!(k in DEF)) return; const s = !!st[k + 'Vis'];
+v[k + 'Type'] = s ? 'text' : 'password'; v[k + 'Show'] = s; v[k + 'Hide'] = !s; v[k + 'EyeLabel'] = s ? 'Amagar la contrasenya' : 'Mostrar la contrasenya';
+v[k + 'Eye'] = () => this.setState({ [k + 'Vis']: !s }); });
+
+const ok = !Object.keys(errs).some((k) => errs[k]);
+v.ok = ok; v.notOk = !ok; v.submit = () => this.setState({ tried: true });
+return { v: v };
+}
+}
+</script>
+</body>
+</html>

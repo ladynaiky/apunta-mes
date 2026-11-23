@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<title>Personalització</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&amp;family=Roboto:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a,button{-webkit-tap-highlight-color:transparent}
+.m3-btn,.m3-icon,.m3-row,.m3-nav{outline:none}
+.m3-btn::after,.m3-icon::after,.m3-row::after{content:"";position:absolute;inset:0;border-radius:inherit;background:currentColor;opacity:0;pointer-events:none;transition:opacity .15s linear}
+.m3-btn:hover::after,.m3-icon:hover::after{opacity:.08}
+.m3-row:hover::after{opacity:.05}
+.m3-btn:active::after,.m3-icon:active::after,.m3-row:active::after{opacity:.12}
+.m3-row{border-radius:12px}
+.m3-shape{transition:border-radius .35s cubic-bezier(.34,1.56,.64,1),background-color .2s linear}
+.m3-btn{transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-btn:active{transform:scale(.97)}[role=group] .m3-btn:active{transform:none}
+.m3-btn:active>.m3-shape,.m3-btn.m3-shape:active{border-radius:16px!important}
+.m3-btn:active>.m3-shape[style*="width: 49.4px"]{border-radius:20px!important}
+.m3-btn:focus-visible,.m3-icon:focus-visible,.m3-row:focus-visible,.m3-nav:focus-visible{outline:3px solid #755B00;outline-offset:2px}
+.m3-nav::before{content:"";position:absolute;left:22.25px;top:8px;width:56px;height:32px;border-radius:16px;background:#1C1B1B;opacity:0;transition:opacity .15s linear}
+.m3-nav:hover::before{opacity:.08}
+.m3-nav:active::before{opacity:.12}
+.m3-ind{animation:m3ind .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes m3ind{from{transform:scaleX(.4);opacity:.4}to{transform:none;opacity:1}}
+.m3-fab{transition:background-color .2s linear,border-radius .35s cubic-bezier(.34,1.56,.64,1),transform .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-fab:hover{box-shadow:0 2px 3px rgba(0,0,0,.3),0 6px 10px 4px rgba(0,0,0,.15)!important}
+.m3-fab:active{transform:scale(.94)}
+.m3-fab:focus-visible{outline:3px solid #1C1B1B;outline-offset:3px}
+.m3-fab svg{transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.m3-scrim{animation:m3fade .2s linear}
+@keyframes m3fade{from{opacity:0}to{opacity:1}}
+.m3-dial a{animation:m3pop .38s cubic-bezier(.34,1.56,.64,1) both}
+.m3-dial a:nth-child(4){animation-delay:0ms}.m3-dial a:nth-child(3){animation-delay:35ms}.m3-dial a:nth-child(2){animation-delay:70ms}.m3-dial a:nth-child(1){animation-delay:105ms}
+@keyframes m3pop{from{opacity:0;transform:translateY(16px) scale(.85)}to{opacity:1;transform:none}}
+.m3-dial a{position:relative;transition:border-radius .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-dial a::after{content:"";position:absolute;inset:0;border-radius:inherit;background:#F6C945;opacity:0;transition:opacity .15s linear}
+.m3-dial a:hover::after{opacity:.1}.m3-dial a:active::after{opacity:.16}
+.m3-dial a:active{border-radius:16px!important}
+.m3-dial a:focus-visible{outline:3px solid #1C1B1B;outline-offset:2px}
+.m3-in{outline:none;transition:border-color .15s linear}.m3-in:focus{border:2px solid #1E5739!important;padding:0 11px!important}.m3-in.err,.m3-in.err:focus{border:2px solid #BA1A1A!important;padding:0 11px!important}
+.m3-sheet{animation:m3up .38s cubic-bezier(.2,0,0,1) both}@keyframes m3up{from{transform:translateY(100%)}to{transform:none}}.m3-snack{animation:m3pop .35s cubic-bezier(.34,1.56,.64,1) both}
+.m3-icon[style*="width: 40px; height: 40px"]::before{content:"";position:absolute;inset:-4px}
+.m3-row[style*="width: 36px; height: 48px"]::before{content:"";position:absolute;inset:0 -6px}
+.m3-btn[style*="height: 36px"]::before,.m3-btn[style*="height: 40px"]::before{content:"";position:absolute;inset:-6px 0}
+</style>
+</helmet>
+<div style="position: relative; width: 402px; height: 874px; overflow: hidden; background: #FFFBF0; font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif; color: #1C1B1B"><div style="position: absolute; left: 0px; top: 0px; width: 402px; height: 64px"><div style="position: absolute; left: 0px; top: 0px; width: 402px; height: 64px; box-sizing: border-box; border-style: solid; border-color: transparent; border-width: 0px 0px 1px 0px"></div><a class="m3-icon" href="El-meu-espai.dc.html" aria-label="Enrere" style="position: absolute; left: 4px; top: 8px; width: 48px; height: 48px; display: block; color: inherit; text-decoration: none; cursor: pointer; border-radius: 9999px"><svg aria-hidden="true" style="position: absolute; left: 0px; top: 0px; width: 48px; height: 48px" width='48' height='48' viewBox='0 0 48 48' fill='none'><path d='M33.33 24H14.66M21.66 17L14.66 24L21.66 31' stroke-width='2.04' stroke-linecap='round' stroke-linejoin='round' stroke='#434844'></path></svg></a><h1 style="margin: 0; position: absolute; left: 56px; top: 18px; font-family: 'Nunito', sans-serif; font-size: 22px; font-weight: 600; color: #1C1B1B; line-height: 28px; white-space: nowrap">Personalització</h1></div><div style="position: absolute; left: 0px; top: 64px; width: 402px; height: 738px"><div style="position: absolute; left: 16px; top: 16px; width: 370px; font-size: 16px; font-weight: 400; color: #1C1B1B; line-height: normal; white-space: normal">Agrupa les tasques com et vagi millor.</div><div style="position: absolute; left: 16px; top: 47px; width: 370px; height: 69px"><div style="position: absolute; left: 0px; top: 0px; font-size: 14px; font-weight: 500; color: #1C1B1B; line-height: normal; white-space: nowrap">Agrupar les tasques per</div><div style="position: absolute; left: 0px; top: 21px; width: 370px; height: 48px; box-sizing: border-box; border-style: solid; border-color: #747874; border-width: 1px; border-radius: 4px"></div><div style="position: absolute; left: 13px; top: 35.5px; font-size: 16px; font-weight: 400; color: #1C1B1B; line-height: normal; white-space: nowrap">Assignatures</div><svg aria-hidden="true" style="position: absolute; left: 337px; top: 35px; width: 20px; height: 20px" width='20' height='20' viewBox='0 0 20 20' fill='none'><path d='M5 7.5H15L10 14.16L5 7.5Z' fill='#434844'></path></svg></div><div style="position: absolute; left: 16px; top: 128px; width: 370px; height: 69px"><div style="position: absolute; left: 0px; top: 0px; font-size: 14px; font-weight: 500; color: #1C1B1B; line-height: normal; white-space: nowrap">Marcar-les amb</div><div style="position: absolute; left: 0px; top: 21px; width: 370px; height: 48px; box-sizing: border-box; border-style: solid; border-color: #747874; border-width: 1px; border-radius: 4px"></div><div style="position: absolute; left: 13px; top: 35.5px; font-size: 16px; font-weight: 400; color: #1C1B1B; line-height: normal; white-space: nowrap">Etiquetes</div><svg aria-hidden="true" style="position: absolute; left: 337px; top: 35px; width: 20px; height: 20px" width='20' height='20' viewBox='0 0 20 20' fill='none'><path d='M5 7.5H15L10 14.16L5 7.5Z' fill='#434844'></path></svg></div></div><div class="m3-navbar" style="position: absolute; left: 0px; top: 802px; width: 402px; height: 72px"><div style="position: absolute; left: 0px; top: 0px; width: 402px; height: 72px; box-sizing: border-box; border-style: solid; border-color: transparent; border-width: 1px 0px 0px 0px; background: #E0E3DF"></div><a class="m3-nav" href="Main.dc.html" style="position: absolute; left: 0px; top: 1px; width: 100.5px; height: 71px; display: block; color: inherit; text-decoration: none; cursor: pointer"><svg aria-hidden="true" style="position: absolute; left: 38.3px; top: 12px; width: 24px; height: 24px" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 11.5L12 4L21 11.5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path><path d="M5.5 9.5V20H18.5V9.5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path><path d="M10 20V14H14V20" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path></svg><div style="position: absolute; left: 38.3px; top: 46px; font-size: 12px; font-weight: 500; color: #434844; line-height: normal; white-space: nowrap">Inici</div></a><a class="m3-nav" href="Calendari.dc.html" style="position: absolute; left: 100.5px; top: 1px; width: 100.5px; height: 71px; display: block; color: inherit; text-decoration: none; cursor: pointer"><svg aria-hidden="true" style="position: absolute; left: 38.3px; top: 12px; width: 24px; height: 24px" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 4H19C20.10 4 21 4.89 21 6V19C21 20.10 20.10 21 19 21H5C3.89 21 3 20.10 3 19V6C3 4.89 3.89 4 5 4Z" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path><path d="M3 9H9M9 9H15M9 9V15M15 9H21M15 9V15M3 15H9M9 15H15M9 15V21M15 15H21M15 15V21M8 2V6M16 2V6" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path></svg><div style="position: absolute; left: 22.8px; top: 46px; font-size: 12px; font-weight: 500; color: #434844; line-height: normal; white-space: nowrap">Calendari</div></a><a class="m3-nav" href="Tasques.dc.html" style="position: absolute; left: 201px; top: 1px; width: 100.5px; height: 71px; display: block; color: inherit; text-decoration: none; cursor: pointer"><svg aria-hidden="true" style="position: absolute; left: 38.3px; top: 12px; width: 24px; height: 24px" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 6H21M9 12H21M9 18H21" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path><path d="M4 7.5C4.82 7.5 5.5 6.82 5.5 6C5.5 5.17 4.82 4.5 4 4.5C3.17 4.5 2.5 5.17 2.5 6C2.5 6.82 3.17 7.5 4 7.5Z" fill="#434844"></path><path d="M4 13.5C4.82 13.5 5.5 12.82 5.5 12C5.5 11.17 4.82 10.5 4 10.5C3.17 10.5 2.5 11.17 2.5 12C2.5 12.82 3.17 13.5 4 13.5Z" fill="#434844"></path><path d="M4 19.5C4.82 19.5 5.5 18.82 5.5 18C5.5 17.17 4.82 16.5 4 16.5C3.17 16.5 2.5 17.17 2.5 18C2.5 18.82 3.17 19.5 4 19.5Z" fill="#434844"></path></svg><div style="position: absolute; left: 25.8px; top: 46px; font-size: 12px; font-weight: 500; color: #434844; line-height: normal; white-space: nowrap">Tasques</div></a><a class="m3-nav" href="IA.dc.html" style="position: absolute; left: 301.5px; top: 1px; width: 100.5px; height: 71px; display: block; color: inherit; text-decoration: none; cursor: pointer"><svg aria-hidden="true" style="position: absolute; left: 38.3px; top: 12px; width: 24px; height: 24px" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M10 5C10.6 9 12 10.4 16 11C12 11.6 10.6 13 10 17C9.4 13 8 11.6 4 11C8 10.4 9.4 9 10 5Z" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path><path d="M18 2C18.2 3.5 18.8 4.1 20.3 4.3C18.8 4.5 18.2 5.1 18 6.6C17.8 5.1 17.2 4.5 15.7 4.3C17.2 4.1 17.8 3.5 18 2Z" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path><path d="M19 15C19.2 16.4 19.7 16.9 21 17C19.7 17.2 19.2 17.7 19 19C18.8 17.7 18.3 17.2 17 17C18.3 16.9 18.8 16.4 19 15Z" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke="#434844"></path></svg><div style="position: absolute; left: 44.3px; top: 46px; font-size: 12px; font-weight: 500; color: #434844; line-height: normal; white-space: nowrap">IA</div></a></div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":402,"height":874}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

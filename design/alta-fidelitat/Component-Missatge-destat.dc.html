@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<title>Missatge d’estat</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&amp;family=Roboto:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a,button{-webkit-tap-highlight-color:transparent}
+.m3-btn,.m3-icon,.m3-row,.m3-nav{outline:none}
+.m3-btn::after,.m3-icon::after,.m3-row::after{content:"";position:absolute;inset:0;border-radius:inherit;background:currentColor;opacity:0;pointer-events:none;transition:opacity .15s linear}
+.m3-btn:hover::after,.m3-icon:hover::after{opacity:.08}
+.m3-row:hover::after{opacity:.05}
+.m3-btn:active::after,.m3-icon:active::after,.m3-row:active::after{opacity:.12}
+.m3-row{border-radius:12px}
+.m3-shape{transition:border-radius .35s cubic-bezier(.34,1.56,.64,1),background-color .2s linear}
+.m3-btn{transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-btn:active{transform:scale(.97)}[role=group] .m3-btn:active{transform:none}
+.m3-btn:active>.m3-shape,.m3-btn.m3-shape:active{border-radius:16px!important}
+.m3-btn:active>.m3-shape[style*="width: 49.4px"]{border-radius:20px!important}
+.m3-btn:focus-visible,.m3-icon:focus-visible,.m3-row:focus-visible,.m3-nav:focus-visible{outline:3px solid #755B00;outline-offset:2px}
+.m3-nav::before{content:"";position:absolute;left:22.25px;top:8px;width:56px;height:32px;border-radius:16px;background:#1C1B1B;opacity:0;transition:opacity .15s linear}
+.m3-nav:hover::before{opacity:.08}
+.m3-nav:active::before{opacity:.12}
+.m3-ind{animation:m3ind .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes m3ind{from{transform:scaleX(.4);opacity:.4}to{transform:none;opacity:1}}
+.m3-fab{transition:background-color .2s linear,border-radius .35s cubic-bezier(.34,1.56,.64,1),transform .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-fab:hover{box-shadow:0 2px 3px rgba(0,0,0,.3),0 6px 10px 4px rgba(0,0,0,.15)!important}
+.m3-fab:active{transform:scale(.94)}
+.m3-fab:focus-visible{outline:3px solid #1C1B1B;outline-offset:3px}
+.m3-fab svg{transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.m3-scrim{animation:m3fade .2s linear}
+@keyframes m3fade{from{opacity:0}to{opacity:1}}
+.m3-dial a{animation:m3pop .38s cubic-bezier(.34,1.56,.64,1) both}
+.m3-dial a:nth-child(4){animation-delay:0ms}.m3-dial a:nth-child(3){animation-delay:35ms}.m3-dial a:nth-child(2){animation-delay:70ms}.m3-dial a:nth-child(1){animation-delay:105ms}
+@keyframes m3pop{from{opacity:0;transform:translateY(16px) scale(.85)}to{opacity:1;transform:none}}
+.m3-dial a{position:relative;transition:border-radius .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-dial a::after{content:"";position:absolute;inset:0;border-radius:inherit;background:#F6C945;opacity:0;transition:opacity .15s linear}
+.m3-dial a:hover::after{opacity:.1}.m3-dial a:active::after{opacity:.16}
+.m3-dial a:active{border-radius:16px!important}
+.m3-dial a:focus-visible{outline:3px solid #1C1B1B;outline-offset:2px}
+.m3-in{outline:none;transition:border-color .15s linear}.m3-in:focus{border:2px solid #1E5739!important;padding:0 11px!important}.m3-in.err,.m3-in.err:focus{border:2px solid #BA1A1A!important;padding:0 11px!important}
+.m3-sheet{animation:m3up .38s cubic-bezier(.2,0,0,1) both}@keyframes m3up{from{transform:translateY(100%)}to{transform:none}}.m3-snack{animation:m3pop .35s cubic-bezier(.34,1.56,.64,1) both}
+.m3-icon[style*="width: 40px; height: 40px"]::before{content:"";position:absolute;inset:-4px}
+.m3-row[style*="width: 36px; height: 48px"]::before{content:"";position:absolute;inset:0 -6px}
+.m3-btn[style*="height: 36px"]::before,.m3-btn[style*="height: 40px"]::before{content:"";position:absolute;inset:-6px 0}
+</style>
+</helmet>
+<div style="position: relative; width: 402px; height: 517px; overflow: hidden; box-sizing: border-box; background: #FFFBF0; font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif; color: #1C1B1B; border-radius: 5px"><div style="position: absolute; left: 16px; top: 16px; width: 370px; height: 151px"><svg aria-hidden="true" style="position: absolute; left: 161px; top: 24px; width: 48px; height: 48px" viewBox="0 0 48 48" fill="none"><path d='M10 10H38C40.20 10 42 11.79 42 14V34C42 36.20 40.20 38 38 38H10C7.79 38 6 36.20 6 34V14C6 11.79 7.79 10 10 10Z' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' stroke='#1E5739'></path><path d='M6 26H16L20 32H28L32 26H42' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' stroke='#1E5739'></path></svg><div style="position: absolute; left: 16px; top: 80px; width: 338px; font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 500; color: #1C1B1B; line-height: normal; text-align: center">Títol</div><div style="position: absolute; left: 16px; top: 110px; width: 338px; font-size: 14px; color: #434844; text-align: center">Detall</div></div><div style="position: absolute; left: 16px; top: 183px; width: 370px; height: 151px"><svg aria-hidden="true" style="position: absolute; left: 161px; top: 24px; width: 48px; height: 48px" viewBox="0 0 48 48" fill="none"><path d='M24 6L4 40H44L24 6Z' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' stroke='#BA1A1A'></path><path d='M24 20V28' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' stroke='#BA1A1A'></path><circle cx='24' cy='34' r='2.2' fill='#BA1A1A'></circle></svg><div style="position: absolute; left: 16px; top: 80px; width: 338px; font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 500; color: #1C1B1B; line-height: normal; text-align: center">Títol</div><div style="position: absolute; left: 16px; top: 110px; width: 338px; font-size: 14px; color: #434844; text-align: center">Detall</div></div><div style="position: absolute; left: 16px; top: 350px; width: 370px; height: 151px"><svg aria-hidden="true" style="position: absolute; left: 161px; top: 24px; width: 48px; height: 48px" viewBox="0 0 48 48" fill="none"><path d='M42 24C42 33.94 33.94 42 24 42C14.05 42 6 33.94 6 24C6 14.05 14.05 6 24 6C33.94 6 42 14.05 42 24Z' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' stroke='#387050'></path><path d='M16 24L22 30L32 18' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round' stroke='#387050'></path></svg><div style="position: absolute; left: 16px; top: 80px; width: 338px; font-family: 'Nunito', sans-serif; font-size: 18px; font-weight: 500; color: #1C1B1B; line-height: normal; text-align: center">Títol</div><div style="position: absolute; left: 16px; top: 110px; width: 338px; font-size: 14px; color: #434844; text-align: center">Detall</div></div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":402,"height":517}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

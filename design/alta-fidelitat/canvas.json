@@ -1,0 +1,1168 @@
+{
+ "v": 3,
+ "attachments": {},
+ "boards": {
+  "Iniciar-sessio.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Iniciar sessió",
+   "w": 402,
+   "x": 0,
+   "y": 300
+  },
+  "Main.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Inici",
+   "w": 402,
+   "x": 482,
+   "y": 300
+  },
+  "Calendari.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Calendari",
+   "w": 402,
+   "x": 964,
+   "y": 300
+  },
+  "Tasques.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Tasques",
+   "w": 402,
+   "x": 1446,
+   "y": 300
+  },
+  "IA.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "IA",
+   "w": 402,
+   "x": 1928,
+   "y": 300
+  },
+  "El-meu-espai.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "El meu espai",
+   "w": 402,
+   "x": 2410,
+   "y": 300
+  },
+  "Registre.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Registre",
+   "w": 402,
+   "x": 0,
+   "y": 1874
+  },
+  "Compte-creat.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compte creat",
+   "w": 402,
+   "x": 482,
+   "y": 1874
+  },
+  "Calendari-setmanal-mensual.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Calendari setmanal/mensual",
+   "w": 402,
+   "x": 0,
+   "y": 3448
+  },
+  "Historial-de-tasques.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Historial de tasques",
+   "w": 402,
+   "x": 1446,
+   "y": 3448
+  },
+  "Tasca-davui-setmanal.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Tasca d’avui/setmanal",
+   "w": 402,
+   "x": 1928,
+   "y": 3448
+  },
+  "Checklist.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Checklist",
+   "w": 402,
+   "x": 2410,
+   "y": 3448
+  },
+  "Marcar-tasca-feta.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Marcar tasca feta",
+   "w": 402,
+   "x": 2892,
+   "y": 3448
+  },
+  "Llistat-de-tasques.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Llistat de tasques",
+   "w": 402,
+   "x": 0,
+   "y": 4522
+  },
+  "Apuntar-nova-tasca.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Apuntar nova tasca",
+   "w": 402,
+   "x": 482,
+   "y": 4522
+  },
+  "Personalitzacio.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Personalització",
+   "w": 402,
+   "x": 964,
+   "y": 4522
+  },
+  "Avis-de-pendents.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Avís de pendents",
+   "w": 402,
+   "x": 1446,
+   "y": 4522
+  },
+  "Sincronitzar.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Sincronitzar",
+   "w": 402,
+   "x": 1928,
+   "y": 4522
+  },
+  "Compartir-Privacitat.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir/Privacitat",
+   "w": 402,
+   "x": 2410,
+   "y": 4522
+  },
+  "Compartir-tasques.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir tasques",
+   "w": 402,
+   "x": 2892,
+   "y": 4522
+  },
+  "Tasca-trobada.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Tasca trobada",
+   "w": 402,
+   "x": 0,
+   "y": 6096
+  },
+  "Tasca-creada.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Tasca creada",
+   "w": 402,
+   "x": 482,
+   "y": 6096
+  },
+  "Triar-el-dia.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Triar el dia",
+   "w": 402,
+   "x": 964,
+   "y": 6096
+  },
+  "Crear-nova-assignatura.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Crear nova assignatura",
+   "w": 402,
+   "x": 1446,
+   "y": 6096
+  },
+  "Buscar-Filtrar.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Buscar/Filtrar",
+   "w": 402,
+   "x": 1928,
+   "y": 6096
+  },
+  "Compartir.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir",
+   "w": 402,
+   "x": 2410,
+   "y": 6096
+  },
+  "Generar-enllac.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Generar enllaç",
+   "w": 402,
+   "x": 2892,
+   "y": 6096
+  },
+  "Compartir-enllac.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir enllaç",
+   "w": 402,
+   "x": 0,
+   "y": 7170
+  },
+  "Examen-creat.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Examen creat",
+   "w": 402,
+   "x": 482,
+   "y": 7170
+  },
+  "Excursio-creada.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Excursió creada",
+   "w": 402,
+   "x": 964,
+   "y": 7170
+  },
+  "Aniversari-creat.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Aniversari creat",
+   "w": 402,
+   "x": 1446,
+   "y": 7170
+  },
+  "Tasca-trobada-4-de-novembre.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Tasca del dia 4 de novembre",
+   "w": 402,
+   "x": 0,
+   "y": 8744
+  },
+  "Tasca-trobada-6-de-novembre.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Tasca del dia 6 de novembre",
+   "w": 402,
+   "x": 482,
+   "y": 8744
+  },
+  "Tasca-trobada-13-de-novembre.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Tasca del dia 13 de novembre",
+   "w": 402,
+   "x": 964,
+   "y": 8744
+  },
+  "Tasca-trobada-17-de-novembre.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Tasca del dia 17 de novembre",
+   "w": 402,
+   "x": 1446,
+   "y": 8744
+  },
+  "Tasca-trobada-20-de-novembre.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Tasca del dia 20 de novembre",
+   "w": 402,
+   "x": 1928,
+   "y": 8744
+  },
+  "Tasca-trobada-4-de-novembre-des-de-Calendari.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Tasca del dia 4 de novembre · des de Calendari",
+   "w": 402,
+   "x": 2410,
+   "y": 8744
+  },
+  "Tasca-trobada-6-de-novembre-des-de-Calendari.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Tasca del dia 6 de novembre · des de Calendari",
+   "w": 402,
+   "x": 2892,
+   "y": 8744
+  },
+  "Avis-de-pendents-buit.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Avís de pendents (buit)",
+   "w": 402,
+   "x": 0,
+   "y": 10318
+  },
+  "Calendari-setmanal-mensual-buit.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Calendari setmanal/mensual (buit)",
+   "w": 402,
+   "x": 482,
+   "y": 10318
+  },
+  "Calendari-setmanal-mensual-error.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Calendari setmanal/mensual (error)",
+   "w": 402,
+   "x": 964,
+   "y": 10318
+  },
+  "Checklist-buit.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Checklist (buit)",
+   "w": 402,
+   "x": 1446,
+   "y": 10318
+  },
+  "Crear-nova-assignatura-des-dInici.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Crear nova assignatura · des d’Inici",
+   "w": 402,
+   "x": 1928,
+   "y": 10318
+  },
+  "Historial-de-tasques-buit.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Historial de tasques (buit)",
+   "w": 402,
+   "x": 964,
+   "y": 11392
+  },
+  "Llistat-de-tasques-buit.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Llistat de tasques (buit)",
+   "w": 402,
+   "x": 1446,
+   "y": 11392
+  },
+  "Llistat-de-tasques-error.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Llistat de tasques (error)",
+   "w": 402,
+   "x": 1928,
+   "y": 11392
+  },
+  "Marcar-tasca-feta-buit.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Marcar tasca feta (buit)",
+   "w": 402,
+   "x": 2410,
+   "y": 11392
+  },
+  "Tasca-trobada-buit-des-de-Calendari-setmanal-mensual-buit.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Dia sense tasques · des de Calendari mensual (buit)",
+   "w": 402,
+   "x": 2892,
+   "y": 11392
+  },
+  "Tasca-trobada-buit-des-de-Calendari.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Dia sense tasques · des de Calendari",
+   "w": 402,
+   "x": 0,
+   "y": 12466
+  },
+  "Tasca-trobada-buit.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Dia sense tasques",
+   "w": 402,
+   "x": 482,
+   "y": 12466
+  },
+  "Apuntar-aniversari-des-dInici.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Apuntar aniversari · des d’Inici",
+   "w": 402,
+   "x": 0,
+   "y": 14040
+  },
+  "Apuntar-aniversari-des-de-Calendari.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Apuntar aniversari · des de Calendari",
+   "w": 402,
+   "x": 482,
+   "y": 14040
+  },
+  "Apuntar-aniversari.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Apuntar aniversari",
+   "w": 402,
+   "x": 964,
+   "y": 14040
+  },
+  "Apuntar-examen-des-dInici.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Apuntar examen · des d’Inici",
+   "w": 402,
+   "x": 1446,
+   "y": 14040
+  },
+  "Apuntar-examen-des-de-Calendari.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Apuntar examen · des de Calendari",
+   "w": 402,
+   "x": 1928,
+   "y": 14040
+  },
+  "Apuntar-examen.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Apuntar examen",
+   "w": 402,
+   "x": 2410,
+   "y": 14040
+  },
+  "Apuntar-excursio-des-dInici.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Apuntar excursió · des d’Inici",
+   "w": 402,
+   "x": 0,
+   "y": 15114
+  },
+  "Apuntar-excursio-des-de-Calendari.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Apuntar excursió · des de Calendari",
+   "w": 402,
+   "x": 482,
+   "y": 15114
+  },
+  "Apuntar-excursio.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Apuntar excursió",
+   "w": 402,
+   "x": 964,
+   "y": 15114
+  },
+  "Apuntar-nova-tasca-des-dInici.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Apuntar nova tasca · des d’Inici",
+   "w": 402,
+   "x": 1928,
+   "y": 15114
+  },
+  "Apuntar-nova-tasca-des-de-Calendari.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Apuntar nova tasca · des de Calendari",
+   "w": 402,
+   "x": 2410,
+   "y": 15114
+  },
+  "Buscar-Filtrar-des-dAvis-de-pendents-buit.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Buscar/Filtrar · des d’Avís de pendents (buit)",
+   "w": 402,
+   "x": 0,
+   "y": 16688
+  },
+  "Buscar-Filtrar-des-dAvis-de-pendents.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Buscar/Filtrar · des d’Avís de pendents",
+   "w": 402,
+   "x": 482,
+   "y": 16688
+  },
+  "Buscar-Filtrar-des-dEl-meu-espai.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Buscar/Filtrar · des d’El meu espai",
+   "w": 402,
+   "x": 964,
+   "y": 16688
+  },
+  "Buscar-Filtrar-des-de-Calendari-setmanal-mensual-buit.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Buscar/Filtrar · des de Calendari mensual (buit)",
+   "w": 402,
+   "x": 1446,
+   "y": 16688
+  },
+  "Buscar-Filtrar-des-de-Calendari-setmanal-mensual-error.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Buscar/Filtrar · des de Calendari mensual (error)",
+   "w": 402,
+   "x": 1928,
+   "y": 16688
+  },
+  "Buscar-Filtrar-des-de-Calendari-setmanal-mensual.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Buscar/Filtrar · des de Calendari mensual",
+   "w": 402,
+   "x": 2410,
+   "y": 16688
+  },
+  "Buscar-Filtrar-des-de-Calendari.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Buscar/Filtrar · des de Calendari",
+   "w": 402,
+   "x": 2892,
+   "y": 16688
+  },
+  "Buscar-Filtrar-des-de-Checklist-buit.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Buscar/Filtrar · des de Checklist (buit)",
+   "w": 402,
+   "x": 0,
+   "y": 17762
+  },
+  "Buscar-Filtrar-des-de-Checklist.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Buscar/Filtrar · des de Checklist",
+   "w": 402,
+   "x": 482,
+   "y": 17762
+  },
+  "Buscar-Filtrar-des-de-Llistat-de-tasques-buit.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Buscar/Filtrar · des de Llistat (buit)",
+   "w": 402,
+   "x": 964,
+   "y": 17762
+  },
+  "Buscar-Filtrar-des-de-Llistat-de-tasques-error.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Buscar/Filtrar · des de Llistat (error)",
+   "w": 402,
+   "x": 1446,
+   "y": 17762
+  },
+  "Compartir-des-dAvis-de-pendents.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des d’Avís de pendents",
+   "w": 402,
+   "x": 0,
+   "y": 19336
+  },
+  "Compartir-des-dEl-meu-espai.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des d’El meu espai",
+   "w": 402,
+   "x": 482,
+   "y": 19336
+  },
+  "Compartir-des-dHistorial-de-tasques.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des d’Historial",
+   "w": 402,
+   "x": 1928,
+   "y": 19336
+  },
+  "Compartir-des-dInici.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des d’Inici",
+   "w": 402,
+   "x": 2410,
+   "y": 19336
+  },
+  "Compartir-des-de-Calendari-setmanal-mensual.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des de Calendari mensual",
+   "w": 402,
+   "x": 2892,
+   "y": 19336
+  },
+  "Compartir-des-de-Checklist.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des de Checklist",
+   "w": 402,
+   "x": 0,
+   "y": 20410
+  },
+  "Compartir-des-de-Llistat-de-tasques.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des de Llistat de tasques",
+   "w": 402,
+   "x": 482,
+   "y": 20410
+  },
+  "Compartir-des-de-Marcar-tasca-feta.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des de Marcar tasca feta",
+   "w": 402,
+   "x": 964,
+   "y": 20410
+  },
+  "Compartir-des-de-Tasca-creada.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des de Tasca creada",
+   "w": 402,
+   "x": 1446,
+   "y": 20410
+  },
+  "Compartir-des-de-Tasca-davui-setmanal.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des de Tasca d’avui/setmanal",
+   "w": 402,
+   "x": 1928,
+   "y": 20410
+  },
+  "Compartir-des-de-Tasca-trobada-13-de-novembre.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des del dia 13",
+   "w": 402,
+   "x": 2410,
+   "y": 20410
+  },
+  "Compartir-des-de-Tasca-trobada-17-de-novembre.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des del dia 17",
+   "w": 402,
+   "x": 2892,
+   "y": 20410
+  },
+  "Compartir-des-de-Tasca-trobada-20-de-novembre.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des del dia 20",
+   "w": 402,
+   "x": 0,
+   "y": 21484
+  },
+  "Compartir-des-de-Tasca-trobada-4-de-novembre.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des del dia 4",
+   "w": 402,
+   "x": 482,
+   "y": 21484
+  },
+  "Compartir-des-de-Tasca-trobada-6-de-novembre.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des del dia 6",
+   "w": 402,
+   "x": 964,
+   "y": 21484
+  },
+  "Compartir-des-de-Tasca-trobada.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des de Tasca trobada",
+   "w": 402,
+   "x": 1446,
+   "y": 21484
+  },
+  "Compartir-des-de-Tasques.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des de Tasques",
+   "w": 402,
+   "x": 1928,
+   "y": 21484
+  },
+  "Isotip-Apunta.dc.html": {
+   "h": 240,
+   "title": "Isotip Apunta+ (A+)",
+   "w": 402,
+   "x": 0,
+   "y": 22958
+  },
+  "Component-Capcalera.dc.html": {
+   "h": 368,
+   "title": "Capçalera",
+   "w": 434,
+   "x": 482,
+   "y": 22958
+  },
+  "Component-Barra-de-pestanyes.dc.html": {
+   "h": 72,
+   "title": "Barra de pestanyes",
+   "w": 402,
+   "x": 996,
+   "y": 22958
+  },
+  "Component-Boto.dc.html": {
+   "h": 336,
+   "title": "Botó",
+   "w": 402,
+   "x": 1478,
+   "y": 22958
+  },
+  "Component-Boto-flotant.dc.html": {
+   "h": 120,
+   "title": "Botó flotant",
+   "w": 880,
+   "x": 1960,
+   "y": 22958
+  },
+  "Component-Boto-de-compartir.dc.html": {
+   "h": 40,
+   "title": "Botó de compartir",
+   "w": 40,
+   "x": 2920,
+   "y": 22958
+  },
+  "Component-Camp.dc.html": {
+   "h": 271,
+   "title": "Camp",
+   "w": 402,
+   "x": 0,
+   "y": 23446
+  },
+  "Component-Fila-de-tasca.dc.html": {
+   "h": 144,
+   "title": "Fila de tasca",
+   "w": 402,
+   "x": 482,
+   "y": 23446
+  },
+  "Component-Fila-dinformacio.dc.html": {
+   "h": 55,
+   "title": "Fila d’informació",
+   "w": 370,
+   "x": 964,
+   "y": 23446
+  },
+  "Component-Fila-per-compartir.dc.html": {
+   "h": 144,
+   "title": "Fila per compartir",
+   "w": 402,
+   "x": 1414,
+   "y": 23446
+  },
+  "Component-Missatge-destat.dc.html": {
+   "h": 517,
+   "title": "Missatge d’estat",
+   "w": 402,
+   "x": 1896,
+   "y": 23446
+  },
+  "Component-Calendari-mensual.dc.html": {
+   "h": 562,
+   "title": "Calendari mensual",
+   "w": 402,
+   "x": 2378,
+   "y": 23446
+  },
+  "Component-Calendari-de-setmana-i-mes.dc.html": {
+   "h": 345,
+   "title": "Calendari de setmana i mes",
+   "w": 788,
+   "x": 0,
+   "y": 24128
+  },
+  "Component-Calendari-per-triar.dc.html": {
+   "h": 479,
+   "title": "Calendari per triar",
+   "w": 1182,
+   "x": 868,
+   "y": 24128
+  },
+  "Component-Desplegable-dassignatures.dc.html": {
+   "h": 880,
+   "title": "Desplegable d’assignatures",
+   "w": 354,
+   "x": 2130,
+   "y": 24128
+  },
+  "Component-Desplegable-de-tipus-de-contingut.dc.html": {
+   "h": 346,
+   "title": "Desplegable de tipus de contingut",
+   "w": 788,
+   "x": 2564,
+   "y": 24128
+  },
+  "Component-Desplegable-de-rol.dc.html": {
+   "h": 836,
+   "title": "Desplegable de rol",
+   "w": 788,
+   "x": 0,
+   "y": 25128
+  },
+  "Component-Desplegable-de-contactes.dc.html": {
+   "h": 836,
+   "title": "Desplegable de contactes",
+   "w": 788,
+   "x": 868,
+   "y": 25128
+  },
+  "Component-Selector-de-color.dc.html": {
+   "h": 597,
+   "title": "Selector de color",
+   "w": 402,
+   "x": 1736,
+   "y": 25128
+  },
+  "Component-Resum-davui.dc.html": {
+   "h": 534,
+   "title": "Resum d’avui",
+   "w": 1572,
+   "x": 0,
+   "y": 26084
+  },
+  "Component-Contingut-dEl-meu-espai.dc.html": {
+   "h": 730,
+   "title": "Contingut d’El meu espai",
+   "w": 1560,
+   "x": 1652,
+   "y": 26084
+  },
+  "Examens.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Exàmens",
+   "w": 402,
+   "x": 482,
+   "y": 3448
+  },
+  "Excursions.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Excursions",
+   "w": 402,
+   "x": 964,
+   "y": 3448
+  },
+  "Examens-buit.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Exàmens (buit)",
+   "w": 402,
+   "x": 2410,
+   "y": 10318
+  },
+  "Examens-error.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Exàmens (error)",
+   "w": 402,
+   "x": 2892,
+   "y": 10318
+  },
+  "Excursions-buit.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Excursions (buit)",
+   "w": 402,
+   "x": 0,
+   "y": 11392
+  },
+  "Excursions-error.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Excursions (error)",
+   "w": 402,
+   "x": 482,
+   "y": 11392
+  },
+  "Compartir-des-dExamens.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des d’Exàmens",
+   "w": 402,
+   "x": 964,
+   "y": 19336
+  },
+  "Compartir-des-dExcursions.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Compartir · des d’Excursions",
+   "w": 402,
+   "x": 1446,
+   "y": 19336
+  },
+  "Apuntar-examen-des-dExamens.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Apuntar examen · des d’Exàmens",
+   "w": 402,
+   "x": 2892,
+   "y": 14040
+  },
+  "Apuntar-excursio-des-dExcursions.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Apuntar excursió · des d’Excursions",
+   "w": 402,
+   "x": 1446,
+   "y": 15114
+  },
+  "Buscar-Filtrar-des-de-Tasques.dc.html": {
+   "h": 874,
+   "is_interactive": true,
+   "title": "Buscar/Filtrar · des de Tasques",
+   "w": 402,
+   "x": 1928,
+   "y": 17762
+  }
+ },
+ "createdOnFiles": {
+  "at": "2026-11-16T09:10:00Z",
+  "v": 1
+ },
+ "designSystems": [],
+ "launch": {
+  "view": "canvas"
+ },
+ "notes": {
+  "sec-0": {
+   "kind": "title1",
+   "maxW": 3374,
+   "text": "Nivell 1",
+   "w": 480,
+   "x": 0,
+   "y": 0
+  },
+  "sec-1": {
+   "kind": "title1",
+   "maxW": 3374,
+   "text": "Accés",
+   "w": 480,
+   "x": 0,
+   "y": 1574
+  },
+  "sec-2": {
+   "kind": "title1",
+   "maxW": 3374,
+   "text": "Nivell 2",
+   "w": 480,
+   "x": 0,
+   "y": 3148
+  },
+  "sec-3": {
+   "kind": "title1",
+   "maxW": 3374,
+   "text": "Nivell 3",
+   "w": 480,
+   "x": 0,
+   "y": 5796
+  },
+  "sec-4": {
+   "kind": "title1",
+   "maxW": 3374,
+   "text": "Tasques per dia",
+   "w": 480,
+   "x": 0,
+   "y": 8444
+  },
+  "sec-5": {
+   "kind": "title1",
+   "maxW": 3374,
+   "text": "Estats buits i d’error",
+   "w": 480,
+   "x": 0,
+   "y": 10018
+  },
+  "sec-6": {
+   "kind": "title1",
+   "maxW": 3374,
+   "text": "Apuntar · variants",
+   "w": 480,
+   "x": 0,
+   "y": 13740
+  },
+  "sec-7": {
+   "kind": "title1",
+   "maxW": 3374,
+   "text": "Buscar/Filtrar · variants",
+   "w": 480,
+   "x": 0,
+   "y": 16388
+  },
+  "sec-8": {
+   "kind": "title1",
+   "maxW": 3374,
+   "text": "Compartir · variants",
+   "w": 480,
+   "x": 0,
+   "y": 19036
+  },
+  "sec-components": {
+   "kind": "title1",
+   "maxW": 3374,
+   "text": "Components",
+   "w": 480,
+   "x": 0,
+   "y": 22658
+  }
+ },
+ "order": [
+  "Iniciar-sessio.dc.html",
+  "Main.dc.html",
+  "Calendari.dc.html",
+  "Tasques.dc.html",
+  "IA.dc.html",
+  "El-meu-espai.dc.html",
+  "Registre.dc.html",
+  "Compte-creat.dc.html",
+  "Calendari-setmanal-mensual.dc.html",
+  "Examens.dc.html",
+  "Excursions.dc.html",
+  "Historial-de-tasques.dc.html",
+  "Tasca-davui-setmanal.dc.html",
+  "Checklist.dc.html",
+  "Marcar-tasca-feta.dc.html",
+  "Llistat-de-tasques.dc.html",
+  "Apuntar-nova-tasca.dc.html",
+  "Personalitzacio.dc.html",
+  "Avis-de-pendents.dc.html",
+  "Sincronitzar.dc.html",
+  "Compartir-Privacitat.dc.html",
+  "Compartir-tasques.dc.html",
+  "Tasca-trobada.dc.html",
+  "Tasca-creada.dc.html",
+  "Examen-creat.dc.html",
+  "Excursio-creada.dc.html",
+  "Aniversari-creat.dc.html",
+  "Triar-el-dia.dc.html",
+  "Crear-nova-assignatura.dc.html",
+  "Buscar-Filtrar.dc.html",
+  "Compartir.dc.html",
+  "Generar-enllac.dc.html",
+  "Compartir-enllac.dc.html",
+  "Tasca-trobada-4-de-novembre.dc.html",
+  "Tasca-trobada-6-de-novembre.dc.html",
+  "Tasca-trobada-13-de-novembre.dc.html",
+  "Tasca-trobada-17-de-novembre.dc.html",
+  "Tasca-trobada-20-de-novembre.dc.html",
+  "Tasca-trobada-4-de-novembre-des-de-Calendari.dc.html",
+  "Tasca-trobada-6-de-novembre-des-de-Calendari.dc.html",
+  "Avis-de-pendents-buit.dc.html",
+  "Calendari-setmanal-mensual-buit.dc.html",
+  "Calendari-setmanal-mensual-error.dc.html",
+  "Checklist-buit.dc.html",
+  "Crear-nova-assignatura-des-dInici.dc.html",
+  "Examens-buit.dc.html",
+  "Examens-error.dc.html",
+  "Excursions-buit.dc.html",
+  "Excursions-error.dc.html",
+  "Historial-de-tasques-buit.dc.html",
+  "Llistat-de-tasques-buit.dc.html",
+  "Llistat-de-tasques-error.dc.html",
+  "Marcar-tasca-feta-buit.dc.html",
+  "Tasca-trobada-buit-des-de-Calendari-setmanal-mensual-buit.dc.html",
+  "Tasca-trobada-buit-des-de-Calendari.dc.html",
+  "Tasca-trobada-buit.dc.html",
+  "Apuntar-aniversari-des-dInici.dc.html",
+  "Apuntar-aniversari-des-de-Calendari.dc.html",
+  "Apuntar-aniversari.dc.html",
+  "Apuntar-examen-des-dInici.dc.html",
+  "Apuntar-examen-des-de-Calendari.dc.html",
+  "Apuntar-examen.dc.html",
+  "Apuntar-examen-des-dExamens.dc.html",
+  "Apuntar-excursio-des-dInici.dc.html",
+  "Apuntar-excursio-des-de-Calendari.dc.html",
+  "Apuntar-excursio.dc.html",
+  "Apuntar-excursio-des-dExcursions.dc.html",
+  "Apuntar-nova-tasca-des-dInici.dc.html",
+  "Apuntar-nova-tasca-des-de-Calendari.dc.html",
+  "Buscar-Filtrar-des-dAvis-de-pendents-buit.dc.html",
+  "Buscar-Filtrar-des-dAvis-de-pendents.dc.html",
+  "Buscar-Filtrar-des-dEl-meu-espai.dc.html",
+  "Buscar-Filtrar-des-de-Calendari-setmanal-mensual-buit.dc.html",
+  "Buscar-Filtrar-des-de-Calendari-setmanal-mensual-error.dc.html",
+  "Buscar-Filtrar-des-de-Calendari-setmanal-mensual.dc.html",
+  "Buscar-Filtrar-des-de-Calendari.dc.html",
+  "Buscar-Filtrar-des-de-Checklist-buit.dc.html",
+  "Buscar-Filtrar-des-de-Checklist.dc.html",
+  "Buscar-Filtrar-des-de-Llistat-de-tasques-buit.dc.html",
+  "Buscar-Filtrar-des-de-Llistat-de-tasques-error.dc.html",
+  "Buscar-Filtrar-des-de-Tasques.dc.html",
+  "Compartir-des-dAvis-de-pendents.dc.html",
+  "Compartir-des-dEl-meu-espai.dc.html",
+  "Compartir-des-dExamens.dc.html",
+  "Compartir-des-dExcursions.dc.html",
+  "Compartir-des-dHistorial-de-tasques.dc.html",
+  "Compartir-des-dInici.dc.html",
+  "Compartir-des-de-Calendari-setmanal-mensual.dc.html",
+  "Compartir-des-de-Checklist.dc.html",
+  "Compartir-des-de-Llistat-de-tasques.dc.html",
+  "Compartir-des-de-Marcar-tasca-feta.dc.html",
+  "Compartir-des-de-Tasca-creada.dc.html",
+  "Compartir-des-de-Tasca-davui-setmanal.dc.html",
+  "Compartir-des-de-Tasca-trobada-13-de-novembre.dc.html",
+  "Compartir-des-de-Tasca-trobada-17-de-novembre.dc.html",
+  "Compartir-des-de-Tasca-trobada-20-de-novembre.dc.html",
+  "Compartir-des-de-Tasca-trobada-4-de-novembre.dc.html",
+  "Compartir-des-de-Tasca-trobada-6-de-novembre.dc.html",
+  "Compartir-des-de-Tasca-trobada.dc.html",
+  "Compartir-des-de-Tasques.dc.html",
+  "Isotip-Apunta.dc.html",
+  "Component-Capcalera.dc.html",
+  "Component-Barra-de-pestanyes.dc.html",
+  "Component-Boto.dc.html",
+  "Component-Boto-flotant.dc.html",
+  "Component-Boto-de-compartir.dc.html",
+  "Component-Camp.dc.html",
+  "Component-Fila-de-tasca.dc.html",
+  "Component-Fila-dinformacio.dc.html",
+  "Component-Fila-per-compartir.dc.html",
+  "Component-Missatge-destat.dc.html",
+  "Component-Calendari-mensual.dc.html",
+  "Component-Calendari-de-setmana-i-mes.dc.html",
+  "Component-Calendari-per-triar.dc.html",
+  "Component-Desplegable-dassignatures.dc.html",
+  "Component-Desplegable-de-tipus-de-contingut.dc.html",
+  "Component-Desplegable-de-rol.dc.html",
+  "Component-Desplegable-de-contactes.dc.html",
+  "Component-Selector-de-color.dc.html",
+  "Component-Resum-davui.dc.html",
+  "Component-Contingut-dEl-meu-espai.dc.html"
+ ],
+ "pages": [],
+ "title": "Apunta+ · Alta fidelitat"
+}

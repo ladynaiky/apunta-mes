@@ -1,0 +1,42 @@
+{
+  "v": 3,
+  "assetGroups": {
+    "Logos": {
+      "files": {
+        "isotip-apunta.svg": {
+          "blob": "ccc93f67038dd9e171f7649bcbdeebc8",
+          "name": "isotip-apunta.svg",
+          "size": 362,
+          "type": "image/svg+xml"
+        }
+      },
+      "name": "Logos",
+      "order": [
+        "isotip-apunta.svg"
+      ],
+      "tile": "m"
+    }
+  },
+  "blobs": {},
+  "createdOnFiles": {
+    "at": "2026-11-13T09:06:30Z",
+    "v": 1
+  },
+  "docs": {
+    "sections": []
+  },
+  "groups": [
+    "Logos"
+  ],
+  "lastChange": {
+    "at": "2026-11-16T09:15:00Z",
+    "by": "Lorena González",
+    "note": "Nueva paleta de asignaturas (7 colores, uno por asignatura) en grises: tokens color.rosa y color.turquesa, color de alta fidelidad documentado",
+    "via": "Claude (Cowork)"
+  },
+  "layout": "files",
+  "libraries": [],
+  "namespace": "Apunta",
+  "sections": {},
+  "title": "Apunta+ · Design System"
+}

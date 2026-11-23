@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<title>Botó flotant</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&amp;family=Roboto:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a,button{-webkit-tap-highlight-color:transparent}
+.m3-btn,.m3-icon,.m3-row,.m3-nav{outline:none}
+.m3-btn::after,.m3-icon::after,.m3-row::after{content:"";position:absolute;inset:0;border-radius:inherit;background:currentColor;opacity:0;pointer-events:none;transition:opacity .15s linear}
+.m3-btn:hover::after,.m3-icon:hover::after{opacity:.08}
+.m3-row:hover::after{opacity:.05}
+.m3-btn:active::after,.m3-icon:active::after,.m3-row:active::after{opacity:.12}
+.m3-row{border-radius:12px}
+.m3-shape{transition:border-radius .35s cubic-bezier(.34,1.56,.64,1),background-color .2s linear}
+.m3-btn{transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-btn:active{transform:scale(.97)}[role=group] .m3-btn:active{transform:none}
+.m3-btn:active>.m3-shape,.m3-btn.m3-shape:active{border-radius:16px!important}
+.m3-btn:active>.m3-shape[style*="width: 49.4px"]{border-radius:20px!important}
+.m3-btn:focus-visible,.m3-icon:focus-visible,.m3-row:focus-visible,.m3-nav:focus-visible{outline:3px solid #755B00;outline-offset:2px}
+.m3-nav::before{content:"";position:absolute;left:22.25px;top:8px;width:56px;height:32px;border-radius:16px;background:#1C1B1B;opacity:0;transition:opacity .15s linear}
+.m3-nav:hover::before{opacity:.08}
+.m3-nav:active::before{opacity:.12}
+.m3-ind{animation:m3ind .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes m3ind{from{transform:scaleX(.4);opacity:.4}to{transform:none;opacity:1}}
+.m3-fab{transition:background-color .2s linear,border-radius .35s cubic-bezier(.34,1.56,.64,1),transform .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-fab:hover{box-shadow:0 2px 3px rgba(0,0,0,.3),0 6px 10px 4px rgba(0,0,0,.15)!important}
+.m3-fab:active{transform:scale(.94)}
+.m3-fab:focus-visible{outline:3px solid #1C1B1B;outline-offset:3px}
+.m3-fab svg{transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.m3-scrim{animation:m3fade .2s linear}
+@keyframes m3fade{from{opacity:0}to{opacity:1}}
+.m3-dial a{animation:m3pop .38s cubic-bezier(.34,1.56,.64,1) both}
+.m3-dial a:nth-child(4){animation-delay:0ms}.m3-dial a:nth-child(3){animation-delay:35ms}.m3-dial a:nth-child(2){animation-delay:70ms}.m3-dial a:nth-child(1){animation-delay:105ms}
+@keyframes m3pop{from{opacity:0;transform:translateY(16px) scale(.85)}to{opacity:1;transform:none}}
+.m3-dial a{position:relative;transition:border-radius .35s cubic-bezier(.34,1.56,.64,1)}
+.m3-dial a::after{content:"";position:absolute;inset:0;border-radius:inherit;background:#FFFFFF;opacity:0;transition:opacity .15s linear}
+.m3-dial a:hover::after{opacity:.1}.m3-dial a:active::after{opacity:.16}
+.m3-dial a:active{border-radius:16px!important}
+.m3-dial a:focus-visible{outline:3px solid #1C1B1B;outline-offset:2px}
+.m3-in{outline:none;transition:border-color .15s linear}.m3-in:focus{border:2px solid #1E5739!important;padding:0 11px!important}.m3-in.err,.m3-in.err:focus{border:2px solid #BA1A1A!important;padding:0 11px!important}
+.m3-sheet{animation:m3up .38s cubic-bezier(.2,0,0,1) both}@keyframes m3up{from{transform:translateY(100%)}to{transform:none}}.m3-snack{animation:m3pop .35s cubic-bezier(.34,1.56,.64,1) both}
+.m3-icon[style*="width: 40px; height: 40px"]::before{content:"";position:absolute;inset:-4px}
+.m3-row[style*="width: 36px; height: 48px"]::before{content:"";position:absolute;inset:0 -6px}
+.m3-btn[style*="height: 36px"]::before,.m3-btn[style*="height: 40px"]::before{content:"";position:absolute;inset:-6px 0}
+</style>
+</helmet>
+<div style="position: relative; width: 880px; height: 120px; overflow: hidden; box-sizing: border-box; background: #FFFBF0; font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif; color: #1C1B1B; border-radius: 5px"><div style="position: absolute; inset: 0; padding: 16px 20px; display: flex; align-items: flex-start; gap: 20px"><div style="display: flex; flex-direction: column; align-items: center; gap: 6px"><div role="img" aria-label="Tancat" style="width: 56px; height: 56px; border-radius: 9999px; background: #387050; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 8px 3px rgba(0,0,0,.15)"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" style="transform: rotate(0deg)"><path d="M12 5V19M5 12H19" stroke="#F4F6F3" stroke-width="2.2" stroke-linecap="round"></path></svg></div><div style="font-size: 11px; font-weight: 500; color: #434844">Tancat</div></div><div style="display: flex; flex-direction: column; align-items: center; gap: 6px"><div role="img" aria-label="Obert" style="width: 56px; height: 56px; border-radius: 9999px; background: #1E5739; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 8px 3px rgba(0,0,0,.15)"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" style="transform: rotate(45deg)"><path d="M12 5V19M5 12H19" stroke="#F4F6F3" stroke-width="2.2" stroke-linecap="round"></path></svg></div><div style="font-size: 11px; font-weight: 500; color: #434844">Obert</div></div><div style="width: 1px; align-self: stretch; background: #C4C7C3"></div><div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; gap: 8px"><div style="height: 56px; box-sizing: border-box; padding: 0 24px 0 18px; display: flex; align-items: center; gap: 10px; background: #387050; color: #F4F6F3; border-radius: 9999px; font-size: 16px; font-weight: 600; white-space: nowrap; box-shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 8px 3px rgba(0,0,0,.15)"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 20 20" fill="none"><path d='M5.83 2.5H14.16C15.08 2.5 15.83 3.24 15.83 4.16V15.83C15.83 16.75 15.08 17.5 14.16 17.5H5.83C4.91 17.5 4.16 16.75 4.16 15.83V4.16C4.16 3.24 4.91 2.5 5.83 2.5Z' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' stroke='#F4F6F3'></path><path d='M7.5 6.66H12.5M7.5 9.99H12.5M7.5 13.33H10.83' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' stroke='#F4F6F3'></path></svg><span>Tasca</span></div><div style="height: 56px; box-sizing: border-box; padding: 0 24px 0 18px; display: flex; align-items: center; gap: 10px; background: #387050; color: #F4F6F3; border-radius: 9999px; font-size: 16px; font-weight: 600; white-space: nowrap; box-shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 8px 3px rgba(0,0,0,.15)"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 20 20" fill="none"><path d='M10 2.5C7.24 2.5 5 4.66 5 7.33C5 9.06 5.93 10.4 7.1 11.28C7.62 11.67 7.92 12.28 7.92 12.93V13.75H12.08V12.93C12.08 12.28 12.38 11.67 12.9 11.28C14.07 10.4 15 9.06 15 7.33C15 4.66 12.76 2.5 10 2.5Z' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' stroke='#F4F6F3'></path><path d='M7.92 15.83H12.08M8.75 17.92H11.25' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' stroke='#F4F6F3'></path><path d='M10 13.75V10.83' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' stroke='#F4F6F3'></path></svg><span>Exàmens</span></div><div style="height: 56px; box-sizing: border-box; padding: 0 24px 0 18px; display: flex; align-items: center; gap: 10px; background: #387050; color: #F4F6F3; border-radius: 9999px; font-size: 16px; font-weight: 600; white-space: nowrap; box-shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 8px 3px rgba(0,0,0,.15)"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 20 20" fill="none"><path d='M1.67 16.67L7.08 6.67L10.42 12.5L12.5 9.58L18.33 16.67H1.67Z' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' stroke='#F4F6F3'></path><path d='M5.42 9.75L7.08 10.83L8.33 9.92' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' stroke='#F4F6F3'></path><path d='M16.25 4.58C16.25 5.27 15.69 5.83 15 5.83C14.31 5.83 13.75 5.27 13.75 4.58C13.75 3.89 14.31 3.33 15 3.33C15.69 3.33 16.25 3.89 16.25 4.58Z' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' stroke='#F4F6F3'></path></svg><span>Excursions</span></div><div style="height: 56px; box-sizing: border-box; padding: 0 24px 0 18px; display: flex; align-items: center; gap: 10px; background: #387050; color: #F4F6F3; border-radius: 9999px; font-size: 16px; font-weight: 600; white-space: nowrap; box-shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 8px 3px rgba(0,0,0,.15)"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 20 20" fill="none"><path d='M3.33 11.25H16.67V16.67C16.67 17.13 16.29 17.5 15.83 17.5H4.17C3.71 17.5 3.33 17.13 3.33 16.67V11.25Z' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' stroke='#F4F6F3'></path><path d='M5 11.25V8.75H15V11.25' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' stroke='#F4F6F3'></path><path d='M3.33 13.75C4.44 13.75 4.44 14.58 5.56 14.58C6.67 14.58 6.67 13.75 7.78 13.75C8.89 13.75 8.89 14.58 10 14.58C11.11 14.58 11.11 13.75 12.22 13.75C13.33 13.75 13.33 14.58 14.44 14.58C15.56 14.58 15.56 13.75 16.67 13.75' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' stroke='#F4F6F3'></path><path d='M10 8.75V6.25' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' stroke='#F4F6F3'></path><path d='M10 2.5C10.83 3.33 10.83 4.17 10 4.79C9.17 4.17 9.17 3.33 10 2.5Z' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' stroke='#F4F6F3'></path></svg><span>Aniversaris</span></div></div><div style="font-size: 11px; font-weight: 500; color: #434844">Opcions del menú (s’obren en columna sobre el FAB)</div></div></div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":880,"height":120}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
