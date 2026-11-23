@@ -1,0 +1,34 @@
+<div class="field" [class.invalid]="error()" [class.disabled]="disabled()">
+  <label class="label" [for]="id">{{ label() }}</label>
+  <input
+    [id]="id"
+    [type]="inputType()"
+    [value]="value()"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [attr.autocomplete]="autocomplete()"
+    [attr.aria-invalid]="error() ? true : null"
+    [attr.aria-describedby]="describedBy()"
+    (input)="onInput($event)"
+    (blur)="onTouched()"
+  />
+  @if (type() === 'password') {
+    <button
+      apIconButton
+      type="button"
+      class="eye"
+      [icon]="showPassword() ? 'visibility_off' : 'visibility'"
+      [label]="showPassword() ? t.hidePassword : t.showPassword"
+      (click)="showPassword.set(!showPassword())"
+    ></button>
+  }
+</div>
+@if (error()) {
+  <p class="support error" [id]="id + '-support'" role="alert">
+    <span class="material-symbols-rounded" aria-hidden="true">error</span>{{ error() }}
+  </p>
+} @else if (success()) {
+  <p class="support success" [id]="id + '-support'">{{ success() }}</p>
+} @else if (helper()) {
+  <p class="support" [id]="id + '-support'">{{ helper() }}</p>
+}

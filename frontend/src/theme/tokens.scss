@@ -1,0 +1,160 @@
+/*
+ * Tokens de Apunta+ como variables CSS.
+ * Nombres: Design System (color.primary → --color-primary, space.200 → --space-200…).
+ * Valores de color y tipografía: Alta fidelitat (manda en color y tipografía).
+ * Medidas, formas, elevación, movimiento y estados: Design System (MD3 Expressive).
+ * Solo tema claro.
+ */
+:root {
+  /* ── Color: roles ── */
+  --color-surface: #fffbf0;
+  --color-on-surface: #1c1b1b;
+  --color-on-surface-variant: #434844;
+  --color-surface-container-low: #f6f3f2;
+  --color-surface-container: #e0e3df; /* navigation bar */
+  --color-surface-container-high: #f1edec; /* accesos con chevron, campos de búsqueda */
+  --color-surface-container-highest: #ebe7e6;
+
+  --color-primary: #1e5739; /* botón principal, foco de campo */
+  --color-on-primary: #ffffff;
+  --color-primary-container: #387050; /* verde de marca: FAB, logotipo, «Feta» */
+  --color-on-primary-container: #f4f6f3;
+
+  --color-secondary: #755b00; /* etiqueta activa de navegación, anillo de foco */
+  --color-secondary-container: #f6c945; /* indicador de navegación, opción elegida */
+  --color-on-secondary-container: #6d5400;
+
+  --color-outline: #747874;
+  --color-outline-variant: #c4c7c3;
+
+  --color-error: #ba1a1a; /* solo errores */
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  --color-warning-badge: #c4432b; /* badge de pendientes (aviso, no error) */
+  --color-on-warning-badge: #ffffff;
+  --color-priority-container: #ffdbce; /* «Prioritat alta» */
+  --color-on-priority-container: #6b2400;
+
+  --color-inverse-surface: #313030; /* snackbar */
+  --color-inverse-on-surface: #f4f0ef;
+  --color-scrim: #000000;
+  --color-shadow: #000000;
+
+  /* ── Color: asignaturas (solo punto de fila, puntos del calendario y muestra) ── */
+  --color-taronja: #cc5500;
+  --color-groc: #b08800;
+  --color-lila: #9a6ade;
+  --color-verd: #2e8540;
+  --color-turquesa: #00879a;
+  --color-rosa: #d02670;
+  --color-blau: #1f4fb8;
+  --color-castella: var(--color-taronja);
+  --color-catala: var(--color-groc);
+  --color-angles: var(--color-lila);
+  --color-socials: var(--color-verd);
+  --color-plastica: var(--color-turquesa);
+  --color-musica: var(--color-rosa);
+  --color-mates: var(--color-blau);
+
+  /* ── Tipografía ── */
+  --font-title: 'Nunito Variable', 'Nunito', system-ui, sans-serif;
+  --font-text: 'Roboto Variable', 'Roboto', system-ui, sans-serif;
+
+  /* ── Espaciado ── */
+  --space-0: 0;
+  --space-25: 2px;
+  --space-50: 4px;
+  --space-75: 6px;
+  --space-100: 8px;
+  --space-125: 10px;
+  --space-150: 12px;
+  --space-175: 14px;
+  --space-200: 16px;
+  --space-250: 20px;
+  --space-300: 24px;
+  --space-400: 32px;
+  --space-450: 36px;
+  --space-500: 40px;
+  --space-600: 48px;
+  --space-700: 56px;
+  --space-800: 64px;
+  --space-900: 72px;
+
+  /* ── Forma ── */
+  --shape-corner-none: 0;
+  --shape-corner-extra-small: 4px;
+  --shape-corner-small: 8px;
+  --shape-corner-medium: 12px;
+  --shape-corner-large: 16px;
+  --shape-corner-large-increased: 20px;
+  --shape-corner-extra-large: 28px;
+  --shape-corner-extra-large-increased: 32px;
+  --shape-corner-extra-extra-large: 48px;
+  --shape-corner-full: 9999px;
+  --shape-corner-checkbox: 2px;
+
+  /* ── Elevación ── */
+  --elevation-level0: none;
+  --elevation-level1: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --elevation-level2: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --elevation-level3: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.15);
+  --elevation-level4: 0 2px 3px 0 rgba(0, 0, 0, 0.3), 0 6px 10px 4px rgba(0, 0, 0, 0.15);
+  --elevation-level5: 0 4px 4px 0 rgba(0, 0, 0, 0.3), 0 8px 12px 6px rgba(0, 0, 0, 0.15);
+
+  /* ── Opacidades de estado ── */
+  --opacity-state-hover: 0.08;
+  --opacity-state-focus: 0.1;
+  --opacity-state-pressed: 0.1;
+  --opacity-state-dragged: 0.16;
+  --opacity-disabled-container: 0.12;
+  --opacity-disabled-content: 0.38;
+  --opacity-scrim: 0.32;
+  --opacity-drag-handle: 0.4;
+
+  /* ── Medidas ── */
+  --size-touch-target: 48px;
+  --size-icon: 24px;
+  --size-icon-small: 20px;
+  --size-icon-large: 48px;
+  --size-button-xs: 32px;
+  --size-button-s: 40px;
+  --size-button-m: 56px;
+  --size-fab: 56px;
+  --size-app-bar-small: 64px;
+  --size-navigation-bar: 64px;
+  --size-nav-indicator-width: 56px;
+  --size-nav-indicator-height: 32px;
+  --size-tab: 48px;
+  --size-list-item-one-line: 56px;
+  --size-list-item-two-line: 72px;
+  --size-text-field: 56px;
+  --size-menu-item: 48px;
+  --size-chip: 32px;
+  --size-checkbox: 18px;
+  --size-badge-large: 16px;
+  --size-badge-small: 6px;
+  --size-subject-dot: 12px;
+  --size-calendar-dot: 6px;
+  --size-calendar-cell: 56px;
+  --size-day: 40px;
+  --size-swatch: 36px;
+  --size-focus-ring: 3px;
+  --size-layout-margin: 16px;
+  --size-frame-width: 412px;
+  --size-frame-height: 892px;
+
+  /* ── Movimiento (aproximación CSS de los springs de MD3 Expressive) ── */
+  --motion-spatial-fast: 350ms cubic-bezier(0.42, 1.67, 0.21, 0.9);
+  --motion-spatial-default: 500ms cubic-bezier(0.38, 1.21, 0.22, 1);
+  --motion-effects: 150ms cubic-bezier(0.31, 0.94, 0.34, 1);
+}
+
+/* «Reducir movimiento» del sistema: sin rebote ni cambio de forma, solo fundidos. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-spatial-fast: 150ms linear;
+    --motion-spatial-default: 150ms linear;
+  }
+}

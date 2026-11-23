@@ -1,0 +1,43 @@
+<div class="field" [class.invalid]="error()" [class.open]="open()" [class.disabled]="disabled()">
+  <span class="label" [id]="id + '-label'">{{ label() }}</span>
+  <button
+    type="button"
+    class="trigger"
+    role="combobox"
+    [attr.aria-labelledby]="id + '-label ' + id + '-value'"
+    [attr.aria-expanded]="open()"
+    [attr.aria-controls]="id + '-list'"
+    [attr.aria-invalid]="error() ? true : null"
+    [attr.aria-activedescendant]="open() && activeIndex() >= 0 ? id + '-opt-' + activeIndex() : null"
+    [disabled]="disabled()"
+    (click)="toggle()"
+    (keydown)="onKeydown($event)"
+  >
+    <span class="value" [id]="id + '-value'" [class.placeholder]="!selected()">
+      {{ selected()?.label ?? placeholder() }}
+    </span>
+    <ap-icon name="arrow_drop_down" class="arrow" [class.up]="open()" />
+  </button>
+</div>
+@if (open()) {
+  <ul class="menu" role="listbox" [id]="id + '-list'" [attr.aria-labelledby]="id + '-label'">
+    @for (o of options(); track $index; let i = $index) {
+      <li
+        role="option"
+        [id]="id + '-opt-' + i"
+        [attr.aria-selected]="o.value === value()"
+        [class.selected]="o.value === value()"
+        [class.active]="i === activeIndex()"
+        (click)="pick(o)"
+        (mouseenter)="activeIndex.set(i)"
+      >
+        {{ o.label }}
+      </li>
+    }
+  </ul>
+}
+@if (error()) {
+  <p class="support error" role="alert">
+    <span class="material-symbols-rounded" aria-hidden="true">error</span>{{ error() }}
+  </p>
+}

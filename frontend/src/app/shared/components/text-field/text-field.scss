@@ -1,0 +1,64 @@
+:host { display: block; }
+
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: var(--size-text-field);
+  border: 1px solid var(--color-outline);
+  border-radius: var(--shape-corner-extra-small);
+  background: transparent;
+  transition: border-color var(--motion-effects);
+}
+.field:hover { border-color: var(--color-on-surface); }
+.field:focus-within { border: 2px solid var(--color-primary); }
+.field.invalid,
+.field.invalid:focus-within { border: 2px solid var(--color-error); }
+.field.disabled { opacity: var(--opacity-disabled-content); }
+
+/* Etiqueta sobre el borde (siempre flotante). */
+.label {
+  position: absolute;
+  top: -9px;
+  left: 12px;
+  padding: 0 4px;
+  background: var(--color-surface);
+  color: var(--color-on-surface-variant);
+  font: 400 12px/16px var(--font-text);
+  letter-spacing: 0.4px;
+  pointer-events: none;
+}
+.field:focus-within .label { color: var(--color-primary); }
+.field.invalid .label { color: var(--color-error); }
+
+input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0 15px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--color-on-surface);
+  font: 400 16px/24px var(--font-text);
+  letter-spacing: 0.5px;
+}
+.field:focus-within input,
+.field.invalid input { padding: 0 14px; }
+input::placeholder { color: var(--color-on-surface-variant); opacity: 1; }
+.eye { margin-right: 4px; }
+
+.support {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-50);
+  margin: var(--space-50) 0 0;
+  padding: 0 var(--space-200);
+  color: var(--color-on-surface-variant);
+  font: 400 12px/16px var(--font-text);
+  letter-spacing: 0.4px;
+}
+.support.error { color: var(--color-error); padding-left: var(--space-150); }
+.support.error span { font-size: 16px; }
+.support.success { color: var(--color-primary); }

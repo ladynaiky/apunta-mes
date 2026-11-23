@@ -124,10 +124,10 @@ export class EntriesService {
     return docs.map((e) => this.toDto(e));
   }
 
-  /** Puntos del calendario mensual: un punto por cosa apuntada y día. */
+  /** Puntos del calendario mensual: un punto por cosa pendiente y día (las hechas no salen). */
   async calendar(userId: string, month?: string): Promise<CalendarDayDto[]> {
     const { from, to } = monthRange(month ?? this.appConfig.today.slice(0, 7));
-    const items = await this.inRange({ user: userId }, from, to);
+    const items = await this.inRange({ user: userId, done: false }, from, to);
     const days = new Map<string, CalendarDayDto>();
     for (const e of items) {
       const day = days.get(e.date) ?? { date: e.date, count: 0, dots: [] };

@@ -1,0 +1,94 @@
+:host {
+  position: absolute;
+  right: var(--space-200);
+  bottom: calc(var(--size-navigation-bar) + var(--space-200) + env(safe-area-inset-bottom));
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-100);
+}
+
+.fab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-fab);
+  height: var(--size-fab);
+  border: 0;
+  border-radius: var(--shape-corner-large);
+  background: var(--color-primary-container);
+  color: var(--color-on-primary-container);
+  box-shadow: var(--elevation-level3);
+  cursor: pointer;
+  transition:
+    border-radius var(--motion-spatial-fast),
+    box-shadow var(--motion-effects);
+  -webkit-tap-highlight-color: transparent;
+}
+.fab::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity var(--motion-effects);
+}
+.fab:hover { box-shadow: var(--elevation-level4); }
+.fab:hover::after { opacity: var(--opacity-state-hover); }
+.fab:active::after { opacity: var(--opacity-state-pressed); }
+/* Abierto: el botón de cerrar es redondo (FAB menu MD3 Expressive). */
+.fab.open { border-radius: var(--shape-corner-full); }
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgb(0 0 0 / var(--opacity-scrim));
+  animation: fade var(--motion-effects);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-50);
+}
+.menu a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-150);
+  height: var(--size-button-m);
+  padding: 0 var(--space-300) 0 var(--space-250);
+  border-radius: var(--shape-corner-full);
+  background: var(--color-primary-container);
+  color: var(--color-on-primary-container);
+  font: 600 16px/24px var(--font-title);
+  letter-spacing: 0.15px;
+  text-decoration: none;
+  box-shadow: var(--elevation-level3);
+  animation: pop var(--motion-spatial-fast) both;
+}
+.menu a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity var(--motion-effects);
+}
+.menu a:hover::after { opacity: var(--opacity-state-hover); }
+.menu a:active::after { opacity: var(--opacity-state-pressed); }
+.menu a:nth-child(3) { animation-delay: 35ms; }
+.menu a:nth-child(2) { animation-delay: 70ms; }
+.menu a:nth-child(1) { animation-delay: 105ms; }
+
+@keyframes fade { from { opacity: 0; } }
+@keyframes pop { from { opacity: 0; transform: translateY(16px) scale(0.85); } }
+@media (prefers-reduced-motion: reduce) {
+  .menu a { animation: fade var(--motion-effects) both; }
+}

@@ -1,0 +1,122 @@
+<div class="screen">
+  <ap-top-bar title="Apunta+" [brand]="true" [showBack]="false" [showProfile]="true" [pending]="3" />
+
+  <ion-content>
+    <main class="content">
+      <p class="intro body-medium">Pàgina de desenvolupament: components compartits del Design System.</p>
+
+      <section>
+        <h2 class="title-medium-emphasized">Tipografia</h2>
+        <p class="display-small">Apunta+</p>
+        <p class="title-large">Tasca creada</p>
+        <p class="title-medium">Dimecres 4 de novembre</p>
+        <p class="body-large">Mates: exercicis, pàg. 12</p>
+        <p class="body-medium">Per a avui</p>
+        <p class="label-medium">Calendari</p>
+      </section>
+
+      <section>
+        <h2 class="title-medium-emphasized">Botons</h2>
+        <button apButton variant="filled" size="m" [block]="true">Entrar</button>
+        <div class="wrap">
+          <button apButton variant="filled">Sí</button>
+          <button apButton variant="outlined">No</button>
+          <button apButton variant="tonal" icon="edit">Editar</button>
+          <button apButton variant="tonal-error" icon="delete">Esborrar</button>
+          <button apButton variant="text">Registra’t</button>
+          <button apButton variant="filled" disabled>Desactivat</button>
+        </div>
+        <div class="wrap">
+          <button apIconButton icon="share" label="Compartir"></button>
+          <button apIconButton icon="more_vert" [label]="ca.task.options"></button>
+          <button apIconButton icon="close" [label]="ca.common.close"></button>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="title-medium-emphasized">Assignatures (xips, punts i badge)</h2>
+        <div class="wrap">
+          @for (s of subjects; track s.name) {
+            <button
+              apChip
+              [subjectColor]="s.color"
+              [selected]="selectedChip() === s.name"
+              [count]="s.name === 'Mates' || s.name === 'Català' ? 1 : null"
+              (click)="selectedChip.set(s.name)"
+            >
+              {{ s.name }}
+            </button>
+          }
+        </div>
+        <div class="wrap dots">
+          @for (s of subjects; track s.name) {
+            <span class="dot-sample"><ap-subject-dot [color]="s.color" /> {{ s.name }}</span>
+          }
+          <ap-badge [count]="3" /> <ap-badge />
+        </div>
+      </section>
+
+      <section>
+        <h2 class="title-medium-emphasized">Files de tasca</h2>
+        <ap-task-row
+          subjectName="Mates"
+          subjectColor="blau"
+          title="Exercicis, pàg. 12"
+          [supporting]="ca.task.forToday"
+          [done]="doneMates()"
+          (doneChange)="doneMates.set($event)"
+        />
+        <ap-task-row subjectName="Anglès" subjectColor="lila" title="Preparar la redacció (dv. 6)" [highPriority]="true" />
+        <ap-task-row subjectName="Música" subjectColor="rosa" title="Practicar la cançó" [done]="true" />
+        <div class="wrap">
+          <ap-checkbox [(checked)]="checked" label="Casella de prova" />
+          <ap-checkbox [checked]="false" label="Casella desactivada" [disabled]="true" />
+        </div>
+      </section>
+
+      <section>
+        <h2 class="title-medium-emphasized">Accessos</h2>
+        <div class="stack">
+          <a apNavListItem icon="search">Buscar o filtrar tasques</a>
+          <a apNavListItem icon="lightbulb">Veure exàmens</a>
+          <a apNavListItem icon="landscape">Veure excursions</a>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="title-medium-emphasized">Camps</h2>
+        <div class="stack fields">
+          <ap-text-field label="Correu electrònic" type="email" placeholder="nom@exemple.com" [(ngModel)]="email" [error]="emailError" />
+          <ap-text-field label="Contrasenya" type="password" placeholder="Escriu una contrasenya" helper="Mínim 8 caràcters." [(ngModel)]="password" />
+          <ap-select label="Rol" placeholder="Tria el teu rol" [options]="roles" [(ngModel)]="role" [error]="role() ? null : roleError" />
+        </div>
+      </section>
+
+      <section>
+        <h2 class="title-medium-emphasized">Estats</h2>
+        <ap-state-message title="No tens cap tasca pendent" text="Quan n’apuntis una, la veuràs aquí." />
+        <ap-state-message kind="error" title="No s’han pogut carregar els exàmens" [text]="ca.state.checkConnection" />
+      </section>
+
+      <section>
+        <h2 class="title-medium-emphasized">Diàleg i snackbar</h2>
+        <div class="wrap">
+          <button apButton variant="outlined" (click)="dialogOpen.set(true)">Obrir el diàleg</button>
+          <button apButton variant="outlined" (click)="showSnackbar()">Mostrar l’snackbar</button>
+        </div>
+      </section>
+    </main>
+  </ion-content>
+
+  <ap-fab from="dev" />
+  <ap-navigation-bar active="home" />
+</div>
+
+<ap-dialog
+  [open]="dialogOpen()"
+  [headline]="ca.session.logoutQuestion"
+  [confirmLabel]="ca.session.logout"
+  [destructive]="true"
+  (confirm)="dialogOpen.set(false)"
+  (cancel)="dialogOpen.set(false)"
+/>

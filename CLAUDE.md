@@ -247,12 +247,24 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - class-validator ejecuta los decoradores **de abajo arriba**: el de «obligatorio» va justo encima de la propiedad, para que con `stopAtFirstError` salga `email.required` y no `email.invalid`.
 - Tests e2e: usan `TEST_MONGODB_URI` (una base de datos que contenga «test») y vacían sus colecciones en cada ejecución. El usuario de Atlas no tiene permiso para `dropDatabase`.
 - No usar `@nestjs/observe` ni `@nestjs/mau` (la CLI de Nest 12 los añade por defecto; se quitaron en la fase 2).
+- El calendario mensual (`GET /calendar`) solo pone puntos de lo **pendiente**; las tareas hechas no salen.
+
+## 2.7c Frontend (fase 3)
+- Angular 22 **sin zone.js** (zoneless), componentes standalone y signals (`input()`, `output()`, `model()`).
+- Ionic 9: se importa desde `@ionic/angular` (que ya es la versión standalone) y se configura con `provideIonicAngular({ mode: 'md' })`. Solo se usan `ion-app`, `ion-router-outlet` e `ion-content`. Los componentes visuales son propios (`src/app/shared/components`), sobre elementos HTML nativos, para seguir el diseño al píxel.
+- Tema en `src/theme/`: `tokens.scss` (variables `--color-*`, `--space-*`, `--shape-*`, `--elevation-*`, `--motion-*`, `--size-*`), `ionic.scss` (conecta los tokens con Ionic) y `typography.scss` (clases de la escala MD3: `.title-large`, `.body-medium`…). Nunca se escriben colores en hexadecimal en los componentes: siempre `var(--color-…)`.
+- En `styles.scss`, los `@use` de archivos `.css` necesitan un `as nombre` (si no, Sass da el error «There's already a module with namespace "index"»).
+- Fuentes (Nunito y Roboto variables) e iconos (Material Symbols Rounded) van dentro de la app con `@fontsource-variable/*` y `material-symbols`.
+- Textos: todos en `src/app/i18n/ca.ts`, incluida la tabla `apiErrors` (código de la API → mensaje del diseño).
+- En pantallas anchas (≥ 600 px) la app se ve dentro de un marco de 412 × 892 dp. Para probar a 360 dp: DevTools de Chrome, modo dispositivo, ancho 360.
+- Página de desarrollo con todos los componentes: `/dev/components`.
+- Capacitor configurado (`capacitor.config.ts`, id `cat.apuntames.app`). La plataforma Android **todavía no está añadida**: de momento la app solo se prueba en el navegador.
 
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
 - [x] 2. Backend (falta el despliegue, que es la fase 8)
-- [ ] 3. Frontend base
+- [x] 3. Frontend base
 - [ ] 4. Acceso
 - [ ] 5. Nivel 1 + punto de control
 - [ ] 6. Niveles 2 y 3

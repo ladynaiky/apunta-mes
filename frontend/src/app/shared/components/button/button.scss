@@ -1,0 +1,88 @@
+:host {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-100);
+  box-sizing: border-box;
+  border: 0;
+  border-radius: var(--shape-corner-full);
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    border-radius var(--motion-spatial-fast),
+    background-color var(--motion-effects);
+}
+
+/* Capa de estado (hover / pressed / focus) del color del contenido. */
+:host::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-effects);
+}
+:host(:hover)::after { opacity: var(--opacity-state-hover); }
+:host(:focus-visible)::after { opacity: var(--opacity-state-focus); }
+:host(:active)::after { opacity: var(--opacity-state-pressed); }
+
+/* Zona táctil mínima de 48 dp en el tamaño S. */
+:host(.s-s)::before {
+  content: '';
+  position: absolute;
+  inset: -4px 0;
+}
+
+/* Tamaños */
+:host(.s-s) {
+  height: var(--size-button-s);
+  padding: 0 var(--space-200);
+  font: 500 14px/20px var(--font-text);
+  letter-spacing: 0.1px;
+}
+:host(.s-m) {
+  height: var(--size-button-m);
+  padding: 0 var(--space-300);
+  font: 600 16px/24px var(--font-title);
+  letter-spacing: 0.15px;
+}
+:host(.block) { display: flex; width: 100%; }
+
+/* Al pulsar, la forma se comprime (shape morph). */
+:host(.s-s:active) { border-radius: var(--shape-corner-small); }
+:host(.s-m:active) { border-radius: var(--shape-corner-medium); }
+
+/* Variantes */
+:host(.v-filled) { background: var(--color-primary); color: var(--color-on-primary); }
+:host(.v-tonal) { background: var(--color-secondary-container); color: var(--color-on-secondary-container); }
+:host(.v-outlined) {
+  border: 1px solid var(--color-outline);
+  color: var(--color-primary);
+}
+:host(.v-text) { color: var(--color-primary); }
+:host(.v-text.s-s) { padding: 0 var(--space-150); }
+:host(.v-tonal-error) { background: var(--color-error-container); color: var(--color-on-error-container); }
+
+/* Desactivado */
+:host([disabled]),
+:host([aria-disabled='true']) {
+  cursor: default;
+  pointer-events: none;
+  color: rgb(28 27 27 / var(--opacity-disabled-content));
+  background: rgb(28 27 27 / var(--opacity-disabled-container));
+  border-color: transparent;
+}
+:host(.v-text[disabled]),
+:host(.v-text[aria-disabled='true']) { background: transparent; }
+
+.label { position: relative; }
+
+@media (prefers-reduced-motion: reduce) {
+  :host(:active) { border-radius: var(--shape-corner-full); }
+}

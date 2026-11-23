@@ -1,0 +1,57 @@
+/* Ionic: lo mínimo (sin su tipografía ni utilidades: usamos las nuestras). */
+@use '@ionic/angular/css/core.css' as ion-core;
+@use '@ionic/angular/css/normalize.css' as ion-normalize;
+@use '@ionic/angular/css/structure.css' as ion-structure;
+
+/* Fuentes e iconos dentro de la app (funcionan sin conexión). */
+@use '@fontsource-variable/nunito/index.css' as nunito;
+@use '@fontsource-variable/roboto/index.css' as roboto;
+@use 'material-symbols/rounded.css' as symbols;
+
+@use 'theme/tokens';
+@use 'theme/ionic';
+@use 'theme/typography';
+
+html,
+body {
+  font-family: var(--font-text);
+  color: var(--color-on-surface);
+  background: var(--color-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Foco visible para teclado: anillo de 3 dp en secondary, separado 2 dp. */
+:focus-visible {
+  outline: var(--size-focus-ring) solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* Contenido solo para lectores de pantalla. */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/*
+ * En pantallas anchas (ordenador), la app se ve dentro de un marco de
+ * 412 × 892 dp, como en el diseño. En el móvil ocupa toda la pantalla.
+ */
+@media (min-width: 600px) {
+  body {
+    background: #e9e6dc;
+  }
+  ion-app {
+    inset: 0;
+    margin: auto;
+    width: var(--size-frame-width);
+    height: min(var(--size-frame-height), 100vh);
+    border-radius: var(--shape-corner-extra-large);
+    box-shadow: var(--elevation-level3);
+    overflow: hidden;
+    contain: layout size style;
+  }
+}

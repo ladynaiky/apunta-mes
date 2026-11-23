@@ -1,0 +1,34 @@
+<div class="row" [class.is-done]="done()">
+  @if (showCheckbox()) {
+    <ap-checkbox [checked]="done()" [label]="checkLabel()" (checkedChange)="doneChange.emit($event)" />
+  }
+  <button type="button" class="main" [attr.aria-label]="t.details(label())" (click)="open.emit()">
+    <span class="headline">
+      <ap-subject-dot [color]="subjectColor()" />
+      <span class="title">
+        @if (subjectName()) {
+          <strong>{{ subjectName() }}</strong>: {{ label().slice(subjectName()!.length + 2) }}
+        } @else {
+          {{ title() }}
+        }
+      </span>
+    </span>
+    @if (supporting() || showTags()) {
+      <span class="meta">
+        @if (supporting()) {
+          <span class="supporting">{{ supporting() }}</span>
+        }
+        @if (showTags()) {
+          <span class="tag" [class.tag-done]="done()">{{ done() ? t.done : t.todo }}</span>
+          @if (highPriority()) {
+            <span class="tag tag-priority">{{ t.highPriority }}</span>
+          }
+        }
+      </span>
+    }
+  </button>
+  @if (showMenu()) {
+    <button apIconButton type="button" icon="more_vert" [label]="t.options" (click)="menu.emit()"></button>
+  }
+  <ng-content />
+</div>

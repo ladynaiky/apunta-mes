@@ -1,0 +1,29 @@
+/* Conecta los tokens de Apunta+ con las variables de Ionic (modo md, solo claro). */
+:root {
+  --ion-font-family: var(--font-text);
+  --ion-background-color: var(--color-surface);
+  --ion-background-color-rgb: 255, 251, 240;
+  --ion-text-color: var(--color-on-surface);
+  --ion-text-color-rgb: 28, 27, 27;
+  --ion-border-color: var(--color-outline-variant);
+  --ion-backdrop-color: var(--color-scrim);
+  --ion-backdrop-opacity: var(--opacity-scrim);
+  --ion-toolbar-background: var(--color-surface);
+  --ion-toolbar-color: var(--color-on-surface);
+  --ion-item-background: transparent;
+  --ion-safe-area-top: env(safe-area-inset-top);
+
+  --ion-color-primary: #1e5739;
+  --ion-color-primary-rgb: 30, 87, 57;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #1a4d32;
+  --ion-color-primary-tint: #35684d;
+
+  --ion-color-danger: #ba1a1a;
+  --ion-color-danger-rgb: 186, 26, 26;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #a41717;
+  --ion-color-danger-tint: #c13131;
+}
