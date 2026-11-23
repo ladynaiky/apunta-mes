@@ -238,6 +238,11 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - NestJS 12.6, @nestjs/mongoose 12, Mongoose 9.12, @nestjs/swagger 12, @nestjs/jwt 12, passport-jwt 4, bcrypt 6, class-validator 0.15
 - Angular 22.3, Ionic 9.0, Capacitor 8.6, @capacitor/preferences 8
 
+## 2.7b Notas técnicas
+- El backend es **ESM**: los imports relativos terminan en `.js` (`./app.module.js`) y los tests usan **Vitest** (`vi.fn()`, no `jest.fn()`).
+- **Errores de la API como códigos, no como textos**: `{ statusCode, code, errors: { campo: "email.invalid" } }`. El frontend traduce cada código al mensaje del diseño (todos los textos en catalán viven en el frontend).
+- No usar `@nestjs/observe` ni `@nestjs/mau` (la CLI de Nest 12 los añade por defecto; se quitaron en la fase 2).
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base

@@ -4,6 +4,7 @@ dist/
 www/
 .angular/
 coverage/
+*.tsbuildinfo
 
 # Secretos
 .env
