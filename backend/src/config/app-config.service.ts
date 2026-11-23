@@ -26,6 +26,14 @@ export class AppConfigService {
       '7d') as `${number}${'s' | 'm' | 'h' | 'd'}`;
   }
 
+  get demoUserEmail(): string {
+    return this.config.get<string>('DEMO_USER_EMAIL') ?? '';
+  }
+
+  get demoUserPassword(): string {
+    return this.config.get<string>('DEMO_USER_PASSWORD') ?? '';
+  }
+
   get corsOrigins(): string[] {
     const raw = this.config.get<string>('CORS_ORIGINS') ?? '';
     return raw

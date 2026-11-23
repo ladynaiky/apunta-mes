@@ -7,6 +7,7 @@ import { DatabaseModule } from './database/database.module.js';
 import { DemoModule } from './demo/demo.module.js';
 import { EntriesModule } from './entries/entries.module.js';
 import { PreferencesModule } from './preferences/preferences.module.js';
+import { SeedModule } from './seed/seed.module.js';
 import { ShareLinksModule } from './share-links/share-links.js';
 import { SubjectsModule } from './subjects/subjects.module.js';
 import { SystemModule } from './system/system.module.js';
@@ -23,6 +24,7 @@ import { SystemModule } from './system/system.module.js';
     ContactsModule,
     ShareLinksModule,
     AiModule,
+    SeedModule,
     SystemModule,
   ],
 })

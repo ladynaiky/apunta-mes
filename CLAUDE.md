@@ -251,7 +251,7 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
-- [ ] 2. Backend
+- [x] 2. Backend (falta el despliegue, que es la fase 8)
 - [ ] 3. Frontend base
 - [ ] 4. Acceso
 - [ ] 5. Nivel 1 + punto de control
