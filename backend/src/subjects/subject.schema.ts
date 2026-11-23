@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument, Types } from 'mongoose';
+import { HydratedDocument, Schema as MongooseSchema, Types } from 'mongoose';
 import {
   SUBJECT_COLOR_TOKENS,
   type SubjectColorToken,
@@ -7,7 +7,12 @@ import {
 
 @Schema({ timestamps: { createdAt: true, updatedAt: false } })
 export class Subject {
-  @Prop({ type: Types.ObjectId, ref: 'User', required: true, index: true })
+  @Prop({
+    type: MongooseSchema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+    index: true,
+  })
   user: Types.ObjectId;
 
   @Prop({ type: String, required: true, trim: true })

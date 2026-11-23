@@ -242,6 +242,8 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - El backend es **ESM**: los imports relativos terminan en `.js` (`./app.module.js`) y los tests usan **Vitest** (`vi.fn()`, no `jest.fn()`).
 - **Errores de la API como códigos, no como textos**: `{ statusCode, code, errors: { campo: "email.invalid" } }`. El frontend traduce cada código al mensaje del diseño (todos los textos en catalán viven en el frontend).
 - Mongoose: poner siempre `type` en cada `@Prop` (`@Prop({ type: String, … })`). Sin él, Vitest no sabe el tipo de las uniones (`role`, `colorToken`).
+- Mongoose 9: las referencias usan `type: MongooseSchema.Types.ObjectId` (`import { Schema as MongooseSchema } from 'mongoose'`), **nunca `Types.ObjectId`**: con este último no convierte los ids de texto al buscar y las consultas devuelven listas vacías. Para los filtros, el tipo es `QueryFilter` (ya no existe `FilterQuery`). En `findOneAndUpdate`, `returnDocument: 'after'`.
+- Las fechas de calendario se guardan como texto `AAAA-MM-DD` (sin hora ni zona horaria). Los aniversarios se repiten cada año: en las consultas por fechas salen el día de ese año, con la edad ajustada.
 - class-validator ejecuta los decoradores **de abajo arriba**: el de «obligatorio» va justo encima de la propiedad, para que con `stopAtFirstError` salga `email.required` y no `email.invalid`.
 - Tests e2e: usan `TEST_MONGODB_URI` (una base de datos que contenga «test») y vacían sus colecciones en cada ejecución. El usuario de Atlas no tiene permiso para `dropDatabase`.
 - No usar `@nestjs/observe` ni `@nestjs/mau` (la CLI de Nest 12 los añade por defecto; se quitaron en la fase 2).
