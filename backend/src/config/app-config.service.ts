@@ -12,6 +12,10 @@ export class AppConfigService {
     return Number(this.config.get('PORT') ?? 3000);
   }
 
+  get mongoUri(): string {
+    return this.config.getOrThrow<string>('MONGODB_URI');
+  }
+
   get corsOrigins(): string[] {
     const raw = this.config.get<string>('CORS_ORIGINS') ?? '';
     return raw

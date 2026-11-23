@@ -13,7 +13,7 @@ import {
 /**
  * Variables de entorno. Se validan al arrancar: si falta algo o tiene mal
  * formato, la app no arranca y dice qué variable revisar.
- * MONGODB_URI y JWT_SECRET pasarán a ser obligatorias en los pasos 3 y 4.
+ * JWT_SECRET pasará a ser obligatoria en el paso 4.
  */
 class EnvironmentVariables {
   @IsOptional()
@@ -22,9 +22,11 @@ class EnvironmentVariables {
   @Max(65535)
   PORT?: number;
 
-  @IsOptional()
-  @IsString()
-  MONGODB_URI?: string;
+  @Matches(/^mongodb(\+srv)?:\/\/.+/, {
+    message:
+      'MONGODB_URI és obligatòria i ha de començar per mongodb:// o mongodb+srv:// (copia-la des d’Atlas)',
+  })
+  MONGODB_URI: string;
 
   @IsOptional()
   @IsString()
