@@ -7,6 +7,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import type { Connection } from 'mongoose';
+import { Public } from '../auth/decorators/public.decorator.js';
 import { AppConfigService } from '../config/app-config.service.js';
 import { AppConfigDto, HealthDto } from './system.dto.js';
 
@@ -14,6 +15,7 @@ import { AppConfigDto, HealthDto } from './system.dto.js';
 const CONNECTED = 1;
 
 @ApiTags('system')
+@Public()
 @Controller()
 export class SystemController {
   constructor(

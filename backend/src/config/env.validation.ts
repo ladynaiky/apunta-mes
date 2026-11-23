@@ -7,13 +7,13 @@ import {
   Matches,
   Max,
   Min,
+  MinLength,
   validateSync,
 } from 'class-validator';
 
 /**
  * Variables de entorno. Se validan al arrancar: si falta algo o tiene mal
  * formato, la app no arranca y dice qué variable revisar.
- * JWT_SECRET pasará a ser obligatoria en el paso 4.
  */
 class EnvironmentVariables {
   @IsOptional()
@@ -28,12 +28,16 @@ class EnvironmentVariables {
   })
   MONGODB_URI: string;
 
-  @IsOptional()
   @IsString()
-  JWT_SECRET?: string;
+  @MinLength(32, {
+    message: 'JWT_SECRET és obligatòria i ha de tenir almenys 32 caràcters',
+  })
+  JWT_SECRET: string;
 
   @IsOptional()
-  @IsString()
+  @Matches(/^(\d+[smhd])?$/, {
+    message: 'JWT_EXPIRES_IN ha de ser un número i una unitat: 30m, 12h, 7d…',
+  })
   JWT_EXPIRES_IN?: string;
 
   @IsOptional()

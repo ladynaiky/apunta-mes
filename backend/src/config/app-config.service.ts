@@ -16,6 +16,16 @@ export class AppConfigService {
     return this.config.getOrThrow<string>('MONGODB_URI');
   }
 
+  get jwtSecret(): string {
+    return this.config.getOrThrow<string>('JWT_SECRET');
+  }
+
+  /** Duración del token: número + unidad (s, m, h, d). Por defecto, 7 días. */
+  get jwtExpiresIn(): `${number}${'s' | 'm' | 'h' | 'd'}` {
+    return (this.config.get<string>('JWT_EXPIRES_IN') ||
+      '7d') as `${number}${'s' | 'm' | 'h' | 'd'}`;
+  }
+
   get corsOrigins(): string[] {
     const raw = this.config.get<string>('CORS_ORIGINS') ?? '';
     return raw

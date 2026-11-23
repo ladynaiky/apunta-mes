@@ -241,6 +241,9 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 ## 2.7b Notas técnicas
 - El backend es **ESM**: los imports relativos terminan en `.js` (`./app.module.js`) y los tests usan **Vitest** (`vi.fn()`, no `jest.fn()`).
 - **Errores de la API como códigos, no como textos**: `{ statusCode, code, errors: { campo: "email.invalid" } }`. El frontend traduce cada código al mensaje del diseño (todos los textos en catalán viven en el frontend).
+- Mongoose: poner siempre `type` en cada `@Prop` (`@Prop({ type: String, … })`). Sin él, Vitest no sabe el tipo de las uniones (`role`, `colorToken`).
+- class-validator ejecuta los decoradores **de abajo arriba**: el de «obligatorio» va justo encima de la propiedad, para que con `stopAtFirstError` salga `email.required` y no `email.invalid`.
+- Tests e2e: usan `TEST_MONGODB_URI` (una base de datos que contenga «test») y vacían sus colecciones en cada ejecución. El usuario de Atlas no tiene permiso para `dropDatabase`.
 - No usar `@nestjs/observe` ni `@nestjs/mau` (la CLI de Nest 12 los añade por defecto; se quitaron en la fase 2).
 
 ## 2.8 Estado de las fases
