@@ -304,6 +304,13 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - Componente `ap-bottom-sheet` (sobre `<dialog>`, alineado con el marco del móvil en el ordenador) y `ap-select` con muestra de color en las opciones.
 - Fila de tarea: `lowercaseTitle` (por defecto, true) pone en minúscula la primera letra solo en tareas («Mates: exercicis»). Los nombres propios se mantienen («Excursió: Museu de la Ciència»).
 
+## 2.7g Fase 6 · bloque 6B (calendario y listas)
+- **Calendari mensual** (`/calendar/month`): «Setmana / Mes» con Mes elegido; «Setmana» y «Enrere» vuelven a `/tabs/calendar`. Flechas para cambiar de mes (no salen en el diseño, pero hacen falta para usarlo). Estados: «No hi ha tasques aquest mes» (vacío) y «No s'ha pogut carregar el calendari» (error).
+- Componente `ap-month-calendar` (MD3): celda de 56 dp, círculo de 40 y puntos debajo; hoy, con borde verde; el día elegido, relleno.
+- **Tasques del dia** (`/calendar/day/:date`): título «Tasca del dia 13 de novembre» (texto del diseño) o, si no hay nada, «Dia sense tasques». Texto de apoyo: tareas «Per al 6 de novembre» / «Per a avui»; exámenes y excursiones, «13 de novembre». «Nova tasca» lleva a Apuntar con la fecha.
+- **Exàmens / Excursions** (`/exams`, `/trips`): la misma página (`EntryListPage`, tipo en `data`). Muestra desde hoy en adelante, ordenado por fecha, con divisores y el extended FAB «Nou examen» / «Nova excursió» (`ap-extended-fab`).
+- `TasksStore.changes`: contador que sube al marcar, editar, borrar o restaurar. Las pantallas con lista propia (mes, día, exámenes, excursiones) lo vigilan y recargan.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base

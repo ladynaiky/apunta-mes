@@ -23,6 +23,11 @@ export class TasksStore {
   readonly todayEntries = signal<Entry[]>([]);
   readonly weekEntries = signal<Entry[]>([]);
   readonly subjects = signal<Subject[]>([]);
+  /**
+   * Contador de cambios: sube cada vez que se marca, edita, borra o restaura
+   * algo. Las pantallas con sus propias listas (día, exámenes…) lo vigilan.
+   */
+  readonly changes = signal(0);
   /** La última asignatura creada (Apuntar la deja elegida al volver). */
   readonly lastCreatedSubjectId = signal<string | null>(null);
 
@@ -58,6 +63,7 @@ export class TasksStore {
     try {
       const saved = await this.api.setDone(entry.id, done);
       this.replaceLocal(saved);
+      this.changes.update((n) => n + 1);
     } catch (err) {
       this.patchLocal(entry.id, { done: !done });
       this.snackbar.show(toApiError(err).message);
@@ -67,6 +73,7 @@ export class TasksStore {
   async update(id: string, input: EntryInput): Promise<Entry> {
     const saved = await this.api.updateEntry(id, input);
     this.replaceLocal(saved);
+    this.changes.update((n) => n + 1);
     // Si ha cambiado de día, puede entrar o salir de hoy / esta semana.
     void this.load();
     return saved;
@@ -77,6 +84,7 @@ export class TasksStore {
     await this.api.deleteEntry(entry.id);
     this.todayEntries.update((l) => l.filter((e) => e.id !== entry.id));
     this.weekEntries.update((l) => l.filter((e) => e.id !== entry.id));
+    this.changes.update((n) => n + 1);
     this.snackbar.show(ca.sheet.deleted, {
       actionLabel: ca.common.undo,
       action: () => void this.restore(entry),
@@ -92,6 +100,7 @@ export class TasksStore {
     try {
       await this.api.createEntry({ ...data, subject: subject?.id ?? null });
       await this.load();
+      this.changes.update((n) => n + 1);
     } catch (err) {
       this.snackbar.show(toApiError(err).message);
     }

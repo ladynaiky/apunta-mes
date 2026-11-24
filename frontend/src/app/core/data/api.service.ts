@@ -44,6 +44,11 @@ export class ApiService {
     return this.get('/entries/week');
   }
 
+  /** Buscar/Filtrar y listas (Exàmens, Excursions…). */
+  entries(params: { type?: string; from?: string; to?: string; subject?: string; q?: string; done?: boolean } = {}): Promise<Entry[]> {
+    return this.get('/entries', params);
+  }
+
   day(date: string): Promise<Entry[]> {
     return this.get(`/entries/day/${date}`);
   }

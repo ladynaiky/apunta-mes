@@ -71,11 +71,25 @@ export const routes: Routes = [
       { path: 'me/customize', redirectTo: '/tabs/me?tab=customize' },
       { path: 'me/sync', redirectTo: '/tabs/me?tab=contacts' },
 
-      // Fases 6B, 6C y 7 (provisionales)
-      soon('calendar/month', 'Calendari setmanal/mensual'),
-      soon('calendar/day/:date', 'Tasques del dia'),
-      soon('exams', 'Exàmens'),
-      soon('trips', 'Excursions'),
+      // Fases 6C y 7 (provisionales)
+      // 6B · Calendario y listas
+      {
+        path: 'calendar/month',
+        loadComponent: () =>
+          import('./features/calendar-month/calendar-month-page').then((m) => m.CalendarMonthPage),
+      },
+      { path: 'calendar/day/:date', loadComponent: () => import('./features/day/day-page').then((m) => m.DayPage) },
+      {
+        path: 'exams',
+        data: { type: 'exam' },
+        loadComponent: () => import('./features/entry-list/entry-list-page').then((m) => m.EntryListPage),
+      },
+      {
+        path: 'trips',
+        data: { type: 'trip' },
+        loadComponent: () => import('./features/entry-list/entry-list-page').then((m) => m.EntryListPage),
+      },
+
       soon('tasks/today', 'Tasca d’avui/setmanal'),
       soon('tasks/list', 'Llistat de tasques'),
       soon('tasks/history', 'Historial de tasques'),

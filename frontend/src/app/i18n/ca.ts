@@ -306,6 +306,36 @@ export const ca = {
     create: 'Crear assignatura',
     nameRequired: 'Escriu el nom de l’assignatura.', // (nou)
   },
+  month: {
+    title: 'Calendari setmanal/mensual',
+    previous: 'Mes anterior',
+    next: 'Mes següent',
+    empty: 'No hi ha tasques aquest mes',
+    emptyText: 'Quan n’apuntis una, la veuràs al calendari.',
+  },
+  day: {
+    title: (dayMonth: string) => `Tasca del dia ${dayMonth}`,
+    emptyTitle: 'Dia sense tasques',
+    label: 'Tasques d’aquest dia',
+    empty: 'No hi ha tasques apuntades per a aquest dia',
+    emptyText: 'Si vols, pots apuntar-ne una ara.',
+    newTask: 'Nova tasca',
+    loadError: 'No s’han pogut carregar les tasques d’aquest dia', // (nou)
+  },
+  exams: {
+    title: 'Exàmens',
+    empty: 'No hi ha exàmens',
+    emptyText: 'Quan n’apuntis, els veuràs aquí.',
+    error: 'No s’han pogut carregar els exàmens',
+    add: 'Nou examen',
+  },
+  trips: {
+    title: 'Excursions',
+    empty: 'No hi ha excursions',
+    emptyText: 'Quan n’apuntis, les veuràs aquí.',
+    error: 'No s’han pogut carregar les excursions',
+    add: 'Nova excursió',
+  },
   session: {
     logout: 'Tancar la sessió', // (nou)
     logoutQuestion: 'Vols tancar la sessió?', // (nou)
