@@ -342,13 +342,24 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - Ajustes según el diseño: con error, Exàmens/Excursions no muestran «Nou examen» / «Nova excursió», y el Calendari mensual no muestra «Setmana / Mes». La fecha de hoy se muestra aunque fallen las listas.
 - Con «Buit», Inici no muestra los chips de asignatura (la API devuelve también las asignaturas vacías).
 
+## 2.7l Fase 8 (despliegue, 24/11/2026)
+- Repositorio en GitHub: https://github.com/ladynaiky/apunta-mes (privado, rama `main`). El push lo hace el grupo con su token. El historial se revisó antes: sin `.env` ni credenciales.
+- Render con Blueprint (`render.yaml`):
+  - **API**: https://apunta-mes-api.onrender.com/api (Swagger en `/api/docs`), Web Service Node 24, Frankfurt, plan gratuito, health check `/api/health`;
+  - **App**: https://apunta-mes.onrender.com, Static Site con todas las rutas redirigidas a `index.html`.
+- Secretos solo en el panel de Render: `MONGODB_URI` (la misma base de datos `apunta-mes` que en local), un `JWT_SECRET` nuevo y `DEMO_USER_PASSWORD`. Variables públicas en `render.yaml`: `DEMO_MODE=true`, `DEMO_TODAY=2026-11-04` y `CORS_ORIGINS` (app de Render + local).
+- Atlas: *Network Access* con `0.0.0.0/0` (Render no tiene una IP fija).
+- Cada push a `main` vuelve a desplegar los dos servicios automáticamente.
+- Plan gratuito: la API se duerme tras 15 minutos sin uso; la primera petición tarda alrededor de un minuto.
+- Comprobado tras el despliegue: health (`database: up`), `/config`, Swagger, app, rutas internas, CORS y 401 sin token.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
-- [x] 2. Backend (falta el despliegue, que es la fase 8)
+- [x] 2. Backend
 - [x] 3. Frontend base
 - [x] 4. Acceso
 - [x] 5. Nivel 1 + punto de control (seguimos con Ionic)
 - [x] 6. Niveles 2 y 3
 - [x] 7. Flujos transversales y estados
-- [ ] 8. Despliegue
+- [x] 8. Despliegue (Render + Atlas)
