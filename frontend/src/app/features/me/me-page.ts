@@ -89,6 +89,7 @@ export class MePage {
   protected readonly tabs = (['reminders', 'share', 'customize', 'contacts'] as MeTab[]).map((v) => ({
     value: v,
     label: ca.me.tabs[v],
+    icon: ({ reminders: 'notifications', share: 'share', customize: 'palette', contacts: 'group' } as const)[v],
   }));
   protected readonly tab = signal<MeTab>('reminders');
   protected readonly confirmOpen = signal(false);

@@ -30,6 +30,7 @@ import { originUrl } from '../../shared/utils/origin';
         @if (entry(); as e) {
           <ap-task-row
             [subjectName]="e.subject?.name ?? (e.type === 'trip' ? ca.sheet.kind['trip'] : e.type === 'birthday' ? ca.sheet.kind['birthday'] : null)"
+            [subjectColor]="e.subject?.colorToken ?? null"
             [title]="e.title"
             [supporting]="due()"
             [done]="e.done"

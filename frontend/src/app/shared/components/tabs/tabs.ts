@@ -1,8 +1,11 @@
-import { ChangeDetectionStrategy, Component, ElementRef, input, output, viewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, computed, input, output, viewChildren } from '@angular/core';
+import { Icon } from '../icon/icon';
 
 export interface TabOption {
   value: string;
   label: string;
+  /** Material Symbol encima del texto (pestañas de 64 dp). */
+  icon?: string;
 }
 
 /**
@@ -11,9 +14,10 @@ export interface TabOption {
  */
 @Component({
   selector: 'ap-tabs',
+  imports: [Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="tabs" role="tablist" [attr.aria-label]="label()">
+    <div class="tabs" role="tablist" [class.with-icons]="withIcons()" [attr.aria-label]="label()">
       @for (tab of tabs(); track tab.value; let i = $index) {
         <button
           #tabButton
@@ -27,7 +31,12 @@ export interface TabOption {
           (click)="valueChange.emit(tab.value)"
           (keydown)="onKey($event, i)"
         >
-          <span>{{ tab.label }}</span>
+          <span class="content">
+            @if (tab.icon) {
+              <ap-icon [name]="tab.icon" [filled]="tab.value === value()" />
+            }
+            <span>{{ tab.label }}</span>
+          </span>
         </button>
       }
     </div>
@@ -49,7 +58,7 @@ export interface TabOption {
     button::after { content: ''; position: absolute; inset: 0; background: var(--color-on-surface); opacity: 0; transition: opacity var(--motion-effects); }
     button:hover::after { opacity: var(--opacity-state-hover); }
     button.active { color: var(--color-primary); }
-    button.active span::after {
+    button.active .content::after {
       content: '';
       position: absolute;
       left: 0; right: 0; bottom: -14px;
@@ -57,7 +66,10 @@ export interface TabOption {
       border-radius: 3px 3px 0 0;
       background: var(--color-primary);
     }
-    span { position: relative; }
+    .content { position: relative; display: inline-flex; flex-direction: column; align-items: center; gap: 2px; }
+    /* Con icono: 64 dp (MD3) y el indicador debajo del texto. */
+    .with-icons button { height: 64px; padding: 0 var(--space-50); }
+    .with-icons button.active .content::after { bottom: -9px; }
   `,
 })
 export class Tabs {
@@ -65,6 +77,7 @@ export class Tabs {
   readonly value = input.required<string>();
   readonly label = input.required<string>();
   readonly idPrefix = input('tabs');
+  protected readonly withIcons = computed(() => this.tabs().some((t) => !!t.icon));
   readonly valueChange = output<string>();
 
   private readonly buttons = viewChildren<ElementRef<HTMLButtonElement>>('tabButton');

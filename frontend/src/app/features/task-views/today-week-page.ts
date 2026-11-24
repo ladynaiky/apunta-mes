@@ -30,6 +30,7 @@ import { birthdaySupport, rowTitle } from '../../shared/utils/task-title';
           @for (e of list(); track e.id) {
             <ap-task-row
               [subjectName]="e.subject?.name ?? null"
+              [subjectColor]="e.subject?.colorToken ?? null"
               [title]="rowTitle(e)"
               [supporting]="support(e)"
               [showCheckbox]="e.type !== 'birthday'"

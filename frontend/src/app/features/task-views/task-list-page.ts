@@ -30,6 +30,7 @@ import { dueLabel } from '../../shared/utils/dates-ca';
           @for (e of entries(); track e.id) {
             <ap-task-row
               [subjectName]="e.subject?.name ?? null"
+              [subjectColor]="e.subject?.colorToken ?? null"
               [title]="e.title"
               [supporting]="due(e)"
               [done]="e.done"

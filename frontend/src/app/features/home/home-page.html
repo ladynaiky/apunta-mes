@@ -20,6 +20,7 @@
                 apChip
                 [selected]="filter() === c.subject.id"
                 [count]="c.count"
+                [outlineColor]="c.subject.colorToken"
                 (click)="toggleFilter(c.subject.id)"
               >
                 {{ c.subject.name }}
@@ -35,6 +36,7 @@
         @for (e of todayList(); track e.id) {
           <ap-task-row
             [subjectName]="e.subject?.name ?? null"
+            [subjectColor]="e.subject?.colorToken ?? null"
             [title]="rowTitle(e)"
             [supporting]="birthdaySupport(e)"
             [showCheckbox]="e.type !== 'birthday'"
@@ -56,6 +58,7 @@
           @for (e of weekList(); track e.id) {
             <ap-task-row
               [subjectName]="e.subject?.name ?? null"
+              [subjectColor]="e.subject?.colorToken ?? null"
               [title]="weekTitle(e)"
               [supporting]="birthdaySupport(e)"
               [showCheckbox]="e.type !== 'birthday'"

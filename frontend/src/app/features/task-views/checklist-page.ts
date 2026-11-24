@@ -32,6 +32,7 @@ import { addDays } from '../../shared/utils/dates-ca';
             @for (e of entries(); track e.id) {
               <ap-task-row
                 [subjectName]="e.subject?.name ?? null"
+                [subjectColor]="e.subject?.colorToken ?? null"
                 [title]="e.title"
                 [done]="e.done"
                 [highPriority]="e.priority === 'high'"

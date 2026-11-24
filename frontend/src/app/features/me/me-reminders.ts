@@ -10,6 +10,7 @@ import { SnackbarService } from '../../shared/components/snackbar/snackbar.servi
 import { StateMessage } from '../../shared/components/state-message/state-message';
 import { TaskRow } from '../../shared/components/task-row/task-row';
 import { TaskSheetService } from '../../shared/components/task-sheet/task-sheet.service';
+import { rowTitle } from '../../shared/utils/task-title';
 
 /** El meu espai · Avisos: lo pendiente cuyo aviso ya ha empezado. */
 @Component({
@@ -23,8 +24,11 @@ import { TaskSheetService } from '../../shared/components/task-sheet/task-sheet.
       @for (e of items(); track e.id) {
         <ap-task-row
           [subjectName]="e.subject?.name ?? null"
-          [title]="e.title"
+          [subjectColor]="e.subject?.colorToken ?? null"
+          [title]="rowTitle(e)"
           [supporting]="t.daysLeft(e.daysLeft)"
+          [showCheckbox]="e.type !== 'birthday'"
+          [showTags]="e.type !== 'birthday'"
           [done]="e.done"
           [highPriority]="e.priority === 'high'"
           (doneChange)="toggle(e, $event)"
@@ -46,6 +50,7 @@ export class MeReminders implements OnInit {
   private readonly store = inject(TasksStore);
   private readonly snackbar = inject(SnackbarService);
   protected readonly sheet = inject(TaskSheetService);
+  protected readonly rowTitle = rowTitle;
   protected readonly t = ca.me;
   protected readonly ca = ca;
   protected readonly status = signal<'loading' | 'ready' | 'error'>('loading');

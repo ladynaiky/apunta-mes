@@ -374,6 +374,14 @@ Bloque A (hecho):
 - Aniversarios visibles en Inici y Tasques d'avui/setmana: «Aniversari de l'Anna», «Fa 12 anys», sin casilla ni etiquetas (`rowTitle`, `birthdaySupport` en `task-title.ts`).
 - iOS: el desplegable se cierra con `pointerdown` (Safari no envía `click` al tocar zonas que no son botones) y se desplaza para verse. Campos con 16 px como mínimo solo en iOS (`@supports (-webkit-touch-callout: none)` en `styles.scss`), para evitar el zoom automático. No se bloquea el zoom con los dedos.
 
+Bloque B (hecho):
+- Logo: `frontend/public/isotipo.png` (256 px, redondo y transparente). El PNG original tenía las esquinas blancas, así que los iconos se recortan en círculo. Las referencias están en `design/logo/`.
+- Iconos: `favicon.ico` (16/32/48), `icon-32/48/192/512.png`, `apple-touch-icon.png` (180, fondo crema: iOS pinta de negro la transparencia), `icon-maskable-512.png` y `manifest.webmanifest`. Los iconos de Android (Capacitor) se harán al crear la plataforma Android.
+- Iniciar sessió: isotipo de 72 dp encima de «Apunta+» (decorativo, `alt=""`).
+- Chips de Inici: borde del color de la asignatura (`outlineColor` en `chip`). Filas de tarea: nombre de la asignatura de su color (`subjectColor` en `task-row`). Contraste pendiente de revisar con el grupo (el groc de Català sobre crema se lee poco).
+- `ap-tabs` acepta `icon` (pestañas de 64 dp con el icono relleno en la activa). El meu espai: notifications, share, palette, group. Caben a 360 dp.
+- Avisos: los aniversarios salen como «Aniversari de …», sin casilla.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
@@ -384,4 +392,4 @@ Bloque A (hecho):
 - [x] 6. Niveles 2 y 3
 - [x] 7. Flujos transversales y estados
 - [x] 8. Despliegue (Render + Atlas)
-- [ ] Iteración 1: [x] A · [ ] B · [ ] C · [ ] D · [ ] E · [ ] F · [ ] G · [ ] Design System
+- [ ] Iteración 1: [x] A · [x] B · [ ] C · [ ] D · [ ] E · [ ] F · [ ] G · [ ] Design System

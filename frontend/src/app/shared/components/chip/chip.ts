@@ -60,10 +60,13 @@ import { SubjectDot } from '../subject-dot/subject-dot';
     type: 'button',
     '[class.selected]': 'selected()',
     '[attr.aria-pressed]': 'selected()',
+    '[style.border-color]': "outlineColor() && !selected() ? 'var(--color-' + outlineColor() + ')' : null",
   },
 })
 export class Chip {
   readonly selected = input(false);
   readonly subjectColor = input<SubjectColorToken | null>(null);
   readonly count = input<number | null>(null);
+  /** Borde del color de la asignatura (chips de Inici). */
+  readonly outlineColor = input<SubjectColorToken | null>(null);
 }

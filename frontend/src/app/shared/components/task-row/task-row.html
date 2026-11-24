@@ -5,7 +5,7 @@
   <button type="button" class="main" [attr.aria-label]="t.details(label())" (click)="open.emit()">
     <span class="title">
       @if (subjectName()) {
-        <span class="subject">{{ subjectName() }}</span>: {{ label().slice(subjectName()!.length + 2) }}
+        <span class="subject" [style.color]="subjectColor() ? 'var(--color-' + subjectColor() + ')' : null">{{ subjectName() }}</span>: {{ label().slice(subjectName()!.length + 2) }}
       } @else {
         {{ title() }}
       }
