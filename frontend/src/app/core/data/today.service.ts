@@ -10,13 +10,16 @@ export class TodayService {
   private readonly api = inject(ApiService);
   private readonly _today = signal<string | null>(null);
   readonly today = this._today.asReadonly();
+  /** El backend tiene DEMO_MODE=true (se puede forzar «buit» y «error»). */
+  readonly demoMode = signal(false);
 
   async load(): Promise<string> {
     const cached = this._today();
     if (cached) return cached;
     try {
-      const { today } = await this.api.config();
+      const { today, demoMode } = await this.api.config();
       this._today.set(today);
+      this.demoMode.set(demoMode);
       return today;
     } catch {
       // Sin conexión: fecha real del dispositivo (hora de Madrid).

@@ -42,13 +42,12 @@ export class TasksStore {
     if (this.status() === 'loading') return;
     this.status.set('loading');
     try {
-      const [today, todayEntries, weekEntries, subjects] = await Promise.all([
-        this.todayService.load(),
+      this.today.set(await this.todayService.load());
+      const [todayEntries, weekEntries, subjects] = await Promise.all([
         this.api.today(),
         this.api.week(),
         this.api.subjects(),
       ]);
-      this.today.set(today);
       this.todayEntries.set(todayEntries);
       this.weekEntries.set(weekEntries);
       this.subjects.set(subjects);

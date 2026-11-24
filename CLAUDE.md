@@ -335,6 +335,13 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - **Compartir/Privacitat** (`/share/privacy`) abre la pestaña «Compartir» de El meu espai.
 - Ya no queda ninguna pantalla provisional: se han borrado `soon()` y la página «Aquesta pantalla arriba aviat.».
 
+## 2.7k Fase 7 · bloque 7C (modo demo y estados)
+- **Modo demostració**: sección al final de El meu espai («Normal / Buit / Error»), visible solo si el backend tiene `DEMO_MODE=true` (`TodayService.demoMode`, de `/config`). Atajo: `?demo=empty|error|normal` en cualquier URL. Se guarda en `sessionStorage` (dura mientras la pestaña está abierta).
+- `core/demo/`: `DemoStateService` y `demoStateInterceptor`. El interceptor añade `X-Demo-State` solo a las lecturas (GET) de la API, nunca a `/config`, `/health` ni `/auth/*`. Marcar, crear y borrar funcionan igual.
+- Revisados todos los estados vacío y error con los textos del diseño: Inici, Calendari (semana y mes), Tasques del dia, Exàmens, Excursions, Tasques, Llistat, Historial, Checklist, Marcar tasca feta, IA y El meu espai (Avisos, Contactes).
+- Ajustes según el diseño: con error, Exàmens/Excursions no muestran «Nou examen» / «Nova excursió», y el Calendari mensual no muestra «Setmana / Mes». La fecha de hoy se muestra aunque fallen las listas.
+- Con «Buit», Inici no muestra los chips de asignatura (la API devuelve también las asignaturas vacías).
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
@@ -343,5 +350,5 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - [x] 4. Acceso
 - [x] 5. Nivel 1 + punto de control (seguimos con Ionic)
 - [x] 6. Niveles 2 y 3
-- [ ] 7. Flujos transversales y estados
+- [x] 7. Flujos transversales y estados
 - [ ] 8. Despliegue

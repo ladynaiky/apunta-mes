@@ -25,7 +25,9 @@ import { dayMonth, monthTitle } from '../../shared/utils/dates-ca';
     <ap-progress [active]="status() === 'loading'" />
     <ion-content>
       <main class="page">
-        <ap-button-group [label]="ca.calendar.viewLabel" [options]="views" value="month" (valueChange)="$event === 'week' && toWeek()" />
+        @if (status() !== 'error') {
+          <ap-button-group [label]="ca.calendar.viewLabel" [options]="views" value="month" (valueChange)="$event === 'week' && toWeek()" />
+        }
 
         @if (status() === 'error') {
           <ap-state-message kind="error" [title]="ca.calendar.loadError" [text]="ca.state.checkConnection" (retry)="load()" />

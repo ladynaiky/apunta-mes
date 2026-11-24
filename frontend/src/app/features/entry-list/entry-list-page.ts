@@ -50,7 +50,9 @@ import { dayMonth } from '../../shared/utils/dates-ca';
         }
       </main>
     </ion-content>
-    <a apExtendedFab routerLink="/new/{{ type() }}" [queryParams]="{ from: kind() }">{{ t().add }}</a>
+    @if (status() !== 'error') {
+      <a apExtendedFab routerLink="/new/{{ type() }}" [queryParams]="{ from: kind() }">{{ t().add }}</a>
+    }
   `,
   styles: `
     :host { display: flex; flex-direction: column; height: 100%; }
