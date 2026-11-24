@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import bcrypt from 'bcrypt';
 import { Model, Types } from 'mongoose';
+import { addDays, daysBetween } from '../common/dates.js';
+import { AppConfigService } from '../config/app-config.service.js';
 import { Contact } from '../contacts/contact.schema.js';
 import { Entry } from '../entries/entry.schema.js';
 import { Preferences } from '../preferences/preferences.schema.js';
@@ -12,6 +14,7 @@ import {
   DEMO_ENTRIES,
   DEMO_HISTORY,
   DEMO_LAST_SYNC,
+  DEMO_REFERENCE_TODAY,
   DEMO_USER,
 } from './demo-data.js';
 
@@ -37,6 +40,7 @@ export class DemoSeedService {
     @InjectModel(Contact.name) private readonly contacts: Model<Contact>,
     @InjectModel(Preferences.name) private readonly prefs: Model<Preferences>,
     private readonly subjects: SubjectsService,
+    private readonly appConfig: AppConfigService,
   ) {}
 
   async reset(email: string, password: string): Promise<SeedSummary> {
@@ -59,6 +63,11 @@ export class DemoSeedService {
       this.subjects.deleteByUser(userId),
     ]);
 
+    // Los datos están escritos para «hoy» = 4/11/2026; se desplazan a la fecha
+    // de la app (real, o DEMO_TODAY) para que siempre tengan sentido.
+    const shift = daysBetween(DEMO_REFERENCE_TODAY, this.appConfig.today);
+    const move = (date: string) => addDays(date, shift);
+
     const subjects = await this.subjects.createDefaults(userId);
     const subjectId = (name?: string): Types.ObjectId | null =>
       name ? (subjects.find((s) => s.name === name)?._id ?? null) : null;
@@ -69,6 +78,7 @@ export class DemoSeedService {
 
     const pending = DEMO_ENTRIES.map((e) => ({
       ...e,
+      date: move(e.date),
       user: userId,
       subject: subjectId(e.subject),
       createdAt: createdAt(),
@@ -77,10 +87,10 @@ export class DemoSeedService {
       type: 'task' as const,
       user: userId,
       title: h.title,
-      date: h.date,
+      date: move(h.date),
       subject: subjectId(h.subject),
       done: true,
-      doneAt: new Date(`${h.date}T17:00:00Z`),
+      doneAt: new Date(`${move(h.date)}T17:00:00Z`),
       createdAt: createdAt(),
     }));
     await this.entries.insertMany([...history, ...pending]);
@@ -96,7 +106,7 @@ export class DemoSeedService {
       user: userId,
       groupBy: 'subjects',
       markWith: 'colors',
-      lastSyncAt: DEMO_LAST_SYNC,
+      lastSyncAt: new Date(DEMO_LAST_SYNC.getTime() + shift * 86_400_000),
     });
 
     return {

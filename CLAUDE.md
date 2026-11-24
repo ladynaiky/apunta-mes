@@ -382,6 +382,12 @@ Bloque B (hecho):
 - `ap-tabs` acepta `icon` (pestañas de 64 dp con el icono relleno en la activa). El meu espai: notifications, share, palette, group. Caben a 360 dp.
 - Avisos: los aniversarios salen como «Aniversari de …», sin casilla.
 
+Bloque C (hecho):
+- Fecha real: `DEMO_TODAY` vacía en `backend/.env`, `.env.example` y `render.yaml`. La app usa la fecha de hoy (Europe/Madrid).
+- Seed relativo: `demo-data.ts` sigue escrito para el 4/11/2026 (`DEMO_REFERENCE_TODAY`), y `DemoSeedService` desplaza todas las fechas (y `lastSyncAt`) a la fecha de la app. Las 3 tareas siempre son de hoy.
+- Los tests e2e fijan `DEMO_TODAY=2026-11-04`, así que los resultados no cambian.
+- Datos de demo reiniciados el 24/11/2026: se borraron las pruebas del grupo, con su OK.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
@@ -392,4 +398,4 @@ Bloque B (hecho):
 - [x] 6. Niveles 2 y 3
 - [x] 7. Flujos transversales y estados
 - [x] 8. Despliegue (Render + Atlas)
-- [ ] Iteración 1: [x] A · [x] B · [ ] C · [ ] D · [ ] E · [ ] F · [ ] G · [ ] Design System
+- [ ] Iteración 1: [x] A · [x] B · [x] C · [ ] D · [ ] E · [ ] F · [ ] G · [ ] Design System

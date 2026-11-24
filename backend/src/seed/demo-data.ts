@@ -1,5 +1,6 @@
 /**
- * Datos de demo (noviembre de 2026, «hoy» = dimecres 4).
+ * Datos de demo, escritos para «hoy» = dimecres 4/11/2026 (DEMO_REFERENCE_TODAY).
+ * Al sembrar se desplazan a la fecha de la app: las 3 tareas siempre son «per a avui».
  * Aprobados en la fase 2 (apartado C). Coinciden con la alta fidelidad:
  * días 4, 6, 13, 17 y 20; examen de Mates el 13 (decisión 2.1.4 de CLAUDE.md).
  */
@@ -166,3 +167,6 @@ export const DEMO_CONTACTS = [
 
 /** «Última sincronització: avui, 8:15» (8:15 en Madrid = 7:15 UTC en noviembre). */
 export const DEMO_LAST_SYNC = new Date('2026-11-04T07:15:00Z');
+
+/** «Hoy» para el que están escritas las fechas de arriba. El seed las desplaza a la fecha de la app. */
+export const DEMO_REFERENCE_TODAY = '2026-11-04';
