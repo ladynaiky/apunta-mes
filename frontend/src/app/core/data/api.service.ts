@@ -76,6 +76,14 @@ export class ApiService {
     return firstValueFrom(this.http.delete<void>(`${this.url}/entries/${id}`));
   }
 
+  createSubject(data: Pick<Subject, 'name' | 'colorToken'>): Promise<Subject> {
+    return firstValueFrom(this.http.post<Subject>(`${this.url}/subjects`, data));
+  }
+
+  entry(id: string): Promise<Entry> {
+    return this.get(`/entries/${id}`);
+  }
+
   updateSubject(id: string, data: Partial<Pick<Subject, 'name' | 'colorToken'>>): Promise<Subject> {
     return firstValueFrom(this.http.patch<Subject>(`${this.url}/subjects/${id}`, data));
   }

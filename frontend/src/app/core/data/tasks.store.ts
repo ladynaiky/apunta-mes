@@ -23,6 +23,8 @@ export class TasksStore {
   readonly todayEntries = signal<Entry[]>([]);
   readonly weekEntries = signal<Entry[]>([]);
   readonly subjects = signal<Subject[]>([]);
+  /** La última asignatura creada (Apuntar la deja elegida al volver). */
+  readonly lastCreatedSubjectId = signal<string | null>(null);
 
   /** Lo que queda de la semana después de hoy. */
   readonly upcomingWeek = computed(() => this.weekEntries().filter((e) => e.date > this.today()));

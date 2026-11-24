@@ -288,6 +288,22 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - API: en `POST /entries`, los campos vacíos que no son del tipo de entrada se ignoran (por ejemplo, `personName: ""` en una tarea).
 - IA: las preguntas nuevas reciben «De moment només sóc una demostració. Aviat podré respondre més preguntes.». «Sí, apunta-ho» lleva a Apuntar examen (`?from=ai&date=2026-11-13`).
 
+## 2.7f Fase 6 · bloque 6A (Apuntar)
+- **Todas las pantallas con sesión van dentro del marco con la barra de navegación** (`TabsShell` en la ruta `''`), como en el diseño. Las URL no cambian. En las pestañas se marca su destino; en el resto, el de `?from=` (`shared/utils/origin.ts`: `originUrl()` y `originTab()`).
+- **Apuntar = una pantalla** `/new/:type` (task | exam | trip | birthday) con pestañas con icono. Cambiar de pestaña actualiza la URL con `Location.replaceState`, sin añadir otra pantalla al historial. Los campos comunes (data y avís) se conservan.
+- Opciones de «Avisa'm abans» por tipo, según el diseño: tasca 0/1/2 (por defecto 1) · examen 1/3/7 (3) · excursió 1/3/7 (1) · aniversari 0/1/7 (1). Hora por defecto: 08:00.
+- Campo nuevo de la API `activity` («Activitat» de la tarea).
+- Campos por tipo:
+  - tasca: assignatura, nom, data, pàg., activitat y descripció;
+  - examen: assignatura, «Examen de» (`topic`), data, tipus y «Què he d'estudiar»;
+  - excursió: nom, data, sortida/tornada, «Què cal portar» y observacions (`notes`);
+  - aniversari: qui fa anys (`personName`), edat, data, «És…» (`relation`) e idees de regal (`giftIdeas`).
+- «…creada / creat» (`/new/:type/done/:id`): «No» vuelve al origen y «Sí» lleva a Compartir. Al guardar se navega con `replaceUrl`, para que «Enrere» no vuelva al formulario.
+- Crear nova assignatura (`/subjects/new`): al volver a Apuntar, la nueva asignatura queda elegida (`TasksStore.lastCreatedSubjectId`).
+- Avís de pendents, Personalització y Sincronitzar (`/me/reminders`, `/me/customize`, `/me/sync`) abren El meu espai en su pestaña.
+- Componente `ap-bottom-sheet` (sobre `<dialog>`, alineado con el marco del móvil en el ordenador) y `ap-select` con muestra de color en las opciones.
+- Fila de tarea: `lowercaseTitle` (por defecto, true) pone en minúscula la primera letra solo en tareas («Mates: exercicis»). Los nombres propios se mantienen («Excursió: Museu de la Ciència»).
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base

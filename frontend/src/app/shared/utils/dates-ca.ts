@@ -85,3 +85,13 @@ export function greeting(hour: number): string {
   if (hour >= 12 && hour < 21) return 'Bona tarda!';
   return 'Bona nit!';
 }
+
+const MONTHS_SHORT = ['gen.', 'febr.', 'març', 'abr.', 'maig', 'juny', 'jul.', 'ag.', 'set.', 'oct.', 'nov.', 'des.'];
+
+/** «Dc. 4 de nov.» · «Dj. 1 d’oct.» (camps de data i date picker). */
+export function shortDate(date: string): string {
+  const [, m, d] = parts(date);
+  const month = MONTHS_SHORT[m - 1];
+  const of = /^[aeiou]/.test(month) ? `d’${month}` : `de ${month}`;
+  return `${WEEKDAYS_SHORT[weekdayIndex(date)]}. ${d} ${of}`;
+}

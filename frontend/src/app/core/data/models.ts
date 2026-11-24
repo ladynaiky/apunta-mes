@@ -34,6 +34,7 @@ export interface Entry {
   done: boolean;
   doneAt: string | null;
   page: string;
+  activity: string;
   topic: string;
   examType: 'written' | 'oral' | 'project' | null;
   toStudy: string;

@@ -9,11 +9,15 @@ import {
   signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import type { SubjectColorToken } from '../../utils/task-title';
 import { Icon } from '../icon/icon';
+import { SubjectDot } from '../subject-dot/subject-dot';
 
 export interface SelectOption<T = string> {
   value: T;
   label: string;
+  /** Muestra de color (solo en el selector de asignatura). */
+  color?: SubjectColorToken;
 }
 
 let nextId = 0;
@@ -24,7 +28,7 @@ let nextId = 0;
  */
 @Component({
   selector: 'ap-select',
-  imports: [Icon],
+  imports: [Icon, SubjectDot],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => Select), multi: true }],
   templateUrl: './select.html',

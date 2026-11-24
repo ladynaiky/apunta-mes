@@ -1,0 +1,245 @@
+<ap-top-bar [title]="t.titles[type()]" (back)="cancel()" />
+
+<ion-content>
+  <form class="page" novalidate (ngSubmit)="submit()">
+    <!-- Pestañas por tipo (con icono) -->
+    <div class="type-tabs" role="tablist" [attr.aria-label]="t.tabsLabel">
+      @for (k of types; track k) {
+        <button
+          type="button"
+          role="tab"
+          [attr.aria-selected]="k === type()"
+          [class.active]="k === type()"
+          (click)="setType(k)"
+        >
+          <ap-icon [name]="icons[k]" [filled]="k === type()" />
+          <span>{{ t.tabs[k] }}</span>
+        </button>
+      }
+    </div>
+
+    <!-- Asignatura (tarea y examen) -->
+    @if (type() === 'task' || type() === 'exam') {
+      <div class="subject-row">
+        <ap-select
+          class="grow"
+          [label]="t.subjectLabel"
+          [placeholder]="t.subjects"
+          [options]="subjectOptions()"
+          name="subject"
+          [ngModel]="subjectId()"
+          (ngModelChange)="subjectId.set($event); clearError('subject')"
+          [error]="errors()['subject'] ?? null"
+        />
+        <a
+          apIconButton
+          class="add"
+          routerLink="/subjects/new"
+          [queryParams]="{ from: 'new' }"
+          icon="add"
+          [label]="t.newSubject"
+        ></a>
+      </div>
+    }
+
+    @if (type() === 'trip') {
+      <p class="section-label">{{ t.where }}</p>
+    }
+    @if (type() === 'birthday') {
+      <p class="section-label">{{ t.who }}</p>
+    }
+
+    <!-- Nom / Examen de / Qui fa anys + Data -->
+    <div class="pair">
+      @switch (type()) {
+        @case ('exam') {
+          <ap-text-field [label]="t.examOf" [placeholder]="t.examOfPlaceholder" name="topic" [(ngModel)]="topic" />
+        }
+        @case ('birthday') {
+          <ap-text-field
+            [label]="t.name"
+            [placeholder]="t.name"
+            name="personName"
+            [(ngModel)]="personName"
+            (ngModelChange)="clearError('personName')"
+            [error]="errors()['personName'] ?? null"
+          />
+        }
+        @default {
+          <ap-text-field
+            [label]="t.name"
+            [placeholder]="type() === 'trip' ? t.tripNamePlaceholder : t.taskNamePlaceholder"
+            name="title"
+            [(ngModel)]="title"
+            (ngModelChange)="clearError('title')"
+            [error]="errors()['title'] ?? null"
+          />
+        }
+      }
+      @if (type() === 'birthday') {
+        <ap-text-field [label]="t.age" [placeholder]="t.agePlaceholder" name="age" [(ngModel)]="age" />
+      } @else {
+        <ng-container *ngTemplateOutlet="dateField" />
+      }
+    </div>
+    @if (type() === 'birthday') {
+      <ng-container *ngTemplateOutlet="dateField" />
+    }
+
+    <ng-template #dateField>
+      <div class="date-field">
+        <button
+          type="button"
+          class="field-button"
+          [class.invalid]="errors()['date']"
+          [attr.aria-label]="t.dateLabel(dateText() ?? t.datePlaceholder)"
+          (click)="openDayPicker()"
+        >
+          <span class="float-label">{{ t.date }}</span>
+          <span [class.placeholder]="!dateText()">{{ dateText() ?? t.datePlaceholder }}</span>
+          <ap-icon name="calendar_today" [size]="20" />
+        </button>
+        @if (errors()['date']; as msg) {
+          <p class="error" role="alert"><ap-icon name="error" [size]="16" />{{ msg }}</p>
+        }
+      </div>
+    </ng-template>
+
+    <!-- Tarjeta con el resto de campos -->
+    <div class="card">
+      @switch (type()) {
+        @case ('task') {
+          <div class="inline-fields">
+            <label>{{ t.page }} <input class="mini" name="page" inputmode="numeric" [(ngModel)]="page" /></label>
+            <label>{{ t.activity }} <input class="mini" name="activity" [(ngModel)]="activity" /></label>
+          </div>
+        }
+        @case ('exam') {
+          <p class="label">{{ t.examType }}</p>
+          <div class="chips" role="radiogroup" [attr.aria-label]="t.examType">
+            @for (k of ['written', 'oral', 'project']; track k) {
+              <button apChip type="button" role="radio" [attr.aria-checked]="examType() === k" [selected]="examType() === k" (click)="examType.set($any(k))">
+                {{ t.examTypes[k] }}
+              </button>
+            }
+          </div>
+        }
+        @case ('trip') {
+          <div class="inline-fields">
+            <label>{{ t.departure }} <input class="time" type="time" name="dep" [(ngModel)]="departureTime" /></label>
+            <label>{{ t.return }} <input class="time" type="time" name="ret" [(ngModel)]="returnTime" /></label>
+          </div>
+        }
+        @case ('birthday') {
+          <p class="label">{{ t.relation }}</p>
+          <div class="chips" role="radiogroup" [attr.aria-label]="t.relation">
+            @for (k of ['friend', 'family', 'class']; track k) {
+              <button apChip type="button" role="radio" [attr.aria-checked]="relation() === k" [selected]="relation() === k" (click)="relation.set($any(k))">
+                {{ t.relations[k] }}
+              </button>
+            }
+          </div>
+        }
+      }
+
+      <!-- Avisa’m abans (una sola fila que abre la hoja) -->
+      <button type="button" class="reminder" [attr.aria-label]="t.reminderLabel(reminderSummary())" (click)="reminderOpen.set(true)">
+        <span class="text">
+          <span class="small">{{ t.reminder }}</span>
+          <span>{{ reminderSummary() }}</span>
+        </span>
+        <ap-icon name="chevron_right" />
+      </button>
+
+      @if (type() === 'trip') {
+        <p class="label">{{ t.bring }}</p>
+        <ul class="bring">
+          @for (item of bring(); track $index; let i = $index) {
+            <li>
+              @if (editingItem() === i) {
+                <input class="bring-input" [name]="'edit' + i" [attr.aria-label]="t.editItem(item.name)" [(ngModel)]="editingDraft" (keydown.enter)="$event.preventDefault(); saveItem(i)" />
+                <button apIconButton type="button" icon="check" [label]="t.saveItem" (click)="saveItem(i)"></button>
+              } @else {
+                <span class="bring-name">{{ item.name }}</span>
+                <button apIconButton type="button" icon="edit" [label]="t.editItem(item.name)" (click)="startEditItem(i)"></button>
+                <button apIconButton type="button" icon="delete" [label]="t.deleteItem(item.name)" (click)="removeItem(i)"></button>
+              }
+            </li>
+          }
+        </ul>
+        <div class="bring-add">
+          <input class="bring-input" name="bringDraft" [placeholder]="t.bringPlaceholder" [attr.aria-label]="t.bring" [(ngModel)]="bringDraft" (keydown.enter)="$event.preventDefault(); addItem()" />
+          <button apButton type="button" variant="tonal" icon="add" (click)="addItem()">{{ t.add }}</button>
+        </div>
+      }
+
+      <!-- Texto largo -->
+      @switch (type()) {
+        @case ('exam') {
+          <label class="area">
+            <span>{{ t.toStudy }}</span>
+            <textarea name="toStudy" rows="4" [placeholder]="t.toStudyPlaceholder" [(ngModel)]="toStudy"></textarea>
+          </label>
+        }
+        @case ('trip') {
+          <label class="area">
+            <span>{{ t.observations }}</span>
+            <textarea name="notes" rows="3" [placeholder]="t.observationsPlaceholder" [(ngModel)]="notes"></textarea>
+          </label>
+        }
+        @case ('birthday') {
+          <label class="area">
+            <span>{{ t.gifts }}</span>
+            <textarea name="gifts" rows="3" [placeholder]="t.giftsPlaceholder" [(ngModel)]="notes"></textarea>
+          </label>
+        }
+        @default {
+          <label class="area">
+            <span>{{ t.description }}</span>
+            <textarea name="notes" rows="5" [placeholder]="t.descriptionPlaceholder" [(ngModel)]="notes"></textarea>
+          </label>
+        }
+      }
+    </div>
+
+    @if (formError(); as message) {
+      <p class="error" role="alert"><ap-icon name="error" [size]="20" />{{ message }}</p>
+    }
+
+    <div class="actions">
+      <button apButton type="button" variant="outlined" size="m" icon="close" (click)="cancel()">{{ ca.common.cancel }}</button>
+      <button apButton type="submit" variant="filled" size="m" icon="check" [disabled]="sending()" [attr.aria-busy]="sending()">
+        {{ t.confirm[type()] }}
+      </button>
+    </div>
+  </form>
+</ion-content>
+
+<!-- Hoja «Avisa’m abans» -->
+<ap-bottom-sheet [open]="reminderOpen()" [headline]="t.reminder" headingId="reminder-title" (closed)="reminderOpen.set(false)">
+  <p class="label">{{ t.reminderDays }}</p>
+  <div class="chips" role="radiogroup" [attr.aria-label]="t.reminderDays">
+    @for (d of reminderOptions(); track d) {
+      <button apChip type="button" role="radio" [attr.aria-checked]="reminderDays() === d" [selected]="reminderDays() === d" (click)="chooseReminder(d)">
+        {{ t.dayOptions[d] }}
+      </button>
+    }
+  </div>
+  <label class="time-label">
+    <span>{{ t.reminderTime }}</span>
+    <input type="time" class="time big" name="reminderTime" [ngModel]="reminderTime()" (ngModelChange)="reminderTime.set($event)" />
+  </label>
+  <button apButton type="button" variant="filled" size="m" [block]="true" (click)="reminderOpen.set(false)">{{ t.done }}</button>
+</ap-bottom-sheet>
+
+<!-- Tria el dia -->
+<ap-dialog
+  [open]="dayPickerOpen()"
+  [headline]="t.pickDay"
+  [confirmLabel]="t.confirmDay"
+  [cancelLabel]="t.discard"
+  (confirm)="confirmDay()"
+  (cancel)="dayPickerOpen.set(false)"
+>
+  <ap-month-picker [value]="pendingDay()" [today]="today()" (valueChange)="pendingDay.set($event)" />
+</ap-dialog>

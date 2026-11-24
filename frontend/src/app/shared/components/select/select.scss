@@ -42,6 +42,7 @@
   cursor: pointer;
 }
 .trigger:focus-visible { outline: none; }
+.dot { margin-right: var(--space-150); }
 .value { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .value.placeholder { color: var(--color-on-surface-variant); }
 .arrow { color: var(--color-on-surface-variant); margin: 0 8px; transition: transform var(--motion-effects); }

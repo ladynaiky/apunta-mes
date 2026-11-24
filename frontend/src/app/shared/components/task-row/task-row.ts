@@ -26,13 +26,17 @@ export class TaskRow {
   readonly showCheckbox = input(true);
   readonly showMenu = input(true);
   readonly showTags = input(true);
+  /** «Mates: exercicis» (tareas) · «Excursió: Museu de la Ciència» (nombres propios). */
+  readonly lowercaseTitle = input(true);
 
   readonly doneChange = output<boolean>();
   readonly open = output<void>();
   readonly menu = output<void>();
 
   protected readonly t = ca.task;
-  protected readonly label = computed(() => taskLabel(this.subjectName(), this.title()));
+  protected readonly label = computed(() =>
+    taskLabel(this.subjectName(), this.title(), this.lowercaseTitle()),
+  );
   protected readonly checkLabel = computed(() =>
     this.done() ? this.t.unmarkDone(this.label()) : this.t.markDone(this.label()),
   );

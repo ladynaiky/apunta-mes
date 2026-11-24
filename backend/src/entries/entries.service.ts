@@ -338,6 +338,7 @@ export class EntriesService {
       done: e.done ?? false,
       doneAt: e.doneAt ?? null,
       page: e.page ?? '',
+      activity: e.activity ?? '',
       topic: e.topic ?? '',
       examType: e.examType ?? null,
       toStudy: e.toStudy ?? '',

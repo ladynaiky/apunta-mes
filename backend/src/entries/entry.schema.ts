@@ -83,6 +83,10 @@ export class Entry {
   @Prop({ type: String, default: '' })
   page: string;
 
+  /** «Activitat» (p. ej., el número de ejercicio). */
+  @Prop({ type: String, default: '' })
+  activity: string;
+
   // — exam —
   @Prop({ type: String, default: '' })
   topic: string;

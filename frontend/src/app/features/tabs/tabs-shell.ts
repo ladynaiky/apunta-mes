@@ -7,8 +7,13 @@ import {
   NavigationBar,
   type NavDestination,
 } from '../../shared/components/navigation-bar/navigation-bar';
+import { originTab } from '../../shared/utils/origin';
 
-/** Pestañas Inici · Calendari · Tasques · IA, con la barra de navegación fija. */
+/**
+ * Marco de la app con sesión: todas las pantallas (niveles 1, 2 y 3) con la
+ * barra de navegación fija debajo, como en el diseño. En las pestañas se
+ * marca su destino; en el resto, el de origen (`?from=`).
+ */
 @Component({
   selector: 'ap-tabs-shell',
   imports: [IonRouterOutlet, NavigationBar],
@@ -33,7 +38,9 @@ export class TabsShell {
   );
 
   private current(): NavDestination | null {
+    const tree = this.router.parseUrl(this.router.url);
     const m = /^\/tabs\/(home|calendar|tasks|ai)/.exec(this.router.url);
-    return (m?.[1] as NavDestination) ?? null;
+    if (m) return m[1] as NavDestination;
+    return originTab(tree.queryParams['from']);
   }
 }

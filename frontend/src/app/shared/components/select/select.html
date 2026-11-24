@@ -13,6 +13,9 @@
     (click)="toggle()"
     (keydown)="onKeydown($event)"
   >
+    @if (selected()?.color) {
+      <ap-subject-dot class="dot" [color]="selected()!.color!" />
+    }
     <span class="value" [id]="id + '-value'" [class.placeholder]="!selected()">
       {{ selected()?.label ?? placeholder() }}
     </span>
@@ -31,6 +34,9 @@
         (click)="pick(o)"
         (mouseenter)="activeIndex.set(i)"
       >
+        @if (o.color) {
+          <ap-subject-dot class="dot" [color]="o.color" />
+        }
         {{ o.label }}
       </li>
     }

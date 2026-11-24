@@ -236,6 +236,76 @@ export const ca = {
     saved: 'Canvis desats', // (nou)
     loadError: 'No s’han pogut carregar les dades',
   },
+  newEntry: {
+    titles: { task: 'Apuntar nova tasca', exam: 'Apuntar examen', trip: 'Apuntar excursió', birthday: 'Apuntar aniversari' } as Record<string, string>,
+    confirm: { task: 'Confirmar tasca', exam: 'Desar l’examen', trip: 'Desar l’excursió', birthday: 'Desar l’aniversari' } as Record<string, string>,
+    tabs: { task: 'Tasca', exam: 'Exàmens', trip: 'Excursions', birthday: 'Aniversaris' } as Record<string, string>,
+    tabsLabel: 'Tipus',
+    subjects: 'Assignatures',
+    subjectLabel: 'Assignatura',
+    newSubject: 'Crear nova assignatura',
+    name: 'Nom',
+    taskNamePlaceholder: 'Nom de la tasca',
+    date: 'Data',
+    datePlaceholder: 'Busca el dia',
+    dateLabel: (d: string) => `Data: ${d}`,
+    page: 'Pàg.',
+    activity: 'Activitat',
+    description: 'Descripció',
+    descriptionPlaceholder: 'Fer exercicis, acolorir…',
+    examOf: 'Examen de',
+    examOfPlaceholder: 'Tema o unitat',
+    examType: 'Tipus d’examen',
+    examTypes: { written: 'Escrit', oral: 'Oral', project: 'Treball' } as Record<string, string>,
+    toStudy: 'Què he d’estudiar',
+    toStudyPlaceholder: 'Temes, pàgines, apunts…',
+    where: 'On anireu?',
+    tripNamePlaceholder: 'Nom de l’excursió',
+    departure: 'Sortida',
+    return: 'Tornada',
+    bring: 'Què cal portar',
+    bringPlaceholder: 'Escriu què cal portar',
+    add: 'Afegeix',
+    editItem: (n: string) => `Editar: ${n}`,
+    deleteItem: (n: string) => `Esborrar: ${n}`,
+    saveItem: 'Desar',
+    observations: 'Observacions',
+    observationsPlaceholder: 'Preu, punt de trobada, telèfon…',
+    who: 'Qui fa anys?',
+    age: 'Edat',
+    agePlaceholder: 'Quants en fa?',
+    relation: 'És…',
+    relations: { friend: 'Amic/ga', family: 'Família', class: 'De classe' } as Record<string, string>,
+    gifts: 'Idees de regal',
+    giftsPlaceholder: 'Un llibre, un joc, fer-li un dibuix…',
+    reminder: 'Avisa’m abans',
+    reminderLabel: (r: string) => `Avisa’m abans: ${r}. Canviar`,
+    reminderDays: 'Quants dies abans',
+    reminderTime: 'Hora de l’avís',
+    done: 'Fet',
+    dayOptions: { 0: 'El mateix dia', 1: '1 dia', 2: '2 dies', 3: '3 dies', 7: '1 setmana' } as Record<number, string>,
+    pickDay: 'Tria el dia',
+    discard: 'Descartar',
+    confirmDay: 'Confirmar',
+  },
+  created: {
+    titles: { task: 'Tasca creada', exam: 'Examen creat', trip: 'Excursió creada', birthday: 'Aniversari creat' } as Record<string, string>,
+    text: 'Ja la tens al calendari.',
+    share: 'Vols compartir?',
+    no: 'No',
+    yes: 'Sí',
+    noLabel: 'No, tornar a Inici',
+    noBackLabel: 'No, tornar enrere', // (nou)
+    yesLabel: 'Sí, compartir',
+  },
+  newSubject: {
+    title: 'Crear nova assignatura',
+    name: 'Nom de l’assignatura',
+    namePlaceholder: 'Escriu el nom',
+    color: 'Color de l’assignatura',
+    create: 'Crear assignatura',
+    nameRequired: 'Escriu el nom de l’assignatura.', // (nou)
+  },
   session: {
     logout: 'Tancar la sessió', // (nou)
     logoutQuestion: 'Vols tancar la sessió?', // (nou)
@@ -262,6 +332,14 @@ export const apiErrors: Record<string, string> = {
   EMAIL_TAKEN: 'Aquest correu ja té un compte. Inicia sessió o fes servir un altre correu.', // (nou)
   INVALID_CREDENTIALS: 'El correu o la contrasenya no són correctes. Revisa-ho i torna-ho a provar.', // (nou)
   UNAUTHORIZED: 'La sessió ha caducat. Torna a iniciar sessió.', // (nou)
+  'title.required': 'Escriu el nom.', // (nou)
+  'subject.required': 'Tria una assignatura.', // (nou)
+  'subject.notFound': 'Tria una assignatura.', // (nou)
+  'date.required': 'Tria el dia.', // (nou)
+  'date.invalid': 'Tria el dia.', // (nou)
+  'personName.required': 'Escriu qui fa anys.', // (nou)
+  'colorToken.required': 'Tria un color.', // (nou)
+  SUBJECT_EXISTS: 'Ja tens una assignatura amb aquest nom.', // (nou)
   NETWORK: 'No s’ha pogut connectar amb el servidor. Comprova la connexió i torna-ho a provar.', // (nou)
   SERVER: 'Alguna cosa no ha anat bé. Torna-ho a provar d’aquí a una estona.', // (nou)
 };

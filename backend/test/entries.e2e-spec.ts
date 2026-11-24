@@ -53,9 +53,11 @@ describe.skipIf(!hasTestDb)('Entries, subjects y mocks (e2e)', () => {
           date: '2026-11-04',
           subject: subjects.Mates.id,
           page: '12',
+          activity: '3',
           reminder: { daysBefore: 1, time: '08:00' },
         })
         .expect(201);
+      expect(res.body).toMatchObject({ page: '12', activity: '3' });
       expect(res.body).toMatchObject({
         type: 'task',
         title: 'Exercicis, pàg. 12',

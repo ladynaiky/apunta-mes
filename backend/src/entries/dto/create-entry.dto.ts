@@ -143,6 +143,13 @@ export class CreateEntryDto {
   @IsString({ message: 'page.invalid' })
   page?: string;
 
+  @ApiPropertyOptional({ example: '3', description: 'Activitat' })
+  @IsOptional()
+  @Transform(trim)
+  @MaxLength(20, { message: 'activity.maxLength' })
+  @IsString({ message: 'activity.invalid' })
+  activity?: string;
+
   // — exam —
   @ApiPropertyOptional({
     example: 'Fraccions i decimals',

@@ -35,6 +35,7 @@ export class EntryDto {
   @ApiProperty() done: boolean;
   @ApiProperty({ nullable: true }) doneAt: Date | null;
   @ApiProperty() page: string;
+  @ApiProperty() activity: string;
   @ApiProperty() topic: string;
   @ApiProperty({ enum: EXAM_TYPES, nullable: true }) examType: string | null;
   @ApiProperty() toStudy: string;

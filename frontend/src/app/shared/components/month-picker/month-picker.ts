@@ -73,7 +73,9 @@ export class MonthPicker {
   readonly valueChange = output<string>();
 
   /** Mes que se ve (AAAA-MM). Sigue al valor hasta que se navega. */
-  protected readonly month = linkedSignal(() => (this.value() ?? this.today() ?? '2026-11-01').slice(0, 7));
+  protected readonly month = linkedSignal(() =>
+    (this.value() || this.today() || new Date().toISOString().slice(0, 10)).slice(0, 7),
+  );
   protected readonly weekdays = WEEKDAY_HEADERS;
   protected readonly title = computed(() => monthTitle(this.month()));
   protected readonly weeks = computed(() => {
