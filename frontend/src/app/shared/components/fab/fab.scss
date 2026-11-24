@@ -36,13 +36,17 @@
   border-radius: inherit;
   background: currentColor;
   opacity: 0;
-  transition: opacity var(--motion-effects);
+  transition:
+    opacity var(--motion-effects),
+    border-radius var(--motion-spatial-fast);
 }
 .fab:hover { box-shadow: var(--elevation-level4); }
 .fab:hover::after { opacity: var(--opacity-state-hover); }
 .fab:active::after { opacity: var(--opacity-state-pressed); }
-/* Abierto: el botón de cerrar es redondo (FAB menu MD3 Expressive). */
-.fab.open { border-radius: var(--shape-corner-full); }
+/* Abierto: el botón de cerrar es redondo (FAB menu MD3 Expressive).
+   28 px = la mitad de 56: redondo sin pasar por 9999px, que al cerrarse
+   hacía saltar la forma a un cuadrado con esquinas de pico. */
+.fab.open { border-radius: var(--shape-corner-extra-large); }
 
 .scrim {
   position: fixed;

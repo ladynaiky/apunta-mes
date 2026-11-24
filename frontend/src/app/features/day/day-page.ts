@@ -38,15 +38,15 @@ import { dayMonth, dueLabel } from '../../shared/utils/dates-ca';
                 [highPriority]="e.priority === 'high'"
                 [showCheckbox]="e.type !== 'birthday'"
                 (doneChange)="store.setDone(e, $event)"
-                (open)="sheet.open(e, 'calendar')"
-                (menu)="sheet.open(e, 'calendar')"
+                (open)="sheet.open(e, from() ?? 'calendar')"
+                (menu)="sheet.open(e, from() ?? 'calendar')"
               />
             }
           } @else {
             <ap-state-message class="empty" [title]="t.empty" [text]="t.emptyText" />
           }
           <div class="cta">
-            <a apButton variant="filled" routerLink="/new/task" [queryParams]="{ from: 'calendar', date: date() }">{{ t.newTask }}</a>
+            <a apButton variant="filled" routerLink="/new/task" [queryParams]="{ from: from() ?? 'calendar', date: date() }">{{ t.newTask }}</a>
           </div>
         }
       </main>
@@ -63,6 +63,8 @@ import { dayMonth, dueLabel } from '../../shared/utils/dates-ca';
 })
 export class DayPage implements ViewWillEnter {
   readonly date = input.required<string>();
+  /** Origen (?from=calendar | calendar-month): a dónde vuelve después de apuntar. */
+  readonly from = input<string | undefined>();
 
   private readonly api = inject(ApiService);
   private readonly todayService = inject(TodayService);

@@ -353,6 +353,27 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - Plan gratuito: la API se duerme tras 15 minutos sin uso; la primera petición tarda alrededor de un minuto.
 - Comprobado tras el despliegue: health (`database: up`), `/config`, Swagger, app, rutas internas, CORS y 401 sin token.
 
+## 2.9 Iteración 1 (24/11/2026): 21 cambios pedidos por el grupo
+Decisiones (respuestas del grupo):
+1. Logo: `Isotipo.png` (1024×1024, transparente) es el recurso; `logo horizontal.png` y `logotipo.png` son solo referencia.
+2. Isotipo encima de «Apunta+» en Iniciar sessió.
+3. Color de cada asignatura tal cual: borde de los chips de Inici y nombre de la asignatura en las tareas. Se revisa el contraste después de verlo.
+4. No se puede eliminar una asignatura con tareas (aviso).
+5. Se eliminan las pantallas Checklist y Marcar tasca feta.
+6. Sincronitzar va al principio de la pestaña Compartir de El meu espai (siguen 4 pestañas, con icono encima).
+7. Roles: Alumne/Alumna, Pare/Mare, Tutor/Tutora, Professor/Professora, Altres (Registre y Contactes).
+8. Modales centrados con fondo oscuro semitransparente (se ve la pantalla anterior) y X arriba a la derecha.
+9. Sin verificación del correo. 10. «Has oblidat la contrasenya?» simulado.
+11. Al final se actualiza el Design System.
+
+Roadmap: A errores → B identidad visual → C fecha real → D navegación y contenido → E editar → F modales → G contraseña olvidada → Design System.
+
+Bloque A (hecho):
+- FAB: al abrir, esquina de 28 px (no `corner-full`), y la capa interior anima igual. Antes, al cerrar pasaba de 9999px a 16 y salía un cuadrado de pico.
+- Origen `calendar-month`: el mensual lo pasa al día y a Apuntar; después de apuntar se vuelve a `/calendar/month`.
+- Aniversarios visibles en Inici y Tasques d'avui/setmana: «Aniversari de l'Anna», «Fa 12 anys», sin casilla ni etiquetas (`rowTitle`, `birthdaySupport` en `task-title.ts`).
+- iOS: el desplegable se cierra con `pointerdown` (Safari no envía `click` al tocar zonas que no son botones) y se desplaza para verse. Campos con 16 px como mínimo solo en iOS (`@supports (-webkit-touch-callout: none)` en `styles.scss`), para evitar el zoom automático. No se bloquea el zoom con los dedos.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
@@ -363,3 +384,4 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - [x] 6. Niveles 2 y 3
 - [x] 7. Flujos transversales y estados
 - [x] 8. Despliegue (Render + Atlas)
+- [ ] Iteración 1: [x] A · [ ] B · [ ] C · [ ] D · [ ] E · [ ] F · [ ] G · [ ] Design System

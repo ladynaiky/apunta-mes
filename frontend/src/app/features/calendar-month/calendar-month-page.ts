@@ -126,6 +126,6 @@ export class CalendarMonthPage implements ViewWillEnter {
   }
 
   protected openDay(date: string): void {
-    void this.nav.navigateForward(['/calendar/day', date], { queryParams: { from: 'calendar' } });
+    void this.nav.navigateForward(['/calendar/day', date], { queryParams: { from: 'calendar-month' } });
   }
 }

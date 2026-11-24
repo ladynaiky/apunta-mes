@@ -36,6 +36,8 @@ export const ca = {
     options: 'Opcions de la tasca',
     markDone: (title: string) => `Marcar com a feta: ${title}`,
     unmarkDone: (title: string) => `Desmarcar: ${title}`,
+    birthday: (name: string) => `Aniversari de ${name}`, // (nou)
+    birthdayAge: (age: number) => `Fa ${age} anys`, // (nou)
     details: (title: string) => `Veure detalls: ${title}`,
     forToday: 'Per a avui',
   },

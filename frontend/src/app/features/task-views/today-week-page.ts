@@ -10,6 +10,7 @@ import { TaskRow } from '../../shared/components/task-row/task-row';
 import { TaskSheetService } from '../../shared/components/task-sheet/task-sheet.service';
 import { TopBar } from '../../shared/components/top-bar/top-bar';
 import { dueLabel, longDate, weekTitle } from '../../shared/utils/dates-ca';
+import { birthdaySupport, rowTitle } from '../../shared/utils/task-title';
 
 /** Tasca d’avui/setmanal: lo de hoy o lo de esta semana (de dilluns a diumenge). */
 @Component({
@@ -29,8 +30,10 @@ import { dueLabel, longDate, weekTitle } from '../../shared/utils/dates-ca';
           @for (e of list(); track e.id) {
             <ap-task-row
               [subjectName]="e.subject?.name ?? null"
-              [title]="e.title"
-              [supporting]="view() === 'week' ? due(e) : null"
+              [title]="rowTitle(e)"
+              [supporting]="support(e)"
+              [showCheckbox]="e.type !== 'birthday'"
+              [showTags]="e.type !== 'birthday'"
               [done]="e.done"
               [highPriority]="e.priority === 'high'"
               (doneChange)="store.setDone(e, $event)"
@@ -66,11 +69,19 @@ export class TodayWeekPage implements ViewWillEnter {
     return this.view() === 'today' ? longDate(today) : weekTitle(today);
   });
   protected readonly list = computed(() =>
-    (this.view() === 'today' ? this.store.todayEntries() : this.store.weekEntries()).filter((e) => e.type !== 'birthday'),
+    (this.view() === 'today' ? this.store.todayEntries() : this.store.weekEntries()),
   );
 
   ionViewWillEnter(): void {
     void this.store.load();
+  }
+
+  protected readonly rowTitle = rowTitle;
+
+  protected support(e: Entry): string | null {
+    const due = this.view() === 'week' ? this.due(e) : null;
+    const age = birthdaySupport(e);
+    return [due, age].filter(Boolean).join(' · ') || null;
   }
 
   protected due(e: Entry): string {

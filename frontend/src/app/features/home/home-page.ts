@@ -14,6 +14,7 @@ import { TaskRow } from '../../shared/components/task-row/task-row';
 import { TaskSheetService } from '../../shared/components/task-sheet/task-sheet.service';
 import { TopBar } from '../../shared/components/top-bar/top-bar';
 import { dayMonth, greeting, shortDay } from '../../shared/utils/dates-ca';
+import { birthdaySupport, rowTitle } from '../../shared/utils/task-title';
 
 /** Inici: saludo, asignaturas con pendientes, tareas de hoy y de esta semana. */
 @Component({
@@ -47,7 +48,7 @@ export class HomePage implements ViewWillEnter {
   protected readonly todayText = computed(() => (this.store.today() ? this.t.today(dayMonth(this.store.today())) : ''));
 
   private readonly visible = (list: Entry[]) =>
-    list.filter((e) => e.type !== 'birthday' && (!this.filter() || e.subject?.id === this.filter()));
+    list.filter((e) => !this.filter() || e.subject?.id === this.filter());
   protected readonly todayList = computed(() => this.visible(this.store.todayEntries()));
   protected readonly weekList = computed(() => this.visible(this.store.upcomingWeek()));
 
@@ -75,6 +76,9 @@ export class HomePage implements ViewWillEnter {
 
   /** En la semana, el día va en el título: «Anglès: preparar la redacció (dv. 6)». */
   protected weekTitle(e: Entry): string {
-    return `${e.title} (${shortDay(e.date)})`;
+    return `${rowTitle(e)} (${shortDay(e.date)})`;
   }
+
+  protected readonly rowTitle = rowTitle;
+  protected readonly birthdaySupport = birthdaySupport;
 }

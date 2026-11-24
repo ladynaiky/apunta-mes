@@ -33,7 +33,9 @@ let nextId = 0;
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => Select), multi: true }],
   templateUrl: './select.html',
   styleUrl: './select.scss',
-  host: { '(document:click)': 'onDocumentClick($event)' },
+  // pointerdown y no click: en iPhone, Safari no envía «click» al tocar zonas que no son
+  // botones, así que el menú se quedaba abierto y el siguiente toque lo cerraba.
+  host: { '(document:pointerdown)': 'onDocumentPointerDown($event)' },
 })
 export class Select<T = string> implements ControlValueAccessor {
   readonly label = input.required<string>();
@@ -70,6 +72,10 @@ export class Select<T = string> implements ControlValueAccessor {
     if (this.open()) return this.close();
     this.open.set(true);
     this.activeIndex.set(Math.max(0, this.options().findIndex((o) => o.value === this.value())));
+    // Si el menú queda por debajo del borde (teclado de iOS, final de la pantalla), se desplaza para verlo.
+    requestAnimationFrame(() =>
+      this.host.nativeElement.querySelector('.menu')?.scrollIntoView({ block: 'nearest', behavior: 'smooth' }),
+    );
   }
 
   protected pick(option: SelectOption<T>): void {
@@ -97,7 +103,7 @@ export class Select<T = string> implements ControlValueAccessor {
     event.preventDefault();
   }
 
-  protected onDocumentClick(event: MouseEvent): void {
+  protected onDocumentPointerDown(event: PointerEvent): void {
     if (this.open() && !this.host.nativeElement.contains(event.target as Node)) this.close();
   }
 

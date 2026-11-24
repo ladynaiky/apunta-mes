@@ -35,7 +35,10 @@
         @for (e of todayList(); track e.id) {
           <ap-task-row
             [subjectName]="e.subject?.name ?? null"
-            [title]="e.title"
+            [title]="rowTitle(e)"
+            [supporting]="birthdaySupport(e)"
+            [showCheckbox]="e.type !== 'birthday'"
+            [showTags]="e.type !== 'birthday'"
             [done]="e.done"
             [highPriority]="e.priority === 'high'"
             (doneChange)="store.setDone(e, $event)"
@@ -53,7 +56,10 @@
           @for (e of weekList(); track e.id) {
             <ap-task-row
               [subjectName]="e.subject?.name ?? null"
-                [title]="weekTitle(e)"
+              [title]="weekTitle(e)"
+              [supporting]="birthdaySupport(e)"
+              [showCheckbox]="e.type !== 'birthday'"
+              [showTags]="e.type !== 'birthday'"
               [done]="e.done"
               [highPriority]="e.priority === 'high'"
               (doneChange)="store.setDone(e, $event)"
