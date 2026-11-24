@@ -24,7 +24,7 @@ import { IconButton } from '../icon-button/icon-button';
         @if (showProfile()) {
           <a
             apIconButton
-            routerLink="/me"
+            routerLink="/tabs/me"
             icon="account_circle"
             [label]="pending() ? t.meWithPending(pending()) : nav.me"
           >

@@ -1,0 +1,26 @@
+:host { display: block; }
+.sync { display: flex; flex-direction: column; gap: var(--space-100); margin-bottom: var(--space-300); }
+.label { margin: var(--space-100) 0 var(--space-50); color: var(--color-on-surface-variant); font: 500 14px/20px var(--font-text); }
+.status { margin: 0 0 var(--space-100); font: 400 14px/20px var(--font-text); color: var(--color-on-surface-variant); }
+.intro { margin: 0 0 var(--space-200); font: 400 16px/24px var(--font-text); letter-spacing: 0.5px; }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-250);
+  padding: var(--space-200);
+  border-radius: var(--shape-corner-large);
+  background: var(--color-surface-container-low);
+}
+.card-head { display: flex; align-items: center; justify-content: space-between; }
+.card-head h3 { margin: 0; font: 600 18px/24px var(--font-title); }
+/* La etiqueta del campo se pinta sobre el fondo de la tarjeta. */
+.card { --label-bg: var(--color-surface-container-low); }
+
+.list { margin: 0; padding: 0; list-style: none; }
+li { display: flex; align-items: center; min-height: var(--size-list-item-two-line); }
+.text { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.name { font: 500 16px/24px var(--font-text); }
+.detail { color: var(--color-on-surface-variant); font: 400 14px/20px var(--font-text); }
+.danger { color: var(--color-error); }
+.empty { color: var(--color-on-surface-variant); font: 400 14px/20px var(--font-text); }

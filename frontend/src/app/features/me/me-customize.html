@@ -1,0 +1,69 @@
+@if (status() === 'error') {
+  <ap-state-message kind="error" [title]="t.loadError" [text]="ca.state.checkConnection" />
+} @else if (prefs(); as p) {
+  <p class="intro">{{ t.customizeIntro }}</p>
+
+  <ap-select [label]="t.groupBy" [options]="groupOptions" [ngModel]="p.groupBy" (ngModelChange)="setGroup($event)" />
+
+  <p class="label">{{ t.markWith }}</p>
+  <ap-button-group [label]="t.markWith" [options]="markOptions" [value]="p.markWith" (valueChange)="setMark($event)" />
+
+  <p class="label">{{ t.preview }}</p>
+  <div class="preview" aria-hidden="true">
+    <span class="preview-group">{{ previewGroup() }}</span>
+    <span class="preview-row">
+      @if (p.markWith === 'colors') {
+        <ap-subject-dot [color]="mates()?.colorToken ?? 'blau'" />
+      }
+      <span><span class="subject">Mates</span>: exercicis, pàg. 12</span>
+    </span>
+    @if (p.markWith === 'tags') {
+      <span class="preview-tags">
+        @if (tagOn('todo')) {
+          <span class="tag">{{ ca.task.todo }}</span>
+        }
+        @if (tagOn('highPriority')) {
+          <span class="tag priority">{{ ca.task.highPriority }}</span>
+        }
+      </span>
+    }
+  </div>
+
+  @if (p.markWith === 'colors') {
+    <p class="label">{{ t.subjectColors }}</p>
+    <ul class="list">
+      @for (s of subjects(); track s.id) {
+        <li>
+          <button
+            type="button"
+            class="row"
+            [attr.aria-expanded]="openSubject() === s.id"
+            [attr.aria-label]="t.colorOf(s.name) + ': ' + t.colorNames[s.colorToken]"
+            (click)="openSubject.set(openSubject() === s.id ? null : s.id)"
+          >
+            <ap-subject-dot [color]="s.colorToken" [size]="20" />
+            <span class="name">{{ s.name }}</span>
+            <span class="value">{{ t.colorNames[s.colorToken] }}</span>
+            <ap-icon [name]="openSubject() === s.id ? 'expand_less' : 'expand_more'" />
+          </button>
+          @if (openSubject() === s.id) {
+            <ap-swatch-picker class="swatches" [label]="t.colorOf(s.name)" [value]="s.colorToken" (valueChange)="setColor(s, $event)" />
+          }
+        </li>
+      }
+    </ul>
+  } @else {
+    <p class="label">{{ t.visibleTags }}</p>
+    <ul class="list">
+      @for (tag of t.tags; track tag.key) {
+        <li class="tag-row">
+          <span class="text">
+            <span class="name">{{ tag.name }}</span>
+            <span class="desc">{{ tag.desc }}</span>
+          </span>
+          <ap-switch [checked]="tagOn(tag.key)" [label]="t.showTag(tag.name)" (checkedChange)="setTag(tag.key, $event)" />
+        </li>
+      }
+    </ul>
+  }
+}

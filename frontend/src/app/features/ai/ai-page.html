@@ -1,0 +1,45 @@
+<ap-top-bar [title]="t.title" [showBack]="false" [showProfile]="true" [pending]="store.pendingToday()" />
+<ap-progress [active]="status() === 'loading'" />
+
+<ion-content>
+  <main class="page">
+    <p class="subtitle">{{ t.subtitle }}</p>
+
+    @if (status() === 'error') {
+      <ap-state-message kind="error" [title]="t.loadError" [text]="ca.state.checkConnection" (retry)="load()" />
+    } @else {
+      <ol class="chat" [attr.aria-label]="t.conversation" aria-live="polite">
+        @for (m of messages(); track $index) {
+          <li class="bubble" [class.user]="m.from === 'user'">
+            <p>{{ m.text }}</p>
+            @if (m.suggestion && !suggestionDismissed()) {
+              <div class="suggestion">
+                <button apButton type="button" variant="text" (click)="acceptSuggestion()">{{ t.yes }}</button>
+                <button apButton type="button" variant="text" class="secondary" (click)="suggestionDismissed.set(true)">
+                  {{ t.notNow }}
+                </button>
+              </div>
+            }
+          </li>
+        }
+      </ol>
+    }
+  </main>
+</ion-content>
+
+<form class="ask" (ngSubmit)="send()">
+  <label for="ai-question">{{ t.askLabel }}</label>
+  <div class="field">
+    <input
+      #questionInput
+      id="ai-question"
+      name="question"
+      autocomplete="off"
+      [placeholder]="t.askPlaceholder"
+      [(ngModel)]="question"
+    />
+    <button type="submit" class="send" [attr.aria-label]="t.send" [disabled]="!question().trim()">
+      <ap-icon name="send" [size]="20" />
+    </button>
+  </div>
+</form>

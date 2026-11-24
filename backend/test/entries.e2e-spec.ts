@@ -432,8 +432,8 @@ describe.skipIf(!hasTestDb)('Entries, subjects y mocks (e2e)', () => {
       const def = await http().get('/api/preferences').set(auth()).expect(200);
       expect(def.body).toEqual({
         groupBy: 'subjects',
-        markWith: 'tags',
-        visibleTags: ['todo', 'done', 'priority', 'dueDate'],
+        markWith: 'colors',
+        visibleTags: ['todo', 'done', 'highPriority'],
       });
       const res = await http()
         .put('/api/preferences')

@@ -270,7 +270,23 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - Etiquetas de los campos al estilo MD3 (sobre el borde), no encima de la caja como en la alta fidelidad.
 - Después de registrarse, la sesión queda abierta: «Compte creat» → «Començar» → Inici.
 - Navegación con `NavController` de Ionic (`navigateRoot` tras entrar, registrarse o salir), para que «Enrere» no vuelva al formulario.
-- `/tabs/home` es una **Inici provisional** (título, «Tancar la sessió» con diálogo y barra de navegación). La fase 5 la sustituye.
+- `/tabs/home` era una Inici provisional; en la fase 5 se sustituye por la Inici real.
+
+## 2.7e Nivel 1 y punto de control (fase 5, 24/11/2026)
+- **Decisión del punto de control: seguimos con Ionic.** Las diferencias con la alta fidelidad eran de estilo, no de Ionic.
+- **Filas de tarea como en la alta fidelidad:** sin punto de color; el nombre de la asignatura va en verde (`--color-primary`) y peso normal. Por tanto, el color de asignatura solo se usa en los puntos del calendario, en el selector de color y en la vista previa de Personalitzar.
+- Se mantienen las medidas de MD3: filas de 72 dp, FAB con esquina de 16 y «Setmana / Mes» como grupo conectado MD3 Expressive.
+- Chips de Inici: salen las 7 asignaturas, sin punto de color, y el número solo cuando tienen pendientes. Cabeceras de sección con icono (`sentiment_satisfied`, `date_range`) sobre `--color-section-header` (#FFDF90).
+- Rutas: `/tabs/home`, `/tabs/calendar`, `/tabs/tasks`, `/tabs/ai` y `/tabs/me` (El meu espai, dentro de las pestañas, con la barra sin destino activo; acepta `?tab=reminders|share|customize|contacts`). Cambiar de pestaña no anima la pantalla.
+- Los accesos a pantallas de las fases 6 y 7 llevan a «Aquesta pantalla arriba aviat.» (`soon()` en `app.routes.ts`), con el título del diseño.
+- La hoja inferior de tarea vive en la raíz de la app (`TaskSheetService`), para cubrir la barra de navegación. «Desfer» vuelve a crear la tarea con los mismos datos.
+- Estado compartido de hoy y esta semana: `core/data/tasks.store.ts` (Inici, Tasques, Compartir y el badge del perfil). La fecha de hoy sale siempre de `TodayService` (`/config`).
+- Si aparece un snackbar, el FAB sube para no quedar tapado.
+- Preferencias de la API alineadas con el diseño: `groupBy` = subjects | priority | date; `markWith` = colors (por defecto) | tags; `visibleTags` = todo, done, highPriority, lowPriority (por defecto, todas menos lowPriority).
+- Seed: «Socials: fer el resum» y «Plàstica: acabar el dibuix» pasan a los días 10 y 11, para que «Tasques d'aquesta setmana» solo tenga Anglès, como en el diseño.
+- `npm run seed` compila en `dist-seed/`, para no romper `npm run start:dev` (que usa `dist/`).
+- API: en `POST /entries`, los campos vacíos que no son del tipo de entrada se ignoran (por ejemplo, `personName: ""` en una tarea).
+- IA: las preguntas nuevas reciben «De moment només sóc una demostració. Aviat podré respondre més preguntes.». «Sí, apunta-ho» lleva a Apuntar examen (`?from=ai&date=2026-11-13`).
 
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
@@ -278,7 +294,7 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - [x] 2. Backend (falta el despliegue, que es la fase 8)
 - [x] 3. Frontend base
 - [x] 4. Acceso
-- [ ] 5. Nivel 1 + punto de control
+- [x] 5. Nivel 1 + punto de control (seguimos con Ionic)
 - [ ] 6. Niveles 2 y 3
 - [ ] 7. Flujos transversales y estados
 - [ ] 8. Despliegue

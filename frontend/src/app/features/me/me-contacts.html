@@ -1,0 +1,63 @@
+@if (status() === 'error') {
+  <ap-state-message kind="error" [title]="t.loadError" [text]="ca.state.checkConnection" (retry)="load()" />
+} @else if (status() === 'ready') {
+  <section class="sync" aria-live="polite">
+    <p class="label">{{ t.syncStatusLabel }}</p>
+    <p class="status">{{ syncText() }}</p>
+    <button
+      apButton
+      type="button"
+      variant="tonal"
+      icon="sync"
+      [block]="true"
+      [disabled]="syncState() === 'busy'"
+      [attr.aria-busy]="syncState() === 'busy'"
+      (click)="sync()"
+    >
+      {{ syncState() === 'busy' ? t.syncing : t.syncButton }}
+    </button>
+  </section>
+
+  <p class="intro">{{ t.contactsIntro }}</p>
+
+  <form class="card" novalidate (ngSubmit)="submit()">
+    <div class="card-head">
+      <h3>{{ editing() ? t.editContact : t.addContact }}</h3>
+      @if (editing()) {
+        <button apButton type="button" variant="text" (click)="cancelEdit()">{{ ca.common.cancel }}</button>
+      }
+    </div>
+    <ap-text-field [label]="t.contactEmail" type="email" [placeholder]="t.contactEmailPlaceholder" name="email" [(ngModel)]="email" />
+    <ap-text-field [label]="t.contactName" [placeholder]="t.contactNamePlaceholder" name="name" [(ngModel)]="name" [error]="nameError()" />
+    <ap-select [label]="t.contactRole" [placeholder]="t.contactRolePlaceholder" [options]="roles" name="role" [(ngModel)]="role" />
+    <button apButton type="submit" variant="filled" [block]="true" [disabled]="saving()" [attr.aria-busy]="saving()">
+      {{ editing() ? t.saveChanges : t.addContact }}
+    </button>
+  </form>
+
+  <p class="label">{{ t.addedContacts }}</p>
+  <ul class="list">
+    @for (c of contacts(); track c.id) {
+      <li>
+        <span class="text">
+          <span class="name">{{ c.name }}</span>
+          <span class="detail">{{ detail(c) }}</span>
+        </span>
+        <button apIconButton type="button" icon="edit" [label]="t.editContactLabel(c.name)" (click)="edit(c)"></button>
+        <button apIconButton type="button" icon="delete" class="danger" [label]="t.deleteContactLabel(c.name)" (click)="toDelete.set(c)"></button>
+      </li>
+    } @empty {
+      <li class="empty">{{ t.noContacts }}</li>
+    }
+  </ul>
+
+  <ap-dialog
+    [open]="toDelete() !== null"
+    [headline]="t.deleteContactTitle"
+    [text]="toDelete() ? t.deleteContactText(toDelete()!.name) : null"
+    [confirmLabel]="t.delete"
+    [destructive]="true"
+    (confirm)="confirmDelete()"
+    (cancel)="toDelete.set(null)"
+  />
+}

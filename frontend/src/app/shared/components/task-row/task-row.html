@@ -3,15 +3,12 @@
     <ap-checkbox [checked]="done()" [label]="checkLabel()" (checkedChange)="doneChange.emit($event)" />
   }
   <button type="button" class="main" [attr.aria-label]="t.details(label())" (click)="open.emit()">
-    <span class="headline">
-      <ap-subject-dot [color]="subjectColor()" />
-      <span class="title">
-        @if (subjectName()) {
-          <strong>{{ subjectName() }}</strong>: {{ label().slice(subjectName()!.length + 2) }}
-        } @else {
-          {{ title() }}
-        }
-      </span>
+    <span class="title">
+      @if (subjectName()) {
+        <span class="subject">{{ subjectName() }}</span>: {{ label().slice(subjectName()!.length + 2) }}
+      } @else {
+        {{ title() }}
+      }
     </span>
     @if (supporting() || showTags()) {
       <span class="meta">

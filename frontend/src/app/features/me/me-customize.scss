@@ -1,0 +1,43 @@
+:host { display: flex; flex-direction: column; gap: var(--space-100); }
+.intro { margin: 0 0 var(--space-200); font: 400 16px/24px var(--font-text); letter-spacing: 0.5px; }
+.label { margin: var(--space-200) 0 var(--space-50); color: var(--color-on-surface); font: 500 14px/20px var(--font-text); }
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-75);
+  padding: var(--space-150) var(--space-200);
+  border-radius: var(--shape-corner-large);
+  background: var(--color-surface-container-low);
+}
+.preview-group { color: var(--color-on-surface-variant); font: 600 12px/16px var(--font-text); }
+.preview-row { display: flex; align-items: center; gap: var(--space-100); font: 400 16px/24px var(--font-text); }
+.preview-row .subject { color: var(--color-primary); }
+.preview-tags { display: flex; gap: var(--space-75); }
+.tag { display: inline-flex; align-items: center; height: 20px; padding: 0 var(--space-100); border: 1px solid var(--color-outline); border-radius: var(--shape-corner-full); color: var(--color-on-surface-variant); font: 500 12px/16px var(--font-text); }
+.tag.priority { border-color: transparent; background: var(--color-priority-container); color: var(--color-on-priority-container); }
+
+.list { margin: 0; padding: 0; list-style: none; }
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-150);
+  width: 100%;
+  min-height: var(--size-list-item-one-line);
+  padding: 0 var(--space-50);
+  border: 0;
+  border-radius: var(--shape-corner-medium);
+  background: transparent;
+  color: var(--color-on-surface);
+  text-align: left;
+  cursor: pointer;
+}
+.row:hover { background: rgb(28 27 27 / var(--opacity-state-hover)); }
+.row .name { flex: 1; font: 400 16px/24px var(--font-text); }
+.row .value { color: var(--color-on-surface-variant); font: 400 14px/20px var(--font-text); }
+.swatches { display: block; padding: var(--space-50) 0 var(--space-150); }
+
+.tag-row { display: flex; align-items: center; justify-content: space-between; min-height: var(--size-list-item-two-line); }
+.tag-row .text { display: flex; flex-direction: column; }
+.tag-row .name { font: 500 14px/20px var(--font-text); color: var(--color-on-surface-variant); }
+.tag-row .desc { font: 400 14px/20px var(--font-text); color: var(--color-on-surface-variant); }

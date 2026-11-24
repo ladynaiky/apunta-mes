@@ -43,23 +43,11 @@ export const routes: Routes = [
         path: 'calendar',
         loadComponent: () => import('./features/calendar/calendar-page').then((m) => m.CalendarPage),
       },
-      {
-        path: 'tasks',
-        data: { title: 'Tasques' },
-        loadComponent: () => import('./features/home/home-placeholder-page').then((m) => m.HomePlaceholderPage),
-      },
-      {
-        path: 'ai',
-        data: { title: 'IA' },
-        loadComponent: () => import('./features/home/home-placeholder-page').then((m) => m.HomePlaceholderPage),
-      },
+      { path: 'tasks', loadComponent: () => import('./features/tasks/tasks-page').then((m) => m.TasksPage) },
+      { path: 'ai', loadComponent: () => import('./features/ai/ai-page').then((m) => m.AiPage) },
+      // El meu espai: dentro de las pestañas (barra de navegación visible, ninguna activa).
+      { path: 'me', loadComponent: () => import('./features/me/me-page').then((m) => m.MePage) },
     ],
-  },
-  {
-    path: 'me',
-    canActivate: [authGuard],
-    data: { title: 'El meu espai' },
-    loadComponent: () => import('./features/home/home-placeholder-page').then((m) => m.HomePlaceholderPage),
   },
 
   // Fases 6 y 7 (provisionales)
@@ -80,6 +68,7 @@ export const routes: Routes = [
   soon('search', 'Buscar/Filtrar'),
   soon('share', 'Compartir'),
   soon('share/tasks', 'Compartir tasques'),
+  soon('me/reminders', 'Avís de pendents'),
 
   // Desarrollo
   {

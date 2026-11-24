@@ -76,6 +76,25 @@ export interface AppConfig {
   demoMode: boolean;
 }
 
+export type ContactRole = 'student' | 'parent' | 'teacher' | 'other';
+
+export interface Contact {
+  id: string;
+  name: string;
+  emailOrPhone: string;
+  role: ContactRole;
+}
+
+export type GroupBy = 'subjects' | 'priority' | 'date';
+export type MarkWith = 'colors' | 'tags';
+export type TagKey = 'todo' | 'done' | 'highPriority' | 'lowPriority';
+
+export interface Preferences {
+  groupBy: GroupBy;
+  markWith: MarkWith;
+  visibleTags: TagKey[];
+}
+
 export interface AiMessage {
   from: 'user' | 'assistant';
   text: string;

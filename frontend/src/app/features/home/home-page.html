@@ -18,7 +18,6 @@
             @for (c of chips(); track c.subject.id) {
               <button
                 apChip
-                [subjectColor]="c.subject.colorToken"
                 [selected]="filter() === c.subject.id"
                 [count]="c.count"
                 (click)="toggleFilter(c.subject.id)"
@@ -26,17 +25,16 @@
                 {{ c.subject.name }}
               </button>
             }
-            <a apIconButton routerLink="/subjects/new" [queryParams]="{ from: 'home' }" icon="add" [label]="t.newSubject"></a>
+            <a apIconButton class="add" routerLink="/subjects/new" [queryParams]="{ from: 'home' }" icon="add" [label]="t.newSubject"></a>
           </div>
         </section>
       }
 
       <section aria-labelledby="today-title" class="list">
-        <ap-section-header [title]="t.todayTasks" headingId="today-title" />
+        <ap-section-header [title]="t.todayTasks" headingId="today-title" icon="sentiment_satisfied" />
         @for (e of todayList(); track e.id) {
           <ap-task-row
             [subjectName]="e.subject?.name ?? null"
-            [subjectColor]="e.subject?.colorToken ?? null"
             [title]="e.title"
             [done]="e.done"
             [highPriority]="e.priority === 'high'"
@@ -51,12 +49,11 @@
 
       @if (weekList().length) {
         <section aria-labelledby="week-title" class="list">
-          <ap-section-header [title]="t.weekTasks" headingId="week-title" />
+          <ap-section-header [title]="t.weekTasks" headingId="week-title" icon="date_range" />
           @for (e of weekList(); track e.id) {
             <ap-task-row
               [subjectName]="e.subject?.name ?? null"
-              [subjectColor]="e.subject?.colorToken ?? null"
-              [title]="weekTitle(e)"
+                [title]="weekTitle(e)"
               [done]="e.done"
               [highPriority]="e.priority === 'high'"
               (doneChange)="store.setDone(e, $event)"

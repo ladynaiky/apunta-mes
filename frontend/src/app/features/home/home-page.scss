@@ -22,7 +22,7 @@ ion-content { flex: 1; }
   letter-spacing: 0.1px;
 }
 .chips { display: flex; flex-wrap: wrap; align-items: center; column-gap: var(--space-75); row-gap: var(--space-100); }
-.chips a[apIconButton] { margin: 0; }
+.chips a.add { margin: 0; border: 1px solid var(--color-outline-variant); color: var(--color-on-surface-variant); }
 
 .list { margin-top: var(--space-300); }
 .list ap-section-header { display: block; margin-bottom: var(--space-50); }

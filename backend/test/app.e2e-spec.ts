@@ -22,13 +22,10 @@ describe.skipIf(!hasTestDb)('System (e2e)', () => {
   });
 
   it('GET /api/config devuelve la fecha de la demo', () => {
-    return request(app.getHttpServer())
-      .get('/api/config')
-      .expect(200)
-      .expect({
-        today: '2026-11-04',
-        timeZone: 'Europe/Madrid',
-        demoMode: true,
-      });
+    return request(app.getHttpServer()).get('/api/config').expect(200).expect({
+      today: '2026-11-04',
+      timeZone: 'Europe/Madrid',
+      demoMode: true,
+    });
   });
 });

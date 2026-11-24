@@ -1,0 +1,88 @@
+:host { display: flex; flex-direction: column; height: 100%; }
+ion-content { flex: 1; }
+.page { padding: var(--space-100) var(--size-layout-margin) var(--space-200); }
+
+.subtitle {
+  margin: 0 0 var(--space-200);
+  color: var(--color-on-surface);
+  font: 400 16px/24px var(--font-text);
+  letter-spacing: 0.5px;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-100);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bubble {
+  align-self: flex-start;
+  max-width: 85%;
+  padding: var(--space-150) var(--space-200);
+  border-radius: var(--shape-corner-large) var(--shape-corner-large) var(--shape-corner-large) var(--shape-corner-extra-small);
+  background: var(--color-assistant-bubble);
+  color: var(--color-on-surface);
+}
+.bubble.user {
+  align-self: flex-end;
+  border-radius: var(--shape-corner-large) var(--shape-corner-large) var(--shape-corner-extra-small) var(--shape-corner-large);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+.bubble p {
+  margin: 0;
+  font: 400 15px/22px var(--font-text);
+  white-space: pre-line;
+}
+
+.suggestion { display: flex; gap: var(--space-50); margin: var(--space-100) 0 0 calc(-1 * var(--space-150)); }
+.suggestion .secondary { color: var(--color-on-surface-variant); }
+
+/* Campo de pregunta, fijo encima de la barra de navegación. */
+.ask {
+  padding: var(--space-150) var(--size-layout-margin) var(--space-150);
+  border-top: 1px solid var(--color-outline-variant);
+  background: var(--color-surface);
+}
+.ask label {
+  display: block;
+  margin-bottom: var(--space-100);
+  color: var(--color-on-surface);
+  font: 500 14px/20px var(--font-text);
+}
+.field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-50);
+  height: var(--size-text-field);
+  padding: 0 var(--space-50) 0 var(--space-200);
+  border: 1px solid var(--color-outline);
+  border-radius: var(--shape-corner-full);
+}
+.field:focus-within { border: 2px solid var(--color-primary); padding-left: 15px; }
+.field input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--color-on-surface);
+  font: 400 16px/24px var(--font-text);
+}
+.field input::placeholder { color: var(--color-on-surface-variant); opacity: 1; }
+.send {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-button-s);
+  height: var(--size-button-s);
+  border: 0;
+  border-radius: var(--shape-corner-full);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  cursor: pointer;
+}
+.send:disabled { background: rgb(28 27 27 / var(--opacity-disabled-container)); color: rgb(28 27 27 / var(--opacity-disabled-content)); cursor: default; }

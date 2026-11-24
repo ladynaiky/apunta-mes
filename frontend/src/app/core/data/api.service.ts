@@ -6,8 +6,10 @@ import type {
   AiMessage,
   AppConfig,
   CalendarDay,
+  Contact,
   Entry,
   EntryInput,
+  Preferences,
   ReminderEntry,
   Subject,
 } from './models';
@@ -72,5 +74,41 @@ export class ApiService {
 
   deleteEntry(id: string): Promise<void> {
     return firstValueFrom(this.http.delete<void>(`${this.url}/entries/${id}`));
+  }
+
+  updateSubject(id: string, data: Partial<Pick<Subject, 'name' | 'colorToken'>>): Promise<Subject> {
+    return firstValueFrom(this.http.patch<Subject>(`${this.url}/subjects/${id}`, data));
+  }
+
+  preferences(): Promise<Preferences> {
+    return this.get('/preferences');
+  }
+
+  savePreferences(data: Partial<Preferences>): Promise<Preferences> {
+    return firstValueFrom(this.http.put<Preferences>(`${this.url}/preferences`, data));
+  }
+
+  syncStatus(): Promise<{ lastSyncAt: string | null }> {
+    return this.get('/sync');
+  }
+
+  sync(): Promise<{ lastSyncAt: string | null }> {
+    return firstValueFrom(this.http.post<{ lastSyncAt: string | null }>(`${this.url}/sync`, {}));
+  }
+
+  contacts(): Promise<Contact[]> {
+    return this.get('/contacts');
+  }
+
+  createContact(data: Omit<Contact, 'id'>): Promise<Contact> {
+    return firstValueFrom(this.http.post<Contact>(`${this.url}/contacts`, data));
+  }
+
+  updateContact(id: string, data: Partial<Omit<Contact, 'id'>>): Promise<Contact> {
+    return firstValueFrom(this.http.patch<Contact>(`${this.url}/contacts/${id}`, data));
+  }
+
+  deleteContact(id: string): Promise<void> {
+    return firstValueFrom(this.http.delete<void>(`${this.url}/contacts/${id}`));
   }
 }

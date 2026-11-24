@@ -51,17 +51,14 @@ export class HomePage implements ViewWillEnter {
   protected readonly todayList = computed(() => this.visible(this.store.todayEntries()));
   protected readonly weekList = computed(() => this.visible(this.store.upcomingWeek()));
 
-  /** Chips: asignaturas con algo pendiente hoy o esta semana, con el número. */
+  /** Chips: todas las asignaturas; el número, solo si tienen algo pendiente hoy o esta semana. */
   protected readonly chips = computed(() => {
     const pending = [...this.store.todayEntries(), ...this.store.upcomingWeek()].filter(
       (e) => e.subject && !e.done,
     );
     const count = new Map<string, number>();
     for (const e of pending) count.set(e.subject!.id, (count.get(e.subject!.id) ?? 0) + 1);
-    return this.store
-      .subjects()
-      .filter((s: Subject) => count.has(s.id))
-      .map((s) => ({ subject: s, count: count.get(s.id)! }));
+    return this.store.subjects().map((s: Subject) => ({ subject: s, count: count.get(s.id) ?? null }));
   });
 
   ionViewWillEnter(): void {

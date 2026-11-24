@@ -39,7 +39,6 @@
           @for (s of subjects; track s.name) {
             <button
               apChip
-              [subjectColor]="s.color"
               [selected]="selectedChip() === s.name"
               [count]="s.name === 'Mates' || s.name === 'Català' ? 1 : null"
               (click)="selectedChip.set(s.name)"
@@ -60,14 +59,13 @@
         <h2 class="title-medium-emphasized">Files de tasca</h2>
         <ap-task-row
           subjectName="Mates"
-          subjectColor="blau"
           title="Exercicis, pàg. 12"
           [supporting]="ca.task.forToday"
           [done]="doneMates()"
           (doneChange)="doneMates.set($event)"
         />
-        <ap-task-row subjectName="Anglès" subjectColor="lila" title="Preparar la redacció (dv. 6)" [highPriority]="true" />
-        <ap-task-row subjectName="Música" subjectColor="rosa" title="Practicar la cançó" [done]="true" />
+        <ap-task-row subjectName="Anglès" title="Preparar la redacció (dv. 6)" [highPriority]="true" />
+        <ap-task-row subjectName="Música" title="Practicar la cançó" [done]="true" />
         <div class="wrap">
           <ap-checkbox [(checked)]="checked" label="Casella de prova" />
           <ap-checkbox [checked]="false" label="Casella desactivada" [disabled]="true" />

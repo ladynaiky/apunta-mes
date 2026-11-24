@@ -95,7 +95,7 @@ export class DemoSeedService {
     await this.prefs.create({
       user: userId,
       groupBy: 'subjects',
-      markWith: 'tags',
+      markWith: 'colors',
       lastSyncAt: DEMO_LAST_SYNC,
     });
 
