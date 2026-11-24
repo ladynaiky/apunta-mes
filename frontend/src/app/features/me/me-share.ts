@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { toApiError } from '../../core/api/api-error';
 import { ApiService } from '../../core/data/api.service';
@@ -38,11 +38,13 @@ import { taskLabel } from '../../shared/utils/task-title';
         </ul>
       }
     }
-    <h3 class="label">{{ t.alreadyShared }}</h3>
-    <p class="summary">{{ t.sharedSummary(sharedCount(), familyCount()) }}</p>
-    <a apButton variant="filled" size="m" [block]="true" class="cta" routerLink="/share" [queryParams]="{ from: 'me' }">
-      {{ t.shareMarked }}
-    </a>
+    @if (showFooter()) {
+      <h3 class="label">{{ t.alreadyShared }}</h3>
+      <p class="summary">{{ t.sharedSummary(sharedCount(), familyCount()) }}</p>
+      <a apButton variant="filled" size="m" [block]="true" class="cta" routerLink="/share" [queryParams]="{ from: 'me' }">
+        {{ t.shareMarked }}
+      </a>
+    }
   `,
   styles: `
     .intro { margin: 0 0 var(--space-100); font: 400 16px/24px var(--font-text); letter-spacing: 0.5px; }
@@ -60,6 +62,8 @@ import { taskLabel } from '../../shared/utils/task-title';
   `,
 })
 export class MeShare implements OnInit {
+  /** En «Compartir tasques», solo la lista (el formulario va debajo). */
+  readonly showFooter = input(true);
   private readonly api = inject(ApiService);
   private readonly store = inject(TasksStore);
   private readonly snackbar = inject(SnackbarService);

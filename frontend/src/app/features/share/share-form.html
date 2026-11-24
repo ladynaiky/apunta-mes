@@ -1,0 +1,113 @@
+<div class="form">
+  <ap-select [label]="t.type" [placeholder]="t.typePlaceholder" [options]="typeOptions" [ngModel]="type()" (ngModelChange)="type.set($event)" [error]="typeError()" />
+
+  <!-- Contactes: elección múltiple por grupos -->
+  <div>
+    <button
+      type="button"
+      class="picker"
+      [class.open]="pickerOpen()"
+      [class.invalid]="contactsError()"
+      [attr.aria-expanded]="pickerOpen()"
+      aria-controls="share-contacts"
+      (click)="pickerOpen.set(!pickerOpen())"
+    >
+      <span class="float-label">{{ t.contacts }}</span>
+      <span [class.placeholder]="!summary()">{{ summary() ?? t.contactsPlaceholder }}</span>
+      <ap-icon name="arrow_drop_down" [class.up]="pickerOpen()" />
+    </button>
+    @if (contactsError(); as msg) {
+      <p class="error" role="alert"><ap-icon name="error" [size]="16" />{{ msg }}</p>
+    }
+
+    @if (pickerOpen()) {
+      <div class="panel" id="share-contacts">
+        @if (status() === 'error') {
+          <ap-state-message kind="error" [title]="t.loadError" [text]="ca.state.checkConnection" (retry)="load()" />
+        } @else {
+          @for (g of groups(); track g.role) {
+            <div class="group">
+              <button
+                type="button"
+                class="group-head"
+                [attr.aria-expanded]="openGroup() === g.role"
+                (click)="openGroup.set(openGroup() === g.role ? null : g.role)"
+              >
+                <span class="group-name">{{ g.name }}</span>
+                <span class="group-count">{{ g.selected }}/{{ g.items.length }}</span>
+                <ap-icon [name]="openGroup() === g.role ? 'expand_less' : 'expand_more'" />
+              </button>
+              @if (openGroup() === g.role) {
+                <ul class="people">
+                  @for (c of g.items; track c.id) {
+                    <li>
+                      <ap-checkbox [checked]="selected().includes(c.id)" [label]="t.selectContact(c.name)" (checkedChange)="toggle(c, $event)" />
+                      <span class="person">
+                        <span class="person-name">{{ c.name }}</span>
+                        @if (c.emailOrPhone) {
+                          <span class="person-data">{{ c.emailOrPhone }}</span>
+                        }
+                      </span>
+                      <button apIconButton type="button" icon="edit" [label]="t.editLabel(c.name)" (click)="openEdit(c)"></button>
+                      <button apIconButton type="button" icon="delete" class="danger" [label]="t.deleteLabel(c.name)" (click)="toDelete.set(c)"></button>
+                    </li>
+                  } @empty {
+                    <li class="empty">{{ t.emptyGroup }}</li>
+                  }
+                </ul>
+              }
+            </div>
+          }
+          <button apButton type="button" variant="text" icon="person_add" (click)="openAdd(openGroup())">{{ t.addContact }}</button>
+        }
+      </div>
+    }
+  </div>
+
+  <button
+    apButton
+    type="button"
+    variant="filled"
+    size="m"
+    [block]="true"
+    class="generate"
+    [disabled]="sending()"
+    [attr.aria-busy]="sending()"
+    (click)="generate()"
+  >
+    {{ t.generate }}
+  </button>
+</div>
+
+<!-- Afegir / Editar contacte -->
+<ap-dialog
+  [open]="dialogOpen()"
+  [headline]="editing() ? t.editContact : t.addContact"
+  [text]="t.contactIntro"
+  [confirmLabel]="editing() ? t.save : t.add"
+  (confirm)="saveContact()"
+  (cancel)="dialogOpen.set(false)"
+>
+  <div class="dialog-fields">
+    <ap-text-field
+      [label]="t.name"
+      [placeholder]="t.namePlaceholder"
+      name="contactName"
+      [(ngModel)]="draftName"
+      [error]="draftTried() && !draftName().trim() ? t.nameRequired : null"
+    />
+    <ap-text-field [label]="t.emailOrPhone" [placeholder]="t.emailOrPhonePlaceholder" name="contactData" [(ngModel)]="draftData" />
+    <ap-select [label]="t.role" [placeholder]="t.rolePlaceholder" [options]="roleOptions" name="contactRole" [(ngModel)]="draftRole" />
+  </div>
+</ap-dialog>
+
+<!-- Esborrar contacte -->
+<ap-dialog
+  [open]="toDelete() !== null"
+  [headline]="t.deleteTitle"
+  [text]="toDelete() ? t.deleteText(toDelete()!.name) : null"
+  [confirmLabel]="t.delete"
+  [destructive]="true"
+  (confirm)="confirmDelete()"
+  (cancel)="toDelete.set(null)"
+/>

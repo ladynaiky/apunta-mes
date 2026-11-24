@@ -1,14 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard, guestGuard } from './core/auth/auth.guards';
 
-/** Pantalla provisional (fases 6 y 7) con su título del diseño. */
-const soon = (path: string, title: string) => ({
-  path,
-  data: { title },
-  loadComponent: () =>
-    import('./features/coming-soon/coming-soon-page').then((m) => m.ComingSoonPage),
-});
-
 export const routes: Routes = [
   // Acceso (sin sesión)
   {
@@ -71,7 +63,6 @@ export const routes: Routes = [
       { path: 'me/customize', redirectTo: '/tabs/me?tab=customize' },
       { path: 'me/sync', redirectTo: '/tabs/me?tab=contacts' },
 
-      // Fase 7 (provisionales)
       // 6B · Calendario y listas
       {
         path: 'calendar/month',
@@ -118,8 +109,22 @@ export const routes: Routes = [
         path: 'search/results',
         loadComponent: () => import('./features/search/search-results-page').then((m) => m.SearchResultsPage),
       },
-      soon('share', 'Compartir'),
-      soon('share/tasks', 'Compartir tasques'),
+      // 7B · Compartir (simulado)
+      { path: 'share', loadComponent: () => import('./features/share/share-pages').then((m) => m.SharePage) },
+      {
+        path: 'share/tasks',
+        loadComponent: () => import('./features/share/share-pages').then((m) => m.ShareTasksPage),
+      },
+      {
+        path: 'share/link',
+        loadComponent: () => import('./features/share/share-pages').then((m) => m.ShareLinkPage),
+      },
+      {
+        path: 'share/link/copied',
+        loadComponent: () => import('./features/share/share-pages').then((m) => m.ShareCopiedPage),
+      },
+      // Compartir/Privacitat = pestaña «Compartir» de El meu espai.
+      { path: 'share/privacy', redirectTo: '/tabs/me?tab=share' },
     ],
   },
 

@@ -126,6 +126,13 @@ export class ApiService {
     return firstValueFrom(this.http.patch<Contact>(`${this.url}/contacts/${id}`, data));
   }
 
+  /** Generar enllaç (simulado: la API no lo guarda). */
+  createShareLink(scope: 'tasks' | 'calendar', contactIds: string[]): Promise<{ url: string; scope: string }> {
+    return firstValueFrom(
+      this.http.post<{ url: string; scope: string }>(`${this.url}/share-links`, { scope, contactIds }),
+    );
+  }
+
   deleteContact(id: string): Promise<void> {
     return firstValueFrom(this.http.delete<void>(`${this.url}/contacts/${id}`));
   }

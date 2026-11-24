@@ -327,6 +327,14 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - «Revisar la llista d'avisos» (El meu espai · Avisos) lleva a Buscar/Filtrar, como en el diseño.
 - Componente `ap-date-field`: campo que abre «Tria el dia» (reutilizable; con `clearable`, permite «Totes les dates»).
 
+## 2.7j Fase 7 · bloque 7B (Compartir, simulado)
+- **Compartir** (`/share?from=`): «Tipus de contingut» (Tasques / Calendari) y «Contactes». Contactes es una elección múltiple por grupos (Alumnes, Pares, Professors y, si hay, Altres), con contador «2/3», «Afegir contacte», editar y borrar; los cambios van a la API real de contactos. El campo resume la elección («Jordi (pare), Núria (mare)» o «3 contactes»). El diseño lo dibuja como un desplegable simple, pero la lógica de la pantalla es esta.
+- Validación (nou): «Tria què vols compartir.» y «Tria almenys un contacte.».
+- **Generar enllaç** (`/share/link?url=`): `POST /share-links` (simulado, no se guarda) y «Copiar l'enllaç» con `navigator.clipboard`. Si no hay permiso, aparece un snackbar y el enlace sigue a la vista. **Compartir enllaç** (`/share/link/copied`): «Enllaç copiat» y «Tornar a Inici».
+- **Compartir tasques** (`/share/tasks`): la lista de Diàries / Setmanals (`MeShare` con `showFooter=false`) más el mismo formulario (`ShareForm`).
+- **Compartir/Privacitat** (`/share/privacy`) abre la pestaña «Compartir» de El meu espai.
+- Ya no queda ninguna pantalla provisional: se han borrado `soon()` y la página «Aquesta pantalla arriba aviat.».
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base

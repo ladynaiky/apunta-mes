@@ -390,6 +390,51 @@ export const ca = {
     error: 'No s’ha pogut fer la cerca', // (nou)
     newTask: 'Nova tasca',
   },
+  share: {
+    title: 'Compartir',
+    tasksTitle: 'Compartir tasques',
+    type: 'Tipus de contingut',
+    typePlaceholder: 'Seleccionar contingut',
+    types: { tasks: 'Tasques', calendar: 'Calendari' } as Record<string, string>,
+    contacts: 'Contactes',
+    contactsPlaceholder: 'Seleccionar contactes',
+    contactsSelected: (n: number) => `${n} ${n === 1 ? 'contacte' : 'contactes'}`, // (nou)
+    groups: { student: 'Alumnes', parent: 'Pares', teacher: 'Professors', other: 'Altres' } as Record<string, string>,
+    emptyGroup: 'Encara no hi ha contactes en aquesta categoria.',
+    addContact: 'Afegir contacte',
+    editContact: 'Editar contacte',
+    contactIntro: 'Escriu les dades de la persona amb qui vols compartir.',
+    name: 'Nom',
+    namePlaceholder: 'Ex.: Avi Joan',
+    emailOrPhone: 'Correu o telèfon',
+    emailOrPhonePlaceholder: 'nom@exemple.cat',
+    role: 'Rol',
+    rolePlaceholder: 'Seleccionar rol',
+    roles: { student: 'Alumne', parent: 'Pares', teacher: 'Profe' } as Record<string, string>,
+    nameRequired: 'Escriu almenys el nom del contacte.',
+    add: 'Afegir',
+    save: 'Desar',
+    deleteTitle: 'Esborrar contacte?',
+    deleteText: (name: string) => `Vols esborrar ${name} dels teus contactes? Aquesta acció no es pot desfer.`,
+    delete: 'Esborrar',
+    selectContact: (name: string) => `Compartir amb ${name}`, // (nou)
+    editLabel: (name: string) => `Editar contacte: ${name}`,
+    deleteLabel: (name: string) => `Esborrar contacte: ${name}`,
+    typeRequired: 'Tria què vols compartir.', // (nou)
+    contactsRequired: 'Tria almenys un contacte.', // (nou)
+    generate: 'Generar l’enllaç',
+    linkTitle: 'Generar enllaç',
+    linkText: 'L’enllaç porta al contingut que has triat.',
+    link: 'Enllaç',
+    linkLabel: 'Enllaç generat',
+    copy: 'Copiar l’enllaç',
+    copyFailed: 'No s’ha pogut copiar. Selecciona l’enllaç i copia’l a mà.', // (nou)
+    copiedTitle: 'Compartir enllaç',
+    copied: 'Enllaç copiat',
+    copiedText: 'Enganxa’l on vulguis per compartir el calendari.',
+    backHome: 'Tornar a Inici',
+    loadError: 'No s’han pogut carregar els contactes', // (nou)
+  },
   session: {
     logout: 'Tancar la sessió', // (nou)
     logoutQuestion: 'Vols tancar la sessió?', // (nou)
