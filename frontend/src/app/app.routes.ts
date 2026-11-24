@@ -55,10 +55,6 @@ export const routes: Routes = [
         loadComponent: () => import('./features/new-entry/new-entry-page').then((m) => m.NewEntryPage),
       },
       {
-        path: 'new/:type/done/:id',
-        loadComponent: () => import('./features/new-entry/created-page').then((m) => m.CreatedPage),
-      },
-      {
         path: 'subjects/new',
         loadComponent: () => import('./features/new-subject/new-subject-page').then((m) => m.NewSubjectPage),
       },
@@ -106,19 +102,10 @@ export const routes: Routes = [
         path: 'search/results',
         loadComponent: () => import('./features/search/search-results-page').then((m) => m.SearchResultsPage),
       },
-      // 7B · Compartir (simulado)
-      { path: 'share', loadComponent: () => import('./features/share/share-pages').then((m) => m.SharePage) },
+      // 7B · Compartir (simulado). Iteración 1: Compartir, Generar enllaç y Compartir enllaç son pasos del modal (ShareFlow).
       {
         path: 'share/tasks',
         loadComponent: () => import('./features/share/share-pages').then((m) => m.ShareTasksPage),
-      },
-      {
-        path: 'share/link',
-        loadComponent: () => import('./features/share/share-pages').then((m) => m.ShareLinkPage),
-      },
-      {
-        path: 'share/link/copied',
-        loadComponent: () => import('./features/share/share-pages').then((m) => m.ShareCopiedPage),
       },
       // Compartir/Privacitat = pestaña «Compartir» de El meu espai.
       { path: 'share/privacy', redirectTo: '/tabs/me?tab=share' },

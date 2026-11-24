@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, input, OnInit, signal, untracked } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { toApiError } from '../../core/api/api-error';
 import { ApiService } from '../../core/data/api.service';
 import type { Entry } from '../../core/data/models';
@@ -10,6 +9,7 @@ import { Checkbox } from '../../shared/components/checkbox/checkbox';
 import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
 import { StateMessage } from '../../shared/components/state-message/state-message';
 import { TaskRow } from '../../shared/components/task-row/task-row';
+import { ShareFlowService } from '../../shared/components/share-flow/share-flow.service';
 import { TaskSheetService } from '../../shared/components/task-sheet/task-sheet.service';
 import { dueLabel } from '../../shared/utils/dates-ca';
 import { roleGroup } from '../../shared/utils/roles';
@@ -18,7 +18,7 @@ import { rowTitle, taskLabel } from '../../shared/utils/task-title';
 /** El meu espai · Compartir: qué tareas ve la familia (Compartir/Privacitat). */
 @Component({
   selector: 'ap-me-share',
-  imports: [RouterLink, Button, Checkbox, StateMessage, TaskRow],
+  imports: [Button, Checkbox, StateMessage, TaskRow],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <p class="intro">{{ t.shareIntro }}</p>
@@ -44,9 +44,9 @@ import { rowTitle, taskLabel } from '../../shared/utils/task-title';
       }
     }
     @if (showFooter()) {
-      <a apButton variant="filled" size="m" [block]="true" class="cta" routerLink="/share" [queryParams]="{ from: 'me' }">
+      <button apButton type="button" variant="filled" size="m" [block]="true" class="cta" (click)="shareFlow.share()">
         {{ t.shareMarked }}
-      </a>
+      </button>
       <!-- Iteración 1 (#19): lista de las tareas ya compartidas -->
       <h3 class="label shared-title">{{ t.alreadyShared }}</h3>
       <p class="summary">{{ t.sharedSummary(sharedCount(), familyCount()) }}</p>
@@ -100,6 +100,7 @@ export class MeShare implements OnInit {
   protected readonly ca = ca;
   protected readonly familyCount = signal(0);
   protected readonly sheet = inject(TaskSheetService);
+  protected readonly shareFlow = inject(ShareFlowService);
   protected readonly rowTitle = rowTitle;
   protected readonly shared = signal<Entry[]>([]);
   protected readonly sharedStatus = signal<'loading' | 'ready' | 'error'>('loading');

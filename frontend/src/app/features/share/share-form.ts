@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NavController } from '@ionic/angular';
 import { toApiError } from '../../core/api/api-error';
 import { ApiService } from '../../core/data/api.service';
 import type { Contact, ContactRole } from '../../core/data/models';
@@ -30,10 +29,10 @@ const GROUPS: RoleGroup[] = ['student', 'family', 'teacher', 'other'];
   styleUrl: './share-form.scss',
 })
 export class ShareForm implements OnInit {
-  readonly from = input('home');
+  /** Enlace generado (el modal pasa al paso «Enllaç generat»). */
+  readonly generated = output<string>();
 
   private readonly api = inject(ApiService);
-  private readonly nav = inject(NavController);
   private readonly snackbar = inject(SnackbarService);
   protected readonly t = ca.share;
   protected readonly ca = ca;
@@ -159,7 +158,7 @@ export class ShareForm implements OnInit {
     this.sending.set(true);
     try {
       const link = await this.api.createShareLink(this.type()!, this.selected());
-      await this.nav.navigateForward('/share/link', { queryParams: { url: link.url, from: this.from() } });
+      this.generated.emit(link.url);
     } catch (err) {
       this.snackbar.show(toApiError(err).message);
     } finally {

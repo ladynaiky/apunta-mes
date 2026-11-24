@@ -464,6 +464,7 @@ export const ca = {
     copied: 'Enllaç copiat',
     copiedText: 'Enganxa’l on vulguis per compartir el calendari.',
     backHome: 'Tornar a Inici',
+    done: 'Fet', // (nou)
     loadError: 'No s’han pogut carregar els contactes', // (nou)
   },
   session: {

@@ -403,6 +403,13 @@ Bloque E (hecho):
 - Los errores de campos que no se ven en el formulario se muestran arriba de los botones.
 - Los botones de texto destructivos (`.destructive`) salen en rojo de error, también en los diálogos.
 
+Bloque F (hecho):
+- Flujo de crear y compartir en un modal centrado (`ap-share-flow` + `ShareFlowService`, en la raíz de la app, como la hoja de la tarea). Pasos: «Tasca creada» → Compartir (el `ShareForm`, con desplazamiento dentro de la caja: opción A) → Generar enllaç → Compartir enllaç (Fet). Cada paso tiene la X arriba a la derecha.
+- Apuntar: al desar, `nav.back()` a la pantalla de origen y se abre «Tasca creada». «No» cierra el modal.
+- La hoja de la tarea («Compartir»), El meu espai · Compartir («Compartir les tasques marcades») y Compartir tasques abren el modal en el paso Compartir.
+- `ShareForm` emite `generated(url)` en lugar de navegar.
+- Eliminadas las rutas `/new/:type/done/:id`, `/share`, `/share/link` y `/share/link/copied`, y `created-page.ts`. Queda `/share/tasks` (lista para marcar y botón).
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
@@ -413,4 +420,4 @@ Bloque E (hecho):
 - [x] 6. Niveles 2 y 3
 - [x] 7. Flujos transversales y estados
 - [x] 8. Despliegue (Render + Atlas)
-- [ ] Iteración 1: [x] A · [x] B · [x] C · [x] D · [x] E · [ ] F · [ ] G · [ ] Design System
+- [ ] Iteración 1: [x] A · [x] B · [x] C · [x] D · [x] E · [x] F · [ ] G · [ ] Design System

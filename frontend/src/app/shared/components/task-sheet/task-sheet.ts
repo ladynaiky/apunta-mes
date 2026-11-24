@@ -21,6 +21,7 @@ import { dueLabel } from '../../utils/dates-ca';
 import { Button } from '../button/button';
 import { Icon } from '../icon/icon';
 import { IconButton } from '../icon-button/icon-button';
+import { ShareFlowService } from '../share-flow/share-flow.service';
 import { SubjectDot } from '../subject-dot/subject-dot';
 
 type Mode = 'view' | 'delete';
@@ -46,6 +47,7 @@ export class TaskSheet {
 
   private readonly store = inject(TasksStore);
   private readonly router = inject(Router);
+  private readonly shareFlow = inject(ShareFlowService);
   private readonly injector = inject(Injector);
   private readonly titleEl = viewChild<ElementRef<HTMLElement>>('title');
   private opener: HTMLElement | null = null;
@@ -83,7 +85,7 @@ export class TaskSheet {
 
   protected share(): void {
     this.close();
-    void this.router.navigate(['/share'], { queryParams: { from: this.from() } });
+    this.shareFlow.share();
   }
 
   protected async confirm(): Promise<void> {

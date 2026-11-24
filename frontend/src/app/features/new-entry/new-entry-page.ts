@@ -17,6 +17,7 @@ import { Icon } from '../../shared/components/icon/icon';
 import { IconButton } from '../../shared/components/icon-button/icon-button';
 import { MonthPicker } from '../../shared/components/month-picker/month-picker';
 import { Select, type SelectOption } from '../../shared/components/select/select';
+import { ShareFlowService } from '../../shared/components/share-flow/share-flow.service';
 import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
 import { TextField } from '../../shared/components/text-field/text-field';
 import { TopBar } from '../../shared/components/top-bar/top-bar';
@@ -72,6 +73,7 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
   private readonly nav = inject(NavController);
   private readonly location = inject(Location);
   private readonly snackbar = inject(SnackbarService);
+  private readonly shareFlow = inject(ShareFlowService);
   protected readonly t = ca.newEntry;
   protected readonly ca = ca;
   protected readonly types = TYPES;
@@ -328,11 +330,10 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
     }
     try {
       const created = await this.api.createEntry(data);
-      void this.store.load();
-      await this.nav.navigateForward(['/new', type, 'done', created.id], {
-        queryParams: { from: this.from() ?? 'home' },
-        replaceUrl: true,
-      });
+      void this.store.load().then(() => this.store.changes.update((n) => n + 1));
+      // Iteración 1 (#15): se vuelve a la pantalla de origen y «Tasca creada» sale en un modal.
+      await this.nav.back();
+      this.shareFlow.created(created);
     } catch (err) {
       this.showError(err);
     } finally {
