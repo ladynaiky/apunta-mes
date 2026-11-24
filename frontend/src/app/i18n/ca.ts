@@ -52,6 +52,44 @@ export const ca = {
     close: 'Tancar',
     undo: 'Desfer',
   },
+  login: {
+    email: 'Correu electrònic',
+    emailPlaceholder: 'nom@exemple.com',
+    password: 'Contrasenya',
+    passwordPlaceholder: 'Escriu la contrasenya',
+    submit: 'Entrar',
+    noAccount: 'No tens compte?',
+    register: 'Registra’t',
+  },
+  register: {
+    title: 'Registre',
+    name: 'Nom',
+    namePlaceholder: 'Escriu el teu nom',
+    role: 'Rol',
+    rolePlaceholder: 'Tria el teu rol',
+    roles: { student: 'Alumne', parent: 'Pares', teacher: 'Profe' },
+    email: 'Correu electrònic',
+    emailPlaceholder: 'nom@exemple.com',
+    password: 'Contrasenya',
+    passwordPlaceholder: 'Escriu una contrasenya',
+    passwordHelp: 'Mínim 8 caràcters.',
+    password2: 'Repeteix la contrasenya',
+    password2Placeholder: 'Torna-la a escriure',
+    passwordsMatch: '✓ Les contrasenyes coincideixen.',
+    submit: 'Crear el compte',
+  },
+  accountCreated: {
+    title: 'Compte creat',
+    welcome: 'Benvingut/da a Apunta+!',
+    text: 'El teu compte s’ha creat correctament. Ja pots començar a organitzar les tasques de l’escola.',
+    whatNow: 'Què pots fer ara',
+    items: [
+      { icon: 'assignment', title: 'Apuntar tasques i exàmens', text: 'Tot el que cal fer, en un sol lloc' },
+      { icon: 'calendar_month', title: 'Veure-ho al calendari', text: 'Per dies, setmanes o mesos' },
+      { icon: 'share', title: 'Compartir-ho amb la família', text: 'Pares i professors al cas' },
+    ],
+    start: 'Començar',
+  },
   session: {
     logout: 'Tancar la sessió', // (nou)
     logoutQuestion: 'Vols tancar la sessió?', // (nou)
@@ -78,4 +116,6 @@ export const apiErrors: Record<string, string> = {
   EMAIL_TAKEN: 'Aquest correu ja té un compte. Inicia sessió o fes servir un altre correu.', // (nou)
   INVALID_CREDENTIALS: 'El correu o la contrasenya no són correctes. Revisa-ho i torna-ho a provar.', // (nou)
   UNAUTHORIZED: 'La sessió ha caducat. Torna a iniciar sessió.', // (nou)
+  NETWORK: 'No s’ha pogut connectar amb el servidor. Comprova la connexió i torna-ho a provar.', // (nou)
+  SERVER: 'Alguna cosa no ha anat bé. Torna-ho a provar d’aquí a una estona.', // (nou)
 };

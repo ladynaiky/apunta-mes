@@ -1,0 +1,54 @@
+<ion-content>
+  <main class="page">
+    <h1 class="logo">Apunta<span>+</span></h1>
+
+    <form class="form" novalidate (ngSubmit)="submit()">
+      <ap-text-field
+        [label]="t.email"
+        type="email"
+        autocomplete="email"
+        [placeholder]="t.emailPlaceholder"
+        name="email"
+        [(ngModel)]="email"
+        (ngModelChange)="form.edited('email')"
+        [error]="emailError()"
+        [invalid]="!!form.formError()"
+      />
+      <ap-text-field
+        [label]="t.password"
+        type="password"
+        autocomplete="current-password"
+        [placeholder]="t.passwordPlaceholder"
+        name="password"
+        [(ngModel)]="password"
+        (ngModelChange)="form.edited('password')"
+        [error]="passwordError()"
+        [invalid]="!!form.formError()"
+      />
+
+      @if (form.formError(); as message) {
+        <p class="form-error" role="alert">
+          <ap-icon name="error" [size]="20" />
+          <span>{{ message }}</span>
+        </p>
+      }
+
+      <button
+        apButton
+        type="submit"
+        variant="filled"
+        size="m"
+        [block]="true"
+        [disabled]="form.sending()"
+        [attr.aria-busy]="form.sending()"
+      >
+        {{ t.submit }}
+      </button>
+    </form>
+
+    <p class="footer">
+      <span>{{ t.noAccount }}</span>
+      <a apButton variant="text" routerLink="/register">{{ t.register }}</a>
+    </p>
+  </main>
+</ion-content>

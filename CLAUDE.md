@@ -260,12 +260,24 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - Página de desarrollo con todos los componentes: `/dev/components`.
 - Capacitor configurado (`capacitor.config.ts`, id `cat.apuntames.app`). La plataforma Android **todavía no está añadida**: de momento la app solo se prueba en el navegador.
 
+## 2.7d Acceso (fase 4)
+- La URL de la API está en `src/environments/` (desarrollo: `http://localhost:3000/api`; la de producción se pone en la fase 8). `CORS_ORIGINS` del backend incluye `http://localhost:4200`.
+- Sesión (`core/auth/`): el token se guarda con `@capacitor/preferences` y dura 7 días. Al abrir la app, `provideAppInitializer` llama a `GET /auth/me`; si responde 401, se borra el token.
+- El interceptor añade `Authorization: Bearer …`. Un 401 fuera de login y registro cierra la sesión, muestra «La sessió ha caducat. Torna a iniciar sessió.» y lleva a `/login`.
+- Guards: `authGuard` (pantallas de la app y «Compte creat») y `guestGuard` (login y registro; con sesión, llevan a Inici).
+- Validación del cliente (`core/validation/validators.ts`) con los **mismos códigos que la API**; los mensajes salen de `apiErrors`. Los errores aparecen al pulsar el botón o cuando el campo ya tiene texto (`features/auth/form-state.ts`).
+- Error general del formulario (credenciales incorrectas, sin conexión, error del servidor): mensaje con icono encima del botón y `role="alert"`; con credenciales incorrectas, los dos campos se marcan en rojo.
+- Etiquetas de los campos al estilo MD3 (sobre el borde), no encima de la caja como en la alta fidelidad.
+- Después de registrarse, la sesión queda abierta: «Compte creat» → «Començar» → Inici.
+- Navegación con `NavController` de Ionic (`navigateRoot` tras entrar, registrarse o salir), para que «Enrere» no vuelva al formulario.
+- `/tabs/home` es una **Inici provisional** (título, «Tancar la sessió» con diálogo y barra de navegación). La fase 5 la sustituye.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
 - [x] 2. Backend (falta el despliegue, que es la fase 8)
 - [x] 3. Frontend base
-- [ ] 4. Acceso
+- [x] 4. Acceso
 - [ ] 5. Nivel 1 + punto de control
 - [ ] 6. Niveles 2 y 3
 - [ ] 7. Flujos transversales y estados

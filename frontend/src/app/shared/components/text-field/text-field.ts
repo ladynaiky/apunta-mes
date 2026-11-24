@@ -25,6 +25,8 @@ export class TextField implements ControlValueAccessor {
   readonly helper = input<string | null>(null);
   /** Mensaje de error ya traducido; si hay, el campo se marca en rojo. */
   readonly error = input<string | null>(null);
+  /** Marca el campo en rojo sin mensaje propio (el mensaje va en otro sitio). */
+  readonly invalid = input(false);
   readonly autocomplete = input<string | null>(null);
   /** Mensaje de éxito bajo el campo («✓ Les contrasenyes coincideixen.»). */
   readonly success = input<string | null>(null);
@@ -38,6 +40,7 @@ export class TextField implements ControlValueAccessor {
   protected readonly inputType = computed(() =>
     this.type() === 'password' && this.showPassword() ? 'text' : this.type(),
   );
+  protected readonly isInvalid = computed(() => !!this.error() || this.invalid());
   protected readonly describedBy = computed(() =>
     this.error() || this.helper() || this.success() ? `${this.id}-support` : null,
   );

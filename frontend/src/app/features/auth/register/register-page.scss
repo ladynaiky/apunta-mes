@@ -1,0 +1,14 @@
+:host { display: flex; flex-direction: column; height: 100%; }
+ion-content { flex: 1; }
+.page { padding: var(--space-200) var(--size-layout-margin) var(--space-400); }
+.form { display: flex; flex-direction: column; gap: var(--space-300); }
+.form button[type='submit'] { margin-top: var(--space-200); }
+.form-error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-100);
+  margin: 0;
+  color: var(--color-error);
+  font: 400 14px/20px var(--font-text);
+  letter-spacing: 0.25px;
+}

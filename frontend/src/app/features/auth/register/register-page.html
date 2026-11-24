@@ -1,0 +1,76 @@
+<ap-top-bar [title]="t.title" (back)="back()" />
+<ion-content>
+  <main class="page">
+    <form class="form" novalidate (ngSubmit)="submit()">
+      <ap-text-field
+        [label]="t.name"
+        autocomplete="given-name"
+        [placeholder]="t.namePlaceholder"
+        name="name"
+        [(ngModel)]="name"
+        (ngModelChange)="form.edited('name')"
+        [error]="nameError()"
+      />
+      <ap-select
+        [label]="t.role"
+        [placeholder]="t.rolePlaceholder"
+        [options]="roles"
+        name="role"
+        [(ngModel)]="role"
+        (ngModelChange)="form.edited('role')"
+        [error]="roleError()"
+      />
+      <ap-text-field
+        [label]="t.email"
+        type="email"
+        autocomplete="email"
+        [placeholder]="t.emailPlaceholder"
+        name="email"
+        [(ngModel)]="email"
+        (ngModelChange)="form.edited('email')"
+        [error]="emailError()"
+      />
+      <ap-text-field
+        [label]="t.password"
+        type="password"
+        autocomplete="new-password"
+        [placeholder]="t.passwordPlaceholder"
+        [helper]="t.passwordHelp"
+        name="password"
+        [(ngModel)]="password"
+        (ngModelChange)="form.edited('password')"
+        [error]="passwordError()"
+      />
+      <ap-text-field
+        [label]="t.password2"
+        type="password"
+        autocomplete="new-password"
+        [placeholder]="t.password2Placeholder"
+        name="password2"
+        [(ngModel)]="password2"
+        (ngModelChange)="form.edited('password2')"
+        [error]="password2Error()"
+        [success]="passwordsMatch() ? t.passwordsMatch : null"
+      />
+
+      @if (form.formError(); as message) {
+        <p class="form-error" role="alert">
+          <ap-icon name="error" [size]="20" />
+          <span>{{ message }}</span>
+        </p>
+      }
+
+      <button
+        apButton
+        type="submit"
+        variant="filled"
+        size="m"
+        [block]="true"
+        [disabled]="form.sending()"
+        [attr.aria-busy]="form.sending()"
+      >
+        {{ t.submit }}
+      </button>
+    </form>
+  </main>
+</ion-content>

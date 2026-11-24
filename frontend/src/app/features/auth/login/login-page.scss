@@ -1,0 +1,45 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 0 var(--size-layout-margin) env(safe-area-inset-bottom);
+}
+
+/* Logotipo tipográfico: Nunito 36/800 en el verde de marca (como el FAB). */
+.logo {
+  margin: auto 0 var(--space-500);
+  padding-top: var(--space-800);
+  color: var(--color-primary-container);
+  font: 800 36px/44px var(--font-title);
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+.logo span { margin-left: -0.02em; }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-300);
+}
+
+.form-error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-100);
+  margin: 0;
+  color: var(--color-error);
+  font: 400 14px/20px var(--font-text);
+  letter-spacing: 0.25px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-50);
+  margin: auto 0 0;
+  padding: var(--space-400) 0 var(--space-200);
+  color: var(--color-on-surface-variant);
+  font: 400 14px/20px var(--font-text);
+}

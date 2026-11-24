@@ -1,4 +1,4 @@
-<div class="field" [class.invalid]="error()" [class.disabled]="disabled()">
+<div class="field" [class.invalid]="isInvalid()" [class.disabled]="disabled()">
   <label class="label" [for]="id">{{ label() }}</label>
   <input
     [id]="id"
@@ -7,7 +7,7 @@
     [placeholder]="placeholder()"
     [disabled]="disabled()"
     [attr.autocomplete]="autocomplete()"
-    [attr.aria-invalid]="error() ? true : null"
+    [attr.aria-invalid]="isInvalid() ? true : null"
     [attr.aria-describedby]="describedBy()"
     (input)="onInput($event)"
     (blur)="onTouched()"
