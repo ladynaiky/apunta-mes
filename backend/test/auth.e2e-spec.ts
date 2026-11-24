@@ -109,6 +109,33 @@ describe.skipIf(!hasTestDb)('Auth (e2e)', () => {
     });
   });
 
+  describe('POST /api/auth/forgot-password (simulado)', () => {
+    it('202 igual exista o no la cuenta', async () => {
+      const known = await request(app.getHttpServer())
+        .post('/api/auth/forgot-password')
+        .send({ email: laia.email })
+        .expect(202);
+      const unknown = await request(app.getHttpServer())
+        .post('/api/auth/forgot-password')
+        .send({ email: 'ningu@exemple.cat' })
+        .expect(202);
+      expect(known.body).toEqual(unknown.body);
+    });
+
+    it('400 con un correo vacío o mal escrito', async () => {
+      const empty = await request(app.getHttpServer())
+        .post('/api/auth/forgot-password')
+        .send({ email: '' })
+        .expect(400);
+      expect(empty.body.errors).toEqual({ email: 'email.required' });
+      const bad = await request(app.getHttpServer())
+        .post('/api/auth/forgot-password')
+        .send({ email: 'no-es-un-correu' })
+        .expect(400);
+      expect(bad.body.errors).toEqual({ email: 'email.invalid' });
+    });
+  });
+
   describe('POST /api/auth/login', () => {
     it('inicia sesión con correo y contraseña', async () => {
       const res = await http()

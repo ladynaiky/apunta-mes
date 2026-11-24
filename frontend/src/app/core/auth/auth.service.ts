@@ -42,6 +42,11 @@ export class AuthService {
     return res.user;
   }
 
+  /** «Has oblidat la contrasenya?» (simulado: la API responde igual exista o no la cuenta). */
+  async forgotPassword(email: string): Promise<void> {
+    await firstValueFrom(this.http.post(`${this.api}/auth/forgot-password`, { email }));
+  }
+
   async register(data: RegisterData): Promise<User> {
     const res = await firstValueFrom(this.http.post<AuthResponse>(`${this.api}/auth/register`, data));
     await this.start(res);

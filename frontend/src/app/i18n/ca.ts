@@ -74,8 +74,19 @@ export const ca = {
     password: 'Contrasenya',
     passwordPlaceholder: 'Escriu la contrasenya',
     submit: 'Entrar',
+    forgot: 'Has oblidat la contrasenya?', // (nou)
     noAccount: 'No tens compte?',
     register: 'Registra’t',
+  },
+  /** «Has oblidat la contrasenya?» (iteración 1, simulado) */
+  forgot: {
+    title: 'Recuperar la contrasenya', // (nou)
+    intro: 'Escriu el correu del teu compte i t’enviarem un enllaç per canviar la contrasenya.', // (nou)
+    submit: 'Enviar l’enllaç', // (nou)
+    sentTitle: 'T’hem enviat un correu', // (nou)
+    sentText: (email: string) =>
+      `Si hi ha un compte amb ${email}, hi trobaràs un enllaç per canviar la contrasenya. Mira també el correu brossa.`, // (nou)
+    backToLogin: 'Tornar a iniciar sessió', // (nou)
   },
   register: {
     title: 'Registre',

@@ -410,6 +410,10 @@ Bloque F (hecho):
 - `ShareForm` emite `generated(url)` en lugar de navegar.
 - Eliminadas las rutas `/new/:type/done/:id`, `/share`, `/share/link` y `/share/link/copied`, y `created-page.ts`. Queda `/share/tasks` (lista para marcar y botón).
 
+Bloque G (hecho):
+- «Has oblidat la contrasenya?» (simulado): enlace de texto en Iniciar sessió → `/forgot-password` (guestGuard). Tiene el campo de correo con validación y, al enviarlo, «T'hem enviat un correu» y «Tornar a iniciar sessió».
+- API `POST /api/auth/forgot-password` (pública): siempre 202 `{ sent: true }`, exista o no la cuenta, para no revelar qué correos están registrados. No envía nada y tiene sus tests e2e. Un envío real necesitaría un servicio de correo (fase futura).
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
@@ -420,4 +424,4 @@ Bloque F (hecho):
 - [x] 6. Niveles 2 y 3
 - [x] 7. Flujos transversales y estados
 - [x] 8. Despliegue (Render + Atlas)
-- [ ] Iteración 1: [x] A · [x] B · [x] C · [x] D · [x] E · [x] F · [ ] G · [ ] Design System
+- [ ] Iteración 1: [x] A · [x] B · [x] C · [x] D · [x] E · [x] F · [x] G · [ ] Design System

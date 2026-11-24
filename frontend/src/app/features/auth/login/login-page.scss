@@ -52,3 +52,6 @@
   color: var(--color-on-surface-variant);
   font: 400 14px/20px var(--font-text);
 }
+
+/* «Has oblidat la contrasenya?»: enlace de texto alineado a la derecha, bajo la contraseña. */
+.forgot { align-self: flex-end; margin-top: calc(-1 * var(--space-200)); }

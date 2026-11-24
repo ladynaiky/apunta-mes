@@ -9,6 +9,12 @@ export const routes: Routes = [
     loadComponent: () => import('./features/auth/login/login-page').then((m) => m.LoginPage),
   },
   {
+    // Iteración 1 (#7): «Has oblidat la contrasenya?» (simulado)
+    path: 'forgot-password',
+    canActivate: [guestGuard],
+    loadComponent: () => import('./features/auth/forgot-password/forgot-password-page').then((m) => m.ForgotPasswordPage),
+  },
+  {
     path: 'register',
     canActivate: [guestGuard],
     loadComponent: () => import('./features/auth/register/register-page').then((m) => m.RegisterPage),

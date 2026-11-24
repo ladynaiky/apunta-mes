@@ -26,6 +26,7 @@
         [error]="passwordError()"
         [invalid]="!!form.formError()"
       />
+      <a apButton variant="text" class="forgot" routerLink="/forgot-password">{{ t.forgot }}</a>
 
       @if (form.formError(); as message) {
         <p class="form-error" role="alert">
