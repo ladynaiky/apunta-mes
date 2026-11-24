@@ -373,6 +373,23 @@ export const ca = {
     markEmptyText: 'Quan n’apuntis una, la podràs marcar aquí.',
     loadError: 'No s’han pogut carregar les tasques',
   },
+  search: {
+    title: 'Buscar/Filtrar',
+    search: 'Buscar',
+    placeholder: 'Nom de la tasca',
+    subject: 'Assignatura',
+    allSubjects: 'Totes',
+    date: 'Data',
+    allDates: 'Totes les dates',
+    clearDate: 'Treure la data', // (nou)
+    submit: 'Buscar la tasca',
+    resultsTitle: 'Tasca trobada',
+    resultsLabel: 'Resultat de la cerca',
+    noResults: 'No s’ha trobat res', // (nou)
+    noResultsText: 'Prova amb un altre nom, assignatura o data.', // (nou)
+    error: 'No s’ha pogut fer la cerca', // (nou)
+    newTask: 'Nova tasca',
+  },
   session: {
     logout: 'Tancar la sessió', // (nou)
     logoutQuestion: 'Vols tancar la sessió?', // (nou)

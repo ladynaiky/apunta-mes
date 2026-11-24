@@ -34,7 +34,7 @@ import { TaskSheetService } from '../../shared/components/task-sheet/task-sheet.
       } @empty {
         <ap-state-message [title]="t.noReminders" [text]="t.noRemindersText" />
       }
-      <a apButton variant="filled" size="m" [block]="true" class="cta" routerLink="/me/reminders" [queryParams]="{ from: 'me' }">
+      <a apButton variant="filled" size="m" [block]="true" class="cta" routerLink="/search" [queryParams]="{ from: 'me' }">
         {{ t.reviewReminders }}
       </a>
     }

@@ -112,7 +112,12 @@ export const routes: Routes = [
         loadComponent: () => import('./features/task-views/mark-done-page').then((m) => m.MarkDonePage),
       },
 
-      soon('search', 'Buscar/Filtrar'),
+      // 7A · Buscar/Filtrar
+      { path: 'search', loadComponent: () => import('./features/search/search-page').then((m) => m.SearchPage) },
+      {
+        path: 'search/results',
+        loadComponent: () => import('./features/search/search-results-page').then((m) => m.SearchResultsPage),
+      },
       soon('share', 'Compartir'),
       soon('share/tasks', 'Compartir tasques'),
     ],

@@ -320,6 +320,13 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - **Marcar tasca feta** (`/tasks/mark-done`): tareas pendientes. Al marcarlas se quedan en la lista hasta salir de la pantalla, para poder desmarcarlas.
 - **6D:** Avís de pendents, Personalització y Sincronitzar abren El meu espai en su pestaña (redirecciones de `app.routes.ts`, comprobadas).
 
+## 2.7i Fase 7 · bloque 7A (Buscar/Filtrar)
+- **Buscar/Filtrar** (`/search?from=`): «Buscar» (nombre), «Assignatura» (Totes + asignaturas) y «Data» (un día o «Totes les dates», con `ap-date-field` y la opción de quitar la fecha). «Buscar la tasca» abre los resultados; «Enrere» vuelve al formulario con lo escrito.
+- Se busca en todo lo apuntado (tareas, exámenes, excursiones y aniversarios), por nombre y por asignatura (`GET /entries?q=&subject=&from=&to=`).
+- **Tasca trobada** (`/search/results`): «Resultat de la cerca», filas y «Nova tasca» (con la fecha si se filtró por día). Sin resultados: «No s'ha trobat res» / «Prova amb un altre nom, assignatura o data.» (nou).
+- «Revisar la llista d'avisos» (El meu espai · Avisos) lleva a Buscar/Filtrar, como en el diseño.
+- Componente `ap-date-field`: campo que abre «Tria el dia» (reutilizable; con `clearable`, permite «Totes les dates»).
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
