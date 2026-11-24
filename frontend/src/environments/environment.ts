@@ -1,8 +1,8 @@
 /**
- * Producción. La URL de la API de Render se pondrá en la fase 8 (despliegue);
- * hasta entonces, la local.
+ * Producción: la API desplegada en Render (render.yaml, servicio apunta-mes-api).
+ * Si Render asigna otra URL al crear el servicio, cámbiala aquí.
  */
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:3000/api',
+  apiUrl: 'https://apunta-mes-api.onrender.com/api',
 };

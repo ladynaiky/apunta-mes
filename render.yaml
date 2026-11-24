@@ -1,0 +1,49 @@
+# Despliegue en Render (Blueprint). Render lee este archivo al crear los servicios.
+# Los valores secretos (sync: false) NO están aquí: se pegan en el panel de Render.
+services:
+  # API (NestJS) · https://apunta-mes-api.onrender.com/api · Swagger en /api/docs
+  - type: web
+    name: apunta-mes-api
+    runtime: node
+    region: frankfurt # cerca de MongoDB Atlas (eu-central-1)
+    plan: free
+    rootDir: backend
+    # --include=dev: Nest necesita sus herramientas de desarrollo para compilar.
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm run start:prod
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CORS_ORIGINS
+        value: https://apunta-mes.onrender.com,http://localhost:4200,http://localhost:8100,capacitor://localhost,http://localhost
+      - key: DEMO_MODE
+        value: "true"
+      - key: DEMO_TODAY
+        value: "2026-11-04"
+      - key: DEMO_USER_EMAIL
+        value: demo@apunta.cat
+      - key: DEMO_USER_PASSWORD
+        sync: false
+
+  # Frontend (Ionic Angular, sitio estático) · https://apunta-mes.onrender.com
+  - type: web
+    name: apunta-mes
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci --include=dev && npm run build
+    staticPublishPath: dist/frontend/browser
+    # Todas las rutas de la app (/tabs/home, /new/task…) las resuelve Angular.
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
