@@ -49,6 +49,11 @@ export class ApiService {
     return this.get('/entries', params);
   }
 
+  /** Historial: tareas hechas (mes 1-12). */
+  history(year?: number, month?: number): Promise<Entry[]> {
+    return this.get('/entries/history', { year, month });
+  }
+
   day(date: string): Promise<Entry[]> {
     return this.get(`/entries/day/${date}`);
   }

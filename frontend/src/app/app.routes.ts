@@ -71,7 +71,7 @@ export const routes: Routes = [
       { path: 'me/customize', redirectTo: '/tabs/me?tab=customize' },
       { path: 'me/sync', redirectTo: '/tabs/me?tab=contacts' },
 
-      // Fases 6C y 7 (provisionales)
+      // Fase 7 (provisionales)
       // 6B · Calendario y listas
       {
         path: 'calendar/month',
@@ -90,11 +90,28 @@ export const routes: Routes = [
         loadComponent: () => import('./features/entry-list/entry-list-page').then((m) => m.EntryListPage),
       },
 
-      soon('tasks/today', 'Tasca d’avui/setmanal'),
-      soon('tasks/list', 'Llistat de tasques'),
-      soon('tasks/history', 'Historial de tasques'),
-      soon('tasks/checklist', 'Checklist'),
-      soon('tasks/mark-done', 'Marcar tasca feta'),
+      // 6C · Vistas de tareas
+      {
+        path: 'tasks/today',
+        loadComponent: () => import('./features/task-views/today-week-page').then((m) => m.TodayWeekPage),
+      },
+      {
+        path: 'tasks/list',
+        loadComponent: () => import('./features/task-views/task-list-page').then((m) => m.TaskListPage),
+      },
+      {
+        path: 'tasks/history',
+        loadComponent: () => import('./features/task-views/history-page').then((m) => m.HistoryPage),
+      },
+      {
+        path: 'tasks/checklist',
+        loadComponent: () => import('./features/task-views/checklist-page').then((m) => m.ChecklistPage),
+      },
+      {
+        path: 'tasks/mark-done',
+        loadComponent: () => import('./features/task-views/mark-done-page').then((m) => m.MarkDonePage),
+      },
+
       soon('search', 'Buscar/Filtrar'),
       soon('share', 'Compartir'),
       soon('share/tasks', 'Compartir tasques'),

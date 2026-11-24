@@ -1,0 +1,12 @@
+/* Estilos comunes de las vistas de tareas (6C). */
+:host { display: flex; flex-direction: column; height: 100%; }
+ion-content { flex: 1; }
+.page { padding: var(--space-100) var(--size-layout-margin) var(--space-300); }
+.title { margin: var(--space-200) 0 var(--space-50); font: 500 16px/24px var(--font-title); }
+.intro { margin: var(--space-100) 0 var(--space-150); font: 400 16px/24px var(--font-text); letter-spacing: 0.5px; }
+.count { margin: var(--space-100) 0 var(--space-50); font: 500 16px/24px var(--font-title); }
+.list { margin: 0; padding: 0; list-style: none; }
+.list.divided li + li { border-top: 1px solid var(--color-outline-variant); }
+.state { display: block; margin-top: 25%; }
+/* Acción principal al pie («Buscar o filtrar tasques», «Veure el llistat de tasques»). */
+.bottom { padding: var(--space-150) var(--size-layout-margin) var(--space-200); background: var(--color-surface); }

@@ -311,6 +311,15 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - **Exàmens / Excursions** (`/exams`, `/trips`): la misma página (`EntryListPage`, tipo en `data`). Muestra desde hoy en adelante, ordenado por fecha, con divisores y el extended FAB «Nou examen» / «Nova excursió» (`ap-extended-fab`).
 - `TasksStore.changes`: contador que sube al marcar, editar, borrar o restaurar. Las pantallas con lista propia (mes, día, exámenes, excursiones) lo vigilan y recargan.
 
+## 2.7h Fase 6 · bloques 6C y 6D (vistas de tareas y nivel 3 de El meu espai)
+- Todas en `features/task-views/`, con estilos comunes en `task-views.scss`. La acción principal («Buscar o filtrar tasques», «Veure el llistat de tasques») va fija al pie, encima de la barra.
+- **Tasca d'avui/setmanal** (`/tasks/today`): «Avui / Setmana» (grupo de botones). Setmana = de dilluns a diumenge, también lo ya hecho.
+- **Llistat de tasques** (`/tasks/list`): todas las tareas pendientes, por fecha.
+- **Historial** (`/tasks/history`): desplegable de mes y año con flechas (no se puede pasar del año actual). Por defecto, el mes de hoy. Orden: lo más reciente primero (en el diseño, los del mismo mes salen de más antiguo a más reciente). Texto de apoyo: «Feta el 2 de novembre» (fecha en que se marcó). Estados: «Cap tasca feta en aquest mes» y «Encara no has fet cap tasca».
+- **Checklist** (`/tasks/checklist`): tareas de hoy a 7 días vista, también las hechas, con el contador «N de M fetes».
+- **Marcar tasca feta** (`/tasks/mark-done`): tareas pendientes. Al marcarlas se quedan en la lista hasta salir de la pantalla, para poder desmarcarlas.
+- **6D:** Avís de pendents, Personalització y Sincronitzar abren El meu espai en su pestaña (redirecciones de `app.routes.ts`, comprobadas).
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
@@ -318,6 +327,6 @@ Asignaturas: `color.castella` #CC5500 · `color.catala` #B08800 · `color.angles
 - [x] 3. Frontend base
 - [x] 4. Acceso
 - [x] 5. Nivel 1 + punto de control (seguimos con Ionic)
-- [ ] 6. Niveles 2 y 3
+- [x] 6. Niveles 2 y 3
 - [ ] 7. Flujos transversales y estados
 - [ ] 8. Despliegue

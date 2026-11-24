@@ -336,6 +336,43 @@ export const ca = {
     error: 'No s’han pogut carregar les excursions',
     add: 'Nova excursió',
   },
+  taskViews: {
+    todayWeekTitle: 'Tasca d’avui/setmanal',
+    today: 'Avui',
+    week: 'Setmana',
+    viewLabel: 'Tasques d’avui o de la setmana',
+    noToday: 'No tens cap tasca per a avui', // (nou)
+    noWeek: 'No tens cap tasca aquesta setmana', // (nou)
+    noTasksText: 'Quan n’apuntis una, la veuràs aquí.',
+    listTitle: 'Llistat de tasques',
+    listEmpty: 'No tens cap tasca pendent',
+    listError: 'No s’ha pogut carregar el llistat',
+    search: 'Buscar o filtrar tasques',
+    historyTitle: 'Historial de tasques',
+    monthLabel: (m: string) => `Mes: ${m}`,
+    month: 'Mes',
+    year: 'Any',
+    prevYear: 'Any anterior',
+    nextYear: 'Any següent',
+    doneOn: (dayMonth: string) => `Feta el ${dayMonth}`,
+    historyListLabel: 'Tasques fetes',
+    historyEmpty: 'Encara no has fet cap tasca',
+    historyEmptyText: 'Quan en marquis una com a feta, la veuràs aquí.',
+    historyMonthEmpty: 'Cap tasca feta en aquest mes',
+    historyMonthEmptyText: (label: string) => `${label}. Prova amb un altre mes o any.`,
+    historyError: 'No s’ha pogut carregar l’historial', // (nou)
+    seeList: 'Veure el llistat de tasques',
+    months: ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Setembre', 'Octubre', 'Novembre', 'Desembre'],
+    checklistTitle: 'Checklist',
+    checklistCount: (done: number, total: number) => `${done} de ${total} fetes`,
+    checklistEmpty: 'No tens cap tasca pendent',
+    checklistEmptyText: 'Quan n’apuntis una, la veuràs aquí.',
+    markTitle: 'Marcar tasca feta',
+    markIntro: 'Toca la casella quan acabis una tasca. Si t’equivoques, torna-la a tocar per desfer-ho.',
+    markEmpty: 'No tens cap tasca per marcar',
+    markEmptyText: 'Quan n’apuntis una, la podràs marcar aquí.',
+    loadError: 'No s’han pogut carregar les tasques',
+  },
   session: {
     logout: 'Tancar la sessió', // (nou)
     logoutQuestion: 'Vols tancar la sessió?', // (nou)
