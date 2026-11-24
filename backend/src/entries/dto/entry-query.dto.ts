@@ -54,6 +54,12 @@ export class EntryQueryDto {
   @Transform(toBool)
   @IsBoolean({ message: 'done.invalid' })
   done?: boolean;
+
+  @ApiPropertyOptional({ type: Boolean, description: 'Solo las compartidas (El meu espai · Compartir)' })
+  @IsOptional()
+  @Transform(toBool)
+  @IsBoolean({ message: 'shared.invalid' })
+  shared?: boolean;
 }
 
 export class HistoryQueryDto {

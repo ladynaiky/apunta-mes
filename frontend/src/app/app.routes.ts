@@ -94,14 +94,6 @@ export const routes: Routes = [
         path: 'tasks/history',
         loadComponent: () => import('./features/task-views/history-page').then((m) => m.HistoryPage),
       },
-      {
-        path: 'tasks/checklist',
-        loadComponent: () => import('./features/task-views/checklist-page').then((m) => m.ChecklistPage),
-      },
-      {
-        path: 'tasks/mark-done',
-        loadComponent: () => import('./features/task-views/mark-done-page').then((m) => m.MarkDonePage),
-      },
 
       // 7A · Buscar/Filtrar
       { path: 'search', loadComponent: () => import('./features/search/search-page').then((m) => m.SearchPage) },

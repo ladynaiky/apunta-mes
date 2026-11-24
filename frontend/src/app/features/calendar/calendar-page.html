@@ -30,6 +30,7 @@
       <a apNavListItem routerLink="/tasks/today" [queryParams]="{ from: 'calendar' }" icon="event_available">
         {{ t.todayOrWeek }}
       </a>
+      <a apNavListItem routerLink="/tasks/history" [queryParams]="{ from: 'calendar' }" icon="history">{{ ca.tasks.history }}</a>
     </nav>
   </main>
 </ion-content>

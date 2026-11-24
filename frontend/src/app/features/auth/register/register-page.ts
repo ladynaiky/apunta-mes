@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, NavController } from '@ionic/angular';
 import { toApiError } from '../../../core/api/api-error';
 import type { UserRole } from '../../../core/auth/auth.models';
+import { roleOptions } from '../../../shared/utils/roles';
 import { AuthService } from '../../../core/auth/auth.service';
 import {
   validateEmail,
@@ -32,11 +33,7 @@ export class RegisterPage {
   private readonly nav = inject(NavController);
   protected readonly t = ca.register;
 
-  protected readonly roles: SelectOption<UserRole>[] = [
-    { value: 'student', label: ca.register.roles.student },
-    { value: 'parent', label: ca.register.roles.parent },
-    { value: 'teacher', label: ca.register.roles.teacher },
-  ];
+  protected readonly roles = roleOptions() as SelectOption<UserRole>[];
 
   protected readonly name = signal('');
   protected readonly role = signal<UserRole | null>(null);

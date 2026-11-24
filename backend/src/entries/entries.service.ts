@@ -63,6 +63,7 @@ export class EntriesService {
     if (q.type) filter.type = q.type;
     if (q.subject) filter.subject = q.subject;
     if (q.done !== undefined) filter.done = q.done;
+    if (q.shared !== undefined) filter.shared = q.shared;
     if (q.q) {
       const re = new RegExp(escapeRegex(q.q.trim()), 'i');
       const subjectIds = await this.subjects

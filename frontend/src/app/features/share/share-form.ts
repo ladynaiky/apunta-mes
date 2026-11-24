@@ -14,8 +14,9 @@ import { Select, type SelectOption } from '../../shared/components/select/select
 import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
 import { StateMessage } from '../../shared/components/state-message/state-message';
 import { TextField } from '../../shared/components/text-field/text-field';
+import { roleGroup, roleOptions, type RoleGroup } from '../../shared/utils/roles';
 
-const GROUPS: ContactRole[] = ['student', 'parent', 'teacher', 'other'];
+const GROUPS: RoleGroup[] = ['student', 'family', 'teacher', 'other'];
 
 /**
  * Formulario de Compartir (simulado): «Tipus de contingut», «Contactes»
@@ -46,7 +47,7 @@ export class ShareForm implements OnInit {
   protected readonly status = signal<'loading' | 'ready' | 'error'>('loading');
   protected readonly selected = signal<string[]>([]);
   protected readonly pickerOpen = signal(false);
-  protected readonly openGroup = signal<ContactRole | null>(null);
+  protected readonly openGroup = signal<RoleGroup | null>(null);
   protected readonly tried = signal(false);
   protected readonly sending = signal(false);
 
@@ -58,13 +59,11 @@ export class ShareForm implements OnInit {
   protected readonly draftRole = signal<ContactRole | null>(null);
   protected readonly draftTried = signal(false);
   protected readonly toDelete = signal<Contact | null>(null);
-  protected readonly roleOptions: SelectOption<ContactRole>[] = (['student', 'parent', 'teacher'] as ContactRole[]).map(
-    (r) => ({ value: r, label: ca.share.roles[r] }),
-  );
+  protected readonly roleOptions: SelectOption<ContactRole>[] = roleOptions();
 
   protected readonly groups = computed(() =>
     GROUPS.map((role) => {
-      const items = this.contacts().filter((c) => c.role === role);
+      const items = this.contacts().filter((c) => roleGroup(c.role) === role);
       return {
         role,
         name: this.t.groups[role],
@@ -101,11 +100,12 @@ export class ShareForm implements OnInit {
     this.selected.update((l) => (on ? [...l, c.id] : l.filter((id) => id !== c.id)));
   }
 
-  protected openAdd(role: ContactRole | null): void {
+  /** Desde un grupo: Alumnes y Professors proponen un rol; Família y Altres, ninguno. */
+  protected openAdd(group: RoleGroup | null): void {
     this.editing.set(null);
     this.draftName.set('');
     this.draftData.set('');
-    this.draftRole.set(role === 'other' ? null : role);
+    this.draftRole.set(group === 'student' ? 'student' : group === 'teacher' ? 'teacher_m' : null);
     this.draftTried.set(false);
     this.dialogOpen.set(true);
   }
@@ -132,7 +132,7 @@ export class ShareForm implements OnInit {
         const created = await this.api.createContact(data);
         this.contacts.update((l) => [...l, created]);
         this.selected.update((l) => [...l, created.id]);
-        this.openGroup.set(created.role);
+        this.openGroup.set(roleGroup(created.role));
       }
       this.dialogOpen.set(false);
     } catch (err) {

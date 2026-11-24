@@ -77,7 +77,8 @@ export interface AppConfig {
   demoMode: boolean;
 }
 
-export type ContactRole = 'student' | 'parent' | 'teacher' | 'other';
+export type { ContactRole } from '../../shared/utils/roles';
+import type { ContactRole } from '../../shared/utils/roles';
 
 export interface Contact {
   id: string;

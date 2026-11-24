@@ -14,13 +14,14 @@ import { MeContacts } from './me-contacts';
 import { MeCustomize } from './me-customize';
 import { MeReminders } from './me-reminders';
 import { MeShare } from './me-share';
+import { MeSync } from './me-sync';
 
 type MeTab = 'reminders' | 'share' | 'customize' | 'contacts';
 
 /** El meu espai: Avisos · Compartir · Personalitzar · Contactes, y «Tancar la sessió». */
 @Component({
   selector: 'ap-me-page',
-  imports: [IonContent, ButtonGroup, Dialog, Icon, Tabs, TopBar, MeContacts, MeCustomize, MeReminders, MeShare],
+  imports: [IonContent, ButtonGroup, Dialog, Icon, Tabs, TopBar, MeContacts, MeCustomize, MeReminders, MeShare, MeSync],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ap-top-bar [title]="t.title" (back)="nav.back()" />
@@ -31,7 +32,7 @@ type MeTab = 'reminders' | 'share' | 'customize' | 'contacts';
         @for (v of [version()]; track v) {
           @switch (tab()) {
             @case ('reminders') { <ap-me-reminders /> }
-            @case ('share') { <ap-me-share /> }
+            @case ('share') { <ap-me-sync /> <ap-me-share /> }
             @case ('customize') { <ap-me-customize /> }
             @case ('contacts') { <ap-me-contacts /> }
           }

@@ -29,6 +29,20 @@ export const ca = {
     trips: 'Excursions',
     birthdays: 'Aniversaris',
   },
+  /** Roles (iteración 1). `parent` y `teacher` son los de antes (datos guardados). */
+  roles: {
+    student: 'Alumne',
+    student_f: 'Alumna',
+    father: 'Pare',
+    mother: 'Mare',
+    tutor_m: 'Tutor',
+    tutor_f: 'Tutora',
+    teacher_m: 'Professor',
+    teacher_f: 'Professora',
+    other: 'Altres',
+    parent: 'Pare/Mare',
+    teacher: 'Professor/a',
+  } as Record<string, string>, // (nou)
   task: {
     todo: 'Per fer',
     done: 'Feta',
@@ -69,7 +83,6 @@ export const ca = {
     namePlaceholder: 'Escriu el teu nom',
     role: 'Rol',
     rolePlaceholder: 'Tria el teu rol',
-    roles: { student: 'Alumne', parent: 'Pares', teacher: 'Profe' },
     email: 'Correu electrònic',
     emailPlaceholder: 'nom@exemple.com',
     password: 'Contrasenya',
@@ -152,8 +165,6 @@ export const ca = {
     list: 'Veure el llistat de tasques',
     history: 'Veure l’historial de tasques',
     share: 'Compartir tasques',
-    checklist: 'Obrir la checklist', // (nou, fase 0)
-    markDone: 'Marcar tasques fetes', // (nou, fase 0)
     noToday: 'No tens cap tasca pendent',
     noTodayText: 'Quan n’apuntis una, la veuràs aquí.',
   },
@@ -181,6 +192,9 @@ export const ca = {
     weekly: 'Setmanals',
     shareTask: (title: string) => `Compartir: ${title}`,
     alreadyShared: 'Tasques ja compartides',
+    noShared: 'Encara no has compartit cap tasca', // (nou)
+    noSharedText: 'Marca-les a dalt i les veuràs aquí.', // (nou)
+    sharedLoadError: 'No s’han pogut carregar les tasques compartides', // (nou)
     sharedSummary: (tasks: number, contacts: number) =>
       `${tasks} ${tasks === 1 ? 'tasca compartida' : 'tasques compartides'} amb ${contacts} ${contacts === 1 ? 'contacte' : 'contactes'}`,
     shareMarked: 'Compartir les tasques marcades',
@@ -226,7 +240,6 @@ export const ca = {
     contactNamePlaceholder: 'Escriu el nom d’usuari',
     contactRole: 'Rol',
     contactRolePlaceholder: 'Tria un rol',
-    contactRoles: { student: 'Alumne', parent: 'Pares', teacher: 'Professor', other: 'Altres' } as Record<string, string>,
     contactNameRequired: 'Escriu almenys el nom del contacte.',
     addedContacts: 'Contactes afegits',
     noContacts: 'Encara no has afegit cap contacte.',
@@ -371,14 +384,6 @@ export const ca = {
     historyError: 'No s’ha pogut carregar l’historial', // (nou)
     seeList: 'Veure el llistat de tasques',
     months: ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Setembre', 'Octubre', 'Novembre', 'Desembre'],
-    checklistTitle: 'Checklist',
-    checklistCount: (done: number, total: number) => `${done} de ${total} fetes`,
-    checklistEmpty: 'No tens cap tasca pendent',
-    checklistEmptyText: 'Quan n’apuntis una, la veuràs aquí.',
-    markTitle: 'Marcar tasca feta',
-    markIntro: 'Toca la casella quan acabis una tasca. Si t’equivoques, torna-la a tocar per desfer-ho.',
-    markEmpty: 'No tens cap tasca per marcar',
-    markEmptyText: 'Quan n’apuntis una, la podràs marcar aquí.',
     loadError: 'No s’han pogut carregar les tasques',
   },
   search: {
@@ -407,7 +412,7 @@ export const ca = {
     contacts: 'Contactes',
     contactsPlaceholder: 'Seleccionar contactes',
     contactsSelected: (n: number) => `${n} ${n === 1 ? 'contacte' : 'contactes'}`, // (nou)
-    groups: { student: 'Alumnes', parent: 'Pares', teacher: 'Professors', other: 'Altres' } as Record<string, string>,
+    groups: { student: 'Alumnes', family: 'Família', teacher: 'Professors', other: 'Altres' } as Record<string, string>, // (nou: «Família»)
     emptyGroup: 'Encara no hi ha contactes en aquesta categoria.',
     addContact: 'Afegir contacte',
     editContact: 'Editar contacte',
@@ -418,7 +423,6 @@ export const ca = {
     emailOrPhonePlaceholder: 'nom@exemple.cat',
     role: 'Rol',
     rolePlaceholder: 'Seleccionar rol',
-    roles: { student: 'Alumne', parent: 'Pares', teacher: 'Profe' } as Record<string, string>,
     nameRequired: 'Escriu almenys el nom del contacte.',
     add: 'Afegir',
     save: 'Desar',

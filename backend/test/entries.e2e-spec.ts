@@ -271,6 +271,25 @@ describe.skipIf(!hasTestDb)('Entries, subjects y mocks (e2e)', () => {
       expect(exams.body).toHaveLength(1);
     });
 
+    it('list: shared=true solo devuelve las compartidas', async () => {
+      await http()
+        .patch(`/api/entries/${ids.exam}`)
+        .set(auth())
+        .send({ shared: true })
+        .expect(200);
+      const res = await http()
+        .get('/api/entries?shared=true')
+        .set(auth())
+        .expect(200);
+      expect(res.body.map((e: { id: string }) => e.id)).toContain(ids.exam);
+      expect(res.body.every((e: { shared: boolean }) => e.shared)).toBe(true);
+      await http()
+        .patch(`/api/entries/${ids.exam}`)
+        .set(auth())
+        .send({ shared: false })
+        .expect(200);
+    });
+
     it('reminders: la tarea de hoy con aviso «1 dia abans»', async () => {
       const res = await http().get('/api/reminders').set(auth()).expect(200);
       expect(res.body).toHaveLength(1);
@@ -459,7 +478,7 @@ describe.skipIf(!hasTestDb)('Entries, subjects y mocks (e2e)', () => {
         .send({
           name: 'Jordi (pare)',
           emailOrPhone: 'jordi@exemple.cat',
-          role: 'parent',
+          role: 'father',
         })
         .expect(201);
       const upd = await http()
@@ -467,7 +486,7 @@ describe.skipIf(!hasTestDb)('Entries, subjects y mocks (e2e)', () => {
         .set(auth())
         .send({ name: 'Jordi' })
         .expect(200);
-      expect(upd.body).toMatchObject({ name: 'Jordi', role: 'parent' });
+      expect(upd.body).toMatchObject({ name: 'Jordi', role: 'father' });
       const empty = await http()
         .post('/api/contacts')
         .set(auth())

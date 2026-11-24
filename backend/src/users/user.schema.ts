@@ -1,7 +1,23 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export const USER_ROLES = ['student', 'parent', 'teacher'] as const;
+/**
+ * Roles en masculino y femenino (iteración 1). `parent` y `teacher` son los de antes:
+ * se siguen aceptando para no romper los datos guardados.
+ */
+export const PERSON_ROLES = [
+  'student',
+  'student_f',
+  'father',
+  'mother',
+  'tutor_m',
+  'tutor_f',
+  'teacher_m',
+  'teacher_f',
+  'parent',
+  'teacher',
+] as const;
+export const USER_ROLES = PERSON_ROLES;
 export type UserRole = (typeof USER_ROLES)[number];
 
 @Schema({ timestamps: { createdAt: true, updatedAt: false } })

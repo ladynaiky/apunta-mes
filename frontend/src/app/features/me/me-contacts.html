@@ -1,23 +1,6 @@
 @if (status() === 'error') {
   <ap-state-message kind="error" [title]="t.loadError" [text]="ca.state.checkConnection" (retry)="load()" />
 } @else if (status() === 'ready') {
-  <section class="sync" aria-live="polite">
-    <p class="label">{{ t.syncStatusLabel }}</p>
-    <p class="status">{{ syncText() }}</p>
-    <button
-      apButton
-      type="button"
-      variant="tonal"
-      icon="sync"
-      [block]="true"
-      [disabled]="syncState() === 'busy'"
-      [attr.aria-busy]="syncState() === 'busy'"
-      (click)="sync()"
-    >
-      {{ syncState() === 'busy' ? t.syncing : t.syncButton }}
-    </button>
-  </section>
-
   <p class="intro">{{ t.contactsIntro }}</p>
 
   <form class="card" novalidate (ngSubmit)="submit()">

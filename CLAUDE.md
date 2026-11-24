@@ -388,6 +388,13 @@ Bloque C (hecho):
 - Los tests e2e fijan `DEMO_TODAY=2026-11-04`, así que los resultados no cambian.
 - Datos de demo reiniciados el 24/11/2026: se borraron las pruebas del grupo, con su OK.
 
+Bloque D (hecho):
+- Eliminadas las pantallas Checklist y Marcar tasca feta (rutas, archivos y textos). Tasques: Buscar, Llistat, Historial, Compartir.
+- Calendari (semana y mes): «Veure l'historial de tasques».
+- Sincronitzar: componente `me-sync`, al principio de la pestaña Compartir (ya no está en Contactes).
+- Compartir: debajo, la lista «Tasques ja compartides» (`GET /entries?shared=true`, solo pendientes) con su estado vacío y de error. Se recarga con `store.changes`.
+- Roles: `student, student_f, father, mother, tutor_m, tutor_f, teacher_m, teacher_f` (+ `other` en contactos). `parent` y `teacher` (los de antes) se aceptan y se muestran como «Pare/Mare» y «Professor/a». Los grupos de Compartir son Alumnes / Família / Professors / Altres (`roleGroup` en `shared/utils/roles.ts`). Contactos de demo con los roles nuevos.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
@@ -398,4 +405,4 @@ Bloque C (hecho):
 - [x] 6. Niveles 2 y 3
 - [x] 7. Flujos transversales y estados
 - [x] 8. Despliegue (Render + Atlas)
-- [ ] Iteración 1: [x] A · [x] B · [x] C · [ ] D · [ ] E · [ ] F · [ ] G · [ ] Design System
+- [ ] Iteración 1: [x] A · [x] B · [x] C · [x] D · [ ] E · [ ] F · [ ] G · [ ] Design System

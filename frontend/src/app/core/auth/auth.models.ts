@@ -1,4 +1,6 @@
-export type UserRole = 'student' | 'parent' | 'teacher';
+import type { PersonRole } from '../../shared/utils/roles';
+
+export type UserRole = PersonRole;
 
 export interface User {
   id: string;

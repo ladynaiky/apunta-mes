@@ -54,8 +54,6 @@ import { dueLabel, longDate } from '../../shared/utils/dates-ca';
           <a apNavListItem routerLink="/search" [queryParams]="{ from: 'tasks' }" icon="manage_search">{{ t.search }}</a>
           <a apNavListItem routerLink="/tasks/list" [queryParams]="{ from: 'tasks' }" icon="format_list_bulleted">{{ t.list }}</a>
           <a apNavListItem routerLink="/tasks/history" [queryParams]="{ from: 'tasks' }" icon="history">{{ t.history }}</a>
-          <a apNavListItem routerLink="/tasks/checklist" [queryParams]="{ from: 'tasks' }" icon="checklist">{{ t.checklist }}</a>
-          <a apNavListItem routerLink="/tasks/mark-done" [queryParams]="{ from: 'tasks' }" icon="task_alt">{{ t.markDone }}</a>
           <a apNavListItem routerLink="/share/tasks" [queryParams]="{ from: 'tasks' }" icon="share">{{ t.share }}</a>
         </nav>
       </main>

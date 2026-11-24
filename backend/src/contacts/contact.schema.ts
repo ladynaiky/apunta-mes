@@ -1,8 +1,9 @@
+import { PERSON_ROLES } from '../users/user.schema.js';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Schema as MongooseSchema, Types } from 'mongoose';
 
 /** Alumne / Pares / Profe / Altres (grupos de «Contactes» en Compartir). */
-export const CONTACT_ROLES = ['student', 'parent', 'teacher', 'other'] as const;
+export const CONTACT_ROLES = [...PERSON_ROLES, 'other'] as const;
 
 @Schema({ timestamps: { createdAt: true, updatedAt: false } })
 export class Contact {

@@ -56,6 +56,7 @@ import { dayMonth, monthTitle } from '../../shared/utils/dates-ca';
           <a apNavListItem routerLink="/exams" [queryParams]="{ from: 'calendar' }" icon="lightbulb">{{ ca.calendar.exams }}</a>
           <a apNavListItem routerLink="/trips" [queryParams]="{ from: 'calendar' }" icon="landscape">{{ ca.calendar.trips }}</a>
           <a apNavListItem routerLink="/tasks/today" [queryParams]="{ from: 'calendar' }" icon="event_available">{{ ca.calendar.todayOrWeek }}</a>
+          <a apNavListItem routerLink="/tasks/history" [queryParams]="{ from: 'calendar-month' }" icon="history">{{ ca.tasks.history }}</a>
         </nav>
       </main>
     </ion-content>

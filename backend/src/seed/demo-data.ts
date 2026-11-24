@@ -150,18 +150,18 @@ export const DEMO_HISTORY: {
 ];
 
 export const DEMO_CONTACTS = [
-  { name: 'Jordi (pare)', emailOrPhone: 'jordi@exemple.cat', role: 'parent' },
-  { name: 'Núria (mare)', emailOrPhone: 'nuria@exemple.cat', role: 'parent' },
-  { name: 'Marta', emailOrPhone: 'marta@exemple.cat', role: 'student' },
+  { name: 'Jordi (pare)', emailOrPhone: 'jordi@exemple.cat', role: 'father' },
+  { name: 'Núria (mare)', emailOrPhone: 'nuria@exemple.cat', role: 'mother' },
+  { name: 'Marta', emailOrPhone: 'marta@exemple.cat', role: 'student_f' },
   {
     name: 'Sr. Martí (tutor)',
     emailOrPhone: 'marti@escola.cat',
-    role: 'teacher',
+    role: 'tutor_m',
   },
   {
     name: 'Sra. Vidal (Anglès)',
     emailOrPhone: 'vidal@escola.cat',
-    role: 'teacher',
+    role: 'teacher_f',
   },
 ] as const;
 

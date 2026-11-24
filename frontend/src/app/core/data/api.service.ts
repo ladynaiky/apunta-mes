@@ -45,7 +45,7 @@ export class ApiService {
   }
 
   /** Buscar/Filtrar y listas (Exàmens, Excursions…). */
-  entries(params: { type?: string; from?: string; to?: string; subject?: string; q?: string; done?: boolean } = {}): Promise<Entry[]> {
+  entries(params: { type?: string; from?: string; to?: string; subject?: string; q?: string; done?: boolean; shared?: boolean } = {}): Promise<Entry[]> {
     return this.get('/entries', params);
   }
 
