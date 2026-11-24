@@ -414,6 +414,12 @@ Bloque G (hecho):
 - «Has oblidat la contrasenya?» (simulado): enlace de texto en Iniciar sessió → `/forgot-password` (guestGuard). Tiene el campo de correo con validación y, al enviarlo, «T'hem enviat un correu» y «Tornar a iniciar sessió».
 - API `POST /api/auth/forgot-password` (pública): siempre 202 `{ sent: true }`, exista o no la cuenta, para no revelar qué correos están registrados. No envía nada y tiene sus tests e2e. Un envío real necesitaría un servicio de correo (fase futura).
 
+Design System actualizado (24/11/2026, https://claude.ai/artifact/VM7DnKfQr83Afa1AJgQF15, versión 16):
+- `tokens.json` v2: valores de la app (`frontend/src/theme/tokens.scss`), solo tema claro, Nunito (títulos, `--font-title`) y Roboto (`--font-sans`), tokens nuevos (`section-header`, `assistant-bubble`, `warning-badge`, `priority-container`).
+- README (brand book) reescrito, sección «Iteració 1», isotipo PNG en Logos y en la portada.
+- Componentes: Chip, ListItem, Tabs, Fab y Dialog actualizados, y Modal nuevo. `bundle.css` con las clases nuevas.
+- Contraste pendiente (decisión 3): como texto sobre crema, solo Mates (7.1) y Música (4.8) llegan a 4.5:1; Socials 4.47, Castellà 4.2, Plàstica 4.1, Anglès 3.7, Català 3.2.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
@@ -424,4 +430,4 @@ Bloque G (hecho):
 - [x] 6. Niveles 2 y 3
 - [x] 7. Flujos transversales y estados
 - [x] 8. Despliegue (Render + Atlas)
-- [ ] Iteración 1: [x] A · [x] B · [x] C · [x] D · [x] E · [x] F · [x] G · [ ] Design System
+- [ ] Iteración 1: [x] A · [x] B · [x] C · [x] D · [x] E · [x] F · [x] G · [x] Design System
