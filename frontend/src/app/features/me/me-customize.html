@@ -29,30 +29,7 @@
     }
   </div>
 
-  @if (p.markWith === 'colors') {
-    <p class="label">{{ t.subjectColors }}</p>
-    <ul class="list">
-      @for (s of subjects(); track s.id) {
-        <li>
-          <button
-            type="button"
-            class="row"
-            [attr.aria-expanded]="openSubject() === s.id"
-            [attr.aria-label]="t.colorOf(s.name) + ': ' + t.colorNames[s.colorToken]"
-            (click)="openSubject.set(openSubject() === s.id ? null : s.id)"
-          >
-            <ap-subject-dot [color]="s.colorToken" [size]="20" />
-            <span class="name">{{ s.name }}</span>
-            <span class="value">{{ t.colorNames[s.colorToken] }}</span>
-            <ap-icon [name]="openSubject() === s.id ? 'expand_less' : 'expand_more'" />
-          </button>
-          @if (openSubject() === s.id) {
-            <ap-swatch-picker class="swatches" [label]="t.colorOf(s.name)" [value]="s.colorToken" (valueChange)="setColor(s, $event)" />
-          }
-        </li>
-      }
-    </ul>
-  } @else {
+  @if (p.markWith === 'tags') {
     <p class="label">{{ t.visibleTags }}</p>
     <ul class="list">
       @for (tag of t.tags; track tag.key) {
@@ -66,4 +43,44 @@
       }
     </ul>
   }
+
+  <p class="label">{{ p.markWith === 'colors' ? t.subjectColors : t.subjectsLabel }}</p>
+  <ul class="list">
+    @for (s of subjects(); track s.id) {
+      <li>
+        <button type="button" class="row" [attr.aria-label]="t.subjectOptions(s.name)" (click)="openEdit(s)">
+          <ap-subject-dot [color]="s.colorToken" [size]="20" />
+          <span class="name">{{ s.name }}</span>
+          <span class="value">{{ t.colorNames[s.colorToken] }}</span>
+          <ap-icon name="more_vert" />
+        </button>
+      </li>
+    }
+  </ul>
+  <a apButton variant="text" icon="add" class="add-subject" routerLink="/subjects/new" [queryParams]="{ from: 'me' }">{{ t.addSubject }}</a>
 }
+
+<ap-modal [open]="!!editing()" [headline]="t.editSubject" (closed)="closeEdit()">
+  @if (editing(); as s) {
+    <ap-text-field [label]="t.subjectName" name="subjectName" [(ngModel)]="draftName" [error]="nameError()" />
+    <p class="field-label">{{ t.subjectColor }}</p>
+    <ap-swatch-picker [label]="t.colorOf(s.name)" [value]="draftColor()" (valueChange)="draftColor.set($event)" />
+    @if (subjectError()) {
+      <p class="subject-error" role="alert"><ap-icon name="error" [size]="20" />{{ subjectError() }}</p>
+    }
+    <div class="modal-actions">
+      <button apButton type="button" variant="text" class="destructive" icon="delete" (click)="confirmDelete.set(true)">{{ t.deleteSubject }}</button>
+      <button apButton type="button" variant="filled" [disabled]="saving()" (click)="saveSubject()">{{ t.saveSubject }}</button>
+    </div>
+  }
+</ap-modal>
+
+<ap-dialog
+  [open]="confirmDelete()"
+  [headline]="t.deleteSubject"
+  [text]="editing() ? t.deleteSubjectQuestion(editing()!.name) : null"
+  [confirmLabel]="t.deleteSubjectConfirm"
+  [destructive]="true"
+  (cancel)="confirmDelete.set(false)"
+  (confirm)="deleteSubject()"
+/>

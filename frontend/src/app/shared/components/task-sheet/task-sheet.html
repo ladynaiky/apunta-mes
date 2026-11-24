@@ -53,23 +53,6 @@
         </div>
       }
 
-      @case ('edit') {
-        <h2 id="sheet-title" #title tabindex="-1" class="visually-hidden">{{ t.edit }}: {{ e.title }}</h2>
-        <div class="form">
-          <ap-text-field [label]="kind()" name="title" [(ngModel)]="draftTitle" />
-          <div>
-            <p class="label">{{ t.date }}</p>
-            <ap-month-picker [value]="draftDate()" [today]="today()" (valueChange)="draftDate.set($event)" />
-          </div>
-          <div>
-            <p class="label">{{ t.tags }}</p>
-            <button apChip type="button" [selected]="draftPriority()" (click)="draftPriority.set(!draftPriority())">
-              {{ ca.task.highPriority }}
-            </button>
-          </div>
-          <ap-text-field [label]="t.notes" [placeholder]="t.notesPlaceholder" name="notes" [(ngModel)]="draftNotes" />
-        </div>
-      }
 
       @case ('delete') {
         <h2 id="sheet-title" #title tabindex="-1">{{ e.title }}</h2>
@@ -88,11 +71,11 @@
           apButton
           type="button"
           variant="filled"
-          [disabled]="saving() || (mode() === 'edit' && !draftTitle().trim())"
+          [disabled]="saving()"
           [attr.aria-busy]="saving()"
           (click)="confirm()"
         >
-          {{ mode() === 'delete' ? t.delete : t.accept }}
+          {{ t.delete }}
         </button>
       </footer>
     } @else {

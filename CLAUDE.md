@@ -395,6 +395,14 @@ Bloque D (hecho):
 - Compartir: debajo, la lista «Tasques ja compartides» (`GET /entries?shared=true`, solo pendientes) con su estado vacío y de error. Se recarga con `store.changes`.
 - Roles: `student, student_f, father, mother, tutor_m, tutor_f, teacher_m, teacher_f` (+ `other` en contactos). `parent` y `teacher` (los de antes) se aceptan y se muestran como «Pare/Mare» y «Professor/a». Los grupos de Compartir son Alumnes / Família / Professors / Altres (`roleGroup` en `shared/utils/roles.ts`). Contactos de demo con los roles nuevos.
 
+Bloque E (hecho):
+- `ap-modal` (shared/components/modal): modal centrado sobre `<dialog>` nativo, con velo oscuro y X arriba a la derecha (decisión 8). Lo reutilizará el bloque F.
+- Personalitzar: la lista de asignaturas se ve siempre. Cada fila abre «Editar assignatura» (nombre, color, Desar, Esborrar l'assignatura) y hay un enlace «Nova assignatura». Borrar pide confirmación; con cosas apuntadas, la API responde 409 SUBJECT_IN_USE y el aviso sale dentro del modal (decisión 4).
+- Editar: ruta `/entries/:id/edit` con `NewEntryPage` en modo edición: todos los campos rellenos, sin pestañas de tipo, «Desar els canvis», «Prioritat alta» (solo al editar) y vuelta atrás con «Canvis desats». El PATCH no envía `type`, porque la API no lo acepta. En un examen con nombre automático («Examen de X»), el nombre sigue a la asignatura.
+- La hoja de la tarea ya no tiene el formulario corto: «Editar» abre la pantalla de edición.
+- Los errores de campos que no se ven en el formulario se muestran arriba de los botones.
+- Los botones de texto destructivos (`.destructive`) salen en rojo de error, también en los diálogos.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
@@ -405,4 +413,4 @@ Bloque D (hecho):
 - [x] 6. Niveles 2 y 3
 - [x] 7. Flujos transversales y estados
 - [x] 8. Despliegue (Render + Atlas)
-- [ ] Iteración 1: [x] A · [x] B · [x] C · [x] D · [ ] E · [ ] F · [ ] G · [ ] Design System
+- [ ] Iteración 1: [x] A · [x] B · [x] C · [x] D · [x] E · [ ] F · [ ] G · [ ] Design System

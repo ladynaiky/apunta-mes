@@ -46,6 +46,11 @@ export const routes: Routes = [
 
       // 6A · Apuntar
       {
+        // Iteración 1 (#8): editar con la pantalla de Apuntar
+        path: 'entries/:id/edit',
+        loadComponent: () => import('./features/new-entry/new-entry-page').then((m) => m.NewEntryPage),
+      },
+      {
         path: 'new/:type',
         loadComponent: () => import('./features/new-entry/new-entry-page').then((m) => m.NewEntryPage),
       },

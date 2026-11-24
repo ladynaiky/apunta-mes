@@ -66,6 +66,8 @@
   color: var(--color-primary);
 }
 :host(.v-text) { color: var(--color-primary); }
+/* Acción destructiva de texto (diálogos y modales): en rojo de error. */
+:host(.v-text.destructive) { color: var(--color-error); }
 :host(.v-text.s-s) { padding: 0 var(--space-150); }
 :host(.v-tonal-error) { background: var(--color-error-container); color: var(--color-on-error-container); }
 

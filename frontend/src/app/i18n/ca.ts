@@ -205,6 +205,20 @@ export const ca = {
     markOptions: { colors: 'Colors', tags: 'Etiquetes' },
     preview: 'Així es veuran les tasques',
     subjectColors: 'Color de cada assignatura',
+    subjectsLabel: 'Assignatures', // (nou)
+    subjectOptions: (name: string) => `Editar o esborrar ${name}`, // (nou)
+    editSubject: 'Editar assignatura', // (nou)
+    subjectName: 'Nom', // (nou)
+    subjectColor: 'Color', // (nou)
+    subjectNameRequired: 'Escriu el nom de l’assignatura.', // (nou)
+    saveSubject: 'Desar', // (nou)
+    deleteSubject: 'Esborrar l’assignatura', // (nou)
+    deleteSubjectQuestion: (name: string) => `Vols esborrar ${name}? No es podrà recuperar.`, // (nou)
+    deleteSubjectConfirm: 'Esborrar', // (nou)
+    subjectInUse: 'Aquesta assignatura té coses apuntades. Esborra-les o canvia-les d’assignatura abans.', // (nou)
+    subjectSaved: 'Assignatura desada', // (nou)
+    subjectDeleted: 'Assignatura esborrada', // (nou)
+    addSubject: 'Nova assignatura', // (nou)
     colorOf: (name: string) => `Color de ${name}`,
     colorNames: {
       taronja: 'Taronja',
@@ -260,6 +274,11 @@ export const ca = {
   newEntry: {
     titles: { task: 'Apuntar nova tasca', exam: 'Apuntar examen', trip: 'Apuntar excursió', birthday: 'Apuntar aniversari' } as Record<string, string>,
     confirm: { task: 'Confirmar tasca', exam: 'Desar l’examen', trip: 'Desar l’excursió', birthday: 'Desar l’aniversari' } as Record<string, string>,
+    editTitles: { task: 'Editar tasca', exam: 'Editar examen', trip: 'Editar excursió', birthday: 'Editar aniversari' } as Record<string, string>, // (nou)
+    saveChanges: 'Desar els canvis', // (nou)
+    saved: 'Canvis desats', // (nou)
+    priority: 'Etiquetes', // (nou)
+    loadError: 'No s’ha pogut carregar per editar-la', // (nou)
     tabs: { task: 'Tasca', exam: 'Exàmens', trip: 'Excursions', birthday: 'Aniversaris' } as Record<string, string>,
     tabsLabel: 'Tipus',
     subjects: 'Assignatures',
@@ -481,6 +500,7 @@ export const apiErrors: Record<string, string> = {
   'personName.required': 'Escriu qui fa anys.', // (nou)
   'colorToken.required': 'Tria un color.', // (nou)
   SUBJECT_EXISTS: 'Ja tens una assignatura amb aquest nom.', // (nou)
+  SUBJECT_IN_USE: 'Aquesta assignatura té coses apuntades. Esborra-les o canvia-les d’assignatura abans.', // (nou)
   NETWORK: 'No s’ha pogut connectar amb el servidor. Comprova la connexió i torna-ho a provar.', // (nou)
   SERVER: 'Alguna cosa no ha anat bé. Torna-ho a provar d’aquí a una estona.', // (nou)
 };

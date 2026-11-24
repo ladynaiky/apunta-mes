@@ -1,8 +1,12 @@
-<ap-top-bar [title]="t.titles[type()]" (back)="cancel()" />
+<ap-top-bar [title]="editing() ? t.editTitles[type()] : t.titles[type()]" (back)="cancel()" />
 
 <ion-content>
   <form class="page" novalidate (ngSubmit)="submit()">
-    <!-- Pestañas por tipo (con icono) -->
+    @if (loadError()) {
+      <p class="error" role="alert"><ap-icon name="error" [size]="20" />{{ t.loadError }}</p>
+    }
+    <!-- Pestañas por tipo (con icono). Al editar, el tipo no cambia. -->
+    @if (!editId()) {
     <div class="type-tabs" role="tablist" [attr.aria-label]="t.tabsLabel">
       @for (k of types; track k) {
         <button
@@ -17,6 +21,7 @@
         </button>
       }
     </div>
+    }
 
     <!-- Asignatura (tarea y examen) -->
     @if (type() === 'task' || type() === 'exam') {
@@ -202,6 +207,16 @@
       }
     </div>
 
+    <!-- Editar: «Prioritat alta» (antes estaba en la hoja de la tarea) -->
+    @if (editing() && type() !== 'birthday') {
+      <div class="priority">
+        <p class="label">{{ t.priority }}</p>
+        <button apChip type="button" [selected]="highPriority()" [attr.aria-pressed]="highPriority()" (click)="highPriority.set(!highPriority())">
+          {{ ca.task.highPriority }}
+        </button>
+      </div>
+    }
+
     @if (formError(); as message) {
       <p class="error" role="alert"><ap-icon name="error" [size]="20" />{{ message }}</p>
     }
@@ -209,7 +224,7 @@
     <div class="actions">
       <button apButton type="button" variant="outlined" size="m" icon="close" (click)="cancel()">{{ ca.common.cancel }}</button>
       <button apButton type="submit" variant="filled" size="m" icon="check" [disabled]="sending()" [attr.aria-busy]="sending()">
-        {{ t.confirm[type()] }}
+        {{ editing() ? t.saveChanges : t.confirm[type()] }}
       </button>
     </div>
   </form>

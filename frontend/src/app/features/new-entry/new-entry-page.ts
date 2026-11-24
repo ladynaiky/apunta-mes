@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { IonContent, NavController, ViewWillEnter } from '@ionic/angular';
 import { toApiError } from '../../core/api/api-error';
 import { ApiService } from '../../core/data/api.service';
-import type { CheckItem, EntryInput, EntryType } from '../../core/data/models';
+import type { CheckItem, Entry, EntryInput, EntryType } from '../../core/data/models';
 import { TasksStore } from '../../core/data/tasks.store';
 import { TodayService } from '../../core/data/today.service';
 import { apiErrors, ca } from '../../i18n/ca';
@@ -17,6 +17,7 @@ import { Icon } from '../../shared/components/icon/icon';
 import { IconButton } from '../../shared/components/icon-button/icon-button';
 import { MonthPicker } from '../../shared/components/month-picker/month-picker';
 import { Select, type SelectOption } from '../../shared/components/select/select';
+import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
 import { TextField } from '../../shared/components/text-field/text-field';
 import { TopBar } from '../../shared/components/top-bar/top-bar';
 import { shortDate } from '../../shared/utils/dates-ca';
@@ -62,12 +63,15 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
   readonly typeParam = input<string>('task', { alias: 'type' });
   readonly from = input<string | undefined>();
   readonly dateParam = input<string | undefined>(undefined, { alias: 'date' });
+  /** /entries/:id/edit → editar (iteración 1, #8). */
+  readonly editId = input<string | undefined>(undefined, { alias: 'id' });
 
   private readonly api = inject(ApiService);
   private readonly store = inject(TasksStore);
   private readonly todayService = inject(TodayService);
   private readonly nav = inject(NavController);
   private readonly location = inject(Location);
+  private readonly snackbar = inject(SnackbarService);
   protected readonly t = ca.newEntry;
   protected readonly ca = ca;
   protected readonly types = TYPES;
@@ -95,6 +99,10 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
   protected readonly personName = signal('');
   protected readonly age = signal('');
   protected readonly relation = signal<'friend' | 'family' | 'class'>('friend');
+  protected readonly highPriority = signal(false);
+  /** Lo que se está editando (null = apuntar algo nuevo). */
+  protected readonly editing = signal<Entry | null>(null);
+  protected readonly loadError = signal(false);
 
   // Avís
   protected readonly reminderDays = signal(REMINDER_OPTIONS.task.default);
@@ -141,6 +149,37 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
     this.reminderDays.set(REMINDER_OPTIONS[type].default);
     this.today.set(await this.todayService.load());
     if (this.dateParam()) this.date.set(this.dateParam()!);
+    if (this.editId()) await this.loadForEdit(this.editId()!);
+  }
+
+  /** Rellena el formulario con todo lo que se apuntó. */
+  private async loadForEdit(id: string): Promise<void> {
+    try {
+      const e = await this.api.entry(id);
+      this.editing.set(e);
+      this.type.set(e.type);
+      this.subjectId.set(e.subject?.id ?? null);
+      this.title.set(e.type === 'birthday' ? '' : e.title);
+      this.date.set(e.date);
+      this.page.set(e.page ?? '');
+      this.activity.set(e.activity ?? '');
+      this.notes.set(e.type === 'birthday' ? (e.giftIdeas ?? '') : (e.notes ?? ''));
+      this.topic.set(e.topic ?? '');
+      if (e.examType) this.examType.set(e.examType);
+      this.toStudy.set(e.toStudy ?? '');
+      if (e.departureTime) this.departureTime.set(e.departureTime);
+      if (e.returnTime) this.returnTime.set(e.returnTime);
+      this.bring.set((e.whatToBring ?? []).map((i) => ({ ...i })));
+      this.personName.set(e.personName ?? '');
+      this.age.set(e.age === null || e.age === undefined ? '' : String(e.age));
+      if (e.relation) this.relation.set(e.relation);
+      this.highPriority.set(e.priority === 'high');
+      this.reminderDays.set(e.reminder?.daysBefore ?? REMINDER_OPTIONS[e.type].default);
+      this.reminderTime.set(e.reminder?.time ?? '08:00');
+      this.reminderTouched = true;
+    } catch {
+      this.loadError.set(true);
+    }
   }
 
   ionViewWillEnter(): void {
@@ -155,6 +194,7 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
   }
 
   protected setType(type: EntryType): void {
+    if (this.editing()) return;
     this.type.set(type);
     if (!this.reminderTouched) this.reminderDays.set(REMINDER_OPTIONS[type].default);
     this.tried.set(false);
@@ -264,6 +304,28 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
     }
 
     this.sending.set(true);
+    const editing = this.editing();
+    if (editing) {
+      try {
+        if (type !== 'birthday') data.priority = this.highPriority() ? 'high' : null;
+        // Examen: si el nombre era el automático («Examen de Mates»), sigue a la asignatura.
+        if (type === 'exam') {
+          const oldName = editing.subject?.name;
+          const newName = this.store.subjects().find((s) => s.id === this.subjectId())?.name;
+          if (newName && (!editing.title || editing.title === `Examen de ${oldName}`)) data.title = `Examen de ${newName}`;
+        }
+        // El tipo no se puede cambiar: la API no acepta `type` al editar.
+        const { type: _type, ...changes } = data;
+        await this.store.update(editing.id, changes);
+        this.snackbar.show(this.t.saved);
+        void this.nav.back();
+      } catch (err) {
+        this.showError(err);
+      } finally {
+        this.sending.set(false);
+      }
+      return;
+    }
     try {
       const created = await this.api.createEntry(data);
       void this.store.load();
@@ -272,11 +334,19 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
         replaceUrl: true,
       });
     } catch (err) {
-      const e = toApiError(err);
-      this.serverErrors.set(e.fields);
-      if (e.code !== 'VALIDATION_ERROR') this.formError.set(e.message);
+      this.showError(err);
     } finally {
       this.sending.set(false);
     }
+  }
+
+  /** Errores de la API: los de los campos visibles van debajo de cada campo; el resto, arriba de los botones. */
+  private showError(err: unknown): void {
+    const e = toApiError(err);
+    this.serverErrors.set(e.fields);
+    const shown = ['subject', 'title', 'personName', 'date'];
+    const hidden = Object.entries(e.fields).find(([k]) => !shown.includes(k));
+    if (e.code !== 'VALIDATION_ERROR') this.formError.set(e.message);
+    else if (hidden) this.formError.set(hidden[1]);
   }
 }

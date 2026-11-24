@@ -12,7 +12,6 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { toApiError } from '../../../core/api/api-error';
 import type { Entry } from '../../../core/data/models';
@@ -20,24 +19,20 @@ import { TasksStore } from '../../../core/data/tasks.store';
 import { ca } from '../../../i18n/ca';
 import { dueLabel } from '../../utils/dates-ca';
 import { Button } from '../button/button';
-import { Chip } from '../chip/chip';
 import { Icon } from '../icon/icon';
 import { IconButton } from '../icon-button/icon-button';
-import { MonthPicker } from '../month-picker/month-picker';
-import { SnackbarService } from '../snackbar/snackbar.service';
 import { SubjectDot } from '../subject-dot/subject-dot';
-import { TextField } from '../text-field/text-field';
 
-type Mode = 'view' | 'edit' | 'delete';
+type Mode = 'view' | 'delete';
 
 /**
  * Hoja inferior de una tarea (bottom sheet modal del Design System):
- * ver el detalle, editar (nombre, fecha, prioridad, notas) y confirmar el borrado.
+ * ver el detalle, ir a «Editar» (pantalla completa, iteración 1) y confirmar el borrado.
  * Se abre con ⋮ o tocando la fila; Escape y el velo la cierran.
  */
 @Component({
   selector: 'ap-task-sheet',
-  imports: [FormsModule, Button, Chip, Icon, IconButton, MonthPicker, SubjectDot, TextField],
+  imports: [Button, Icon, IconButton, SubjectDot],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './task-sheet.html',
   styleUrl: './task-sheet.scss',
@@ -50,7 +45,6 @@ export class TaskSheet {
   readonly closed = output<void>();
 
   private readonly store = inject(TasksStore);
-  private readonly snackbar = inject(SnackbarService);
   private readonly router = inject(Router);
   private readonly injector = inject(Injector);
   private readonly titleEl = viewChild<ElementRef<HTMLElement>>('title');
@@ -61,10 +55,6 @@ export class TaskSheet {
   protected readonly mode = signal<Mode>('view');
   protected readonly saving = signal(false);
   protected readonly error = signal<string | null>(null);
-  protected readonly draftTitle = signal('');
-  protected readonly draftDate = signal('');
-  protected readonly draftPriority = signal(false);
-  protected readonly draftNotes = signal('');
 
   protected readonly today = this.store.today;
   protected readonly due = computed(() => {
@@ -84,14 +74,11 @@ export class TaskSheet {
     });
   }
 
+  /** Iteración 1 (#8): editar todos los campos en la pantalla de Apuntar. */
   protected startEdit(): void {
     const e = this.entry()!;
-    this.draftTitle.set(e.title);
-    this.draftDate.set(e.date);
-    this.draftPriority.set(e.priority === 'high');
-    this.draftNotes.set(e.notes);
-    this.error.set(null);
-    this.mode.set('edit');
+    this.close();
+    void this.router.navigate(['/entries', e.id, 'edit'], { queryParams: { from: this.from() } });
   }
 
   protected share(): void {
@@ -104,17 +91,7 @@ export class TaskSheet {
     this.saving.set(true);
     this.error.set(null);
     try {
-      if (this.mode() === 'edit') {
-        await this.store.update(e.id, {
-          title: this.draftTitle().trim(),
-          date: this.draftDate(),
-          priority: this.draftPriority() ? 'high' : null,
-          notes: this.draftNotes(),
-        });
-        this.snackbar.show(this.t.saved);
-      } else {
-        await this.store.remove(e);
-      }
+      await this.store.remove(e);
       this.close();
     } catch (err) {
       const apiError = toApiError(err);

@@ -5,7 +5,12 @@ import { ApiService } from '../../core/data/api.service';
 import type { GroupBy, MarkWith, Preferences, Subject, TagKey } from '../../core/data/models';
 import { TasksStore } from '../../core/data/tasks.store';
 import { ca } from '../../i18n/ca';
+import { RouterLink } from '@angular/router';
+import { Button } from '../../shared/components/button/button';
 import { ButtonGroup } from '../../shared/components/button-group/button-group';
+import { Dialog } from '../../shared/components/dialog/dialog';
+import { Modal } from '../../shared/components/modal/modal';
+import { TextField } from '../../shared/components/text-field/text-field';
 import { Icon } from '../../shared/components/icon/icon';
 import { Select, type SelectOption } from '../../shared/components/select/select';
 import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
@@ -15,10 +20,13 @@ import { SwatchPicker } from '../../shared/components/swatch-picker/swatch-picke
 import { Switch } from '../../shared/components/switch/switch';
 import type { SubjectColorToken } from '../../shared/utils/task-title';
 
-/** El meu espai · Personalitzar: agrupar, marcar con colores o etiquetas. Se guarda al momento. */
+/**
+ * El meu espai · Personalitzar: agrupar, marcar con colores o etiquetas (se guarda al momento)
+ * y editar o esborrar las asignaturas en un modal (iteración 1).
+ */
 @Component({
   selector: 'ap-me-customize',
-  imports: [FormsModule, ButtonGroup, Icon, Select, StateMessage, SubjectDot, SwatchPicker, Switch],
+  imports: [FormsModule, RouterLink, Button, ButtonGroup, Dialog, Icon, Modal, Select, StateMessage, SubjectDot, SwatchPicker, Switch, TextField],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './me-customize.html',
   styleUrl: './me-customize.scss',
@@ -32,7 +40,17 @@ export class MeCustomize implements OnInit {
 
   protected readonly status = signal<'loading' | 'ready' | 'error'>('loading');
   protected readonly prefs = signal<Preferences | null>(null);
-  protected readonly openSubject = signal<string | null>(null);
+  // Modal «Editar assignatura»
+  protected readonly editing = signal<Subject | null>(null);
+  protected readonly draftName = signal('');
+  protected readonly draftColor = signal<SubjectColorToken | null>(null);
+  protected readonly tried = signal(false);
+  protected readonly saving = signal(false);
+  protected readonly subjectError = signal<string | null>(null);
+  protected readonly confirmDelete = signal(false);
+  protected readonly nameError = computed(() =>
+    this.tried() && !this.draftName().trim() ? this.t.subjectNameRequired : null,
+  );
   protected readonly subjects = this.store.subjects;
 
   protected readonly groupOptions: SelectOption<GroupBy>[] = (['subjects', 'priority', 'date'] as GroupBy[]).map(
@@ -76,12 +94,51 @@ export class MeCustomize implements OnInit {
     void this.save({ visibleTags: on ? [...tags, key as TagKey] : tags });
   }
 
-  protected async setColor(subject: Subject, colorToken: SubjectColorToken): Promise<void> {
+  protected openEdit(subject: Subject): void {
+    this.editing.set(subject);
+    this.draftName.set(subject.name);
+    this.draftColor.set(subject.colorToken);
+    this.tried.set(false);
+    this.subjectError.set(null);
+  }
+
+  protected closeEdit(): void {
+    this.editing.set(null);
+    this.confirmDelete.set(false);
+  }
+
+  protected async saveSubject(): Promise<void> {
+    const subject = this.editing();
+    this.tried.set(true);
+    if (!subject || this.nameError()) return;
+    this.saving.set(true);
+    this.subjectError.set(null);
     try {
-      await this.api.updateSubject(subject.id, { colorToken });
+      await this.api.updateSubject(subject.id, { name: this.draftName().trim(), colorToken: this.draftColor() ?? subject.colorToken });
       await this.store.load();
+      this.store.changes.update((n) => n + 1);
+      this.closeEdit();
+      this.snackbar.show(this.t.subjectSaved);
     } catch (err) {
-      this.snackbar.show(toApiError(err).message);
+      this.subjectError.set(toApiError(err).message);
+    } finally {
+      this.saving.set(false);
+    }
+  }
+
+  /** Decisión 4: si tiene cosas apuntadas, el backend responde 409 SUBJECT_IN_USE y se avisa. */
+  protected async deleteSubject(): Promise<void> {
+    const subject = this.editing();
+    this.confirmDelete.set(false);
+    if (!subject) return;
+    try {
+      await this.api.deleteSubject(subject.id);
+      await this.store.load();
+      this.store.changes.update((n) => n + 1);
+      this.closeEdit();
+      this.snackbar.show(this.t.subjectDeleted);
+    } catch (err) {
+      this.subjectError.set(toApiError(err).message);
     }
   }
 

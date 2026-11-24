@@ -76,6 +76,7 @@ ion-content { flex: 1; }
 .time.big { width: 100%; height: var(--size-text-field); }
 .mini:focus, .time:focus, .bring-input:focus { outline: none; border: 2px solid var(--color-primary); padding: 0 11px; }
 
+.priority { margin-top: var(--space-200); }
 .label { margin: 0 0 var(--space-100); color: var(--color-on-surface); font: 500 14px/20px var(--font-text); }
 .chips { display: flex; flex-wrap: wrap; gap: var(--space-100); }
 

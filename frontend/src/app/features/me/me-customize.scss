@@ -35,9 +35,14 @@
 .row:hover { background: rgb(28 27 27 / var(--opacity-state-hover)); }
 .row .name { flex: 1; font: 400 16px/24px var(--font-text); }
 .row .value { color: var(--color-on-surface-variant); font: 400 14px/20px var(--font-text); }
-.swatches { display: block; padding: var(--space-50) 0 var(--space-150); }
 
 .tag-row { display: flex; align-items: center; justify-content: space-between; min-height: var(--size-list-item-two-line); }
 .tag-row .text { display: flex; flex-direction: column; }
 .tag-row .name { font: 500 14px/20px var(--font-text); color: var(--color-on-surface-variant); }
 .tag-row .desc { font: 400 14px/20px var(--font-text); color: var(--color-on-surface-variant); }
+
+.add-subject { align-self: flex-start; margin-top: var(--space-50); }
+.field-label { margin: 0; color: var(--color-on-surface-variant); font: 500 14px/20px var(--font-text); }
+.subject-error { display: flex; gap: var(--space-100); margin: 0; color: var(--color-error); font: 400 14px/20px var(--font-text); }
+.modal-actions { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-100); margin-top: var(--space-100); }
+.destructive { color: var(--color-error); }
