@@ -55,3 +55,8 @@ body {
     contain: layout size style;
   }
 }
+
+/* Cada página tiene el fondo de la app (si no, se ve el fondo del marco). */
+.ion-page {
+  background: var(--color-surface);
+}

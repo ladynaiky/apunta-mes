@@ -59,8 +59,9 @@ describe.skipIf(!hasTestDb)('Datos de demo (e2e)', () => {
     // Solo pendientes: los días 2 y 3 solo tienen tareas hechas y no salen.
     expect(days).toEqual({
       '04': 3,
-      '05': 2,
       '06': 1,
+      '10': 1,
+      '11': 1,
       '12': 1,
       '13': 1,
       '17': 1,

@@ -1,0 +1,73 @@
+<ap-top-bar [title]="ca.app.name" [brand]="true" [showBack]="false" [showProfile]="true" [pending]="store.pendingToday()" />
+<ap-progress [active]="store.status() === 'loading'" />
+
+<ion-content>
+  <main class="page">
+    <header class="hello">
+      <h2>{{ hello }}</h2>
+      <p>{{ todayText() }}</p>
+    </header>
+
+    @if (store.status() === 'error') {
+      <ap-state-message kind="error" [title]="t.loadError" [text]="ca.state.checkConnection" (retry)="store.load()" />
+    } @else if (store.status() === 'ready' || store.todayEntries().length) {
+      @if (chips().length) {
+        <section class="subjects" [attr.aria-label]="t.subjectsLabel">
+          <h3>{{ t.subjects }}</h3>
+          <div class="chips">
+            @for (c of chips(); track c.subject.id) {
+              <button
+                apChip
+                [subjectColor]="c.subject.colorToken"
+                [selected]="filter() === c.subject.id"
+                [count]="c.count"
+                (click)="toggleFilter(c.subject.id)"
+              >
+                {{ c.subject.name }}
+              </button>
+            }
+            <a apIconButton routerLink="/subjects/new" [queryParams]="{ from: 'home' }" icon="add" [label]="t.newSubject"></a>
+          </div>
+        </section>
+      }
+
+      <section aria-labelledby="today-title" class="list">
+        <ap-section-header [title]="t.todayTasks" headingId="today-title" />
+        @for (e of todayList(); track e.id) {
+          <ap-task-row
+            [subjectName]="e.subject?.name ?? null"
+            [subjectColor]="e.subject?.colorToken ?? null"
+            [title]="e.title"
+            [done]="e.done"
+            [highPriority]="e.priority === 'high'"
+            (doneChange)="store.setDone(e, $event)"
+            (open)="open(e)"
+            (menu)="open(e)"
+          />
+        } @empty {
+          <ap-state-message [title]="t.noToday" [text]="t.noTodayText" />
+        }
+      </section>
+
+      @if (weekList().length) {
+        <section aria-labelledby="week-title" class="list">
+          <ap-section-header [title]="t.weekTasks" headingId="week-title" />
+          @for (e of weekList(); track e.id) {
+            <ap-task-row
+              [subjectName]="e.subject?.name ?? null"
+              [subjectColor]="e.subject?.colorToken ?? null"
+              [title]="weekTitle(e)"
+              [done]="e.done"
+              [highPriority]="e.priority === 'high'"
+              (doneChange)="store.setDone(e, $event)"
+              (open)="open(e)"
+              (menu)="open(e)"
+            />
+          }
+        </section>
+      }
+    }
+  </main>
+</ion-content>
+
+<ap-fab from="home" />

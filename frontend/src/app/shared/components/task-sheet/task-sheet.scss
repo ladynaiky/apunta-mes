@@ -1,0 +1,136 @@
+/* Fixed dentro de ion-app (que tiene `contain: layout`): en el ordenador, la hoja no se sale del marco del móvil. */
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgb(0 0 0 / var(--opacity-scrim));
+  animation: fade var(--motion-effects);
+}
+
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 41;
+  box-sizing: border-box;
+  max-height: 90%;
+  overflow-y: auto;
+  padding: var(--space-100) var(--space-300) calc(var(--space-300) + env(safe-area-inset-bottom));
+  border-radius: var(--shape-corner-extra-large) var(--shape-corner-extra-large) 0 0;
+  background: var(--color-surface-container-low);
+  box-shadow: var(--elevation-level1);
+  animation: up var(--motion-spatial-default);
+}
+
+.handle {
+  width: 32px;
+  height: 4px;
+  margin: 0 auto var(--space-200);
+  border-radius: var(--shape-corner-full);
+  background: rgb(67 72 68 / var(--opacity-drag-handle));
+}
+
+.close { position: absolute; top: var(--space-150); right: var(--space-100); }
+
+.subject {
+  display: flex;
+  align-items: center;
+  gap: var(--space-100);
+  margin: 0 0 var(--space-50);
+  color: var(--color-on-surface-variant);
+  font: 500 14px/20px var(--font-text);
+}
+
+h2 {
+  margin: 0 var(--space-500) var(--space-100) 0;
+  font: 600 22px/28px var(--font-title);
+  color: var(--color-on-surface);
+  outline: none;
+}
+
+.tag-priority {
+  display: inline-flex;
+  height: 20px;
+  align-items: center;
+  padding: 0 var(--space-100);
+  border-radius: var(--shape-corner-full);
+  background: var(--color-priority-container);
+  color: var(--color-on-priority-container);
+  font: 500 12px/16px var(--font-text);
+}
+
+.info,
+.bring {
+  margin: var(--space-200) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.info li,
+.bring li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-200);
+  min-height: 40px;
+  font: 400 16px/24px var(--font-text);
+  letter-spacing: 0.5px;
+}
+.info ap-icon,
+.bring ap-icon { color: var(--color-on-surface-variant); }
+.bring li { min-height: 32px; font-size: 14px; }
+
+.label {
+  margin: var(--space-200) 0 var(--space-100);
+  color: var(--color-on-surface-variant);
+  font: 600 14px/20px var(--font-title);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-100);
+  margin-top: var(--space-300);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-200);
+  padding-top: var(--space-100);
+}
+.form .label { margin-top: 0; }
+
+.banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-150);
+  margin: var(--space-200) 0;
+  padding: var(--space-200);
+  border-radius: var(--shape-corner-large);
+  background: var(--color-error-container);
+  color: var(--color-on-error-container);
+  font: 400 14px/20px var(--font-text);
+}
+
+.error {
+  display: flex;
+  gap: var(--space-100);
+  margin: var(--space-200) 0 0;
+  color: var(--color-error);
+  font: 400 14px/20px var(--font-text);
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-100);
+  margin-top: var(--space-300);
+  padding-top: var(--space-200);
+  border-top: 1px solid var(--color-outline-variant);
+}
+
+@keyframes up { from { transform: translateY(100%); } }
+@keyframes fade { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .sheet { animation: fade var(--motion-effects); }
+}

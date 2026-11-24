@@ -1,0 +1,37 @@
+<ap-top-bar [title]="t.title" [showBack]="false" [showProfile]="true" [pending]="store.pendingToday()" />
+<ap-progress [active]="status() === 'loading'" />
+
+<ion-content>
+  <main class="page">
+    <ap-button-group [label]="t.viewLabel" [options]="views" value="week" (valueChange)="changeView($event)" />
+
+    @if (status() === 'error') {
+      <ap-state-message kind="error" [title]="t.loadError" [text]="ca.state.checkConnection" (retry)="load()" />
+    } @else {
+      <section class="week" aria-labelledby="week-title">
+        <h2 id="week-title">{{ title() }}</h2>
+        @if (days().length) {
+          <ap-week-calendar
+            [days]="days()"
+            [today]="today()"
+            [selected]="today()"
+            [dots]="dots()"
+            [ariaLabel]="dayLabel"
+            (select)="openDay($event)"
+          />
+        }
+      </section>
+    }
+
+    <nav class="links">
+      <a apNavListItem routerLink="/search" [queryParams]="{ from: 'calendar' }" icon="search">{{ t.search }}</a>
+      <a apNavListItem routerLink="/exams" [queryParams]="{ from: 'calendar' }" icon="lightbulb">{{ t.exams }}</a>
+      <a apNavListItem routerLink="/trips" [queryParams]="{ from: 'calendar' }" icon="landscape">{{ t.trips }}</a>
+      <a apNavListItem routerLink="/tasks/today" [queryParams]="{ from: 'calendar' }" icon="event_available">
+        {{ t.todayOrWeek }}
+      </a>
+    </nav>
+  </main>
+</ion-content>
+
+<ap-fab from="calendar" [date]="today() || null" />

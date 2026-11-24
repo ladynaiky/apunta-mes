@@ -1,13 +1,15 @@
 :host {
   position: absolute;
   right: var(--space-200);
-  bottom: calc(var(--size-navigation-bar) + var(--space-200) + env(safe-area-inset-bottom));
+  bottom: var(--fab-bottom, calc(var(--size-navigation-bar) + var(--space-200) + env(safe-area-inset-bottom)));
   z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: var(--space-100);
+  transition: transform var(--motion-spatial-default);
 }
+:host(.lifted) { transform: translateY(calc(-48px - var(--space-100))); }
 
 .fab {
   position: relative;

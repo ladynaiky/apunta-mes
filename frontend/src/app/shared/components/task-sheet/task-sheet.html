@@ -1,0 +1,102 @@
+@if (entry(); as e) {
+  <div class="scrim" (click)="close()" aria-hidden="true"></div>
+  <section class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <div class="handle" aria-hidden="true"></div>
+
+    @switch (mode()) {
+      @case ('view') {
+        @if (e.subject) {
+          <p class="subject"><ap-subject-dot [color]="e.subject.colorToken" />{{ e.subject.name }}</p>
+        }
+        <h2 id="sheet-title" #title tabindex="-1">{{ e.title }}</h2>
+        @if (e.priority === 'high') {
+          <span class="tag-priority">{{ ca.task.highPriority }}</span>
+        }
+        <ul class="info">
+          <li><ap-icon name="calendar_today" />{{ due() }}</li>
+          @if (e.reminder) {
+            <li><ap-icon name="notifications" />{{ t.reminder(e.reminder.daysBefore, e.reminder.time) }}</li>
+          }
+          @if (e.page) {
+            <li><ap-icon name="menu_book" />{{ t.page(e.page) }}</li>
+          }
+          @if (e.type === 'exam') {
+            <li><ap-icon name="lightbulb" />{{ t.examType[e.examType ?? 'written'] }}</li>
+            @if (e.topic) {
+              <li><ap-icon name="topic" />{{ t.topic(e.topic) }}</li>
+            }
+          }
+          @if (e.type === 'trip') {
+            @if (e.place) {
+              <li><ap-icon name="location_on" />{{ e.place }}</li>
+            }
+            @if (e.departureTime) {
+              <li><ap-icon name="schedule" />{{ t.tripTimes(e.departureTime, e.returnTime) }}</li>
+            }
+          }
+          <li><ap-icon name="notes" />{{ e.notes || t.noNotes }}</li>
+        </ul>
+        @if (e.whatToBring.length) {
+          <h3 class="label">{{ t.whatToBring }}</h3>
+          <ul class="bring">
+            @for (item of e.whatToBring; track item.name) {
+              <li><ap-icon [name]="item.done ? 'check_box' : 'check_box_outline_blank'" [size]="20" />{{ item.name }}</li>
+            }
+          </ul>
+        }
+        <div class="actions">
+          <button apButton type="button" variant="tonal" size="m" icon="edit" (click)="startEdit()">{{ t.edit }}</button>
+          <button apButton type="button" variant="tonal" size="m" icon="share" (click)="share()">{{ t.share }}</button>
+          <button apButton type="button" variant="tonal-error" size="m" icon="delete" (click)="mode.set('delete')">
+            {{ t.delete }}
+          </button>
+        </div>
+      }
+
+      @case ('edit') {
+        <h2 id="sheet-title" #title tabindex="-1" class="visually-hidden">{{ t.edit }}: {{ e.title }}</h2>
+        <div class="form">
+          <ap-text-field [label]="kind()" name="title" [(ngModel)]="draftTitle" />
+          <div>
+            <p class="label">{{ t.date }}</p>
+            <ap-month-picker [value]="draftDate()" [today]="today()" (valueChange)="draftDate.set($event)" />
+          </div>
+          <div>
+            <p class="label">{{ t.tags }}</p>
+            <button apChip type="button" [selected]="draftPriority()" (click)="draftPriority.set(!draftPriority())">
+              {{ ca.task.highPriority }}
+            </button>
+          </div>
+          <ap-text-field [label]="t.notes" [placeholder]="t.notesPlaceholder" name="notes" [(ngModel)]="draftNotes" />
+        </div>
+      }
+
+      @case ('delete') {
+        <h2 id="sheet-title" #title tabindex="-1">{{ e.title }}</h2>
+        <p class="banner" role="alert"><ap-icon name="warning" />{{ t.deleteQuestion[e.type] }}</p>
+      }
+    }
+
+    @if (error(); as message) {
+      <p class="error" role="alert"><ap-icon name="error" [size]="20" />{{ message }}</p>
+    }
+
+    @if (mode() !== 'view') {
+      <footer>
+        <button apButton type="button" variant="outlined" (click)="mode.set('view')">{{ t.back }}</button>
+        <button
+          apButton
+          type="button"
+          variant="filled"
+          [disabled]="saving() || (mode() === 'edit' && !draftTitle().trim())"
+          [attr.aria-busy]="saving()"
+          (click)="confirm()"
+        >
+          {{ mode() === 'delete' ? t.delete : t.accept }}
+        </button>
+      </footer>
+    } @else {
+      <button apIconButton type="button" class="close" icon="close" [label]="t.close" (click)="close()"></button>
+    }
+  </section>
+}

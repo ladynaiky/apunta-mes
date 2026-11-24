@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ca } from '../../../i18n/ca';
 import { Icon } from '../icon/icon';
+import { SnackbarService } from '../snackbar/snackbar.service';
 
 /**
  * FAB «Apuntar» (verde de marca, esquina 16) con su menú:
@@ -37,11 +38,14 @@ import { Icon } from '../icon/icon';
     </button>
   `,
   styleUrl: './fab.scss',
+  // Si hay un snackbar, el FAB sube para no quedar tapado (MD3).
+  host: { '[class.lifted]': 'snackbar.current() !== null' },
 })
 export class Fab {
   readonly from = input<string | null>(null);
   readonly date = input<string | null>(null);
   protected readonly open = signal(false);
+  protected readonly snackbar = inject(SnackbarService);
   protected readonly t = ca.fab;
   protected readonly items = [
     { type: 'task', icon: 'assignment', label: ca.fab.task },

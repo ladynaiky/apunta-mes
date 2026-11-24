@@ -34,6 +34,8 @@ const isType =
   (...types: EntryType[]) =>
   (o: { type?: EntryType }) =>
     !!o.type && types.includes(o.type);
+/** Campo con contenido (los vacíos de otros tipos de entrada se ignoran). */
+const hasValue = (v: unknown) => v !== undefined && v !== null && v !== '';
 /** Hora HH:mm o vacío. */
 const TIME_OR_EMPTY = new RegExp(`^(${TIME_RE.source.slice(1, -1)})?$`);
 
@@ -78,7 +80,7 @@ export class CreateEntryDto {
 
   @ApiPropertyOptional({ example: 'Exercicis, pàg. 12' })
   @ValidateIf(
-    (o: CreateEntryDto) => isType('task', 'trip')(o) || o.title !== undefined,
+    (o: CreateEntryDto) => isType('task', 'trip')(o) || hasValue(o.title),
   )
   @Transform(trim)
   @MaxLength(120, { message: 'title.maxLength' })
@@ -195,7 +197,7 @@ export class CreateEntryDto {
   // — birthday —
   @ApiPropertyOptional({ example: 'l’Anna', description: 'Qui fa anys?' })
   @ValidateIf(
-    (o: CreateEntryDto) => isType('birthday')(o) || o.personName !== undefined,
+    (o: CreateEntryDto) => isType('birthday')(o) || hasValue(o.personName),
   )
   @Transform(trim)
   @MaxLength(60, { message: 'personName.maxLength' })

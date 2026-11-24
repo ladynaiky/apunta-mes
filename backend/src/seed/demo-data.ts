@@ -53,13 +53,14 @@ export const DEMO_ENTRIES: DemoEntry[] = [
   },
   {
     type: 'task',
-    date: '2026-11-05',
+    // Semana siguiente: en Inici, «Tasques d’aquesta setmana» solo tiene Anglès (diseño).
+    date: '2026-11-10',
     subject: 'Socials',
     title: 'Fer el resum',
   },
   {
     type: 'task',
-    date: '2026-11-05',
+    date: '2026-11-11',
     subject: 'Plàstica',
     title: 'Acabar el dibuix',
   },

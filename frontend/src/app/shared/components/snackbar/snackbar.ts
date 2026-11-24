@@ -23,7 +23,7 @@ import { SnackbarService } from './snackbar.service';
       left: var(--space-200);
       right: var(--space-200);
       bottom: calc(var(--size-navigation-bar) + var(--space-200) + env(safe-area-inset-bottom));
-      z-index: 30;
+      z-index: 50;
       pointer-events: none;
     }
     .snack {

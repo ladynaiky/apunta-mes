@@ -1,0 +1,28 @@
+:host { --fab-bottom: var(--space-200); display: flex; flex-direction: column; height: 100%; }
+ion-content { flex: 1; }
+.page { padding: var(--space-100) var(--size-layout-margin) 96px; }
+
+.hello h2 {
+  margin: 0;
+  color: var(--color-primary);
+  font: 700 26px/32px var(--font-title);
+}
+.hello p {
+  margin: var(--space-25) 0 0;
+  color: var(--color-on-surface-variant);
+  font: 400 16px/22px var(--font-text);
+  letter-spacing: 0.5px;
+}
+
+.subjects { margin-top: var(--space-300); }
+.subjects h3 {
+  margin: 0 0 var(--space-150);
+  color: var(--color-on-surface-variant);
+  font: 500 14px/20px var(--font-text);
+  letter-spacing: 0.1px;
+}
+.chips { display: flex; flex-wrap: wrap; align-items: center; column-gap: var(--space-75); row-gap: var(--space-100); }
+.chips a[apIconButton] { margin: 0; }
+
+.list { margin-top: var(--space-300); }
+.list ap-section-header { display: block; margin-bottom: var(--space-50); }

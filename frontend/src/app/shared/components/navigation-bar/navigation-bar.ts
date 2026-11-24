@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { createAnimation, IonRouterLinkWithHref } from '@ionic/angular';
 import { ca } from '../../../i18n/ca';
 import { Icon } from '../icon/icon';
 
@@ -18,13 +19,15 @@ const ITEMS: { id: NavDestination; icon: string; link: string; label: string }[]
  */
 @Component({
   selector: 'ap-navigation-bar',
-  imports: [RouterLink, Icon],
+  imports: [RouterLink, IonRouterLinkWithHref, Icon],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <nav [attr.aria-label]="'Navegació principal'">
       @for (item of items; track item.id) {
         <a
           [routerLink]="item.link"
+          routerDirection="root"
+          [routerAnimation]="noAnimation"
           class="item"
           [class.active]="item.id === active()"
           [attr.aria-current]="item.id === active() ? 'page' : null"
@@ -82,4 +85,6 @@ const ITEMS: { id: NavDestination; icon: string; link: string; label: string }[]
 export class NavigationBar {
   readonly active = input<NavDestination | null>(null);
   protected readonly items = ITEMS;
+  /** Cambiar de pestaña no anima la pantalla (como en Android). */
+  protected readonly noAnimation = () => createAnimation();
 }

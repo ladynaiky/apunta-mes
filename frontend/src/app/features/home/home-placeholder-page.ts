@@ -1,33 +1,30 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 import { IonContent, NavController } from '@ionic/angular';
 import { AuthService } from '../../core/auth/auth.service';
 import { ca } from '../../i18n/ca';
 import { Button } from '../../shared/components/button/button';
 import { Dialog } from '../../shared/components/dialog/dialog';
-import { NavigationBar } from '../../shared/components/navigation-bar/navigation-bar';
 import { TopBar } from '../../shared/components/top-bar/top-bar';
 
 /**
- * Inici PROVISIONAL (fase 4): solo sirve para probar el acceso y el cierre
- * de sesión. La fase 5 la sustituye por la pantalla Inici del diseño.
+ * Pantalla PROVISIONAL de Tasques, IA y El meu espai hasta después del punto
+ * de control de la fase 5. Incluye «Tancar la sessió» para poder salir.
  */
 @Component({
   selector: 'ap-home-placeholder-page',
-  imports: [IonContent, Button, Dialog, NavigationBar, TopBar],
+  imports: [IonContent, Button, Dialog, TopBar],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ap-top-bar [title]="ca.app.name" [brand]="true" [showBack]="false" />
+    <ap-top-bar [title]="title()" [showBack]="false" />
     <ion-content>
       <main class="page">
-        <p class="title-medium">Hola, {{ auth.user()?.name }}</p>
+        <p class="body-medium muted">Pantalla provisional: arriba després del punt de control.</p>
         <p class="body-medium muted">{{ auth.user()?.email }}</p>
-        <p class="body-medium muted">Pantalla provisional: la Inici del disseny arriba a la fase 5.</p>
         <button apButton type="button" variant="outlined" icon="logout" (click)="confirmOpen.set(true)">
           {{ ca.session.logout }}
         </button>
       </main>
     </ion-content>
-    <ap-navigation-bar active="home" />
     <ap-dialog
       [open]="confirmOpen()"
       [headline]="ca.session.logoutQuestion"
@@ -46,6 +43,7 @@ import { TopBar } from '../../shared/components/top-bar/top-bar';
   `,
 })
 export class HomePlaceholderPage {
+  readonly title = input('');
   protected readonly auth = inject(AuthService);
   private readonly nav = inject(NavController);
   protected readonly ca = ca;

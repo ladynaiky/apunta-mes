@@ -147,6 +147,29 @@ describe.skipIf(!hasTestDb)('Entries, subjects y mocks (e2e)', () => {
       });
     });
 
+    it('los campos vacíos de otros tipos se ignoran (p. ej., «Desfer» reenvía todo)', async () => {
+      const res = await http()
+        .post('/api/entries')
+        .set(auth())
+        .send({
+          type: 'task',
+          title: 'Repetida',
+          date: '2026-11-05',
+          subject: subjects.Mates.id,
+          personName: '',
+          examType: null,
+          relation: null,
+          age: null,
+          departureTime: '',
+          whatToBring: [],
+        })
+        .expect(201);
+      await http()
+        .delete(`/api/entries/${res.body.id}`)
+        .set(auth())
+        .expect(204);
+    });
+
     it('400: aviso con valores no permitidos (errores anidados)', async () => {
       const res = await http()
         .post('/api/entries')
