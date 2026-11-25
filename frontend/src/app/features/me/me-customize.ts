@@ -75,7 +75,8 @@ export class MeCustomize implements OnInit {
     value: v,
     label: this.t.markOptions[v],
   }));
-  protected readonly previewTags = computed(() => this.tags().filter((t) => t.visible).slice(0, 2));
+  /** Vista previa: todas las etiquetas propias que se muestran. */
+  protected readonly previewTags = computed(() => this.tags().filter((t) => t.visible));
   protected readonly mates = computed(() => this.subjects().find((s) => s.name === 'Mates') ?? null);
 
   async ngOnInit(): Promise<void> {

@@ -9,13 +9,17 @@
           <p class="subject"><ap-subject-dot [color]="e.subject.colorToken" />{{ e.subject.name }}</p>
         }
         <h2 id="sheet-title" #title tabindex="-1">{{ e.title }}</h2>
-        @if (e.priority === 'high') {
-          <span class="tag-priority">{{ ca.task.highPriority }}</span>
-        } @else if (e.priority === 'low') {
-          <span class="tag-priority low">{{ ca.task.lowPriority }}</span>
-        }
-        @for (tg of e.tags; track tg.id) {
-          <span class="tag-priority" [style.background]="'var(--color-tag-' + tg.color + ')'" [style.color]="'var(--color-on-tag-' + tg.color + ')'">{{ tg.name }}</span>
+        @if (e.priority || e.tags.length) {
+          <div class="tags">
+            @if (e.priority === 'high') {
+              <span class="tag-priority">{{ ca.task.highPriority }}</span>
+            } @else if (e.priority === 'low') {
+              <span class="tag-priority low">{{ ca.task.lowPriority }}</span>
+            }
+            @for (tg of e.tags; track tg.id) {
+              <span class="tag-priority" [style.background]="'var(--color-tag-' + tg.color + ')'" [style.color]="'var(--color-on-tag-' + tg.color + ')'">{{ tg.name }}</span>
+            }
+          </div>
         }
         <ul class="info">
           <li><ap-icon name="calendar_today" />{{ due() }}</li>

@@ -466,6 +466,8 @@ Ajustes tras la iteración 2 (25/11/2026):
 
 - Sincronitzar: el icono de las flechas da vueltas mientras sincroniza (`button` con `spinIcon`; 1 vuelta por segundo, más lento con «reducir movimiento»).
 
+- Etiquetas: la vista previa de Personalitzar muestra todas las etiquetas propias visibles (antes solo 2) y pasan a la línea siguiente (`flex-wrap`). En el detalle de la tarea, prioridad y etiquetas van en una fila `.tags` con separación y salto de línea.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
