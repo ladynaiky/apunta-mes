@@ -16,8 +16,7 @@ import { Dialog } from '../../shared/components/dialog/dialog';
 import { Icon } from '../../shared/components/icon/icon';
 import { IconButton } from '../../shared/components/icon-button/icon-button';
 import { MonthPicker } from '../../shared/components/month-picker/month-picker';
-import type { SelectOption } from '../../shared/components/select/select';
-import { SubjectDot } from '../../shared/components/subject-dot/subject-dot';
+import { Select, type SelectOption } from '../../shared/components/select/select';
 import { ShareFlowService } from '../../shared/components/share-flow/share-flow.service';
 import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
 import { TextField } from '../../shared/components/text-field/text-field';
@@ -52,7 +51,7 @@ const REMINDER_OPTIONS: Record<EntryType, { options: number[]; default: number }
     Icon,
     IconButton,
     MonthPicker,
-    SubjectDot,
+    Select,
     TextField,
     TopBar,
   ],
@@ -126,8 +125,6 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
     this.store.subjects().map((s) => ({ value: s.id, label: s.name, color: s.colorToken })),
   );
   protected readonly reminderOptions = computed(() => REMINDER_OPTIONS[this.type()].options);
-  protected readonly subjectSheetOpen = signal(false);
-  protected readonly selectedSubject = computed(() => this.subjectOptions().find((o) => o.value === this.subjectId()) ?? null);
   protected readonly reminderSummary = computed(
     () => `${this.reminderText(this.reminderDays())} · ${this.reminderTime()}`,
   );
@@ -208,12 +205,6 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
     // La URL sigue al tipo (sin crear una pantalla nueva en el historial).
     const query = this.location.path().split('?')[1];
     this.location.replaceState(`/new/${type}`, query);
-  }
-
-  protected pickSubject(id: string): void {
-    this.subjectId.set(id);
-    this.clearError('subject');
-    this.subjectSheetOpen.set(false);
   }
 
   protected reminderText(days: number): string {

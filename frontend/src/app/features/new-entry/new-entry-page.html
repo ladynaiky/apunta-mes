@@ -26,29 +26,16 @@
     <!-- Asignatura (tarea y examen) -->
     @if (type() === 'task' || type() === 'exam') {
       <div class="subject-row">
-        <!-- Asignatura: abre una hoja inferior (en iPhone, la lista desplegable a veces quedaba en blanco). -->
-        <div class="grow">
-          <button
-            type="button"
-            class="field-button"
-            [class.invalid]="errors()['subject']"
-            aria-haspopup="dialog"
-            [attr.aria-label]="t.subjectLabel + ': ' + (selectedSubject()?.label ?? t.subjects)"
-            (click)="subjectSheetOpen.set(true)"
-          >
-            <span class="float-label">{{ t.subjectLabel }}</span>
-            <span class="subject-value" [class.placeholder]="!selectedSubject()">
-              @if (selectedSubject(); as s) {
-                <ap-subject-dot [color]="s.color ?? null" />
-              }
-              {{ selectedSubject()?.label ?? t.subjects }}
-            </span>
-            <ap-icon name="arrow_drop_down" />
-          </button>
-          @if (errors()['subject']; as msg) {
-            <p class="error" role="alert"><ap-icon name="error" [size]="16" />{{ msg }}</p>
-          }
-        </div>
+        <ap-select
+          class="grow"
+          [label]="t.subjectLabel"
+          [placeholder]="t.subjects"
+          [options]="subjectOptions()"
+          name="subject"
+          [ngModel]="subjectId()"
+          (ngModelChange)="subjectId.set($event); clearError('subject')"
+          [error]="errors()['subject'] ?? null"
+        />
         <a
           apIconButton
           class="add"
@@ -242,28 +229,6 @@
     </div>
   </form>
 </ion-content>
-
-<!-- Hoja «Assignatura» -->
-<ap-bottom-sheet [open]="subjectSheetOpen()" [headline]="t.subjectLabel" headingId="subject-title" (closed)="subjectSheetOpen.set(false)">
-  <div class="subject-list" role="radiogroup" [attr.aria-label]="t.subjectLabel">
-    @for (o of subjectOptions(); track o.value) {
-      <button
-        type="button"
-        class="subject-option"
-        role="radio"
-        [attr.aria-checked]="o.value === subjectId()"
-        [class.selected]="o.value === subjectId()"
-        (click)="pickSubject(o.value)"
-      >
-        <ap-subject-dot [color]="o.color ?? null" [size]="16" />
-        <span class="name">{{ o.label }}</span>
-        @if (o.value === subjectId()) {
-          <ap-icon name="check" />
-        }
-      </button>
-    }
-  </div>
-</ap-bottom-sheet>
 
 <!-- Hoja «Avisa’m abans» -->
 <ap-bottom-sheet [open]="reminderOpen()" [headline]="t.reminder" headingId="reminder-title" (closed)="reminderOpen.set(false)">
