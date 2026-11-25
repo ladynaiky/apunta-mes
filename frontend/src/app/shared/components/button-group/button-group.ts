@@ -16,12 +16,10 @@ export interface ButtonGroupOption {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="group" role="group" [attr.aria-label]="label()">
-      @for (o of options(); track o.value; let first = $first; let last = $last) {
+      @for (o of options(); track o.value) {
         <button
           type="button"
           class="option"
-          [class.first]="first"
-          [class.last]="last"
           [class.selected]="o.value === value()"
           [attr.aria-pressed]="o.value === value()"
           (click)="valueChange.emit(o.value)"
@@ -35,30 +33,29 @@ export interface ButtonGroupOption {
     </div>
   `,
   styles: `
-    /* Connected button group (MD3 Expressive): 2 dp entre opciones, extremos redondos, interiores de 8.
-       Radios en px reales (mitad de la altura): con 9999px el navegador reducía también las esquinas
-       interiores y la opción no elegida parecía cortada. */
-    .group { --round: calc(var(--size-button-s) / 2); display: flex; gap: var(--space-25); }
+    /* Button group estándar (MD3 Expressive, iteración 2): todas las opciones son píldoras separadas 8 dp.
+       Radio en px reales (mitad de la altura), nunca 9999px. */
+    .group { --round: calc(var(--size-button-s) / 2); display: flex; gap: var(--space-100); }
     .option {
       position: relative;
       flex: 1;
       display: inline-flex; align-items: center; justify-content: center; gap: var(--space-100);
       height: var(--size-button-s);
       border: 0;
-      border-radius: var(--shape-corner-small);
+      border-radius: var(--round);
       background: var(--color-secondary-container);
       color: var(--color-on-secondary-container);
       font: 500 14px/20px var(--font-text);
       letter-spacing: 0.1px;
       cursor: pointer;
-      transition: border-radius var(--motion-spatial-fast), background-color var(--motion-effects);
+      transition: transform var(--motion-spatial-fast), background-color var(--motion-effects);
     }
     .option::before { content: ''; position: absolute; inset: -4px 0; }
     .option::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: currentColor; opacity: 0; transition: opacity var(--motion-effects); }
     .option:hover::after { opacity: var(--opacity-state-hover); }
     .option:active::after { opacity: var(--opacity-state-pressed); }
-    .first { border-top-left-radius: var(--round); border-bottom-left-radius: var(--round); }
-    .last { border-top-right-radius: var(--round); border-bottom-right-radius: var(--round); }
+    .option:active { transform: scale(0.97); }
+    @media (prefers-reduced-motion: reduce) { .option:active { transform: none; } }
     .selected { border-radius: var(--round); background: var(--color-primary); color: var(--color-on-primary); }
     .option:focus-visible { outline: var(--size-focus-ring, 3px) solid var(--color-secondary); outline-offset: 2px; }
   `,
