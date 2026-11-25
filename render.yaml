@@ -22,7 +22,7 @@ services:
       - key: JWT_EXPIRES_IN
         value: 7d
       - key: CORS_ORIGINS
-        value: https://apunta-mes.onrender.com,http://localhost:4200,http://localhost:8100,capacitor://localhost,http://localhost
+        value: https://apunta-mes.onrender.com,http://localhost:4200,http://localhost:8100,capacitor://localhost,https://localhost,http://localhost
       - key: DEMO_MODE
         value: "true"
       - key: DEMO_TODAY

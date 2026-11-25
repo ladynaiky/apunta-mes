@@ -482,5 +482,24 @@ Ajustes tras la iteración 2 (25/11/2026):
 - [x] 6. Niveles 2 y 3
 - [x] 7. Flujos transversales y estados
 - [x] 8. Despliegue (Render + Atlas)
-- [ ] Iteración 1: [x] A · [x] B · [x] C · [x] D · [x] E · [x] F · [x] G · [x] Design System
-- [ ] Iteración 2: [x] A · [x] B · [x] C · [x] D
+- [x] Iteración 1: [x] A · [x] B · [x] C · [x] D · [x] E · [x] F · [x] G · [x] Design System
+- [x] Iteración 2: [x] A · [x] B · [x] C · [x] D
+- [x] Ajustes posteriores a la iteración 2 (calendari sin transición, prioridad alta/baja, etiquetas propias, asignatura Excursions, «Què cal portar» marcable, Avisos en dos grupos, fuera el modo demostración…)
+- [x] APK de Android (debug, 25/11/2026)
+
+## 2.11 Estado actual (25/11/2026)
+- **Todo terminado y subido**: último commit `02a1a29` en `main` (GitHub `ladynaiky/apunta-mes`).
+- **En línea**: app https://apunta-mes.onrender.com · API https://apunta-mes-api.onrender.com/api (Swagger en `/api/docs`). Health: `database: up`.
+- **Tests**: backend 21 unitarios + 60 e2e, lint sin avisos; frontend 23; build de producción sin errores.
+- **Diseño**: Alta fidelitat (versión 289) con las pantallas principales rehechas y Design System (versión 26) al día.
+- **Datos de demo**: se reinician solos cada día (`DEMO_DAILY_RESET`), usuario `demo@apunta.cat`.
+- **Pendientes conocidos (no bloquean)**:
+  - contraste del nombre de asignatura como texto: 5 de 8 colores no llegan a 4,5:1 (decisión del grupo: verlo primero);
+  - comprobar en un iPhone real el desplegable de asignaturas y el zoom;
+  - en la API quedan sin uso `preferences.groupBy`, `preferences.markWith`, `GET /reminders` y la cabecera `X-Demo-State`;
+  - notificaciones en el móvil: descartadas por ahora.
+- **APK de Android** (25/11/2026): `frontend/android/` (Capacitor 8.6.2, compileSdk/targetSdk 36, minSdk 24, Gradle 8.14.3, AGP 8.13), paquete `cat.apuntames.app`, nombre «Apunta+», versión 1.0. APK de pruebas (debug, 11 MB) en `~/Downloads/Apunta+.apk`. Usa la API de Render (`environment.ts`), así que necesita internet y que `CORS_ORIGINS` incluya `https://localhost` (origen de la app Android).
+  - Herramientas (sin Android Studio): Java 21 (Temurin) en `~/Library/Java/JavaVirtualMachines/`, Android SDK de línea de comandos en `~/Library/Android/sdk/` (platform-tools, platforms;android-36, build-tools 35 y 36), licencias aceptadas, `JAVA_HOME` y `ANDROID_HOME` en `~/.zshrc`.
+  - Iconos y pantalla de carga: `frontend/assets/` (icono verde con el isotipo, carga crema con el isotipo redondo) → `npx @capacitor/assets generate --android --iconBackgroundColor '#387050' --splashBackgroundColor '#FFFBF0' --splashBackgroundColorDark '#FFFBF0'`. Hechos a partir del isotipo de 512 px (el de 1024 se borró en la iteración 1).
+  - Volver a generar la APK: `cd frontend && npx ng build --configuration production && npx cap sync android && cd android && ./gradlew assembleDebug` → `android/app/build/outputs/apk/debug/app-debug.apk`.
+
