@@ -1,6 +1,9 @@
 <div class="row" [class.is-done]="done()">
   @if (showCheckbox()) {
     <ap-checkbox [checked]="done()" [label]="checkLabel()" (checkedChange)="doneChange.emit($event)" />
+  } @else if (leadIcon()) {
+    <!-- Mismo hueco que la casilla (48 dp): el texto queda alineado con el resto de tareas. -->
+    <span class="lead" aria-hidden="true"><ap-icon [name]="leadIcon()!" /></span>
   }
   <button type="button" class="main" [attr.aria-label]="t.details(label())" (click)="open.emit()">
     <span class="title">

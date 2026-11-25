@@ -4,6 +4,7 @@ import { TasksStore } from '../../../core/data/tasks.store';
 import { ca } from '../../../i18n/ca';
 import { taskLabel, type SubjectColorToken } from '../../utils/task-title';
 import { Checkbox } from '../checkbox/checkbox';
+import { Icon } from '../icon/icon';
 import { IconButton } from '../icon-button/icon-button';
 
 /**
@@ -13,7 +14,7 @@ import { IconButton } from '../icon-button/icon-button';
  */
 @Component({
   selector: 'ap-task-row',
-  imports: [Checkbox, IconButton],
+  imports: [Checkbox, Icon, IconButton],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './task-row.html',
   styleUrl: './task-row.scss',
@@ -29,6 +30,8 @@ export class TaskRow {
   readonly highPriority = input(false);
   readonly lowPriority = input(false);
   readonly showCheckbox = input(true);
+  /** Icono en el lugar de la casilla (aniversarios: «cake»). */
+  readonly leadIcon = input<string | null>(null);
   readonly showMenu = input(true);
   readonly showTags = input(true);
   /** «Mates: exercicis» (tareas) · «Excursió: Museu de la Ciència» (nombres propios). */

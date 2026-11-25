@@ -3,14 +3,12 @@
 } @else if (prefs(); as p) {
   <p class="intro">{{ t.customizeIntro }}</p>
 
-  <ap-select [label]="t.groupBy" [options]="groupOptions" [ngModel]="p.groupBy" (ngModelChange)="setGroup($event)" />
 
   <p class="label">{{ t.markWith }}</p>
   <ap-button-group [label]="t.markWith" [options]="markOptions" [value]="p.markWith" (valueChange)="setMark($event)" />
 
   <p class="label">{{ t.preview }}</p>
   <div class="preview" aria-hidden="true">
-    <span class="preview-group">{{ previewGroup() }}</span>
     <span class="preview-row">
       @if (p.markWith === 'colors') {
         <ap-subject-dot [color]="mates()?.colorToken ?? 'blau'" />

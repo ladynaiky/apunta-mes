@@ -39,6 +39,7 @@ import { dayMonth, dueLabel } from '../../shared/utils/dates-ca';
                 [highPriority]="e.priority === 'high'"
                 [lowPriority]="e.priority === 'low'"
                 [showCheckbox]="e.type !== 'birthday'"
+                [leadIcon]="e.type === 'birthday' ? 'cake' : null"
                 (doneChange)="store.setDone(e, $event)"
                 (open)="sheet.open(e, from() ?? 'calendar')"
                 (menu)="sheet.open(e, from() ?? 'calendar')"

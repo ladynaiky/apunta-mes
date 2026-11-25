@@ -34,6 +34,7 @@ import { birthdaySupport, rowTitle } from '../../shared/utils/task-title';
               [title]="rowTitle(e)"
               [supporting]="support(e)"
               [showCheckbox]="e.type !== 'birthday'"
+              [leadIcon]="e.type === 'birthday' ? 'cake' : null"
               [showTags]="e.type !== 'birthday'"
               [done]="e.done"
               [highPriority]="e.priority === 'high'"

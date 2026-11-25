@@ -83,3 +83,10 @@
   background: var(--color-low-priority-container);
   color: var(--color-on-low-priority-container);
 }
+
+/* Icono en lugar de la casilla (aniversarios): ocupa lo mismo que la casilla. */
+.lead {
+  display: inline-flex; flex: none; align-items: center; justify-content: center;
+  width: var(--size-touch-target); height: var(--size-touch-target);
+  color: var(--color-on-surface-variant);
+}

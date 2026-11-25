@@ -10,7 +10,6 @@
   border-radius: var(--shape-corner-large);
   background: var(--color-surface-container-low);
 }
-.preview-group { color: var(--color-on-surface-variant); font: 600 12px/16px var(--font-text); }
 .preview-row { display: flex; align-items: center; gap: var(--space-100); font: 400 16px/24px var(--font-text); }
 .preview-row .subject { color: var(--color-primary); font-weight: 700; }
 .preview-tags { display: flex; gap: var(--space-75); }

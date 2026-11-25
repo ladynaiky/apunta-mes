@@ -28,6 +28,7 @@ import { rowTitle } from '../../shared/utils/task-title';
           [title]="rowTitle(e)"
           [supporting]="t.daysLeft(e.daysLeft)"
           [showCheckbox]="e.type !== 'birthday'"
+          [leadIcon]="e.type === 'birthday' ? 'cake' : null"
           [showTags]="e.type !== 'birthday'"
           [done]="e.done"
           [highPriority]="e.priority === 'high'"

@@ -451,7 +451,9 @@ Ajustes tras la iteración 2 (25/11/2026):
 - Se deshizo la hoja inferior de asignaturas en Apuntar/Editar (vuelve `ap-select`), a petición del grupo.
 - Prioridad: `PRIORITIES = ['high', 'low']` (null = normal), con test e2e. Apuntar y Editar tienen la fila «Prioritat» con dos chips (alta / baixa; tocar la elegida la quita); no en aniversario. Etiqueta «Prioritat baixa» con `--color-low-priority-container` (#E3EAF2) / `--color-on-low-priority-container` (#2F4A66) en filas, detalle, Compartir y vista previa.
 - «Etiquetes que es mostren» ya se aplica: `TasksStore.visibleTags` (cargada con las preferencias y actualizada al guardar en Personalitzar). `task-row` muestra Per fer / Feta / Prioritat alta / Prioritat baixa solo si están activadas. Por defecto, «Prioritat baixa» está apagada.
-- Pendiente (bloque aparte): «Agrupar les tasques per» y «Marcar-les amb» se guardan pero aún no se aplican.
+- Personalitzar: se quita «Agrupar les tasques per» (decisión del grupo, 25/11/2026). El campo `groupBy` sigue en la API pero la app no lo usa. Texto de introducción: «Tria com vols veure les tasques.».
+- Aniversarios: icono `cake` en el hueco de la casilla (`task-row` `leadIcon`, 48 dp), así el texto queda alineado con las tareas. Sin casilla porque se repiten cada año.
+- Pendiente de decidir: «Marcar-les amb» con Colors y Etiquetes a la vez.
 
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas

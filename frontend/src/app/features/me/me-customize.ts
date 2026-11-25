@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } 
 import { FormsModule } from '@angular/forms';
 import { toApiError } from '../../core/api/api-error';
 import { ApiService } from '../../core/data/api.service';
-import type { GroupBy, MarkWith, Preferences, Subject, TagKey } from '../../core/data/models';
+import type { MarkWith, Preferences, Subject, TagKey } from '../../core/data/models';
 import { TasksStore } from '../../core/data/tasks.store';
 import { ca } from '../../i18n/ca';
 import { RouterLink } from '@angular/router';
@@ -12,7 +12,6 @@ import { Dialog } from '../../shared/components/dialog/dialog';
 import { Modal } from '../../shared/components/modal/modal';
 import { TextField } from '../../shared/components/text-field/text-field';
 import { Icon } from '../../shared/components/icon/icon';
-import { Select, type SelectOption } from '../../shared/components/select/select';
 import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
 import { StateMessage } from '../../shared/components/state-message/state-message';
 import { SubjectDot } from '../../shared/components/subject-dot/subject-dot';
@@ -26,7 +25,7 @@ import type { SubjectColorToken } from '../../shared/utils/task-title';
  */
 @Component({
   selector: 'ap-me-customize',
-  imports: [FormsModule, RouterLink, Button, ButtonGroup, Dialog, Icon, Modal, Select, StateMessage, SubjectDot, SwatchPicker, Switch, TextField],
+  imports: [FormsModule, RouterLink, Button, ButtonGroup, Dialog, Icon, Modal, StateMessage, SubjectDot, SwatchPicker, Switch, TextField],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './me-customize.html',
   styleUrl: './me-customize.scss',
@@ -53,18 +52,10 @@ export class MeCustomize implements OnInit {
   );
   protected readonly subjects = this.store.subjects;
 
-  protected readonly groupOptions: SelectOption<GroupBy>[] = (['subjects', 'priority', 'date'] as GroupBy[]).map(
-    (v) => ({ value: v, label: this.t.groupOptions[v] }),
-  );
   protected readonly markOptions = (['colors', 'tags'] as MarkWith[]).map((v) => ({
     value: v,
     label: this.t.markOptions[v],
   }));
-  /** Vista previa: cabecera según la agrupación elegida. */
-  protected readonly previewGroup = computed(() => {
-    const g = this.prefs()?.groupBy;
-    return g === 'priority' ? ca.task.highPriority : g === 'date' ? ca.task.forToday : 'Mates';
-  });
   protected readonly mates = computed(() => this.subjects().find((s) => s.name === 'Mates') ?? null);
 
   async ngOnInit(): Promise<void> {
@@ -79,10 +70,6 @@ export class MeCustomize implements OnInit {
 
   protected tagOn(key: string): boolean {
     return this.prefs()?.visibleTags.includes(key as TagKey) ?? false;
-  }
-
-  protected setGroup(groupBy: GroupBy | null): void {
-    if (groupBy) void this.save({ groupBy });
   }
 
   protected setMark(markWith: string): void {
