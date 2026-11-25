@@ -25,6 +25,9 @@
         @if (tagOn('highPriority')) {
           <span class="tag priority">{{ ca.task.highPriority }}</span>
         }
+        @if (tagOn('lowPriority')) {
+          <span class="tag low">{{ ca.task.lowPriority }}</span>
+        }
       </span>
     }
   </div>

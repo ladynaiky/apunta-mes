@@ -11,6 +11,8 @@
         <h2 id="sheet-title" #title tabindex="-1">{{ e.title }}</h2>
         @if (e.priority === 'high') {
           <span class="tag-priority">{{ ca.task.highPriority }}</span>
+        } @else if (e.priority === 'low') {
+          <span class="tag-priority low">{{ ca.task.lowPriority }}</span>
         }
         <ul class="info">
           <li><ap-icon name="calendar_today" />{{ due() }}</li>

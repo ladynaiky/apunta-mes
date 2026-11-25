@@ -31,6 +31,7 @@ import { ShareFlowService } from './share-flow.service';
               [title]="rowTitle(e)"
               [supporting]="due()"
               [highPriority]="e.priority === 'high'"
+              [lowPriority]="e.priority === 'low'"
               [showCheckbox]="false"
               [showMenu]="false"
               [lowercaseTitle]="!!e.subject"

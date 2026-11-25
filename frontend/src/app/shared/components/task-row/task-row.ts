@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
+import type { TagKey } from '../../../core/data/models';
+import { TasksStore } from '../../../core/data/tasks.store';
 import { ca } from '../../../i18n/ca';
 import { taskLabel, type SubjectColorToken } from '../../utils/task-title';
 import { Checkbox } from '../checkbox/checkbox';
@@ -25,6 +27,7 @@ export class TaskRow {
   readonly supporting = input<string | null>(null);
   readonly done = input(false);
   readonly highPriority = input(false);
+  readonly lowPriority = input(false);
   readonly showCheckbox = input(true);
   readonly showMenu = input(true);
   readonly showTags = input(true);
@@ -36,6 +39,11 @@ export class TaskRow {
   readonly menu = output<void>();
 
   protected readonly t = ca.task;
+  private readonly store = inject(TasksStore);
+  /** Etiquetas visibles según Personalitzar. */
+  protected tagOn(key: TagKey): boolean {
+    return this.store.visibleTags().includes(key);
+  }
   protected readonly label = computed(() =>
     taskLabel(this.subjectName(), this.title(), this.lowercaseTitle()),
   );

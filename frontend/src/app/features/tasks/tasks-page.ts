@@ -38,6 +38,7 @@ import { dueLabel, longDate } from '../../shared/utils/dates-ca';
                 [supporting]="due(e)"
                 [done]="e.done"
                 [highPriority]="e.priority === 'high'"
+                [lowPriority]="e.priority === 'low'"
                 (doneChange)="store.setDone(e, $event)"
                 (open)="sheet.open(e, 'tasks')"
                 (menu)="sheet.open(e, 'tasks')"

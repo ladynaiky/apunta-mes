@@ -134,3 +134,5 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .sheet { animation: fade var(--motion-effects); }
 }
+
+.tag-priority.low { background: var(--color-low-priority-container); color: var(--color-on-low-priority-container); }

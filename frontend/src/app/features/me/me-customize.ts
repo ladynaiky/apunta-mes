@@ -146,7 +146,9 @@ export class MeCustomize implements OnInit {
     const before = this.prefs();
     this.prefs.set({ ...before!, ...patch });
     try {
-      this.prefs.set(await this.api.savePreferences(patch));
+      const saved = await this.api.savePreferences(patch);
+      this.prefs.set(saved);
+      this.store.visibleTags.set(saved.visibleTags);
     } catch (err) {
       this.prefs.set(before);
       this.snackbar.show(toApiError(err).message);

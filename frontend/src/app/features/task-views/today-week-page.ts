@@ -37,6 +37,7 @@ import { birthdaySupport, rowTitle } from '../../shared/utils/task-title';
               [showTags]="e.type !== 'birthday'"
               [done]="e.done"
               [highPriority]="e.priority === 'high'"
+              [lowPriority]="e.priority === 'low'"
               (doneChange)="store.setDone(e, $event)"
               (open)="sheet.open(e, 'tasks')"
               (menu)="sheet.open(e, 'tasks')"

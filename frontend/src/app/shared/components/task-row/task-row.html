@@ -16,9 +16,14 @@
           <span class="supporting">{{ supporting() }}</span>
         }
         @if (showTags()) {
-          <span class="tag" [class.tag-done]="done()">{{ done() ? t.done : t.todo }}</span>
-          @if (highPriority()) {
+          @if (done() ? tagOn('done') : tagOn('todo')) {
+            <span class="tag" [class.tag-done]="done()">{{ done() ? t.done : t.todo }}</span>
+          }
+          @if (highPriority() && tagOn('highPriority')) {
             <span class="tag tag-priority">{{ t.highPriority }}</span>
+          }
+          @if (lowPriority() && tagOn('lowPriority')) {
+            <span class="tag tag-low">{{ t.lowPriority }}</span>
           }
         }
       </span>

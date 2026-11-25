@@ -35,6 +35,8 @@ import { rowTitle, taskLabel } from '../../shared/utils/task-title';
                   <span class="tag">{{ ca.task.todo }}</span>
                   @if (e.priority === 'high') {
                     <span class="tag priority">{{ ca.task.highPriority }}</span>
+                  } @else if (e.priority === 'low') {
+                    <span class="tag low">{{ ca.task.lowPriority }}</span>
                   }
                 </span>
               </span>
@@ -61,6 +63,7 @@ import { rowTitle, taskLabel } from '../../shared/utils/task-title';
             [supporting]="due(e)"
             [done]="e.done"
             [highPriority]="e.priority === 'high'"
+            [lowPriority]="e.priority === 'low'"
             [showCheckbox]="false"
             [showTags]="e.type !== 'birthday'"
             (open)="sheet.open(e, 'me')"
@@ -82,6 +85,7 @@ import { rowTitle, taskLabel } from '../../shared/utils/task-title';
     .subject { color: var(--color-primary); font-weight: 700; }
     .tags { display: flex; gap: var(--space-75); }
     .tag { display: inline-flex; align-items: center; height: 20px; padding: 0 var(--space-100); border: 1px solid var(--color-outline); border-radius: var(--shape-corner-full); color: var(--color-on-surface-variant); font: 500 12px/16px var(--font-text); }
+    .tag.low { border-color: transparent; background: var(--color-low-priority-container); color: var(--color-on-low-priority-container); }
     .tag.priority { border-color: transparent; background: var(--color-priority-container); color: var(--color-on-priority-container); }
     .summary { margin: 0; font: 500 16px/24px var(--font-text); }
     .cta { margin-top: var(--space-300); }

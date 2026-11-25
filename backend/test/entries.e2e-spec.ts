@@ -341,6 +341,32 @@ describe.skipIf(!hasTestDb)('Entries, subjects y mocks (e2e)', () => {
       });
     });
 
+    it('prioridad: alta, baja o ninguna; otro valor da 400', async () => {
+      const low = await http()
+        .patch(`/api/entries/${ids.task}`)
+        .set(auth())
+        .send({ priority: 'low' })
+        .expect(200);
+      expect(low.body.priority).toBe('low');
+      const none = await http()
+        .patch(`/api/entries/${ids.task}`)
+        .set(auth())
+        .send({ priority: null })
+        .expect(200);
+      expect(none.body.priority).toBeNull();
+      const bad = await http()
+        .patch(`/api/entries/${ids.task}`)
+        .set(auth())
+        .send({ priority: 'urgent' })
+        .expect(400);
+      expect(bad.body.errors).toEqual({ priority: 'priority.invalid' });
+      await http()
+        .patch(`/api/entries/${ids.task}`)
+        .set(auth())
+        .send({ priority: 'high' })
+        .expect(200);
+    });
+
     it('PATCH no puede dejar una tarea sin título', async () => {
       const res = await http()
         .patch(`/api/entries/${ids.task}`)

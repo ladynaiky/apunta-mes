@@ -31,6 +31,7 @@ import { rowTitle } from '../../shared/utils/task-title';
           [showTags]="e.type !== 'birthday'"
           [done]="e.done"
           [highPriority]="e.priority === 'high'"
+          [lowPriority]="e.priority === 'low'"
           (doneChange)="toggle(e, $event)"
           (open)="sheet.open(e, 'me')"
           (menu)="sheet.open(e, 'me')"

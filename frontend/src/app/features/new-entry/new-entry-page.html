@@ -207,13 +207,14 @@
       }
     </div>
 
-    <!-- Editar: «Prioritat alta» (antes estaba en la hoja de la tarea) -->
-    @if (editing() && type() !== 'birthday') {
+    <!-- Prioritat: alta, baixa o cap (tocar la elegida la treu). Apuntar i Editar. -->
+    @if (type() !== 'birthday') {
       <div class="priority">
-        <p class="label">{{ t.priority }}</p>
-        <button apChip type="button" [selected]="highPriority()" [attr.aria-pressed]="highPriority()" (click)="highPriority.set(!highPriority())">
-          {{ ca.task.highPriority }}
-        </button>
+        <p class="label" id="priority-label">{{ t.priority }}</p>
+        <div class="chips" role="group" aria-labelledby="priority-label">
+          <button apChip type="button" [selected]="priority() === 'high'" (click)="togglePriority('high')">{{ ca.task.highPriority }}</button>
+          <button apChip type="button" [selected]="priority() === 'low'" (click)="togglePriority('low')">{{ ca.task.lowPriority }}</button>
+        </div>
       </div>
     }
 

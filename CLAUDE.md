@@ -448,6 +448,11 @@ Ajustes tras la iteración 2 (25/11/2026):
 - Calendari: Setmana ↔ Mes con `navigateRoot(..., { animated: false })` (sin animación ni historial); la vista mes tiene el título «Calendari», sin flecha atrás y con el perfil. Alta fidelitat: mesa «Calendari · Mes» igual.
 - Icono de la pantalla de carga: se queda como está (opción b). Android usa el mismo icono y forma que en el escritorio; no se puede tener un círculo en la carga y el cuadrado verde en el escritorio a la vez.
 
+- Se deshizo la hoja inferior de asignaturas en Apuntar/Editar (vuelve `ap-select`), a petición del grupo.
+- Prioridad: `PRIORITIES = ['high', 'low']` (null = normal), con test e2e. Apuntar y Editar tienen la fila «Prioritat» con dos chips (alta / baixa; tocar la elegida la quita); no en aniversario. Etiqueta «Prioritat baixa» con `--color-low-priority-container` (#E3EAF2) / `--color-on-low-priority-container` (#2F4A66) en filas, detalle, Compartir y vista previa.
+- «Etiquetes que es mostren» ya se aplica: `TasksStore.visibleTags` (cargada con las preferencias y actualizada al guardar en Personalitzar). `task-row` muestra Per fer / Feta / Prioritat alta / Prioritat baixa solo si están activadas. Por defecto, «Prioritat baixa» está apagada.
+- Pendiente (bloque aparte): «Agrupar les tasques per» y «Marcar-les amb» se guardan pero aún no se aplican.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base

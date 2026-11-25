@@ -28,7 +28,8 @@ export interface Entry {
   date: string;
   notes: string;
   reminder: Reminder | null;
-  priority: 'high' | null;
+  /** Alta, baja o ninguna (normal). */
+  priority: 'high' | 'low' | null;
   shared: boolean;
   subject: Subject | null;
   done: boolean;

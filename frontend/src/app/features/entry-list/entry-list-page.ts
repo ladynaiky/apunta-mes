@@ -38,6 +38,7 @@ import { dayMonth } from '../../shared/utils/dates-ca';
                   [supporting]="when(e)"
                   [done]="e.done"
                   [highPriority]="e.priority === 'high'"
+                  [lowPriority]="e.priority === 'low'"
                   (doneChange)="store.setDone(e, $event)"
                   (open)="sheet.open(e, kind())"
                   (menu)="sheet.open(e, kind())"

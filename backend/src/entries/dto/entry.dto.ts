@@ -28,7 +28,7 @@ export class EntryDto {
   @ApiProperty() notes: string;
   @ApiProperty({ type: ReminderDto, nullable: true })
   reminder: ReminderDto | null;
-  @ApiProperty({ enum: PRIORITIES, nullable: true }) priority: 'high' | null;
+  @ApiProperty({ enum: PRIORITIES, nullable: true }) priority: (typeof PRIORITIES)[number] | null;
   @ApiProperty() shared: boolean;
   @ApiProperty({ type: SubjectSummaryDto, nullable: true })
   subject: SubjectSummaryDto | null;

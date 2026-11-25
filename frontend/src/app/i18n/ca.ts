@@ -47,6 +47,7 @@ export const ca = {
     todo: 'Per fer',
     done: 'Feta',
     highPriority: 'Prioritat alta',
+    lowPriority: 'Prioritat baixa', // (nou)
     options: 'Opcions de la tasca',
     markDone: (title: string) => `Marcar com a feta: ${title}`,
     unmarkDone: (title: string) => `Desmarcar: ${title}`,
@@ -288,7 +289,7 @@ export const ca = {
     editTitles: { task: 'Editar tasca', exam: 'Editar examen', trip: 'Editar excursió', birthday: 'Editar aniversari' } as Record<string, string>, // (nou)
     saveChanges: 'Desar els canvis', // (nou)
     saved: 'Canvis desats', // (nou)
-    priority: 'Etiquetes', // (nou)
+    priority: 'Prioritat', // (nou)
     loadError: 'No s’ha pogut carregar per editar-la', // (nou)
     tabs: { task: 'Tasca', exam: 'Exàmens', trip: 'Excursions', birthday: 'Aniversaris' } as Record<string, string>,
     tabsLabel: 'Tipus',

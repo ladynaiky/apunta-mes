@@ -101,7 +101,7 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
   protected readonly personName = signal('');
   protected readonly age = signal('');
   protected readonly relation = signal<'friend' | 'family' | 'class'>('friend');
-  protected readonly highPriority = signal(false);
+  protected readonly priority = signal<'high' | 'low' | null>(null);
   /** Lo que se está editando (null = apuntar algo nuevo). */
   protected readonly editing = signal<Entry | null>(null);
   protected readonly loadError = signal(false);
@@ -175,7 +175,7 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
       this.personName.set(e.personName ?? '');
       this.age.set(e.age === null || e.age === undefined ? '' : String(e.age));
       if (e.relation) this.relation.set(e.relation);
-      this.highPriority.set(e.priority === 'high');
+      this.priority.set(e.priority ?? null);
       this.reminderDays.set(e.reminder?.daysBefore ?? REMINDER_OPTIONS[e.type].default);
       this.reminderTime.set(e.reminder?.time ?? '08:00');
       this.reminderTouched = true;
@@ -205,6 +205,10 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
     // La URL sigue al tipo (sin crear una pantalla nueva en el historial).
     const query = this.location.path().split('?')[1];
     this.location.replaceState(`/new/${type}`, query);
+  }
+
+  protected togglePriority(p: 'high' | 'low'): void {
+    this.priority.set(this.priority() === p ? null : p);
   }
 
   protected reminderText(days: number): string {
@@ -272,6 +276,7 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
       date: this.date()!,
       reminder: { daysBefore: this.reminderDays(), time: this.reminderTime() },
     };
+    if (type !== 'birthday') data.priority = this.priority();
     if (type === 'task') {
       Object.assign(data, {
         subject: this.subjectId(),
@@ -309,7 +314,6 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
     const editing = this.editing();
     if (editing) {
       try {
-        if (type !== 'birthday') data.priority = this.highPriority() ? 'high' : null;
         // Examen: si el nombre era el automático («Examen de Mates»), sigue a la asignatura.
         if (type === 'exam') {
           const oldName = editing.subject?.name;

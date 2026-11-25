@@ -78,3 +78,8 @@
   background: var(--color-priority-container);
   color: var(--color-on-priority-container);
 }
+.tag-low {
+  border-color: transparent;
+  background: var(--color-low-priority-container);
+  color: var(--color-on-low-priority-container);
+}

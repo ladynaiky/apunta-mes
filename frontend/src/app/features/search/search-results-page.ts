@@ -37,6 +37,7 @@ import { dayMonth, dueLabel } from '../../shared/utils/dates-ca';
                 [supporting]="supporting(e)"
                 [done]="e.done"
                 [highPriority]="e.priority === 'high'"
+                [lowPriority]="e.priority === 'low'"
                 [showCheckbox]="e.type !== 'birthday'"
                 (doneChange)="store.setDone(e, $event)"
                 (open)="sheet.open(e, 'tasks')"

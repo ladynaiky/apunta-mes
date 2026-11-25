@@ -7,7 +7,8 @@ export type EntryType = (typeof ENTRY_TYPES)[number];
 export const REMINDER_DAYS = [0, 1, 2, 3, 7] as const; // «El mateix dia», «1 dia»… «1 setmana»
 export const EXAM_TYPES = ['written', 'oral', 'project'] as const; // Escrit / Oral / Treball
 export const BIRTHDAY_RELATIONS = ['family', 'class', 'friend'] as const; // Família / De classe / Amic/ga
-export const PRIORITIES = ['high'] as const;
+/** Prioridad: alta, baja o ninguna (null = normal). «low» añadido el 25/11/2026. */
+export const PRIORITIES = ['high', 'low'] as const;
 
 @Schema({ _id: false })
 export class Reminder {
