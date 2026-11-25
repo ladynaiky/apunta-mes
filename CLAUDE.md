@@ -448,6 +448,8 @@ Ajustes tras la iteración 2 (25/11/2026):
 - Calendari: Setmana ↔ Mes con `navigateRoot(..., { animated: false })` (sin animación ni historial); la vista mes tiene el título «Calendari», sin flecha atrás y con el perfil. Alta fidelitat: mesa «Calendari · Mes» igual.
 - Icono de la pantalla de carga: se queda como está (opción b). Android usa el mismo icono y forma que en el escritorio; no se puede tener un círculo en la carga y el cuadrado verde en el escritorio a la vez.
 
+- iPhone, Apuntar/Editar: la asignatura ya no usa `ap-select`. El campo abre una hoja inferior (`ap-bottom-sheet`, `<dialog>` en la capa superior) con las asignaturas, su punto de color y check, y se cierra al elegir. Motivo: en Safari la lista desplegable a veces quedaba en blanco dentro de `ion-content`. El resto de desplegables siguen con `ap-select` (decisión del grupo). Design System: nota en Menu.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
