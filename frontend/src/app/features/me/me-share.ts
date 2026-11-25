@@ -79,7 +79,7 @@ import { rowTitle, taskLabel } from '../../shared/utils/task-title';
     li { display: flex; align-items: center; min-height: var(--size-list-item-two-line); }
     .text { display: flex; flex-direction: column; gap: var(--space-50); }
     .title { font: 400 16px/24px var(--font-text); letter-spacing: 0.5px; }
-    .subject { color: var(--color-primary); }
+    .subject { color: var(--color-primary); font-weight: 700; }
     .tags { display: flex; gap: var(--space-75); }
     .tag { display: inline-flex; align-items: center; height: 20px; padding: 0 var(--space-100); border: 1px solid var(--color-outline); border-radius: var(--shape-corner-full); color: var(--color-on-surface-variant); font: 500 12px/16px var(--font-text); }
     .tag.priority { border-color: transparent; background: var(--color-priority-container); color: var(--color-on-priority-container); }

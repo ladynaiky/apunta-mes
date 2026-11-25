@@ -1,7 +1,7 @@
 <ap-top-bar [title]="editing() ? t.editTitles[type()] : t.titles[type()]" (back)="cancel()" />
 
 <ion-content>
-  <form class="page" novalidate (ngSubmit)="submit()">
+  <form class="page" [class.editing]="!!editId()" novalidate (ngSubmit)="submit()">
     @if (loadError()) {
       <p class="error" role="alert"><ap-icon name="error" [size]="20" />{{ t.loadError }}</p>
     }
@@ -183,7 +183,7 @@
         @case ('exam') {
           <label class="area">
             <span>{{ t.toStudy }}</span>
-            <textarea name="toStudy" rows="4" [placeholder]="t.toStudyPlaceholder" [(ngModel)]="toStudy"></textarea>
+            <textarea name="toStudy" [rows]="editId() ? 3 : 4" [placeholder]="t.toStudyPlaceholder" [(ngModel)]="toStudy"></textarea>
           </label>
         }
         @case ('trip') {
@@ -201,7 +201,7 @@
         @default {
           <label class="area">
             <span>{{ t.description }}</span>
-            <textarea name="notes" rows="5" [placeholder]="t.descriptionPlaceholder" [(ngModel)]="notes"></textarea>
+            <textarea name="notes" [rows]="editId() ? 3 : 5" [placeholder]="t.descriptionPlaceholder" [(ngModel)]="notes"></textarea>
           </label>
         }
       }

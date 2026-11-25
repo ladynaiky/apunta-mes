@@ -1,6 +1,8 @@
 :host { display: flex; flex-direction: column; height: 100%; }
 ion-content { flex: 1; }
 .page { display: flex; flex-direction: column; gap: var(--space-200); padding: 0 var(--size-layout-margin) var(--space-300); }
+/* Editar: sin pestañas de tipo arriba; margen para que la etiqueta del primer campo no quede cortada. */
+.page.editing { padding-top: var(--space-300); }
 
 /* Pestañas con icono (Tasca · Exàmens · Excursions · Aniversaris) */
 .type-tabs { display: flex; border-bottom: 1px solid var(--color-outline-variant); }

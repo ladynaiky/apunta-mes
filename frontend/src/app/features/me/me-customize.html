@@ -44,7 +44,8 @@
     </ul>
   }
 
-  <p class="label">{{ p.markWith === 'colors' ? t.subjectColors : t.subjectsLabel }}</p>
+  @if (p.markWith === 'colors') {
+  <p class="label">{{ t.subjectColors }}</p>
   <ul class="list">
     @for (s of subjects(); track s.id) {
       <li>
@@ -58,6 +59,7 @@
     }
   </ul>
   <a apButton variant="text" icon="add" class="add-subject" routerLink="/subjects/new" [queryParams]="{ from: 'me' }">{{ t.addSubject }}</a>
+  }
 }
 
 <ap-modal [open]="!!editing()" [headline]="t.editSubject" (closed)="closeEdit()">

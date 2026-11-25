@@ -420,6 +420,16 @@ Design System actualizado (24/11/2026, https://claude.ai/artifact/VM7DnKfQr83Afa
 - Componentes: Chip, ListItem, Tabs, Fab y Dialog actualizados, y Modal nuevo. `bundle.css` con las clases nuevas.
 - Contraste pendiente (decisión 3): como texto sobre crema, solo Mates (7.1) y Música (4.8) llegan a 4.5:1; Socials 4.47, Castellà 4.2, Plàstica 4.1, Anglès 3.7, Català 3.2.
 
+## 2.10 Iteración 2 (25/11/2026)
+Decisiones: (1) iconos de Android e iPhone con fondo **verde** (`#387050`), no crema · (2) chip de asignatura elegido = color lleno (texto `--color-on-<color>`) · (3) FAB MD3: cerrado esquina 16, abierto círculo y el «+» gira a «×» · (4) connected button group MD3 Expressive manteniendo colores · (5) Alta fidelitat: pantallas principales; Checklist y Marcar tasca feta a «Arxiu (eliminades)».
+Roadmap: A ajustes · B MD3 (FAB, button group) · C icono · D Alta fidelitat.
+
+Bloque A (hecho):
+- Personalitzar: la lista de asignaturas solo sale con «Colors».
+- Chips de Inici: borde de su color y relleno del 20 % (`color-mix`); el elegido, con el color lleno y `--color-on-<color>` (nuevos tokens `--color-on-taronja…blau`: blanco, salvo groc y lila en casi negro).
+- Editar: `.page.editing` con margen arriba (la etiqueta del primer campo ya no se corta) y descripción/«Què he d’estudiar» de 3 líneas.
+- Nombre de la asignatura en negrita (700) en filas de tarea, checklist de Compartir y vista previa de Personalitzar.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
@@ -431,3 +441,4 @@ Design System actualizado (24/11/2026, https://claude.ai/artifact/VM7DnKfQr83Afa
 - [x] 7. Flujos transversales y estados
 - [x] 8. Despliegue (Render + Atlas)
 - [ ] Iteración 1: [x] A · [x] B · [x] C · [x] D · [x] E · [x] F · [x] G · [x] Design System
+- [ ] Iteración 2: [x] A · [ ] B · [ ] C · [ ] D

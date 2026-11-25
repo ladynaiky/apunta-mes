@@ -55,12 +55,25 @@ import { SubjectDot } from '../subject-dot/subject-dot';
       background: var(--color-secondary-container);
       color: var(--color-on-secondary-container);
     }
+    /* Chip de asignatura (iteración 2): borde de su color y relleno del 20 %; elegido, color lleno. */
+    :host(.subject) {
+      border-color: var(--subj);
+      background: color-mix(in srgb, var(--subj) 20%, transparent);
+      color: var(--color-on-surface);
+    }
+    :host(.subject.selected) {
+      border-color: transparent;
+      background: var(--subj);
+      color: var(--on-subj);
+    }
   `,
   host: {
     type: 'button',
     '[class.selected]': 'selected()',
     '[attr.aria-pressed]': 'selected()',
-    '[style.border-color]': "outlineColor() && !selected() ? 'var(--color-' + outlineColor() + ')' : null",
+    '[class.subject]': '!!outlineColor()',
+    '[style.--subj]': "outlineColor() ? 'var(--color-' + outlineColor() + ')' : null",
+    '[style.--on-subj]': "outlineColor() ? 'var(--color-on-' + outlineColor() + ')' : null",
   },
 })
 export class Chip {
