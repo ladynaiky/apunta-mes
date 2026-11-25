@@ -15,7 +15,7 @@ export type ButtonSize = 's' | 'm';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (icon()) {
-      <ap-icon [name]="icon()!" [size]="size() === 'm' ? 24 : 20" />
+      <ap-icon [class.spin]="spinIcon()" [name]="icon()!" [size]="size() === 'm' ? 24 : 20" />
     }
     <span class="label"><ng-content /></span>
   `,
@@ -28,6 +28,8 @@ export class Button {
   readonly variant = input<ButtonVariant>('filled');
   readonly size = input<ButtonSize>('s');
   readonly icon = input<string | null>(null);
+  /** El icono da vueltas (p. ej., «Sincronitzar» mientras sincroniza). */
+  readonly spinIcon = input(false);
   /** Ancho completo (acción principal al pie de un formulario). */
   readonly block = input(false);
 }

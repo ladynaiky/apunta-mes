@@ -21,6 +21,7 @@ import { SnackbarService } from '../../shared/components/snackbar/snackbar.servi
         variant="tonal"
         icon="sync"
         [block]="true"
+        [spinIcon]="syncState() === 'busy'"
         [disabled]="syncState() === 'busy'"
         [attr.aria-busy]="syncState() === 'busy'"
         (click)="sync()"

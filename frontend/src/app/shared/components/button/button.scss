@@ -88,3 +88,8 @@
 @media (prefers-reduced-motion: reduce) {
   :host(:active) { border-radius: var(--shape-corner-full); }
 }
+
+/* Icono que da vueltas mientras dura una acción (Sincronitzar). */
+.spin { animation: ap-spin 1s linear infinite; }
+@keyframes ap-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spin { animation-duration: 3s; } }

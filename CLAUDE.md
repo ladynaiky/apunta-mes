@@ -464,6 +464,8 @@ Ajustes tras la iteración 2 (25/11/2026):
 
 - Excursions, «Què cal portar»: casillas marcables (con el texto tachado) en el detalle de la tarea (`task-sheet`, se guarda al momento con `store.update` y actualiza la hoja) y en Apuntar/Editar (se guarda al desar).
 
+- Sincronitzar: el icono de las flechas da vueltas mientras sincroniza (`button` con `spinIcon`; 1 vuelta por segundo, más lento con «reducir movimiento»).
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
