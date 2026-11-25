@@ -468,6 +468,8 @@ Ajustes tras la iteración 2 (25/11/2026):
 
 - Etiquetas: la vista previa de Personalitzar muestra todas las etiquetas propias visibles (antes solo 2) y pasan a la línea siguiente (`flex-wrap`). En el detalle de la tarea, prioridad y etiquetas van en una fila `.tags` con separación y salto de línea.
 
+- El meu espai · Avisos: dos grupos, «Diàries» (tareas de hoy) y «Setmanals» (resto de la semana), con los datos de `TasksStore` (los mismos que Inici). Texto de apoyo «Acaba avui / demà / d’aquí a N dies». Ya no usa `GET /reminders` (la API lo mantiene). Alta fidelitat: mesa El meu espai con los dos grupos.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
