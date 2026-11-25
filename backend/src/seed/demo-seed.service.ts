@@ -107,6 +107,7 @@ export class DemoSeedService {
       groupBy: 'subjects',
       markWith: 'colors',
       lastSyncAt: new Date(DEMO_LAST_SYNC.getTime() + shift * 86_400_000),
+      demoSeededOn: this.appConfig.today,
     });
 
     return {

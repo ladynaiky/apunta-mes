@@ -46,6 +46,11 @@ export class AppConfigService {
     return this.config.get<string>('DEMO_MODE') === 'true';
   }
 
+  /** En modo demo, los datos del usuario de demo se reinician cada día (DEMO_DAILY_RESET=false lo apaga). */
+  get demoDailyReset(): boolean {
+    return this.demoMode && this.config.get<string>('DEMO_DAILY_RESET') !== 'false';
+  }
+
   /**
    * Fecha «de hoy» en formato AAAA-MM-DD (hora de Madrid).
    * Si DEMO_TODAY tiene valor, se usa esa fecha; si está vacía, la real.

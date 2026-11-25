@@ -34,7 +34,8 @@ import { SnackbarService } from '../snackbar/snackbar.service';
       (click)="open.set(!open())"
       (keydown.escape)="open.set(false)"
     >
-      <ap-icon [name]="open() ? 'close' : 'add'" />
+      <!-- Un solo icono «+» que gira 45° hasta quedar como «×» (MD3 FAB menu). -->
+      <ap-icon class="plus" name="add" />
     </button>
   `,
   styleUrl: './fab.scss',

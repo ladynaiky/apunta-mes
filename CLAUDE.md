@@ -430,6 +430,12 @@ Bloque A (hecho):
 - Editar: `.page.editing` con margen arriba (la etiqueta del primer campo ya no se corta) y descripción/«Què he d’estudiar» de 3 líneas.
 - Nombre de la asignatura en negrita (700) en filas de tarea, checklist de Compartir y vista previa de Personalitzar.
 
+Bloques B y C (hechos):
+- FAB MD3: cerrado esquina 16 y `primary-container`; abierto círculo (`size-fab / 2`) en `primary` y el «+» (un solo icono) gira 45° hasta «×». Sin giro con «reducir movimiento».
+- Connected button group: radios en px reales (`--round` = mitad de la altura). Con 9999px el navegador reducía todas las esquinas y la opción no elegida parecía cortada. 2 dp entre opciones, interiores 8, elegida redonda con ✓.
+- Iconos: `apple-touch-icon.png` y `icon-maskable-512.png` sobre verde `#387050` (sin el borde del círculo); `manifest.webmanifest` `background_color` verde.
+- Reinicio diario de los datos de demo: `DemoDailyResetService` (al arrancar y cada 30 min) compara `preferences.demoSeededOn` con hoy y llama a `DemoSeedService.reset`. Solo en modo demo; `DEMO_DAILY_RESET=false` lo apaga (los tests e2e lo apagan). Lo apuntado se conserva hasta el día siguiente.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
@@ -441,4 +447,4 @@ Bloque A (hecho):
 - [x] 7. Flujos transversales y estados
 - [x] 8. Despliegue (Render + Atlas)
 - [ ] Iteración 1: [x] A · [x] B · [x] C · [x] D · [x] E · [x] F · [x] G · [x] Design System
-- [ ] Iteración 2: [x] A · [ ] B · [ ] C · [ ] D
+- [ ] Iteración 2: [x] A · [x] B · [x] C · [ ] D

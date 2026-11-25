@@ -35,7 +35,10 @@ export interface ButtonGroupOption {
     </div>
   `,
   styles: `
-    .group { display: flex; gap: var(--space-25); }
+    /* Connected button group (MD3 Expressive): 2 dp entre opciones, extremos redondos, interiores de 8.
+       Radios en px reales (mitad de la altura): con 9999px el navegador reducía también las esquinas
+       interiores y la opción no elegida parecía cortada. */
+    .group { --round: calc(var(--size-button-s) / 2); display: flex; gap: var(--space-25); }
     .option {
       position: relative;
       flex: 1;
@@ -54,9 +57,10 @@ export interface ButtonGroupOption {
     .option::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: currentColor; opacity: 0; transition: opacity var(--motion-effects); }
     .option:hover::after { opacity: var(--opacity-state-hover); }
     .option:active::after { opacity: var(--opacity-state-pressed); }
-    .first { border-top-left-radius: var(--shape-corner-full); border-bottom-left-radius: var(--shape-corner-full); }
-    .last { border-top-right-radius: var(--shape-corner-full); border-bottom-right-radius: var(--shape-corner-full); }
-    .selected { border-radius: var(--shape-corner-full); background: var(--color-primary); color: var(--color-on-primary); }
+    .first { border-top-left-radius: var(--round); border-bottom-left-radius: var(--round); }
+    .last { border-top-right-radius: var(--round); border-bottom-right-radius: var(--round); }
+    .selected { border-radius: var(--round); background: var(--color-primary); color: var(--color-on-primary); }
+    .option:focus-visible { outline: var(--size-focus-ring, 3px) solid var(--color-secondary); outline-offset: 2px; }
   `,
 })
 export class ButtonGroup {

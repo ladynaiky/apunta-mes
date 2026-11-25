@@ -36,6 +36,10 @@ export class Preferences {
 
   @Prop({ type: Date, default: null })
   lastSyncAt: Date | null;
+
+  /** Solo usuario de demo: día (AAAA-MM-DD) en que se crearon sus datos. */
+  @Prop({ type: String, default: null })
+  demoSeededOn: string | null;
 }
 
 export type PreferencesDocument = HydratedDocument<Preferences>;

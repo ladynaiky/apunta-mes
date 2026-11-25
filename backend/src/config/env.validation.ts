@@ -61,6 +61,11 @@ class EnvironmentVariables {
   @IsOptional()
   @IsString()
   DEMO_USER_PASSWORD?: string;
+
+  /** Reiniciar los datos de demo cada día (por defecto, sí en modo demo). */
+  @IsOptional()
+  @IsBooleanString()
+  DEMO_DAILY_RESET?: string;
 }
 
 export function validateEnv(config: Record<string, unknown>) {

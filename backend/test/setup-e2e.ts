@@ -24,3 +24,5 @@ if (testUri) {
 }
 process.env.DEMO_TODAY = '2026-11-04';
 process.env.DEMO_MODE = 'true';
+// Los tests reinician los datos de demo ellos mismos.
+process.env.DEMO_DAILY_RESET = 'false';

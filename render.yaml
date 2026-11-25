@@ -27,6 +27,8 @@ services:
         value: "true"
       - key: DEMO_TODAY
         value: "" # vacía = fecha real del sistema (Europe/Madrid)
+      - key: DEMO_DAILY_RESET
+        value: "true" # los datos de demo se reinician cada día
       - key: DEMO_USER_EMAIL
         value: demo@apunta.cat
       - key: DEMO_USER_PASSWORD

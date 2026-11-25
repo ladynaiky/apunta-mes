@@ -9,6 +9,7 @@ import {
 import { SubjectsModule } from '../subjects/subjects.module.js';
 import { User, UserSchema } from '../users/user.schema.js';
 import { UsersModule } from '../users/users.module.js';
+import { DemoDailyResetService } from './demo-daily-reset.service.js';
 import { DemoSeedService } from './demo-seed.service.js';
 import { DemoController } from './demo.controller.js';
 
@@ -24,7 +25,7 @@ import { DemoController } from './demo.controller.js';
     ]),
   ],
   controllers: [DemoController],
-  providers: [DemoSeedService],
+  providers: [DemoSeedService, DemoDailyResetService],
   exports: [DemoSeedService],
 })
 export class SeedModule {}

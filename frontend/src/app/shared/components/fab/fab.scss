@@ -26,6 +26,7 @@
   cursor: pointer;
   transition:
     border-radius var(--motion-spatial-fast),
+    background-color var(--motion-effects),
     box-shadow var(--motion-effects);
   -webkit-tap-highlight-color: transparent;
 }
@@ -43,10 +44,19 @@
 .fab:hover { box-shadow: var(--elevation-level4); }
 .fab:hover::after { opacity: var(--opacity-state-hover); }
 .fab:active::after { opacity: var(--opacity-state-pressed); }
-/* Abierto: el botón de cerrar es redondo (FAB menu MD3 Expressive).
-   28 px = la mitad de 56: redondo sin pasar por 9999px, que al cerrarse
+/* Abierto (FAB menu MD3 Expressive): círculo y el «+» gira 45° hasta ser «×».
+   28 px = la mitad de 56: círculo sin pasar por 9999px, que al animar
    hacía saltar la forma a un cuadrado con esquinas de pico. */
-.fab.open { border-radius: var(--shape-corner-extra-large); }
+.fab.open {
+  border-radius: calc(var(--size-fab) / 2);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+.plus { transition: transform var(--motion-spatial-fast); }
+.fab.open .plus { transform: rotate(45deg); }
+@media (prefers-reduced-motion: reduce) {
+  .fab, .plus { transition: none; }
+}
 
 .scrim {
   position: fixed;
