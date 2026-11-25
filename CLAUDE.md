@@ -436,6 +436,11 @@ Bloques B y C (hechos):
 - Iconos: `apple-touch-icon.png` y `icon-maskable-512.png` sobre verde `#387050` (sin el borde del círculo); `manifest.webmanifest` `background_color` verde.
 - Reinicio diario de los datos de demo: `DemoDailyResetService` (al arrancar y cada 30 min) compara `preferences.demoSeededOn` con hoy y llama a `DemoSeedService.reset`. Solo en modo demo; `DEMO_DAILY_RESET=false` lo apaga (los tests e2e lo apagan). Lo apuntado se conserva hasta el día siguiente.
 
+Bloque D (hecho):
+- Alta fidelitat (https://claude.ai/artifact/5H9N23VZZNuTvPSPTmeUMy, versión 278): rehechas con el aspecto de la app 10 mesas (Iniciar sessió, Inici, Calendari, Calendari setmanal/mensual, Tasques, El meu espai, Personalització, Apuntar nova tasca, Tasca creada y Compartir como modales), con los mismos enlaces de Play. Cuatro mesas nuevas en «Iteració 2 · pantalles noves»: Editar tasca, Recuperar la contrasenya, El meu espai · Compartir y Editar assignatura (modal). Checklist y Marcar tasca feta (y sus «buit») movidas a «Arxiu (eliminades a l’app)». Nota verde a la derecha del lienzo.
+- Las mesas se generan con un script (componentes comunes, datos del 4 de noviembre). El resto de mesas (variantes, estados, componentes) siguen siendo las de antes.
+- Design System versión 19: Chip (relleno del 20 %, elegido lleno), Fab (gira a círculo), ButtonGroup (radios en px).
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
@@ -447,4 +452,4 @@ Bloques B y C (hechos):
 - [x] 7. Flujos transversales y estados
 - [x] 8. Despliegue (Render + Atlas)
 - [ ] Iteración 1: [x] A · [x] B · [x] C · [x] D · [x] E · [x] F · [x] G · [x] Design System
-- [ ] Iteración 2: [x] A · [x] B · [x] C · [ ] D
+- [ ] Iteración 2: [x] A · [x] B · [x] C · [x] D
