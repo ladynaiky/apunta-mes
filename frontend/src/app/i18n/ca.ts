@@ -290,12 +290,6 @@ export const ca = {
     delete: 'Esborrar',
     saved: 'Canvis desats', // (nou)
     loadError: 'No s’han pogut carregar les dades',
-    demo: {
-      title: 'Mode demostració', // (nou)
-      intro: 'Serveix per ensenyar com es veuen les pantalles buides o amb error.', // (nou)
-      label: 'Estat de les dades', // (nou)
-      options: { normal: 'Normal', empty: 'Buit', error: 'Error' } as Record<string, string>, // (nou)
-    },
   },
   newEntry: {
     titles: { task: 'Apuntar nova tasca', exam: 'Apuntar examen', trip: 'Apuntar excursió', birthday: 'Apuntar aniversari' } as Record<string, string>,

@@ -470,6 +470,8 @@ Ajustes tras la iteración 2 (25/11/2026):
 
 - El meu espai · Avisos: dos grupos, «Diàries» (tareas de hoy) y «Setmanals» (resto de la semana), con los datos de `TasksStore` (los mismos que Inici). Texto de apoyo «Acaba avui / demà / d’aquí a N dies». Ya no usa `GET /reminders` (la API lo mantiene). Alta fidelitat: mesa El meu espai con los dos grupos.
 
+- Se elimina el «Mode demostració» del frontend (25/11/2026): la sección de El meu espai, el atajo `?demo=` y `core/demo/` (servicio, interceptor y sus tests). El backend conserva `DEMO_MODE` (reinicio diario de los datos de demo y la cabecera `X-Demo-State`, que ya no envía nadie).
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
