@@ -22,7 +22,8 @@ function make(seededOn: string | null, userExists = true) {
     findOne: () => query(userExists ? { _id: 'u1' } : null),
   } as unknown as Model<User>;
   const prefs = {
-    findOne: () => query(seededOn === undefined ? null : { demoSeededOn: seededOn }),
+    findOne: () =>
+      query(seededOn === undefined ? null : { demoSeededOn: seededOn }),
   } as unknown as Model<Preferences>;
   const service = new DemoDailyResetService(
     new AppConfigService(new ConfigService(env)),

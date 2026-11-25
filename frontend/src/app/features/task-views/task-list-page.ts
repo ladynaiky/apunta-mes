@@ -31,11 +31,13 @@ import { dueLabel } from '../../shared/utils/dates-ca';
             <ap-task-row
               [subjectName]="e.subject?.name ?? null"
               [subjectColor]="e.subject?.colorToken ?? null"
+              [entryType]="e.type"
               [title]="e.title"
               [supporting]="due(e)"
               [done]="e.done"
               [highPriority]="e.priority === 'high'"
               [lowPriority]="e.priority === 'low'"
+              [tags]="e.tags"
               (doneChange)="store.setDone(e, $event)"
               (open)="sheet.open(e, 'tasks')"
               (menu)="sheet.open(e, 'tasks')"

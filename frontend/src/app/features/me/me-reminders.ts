@@ -25,6 +25,7 @@ import { rowTitle } from '../../shared/utils/task-title';
         <ap-task-row
           [subjectName]="e.subject?.name ?? null"
           [subjectColor]="e.subject?.colorToken ?? null"
+          [entryType]="e.type"
           [title]="rowTitle(e)"
           [supporting]="t.daysLeft(e.daysLeft)"
           [showCheckbox]="e.type !== 'birthday'"
@@ -33,6 +34,7 @@ import { rowTitle } from '../../shared/utils/task-title';
           [done]="e.done"
           [highPriority]="e.priority === 'high'"
           [lowPriority]="e.priority === 'low'"
+          [tags]="e.tags"
           (doneChange)="toggle(e, $event)"
           (open)="sheet.open(e, 'me')"
           (menu)="sheet.open(e, 'me')"

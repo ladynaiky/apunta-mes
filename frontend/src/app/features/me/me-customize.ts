@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } 
 import { FormsModule } from '@angular/forms';
 import { toApiError } from '../../core/api/api-error';
 import { ApiService } from '../../core/data/api.service';
-import type { MarkWith, Preferences, Subject, TagKey } from '../../core/data/models';
+import { TAG_COLORS, type MarkWith, type Preferences, type Subject, type Tag, type TagColor, type TagKey } from '../../core/data/models';
 import { TasksStore } from '../../core/data/tasks.store';
 import { ca } from '../../i18n/ca';
 import { RouterLink } from '@angular/router';
@@ -52,12 +52,30 @@ export class MeCustomize implements OnInit {
   );
   protected readonly subjects = this.store.subjects;
 
+  // Etiquetes pròpies: modal «Nova etiqueta» / «Editar etiqueta»
+  protected readonly tags = this.store.tags;
+  protected readonly tagColors = TAG_COLORS;
+  protected readonly tagOpen = signal(false);
+  protected readonly tagEditing = signal<Tag | null>(null);
+  protected readonly tagName = signal('');
+  protected readonly tagColor = signal<TagColor>('menta');
+  protected readonly tagTried = signal(false);
+  protected readonly tagError = signal<string | null>(null);
+  protected readonly confirmTagDelete = signal(false);
+  protected readonly tagNameError = computed(() => {
+    if (!this.tagTried()) return null;
+    const name = this.tagName().trim();
+    if (!name) return this.t.tagNameRequired;
+    return name.length > 20 ? this.t.tagNameTooLong : null;
+  });
+
   /** Vista elegida (Colors / Etiquetes): solo cambia lo que se ve en esta pantalla. */
   protected readonly view = signal<MarkWith>('colors');
   protected readonly markOptions = (['colors', 'tags'] as MarkWith[]).map((v) => ({
     value: v,
     label: this.t.markOptions[v],
   }));
+  protected readonly previewTags = computed(() => this.tags().filter((t) => t.visible).slice(0, 2));
   protected readonly mates = computed(() => this.subjects().find((s) => s.name === 'Mates') ?? null);
 
   async ngOnInit(): Promise<void> {
@@ -78,6 +96,71 @@ export class MeCustomize implements OnInit {
   protected setTag(key: string, on: boolean): void {
     const tags = this.prefs()!.visibleTags.filter((k) => k !== key);
     void this.save({ visibleTags: on ? [...tags, key as TagKey] : tags });
+  }
+
+  protected openTag(tag: Tag | null): void {
+    this.tagEditing.set(tag);
+    this.tagName.set(tag?.name ?? '');
+    this.tagColor.set(tag?.color ?? 'menta');
+    this.tagTried.set(false);
+    this.tagError.set(null);
+    this.tagOpen.set(true);
+  }
+
+  protected closeTag(): void {
+    this.tagOpen.set(false);
+    this.confirmTagDelete.set(false);
+  }
+
+  protected async saveTag(): Promise<void> {
+    this.tagTried.set(true);
+    if (this.tagNameError() || this.saving()) return;
+    this.saving.set(true);
+    this.tagError.set(null);
+    const data = { name: this.tagName().trim(), color: this.tagColor() };
+    try {
+      const editing = this.tagEditing();
+      if (editing) await this.api.updateTag(editing.id, data);
+      else await this.api.createTag(data);
+      await this.reloadTags();
+      this.closeTag();
+      this.snackbar.show(this.t.tagSaved);
+    } catch (err) {
+      this.tagError.set(toApiError(err).message);
+    } finally {
+      this.saving.set(false);
+    }
+  }
+
+  protected async deleteTag(): Promise<void> {
+    const tag = this.tagEditing();
+    this.confirmTagDelete.set(false);
+    if (!tag) return;
+    try {
+      await this.api.deleteTag(tag.id);
+      await this.reloadTags();
+      this.closeTag();
+      this.snackbar.show(this.t.tagDeleted);
+    } catch (err) {
+      this.tagError.set(toApiError(err).message);
+    }
+  }
+
+  protected async setTagVisible(tag: Tag, visible: boolean): Promise<void> {
+    this.tags.update((l) => l.map((t) => (t.id === tag.id ? { ...t, visible } : t)));
+    try {
+      await this.api.updateTag(tag.id, { visible });
+      await this.reloadTags();
+    } catch (err) {
+      this.tags.update((l) => l.map((t) => (t.id === tag.id ? tag : t)));
+      this.snackbar.show(toApiError(err).message);
+    }
+  }
+
+  /** Recarga las etiquetas y las tareas (las filas muestran las etiquetas con su nombre y color). */
+  private async reloadTags(): Promise<void> {
+    await this.store.load();
+    this.store.changes.update((n) => n + 1);
   }
 
   protected openEdit(subject: Subject): void {

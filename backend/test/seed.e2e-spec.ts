@@ -23,7 +23,7 @@ describe.skipIf(!hasTestDb)('Datos de demo (e2e)', () => {
       .get(DemoSeedService)
       .reset(DEMO.email, DEMO.password);
     expect(summary).toMatchObject({
-      subjects: 7,
+      subjects: 8,
       entries: 11,
       history: 14,
       contacts: 5,
@@ -143,6 +143,6 @@ describe.skipIf(!hasTestDb)('Datos de demo (e2e)', () => {
       .get('/api/subjects')
       .set(auth(other.body.accessToken))
       .expect(200);
-    expect(subjects.body).toHaveLength(7);
+    expect(subjects.body).toHaveLength(8);
   });
 });

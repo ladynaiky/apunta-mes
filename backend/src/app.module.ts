@@ -10,6 +10,7 @@ import { PreferencesModule } from './preferences/preferences.module.js';
 import { SeedModule } from './seed/seed.module.js';
 import { ShareLinksModule } from './share-links/share-links.js';
 import { SubjectsModule } from './subjects/subjects.module.js';
+import { TagsModule } from './tags/tags.module.js';
 import { SystemModule } from './system/system.module.js';
 
 @Module({
@@ -19,6 +20,7 @@ import { SystemModule } from './system/system.module.js';
     AuthModule,
     DemoModule,
     SubjectsModule,
+    TagsModule,
     EntriesModule,
     PreferencesModule,
     ContactsModule,

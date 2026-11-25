@@ -48,6 +48,7 @@ import { dayMonth } from '../../shared/utils/dates-ca';
                   <ap-task-row
                     [subjectName]="e.subject?.name ?? null"
                     [subjectColor]="e.subject?.colorToken ?? null"
+                    [entryType]="e.type"
                     [title]="e.title"
                     [supporting]="doneOn(e)"
                     [done]="true"

@@ -216,6 +216,28 @@
           <button apChip type="button" [selected]="priority() === 'low'" (click)="togglePriority('low')">{{ ca.task.lowPriority }}</button>
         </div>
       </div>
+
+      <!-- Etiquetes pròpies (fins a 3) -->
+      <div class="priority">
+        <p class="label" id="tags-label">{{ t.tags }} <span class="hint">· {{ t.tagsHint }}</span></p>
+        @if (allTags().length) {
+          <div class="chips" role="group" aria-labelledby="tags-label">
+            @for (tg of allTags(); track tg.id) {
+              <button
+                apChip
+                type="button"
+                [selected]="tagIds().includes(tg.id)"
+                [disabled]="!tagIds().includes(tg.id) && tagIds().length >= 3"
+                (click)="toggleTag(tg.id)"
+              >
+                {{ tg.name }}
+              </button>
+            }
+          </div>
+        } @else {
+          <p class="hint">{{ t.noTags }}</p>
+        }
+      </div>
     }
 
     @if (formError(); as message) {

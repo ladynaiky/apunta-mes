@@ -14,6 +14,9 @@
         } @else if (e.priority === 'low') {
           <span class="tag-priority low">{{ ca.task.lowPriority }}</span>
         }
+        @for (tg of e.tags; track tg.id) {
+          <span class="tag-priority" [style.background]="'var(--color-tag-' + tg.color + ')'" [style.color]="'var(--color-on-tag-' + tg.color + ')'">{{ tg.name }}</span>
+        }
         <ul class="info">
           <li><ap-icon name="calendar_today" />{{ due() }}</li>
           @if (e.reminder) {

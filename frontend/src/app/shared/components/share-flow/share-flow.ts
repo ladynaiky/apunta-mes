@@ -26,15 +26,16 @@ import { ShareFlowService } from './share-flow.service';
               <p>{{ c.text }}</p>
             </section>
             <ap-task-row
-              [subjectName]="e.subject?.name ?? (e.type === 'trip' ? ca.sheet.kind['trip'] : null)"
+              [subjectName]="e.subject?.name ?? null"
+              [entryType]="e.type"
               [subjectColor]="e.subject?.colorToken ?? null"
               [title]="rowTitle(e)"
               [supporting]="due()"
               [highPriority]="e.priority === 'high'"
               [lowPriority]="e.priority === 'low'"
+              [tags]="e.tags"
               [showCheckbox]="false"
               [showMenu]="false"
-              [lowercaseTitle]="!!e.subject"
             />
             <h3 class="question">{{ c.share }}</h3>
             <div class="pair">

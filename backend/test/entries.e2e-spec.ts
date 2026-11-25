@@ -109,6 +109,11 @@ describe.skipIf(!hasTestDb)('Entries, subjects y mocks (e2e)', () => {
         { name: 'Autorització signada', done: false },
         { name: 'Dinar i aigua', done: false },
       ]);
+      // Las excursiones van siempre a la asignatura «Excursions».
+      expect(res.body.subject).toMatchObject({
+        name: 'Excursions',
+        colorToken: 'marro',
+      });
       ids.trip = res.body.id;
     });
 
@@ -418,6 +423,69 @@ describe.skipIf(!hasTestDb)('Entries, subjects y mocks (e2e)', () => {
         .set(auth())
         .expect(204);
       await http().get(`/api/entries/${ids.birthday}`).set(auth()).expect(404);
+    });
+  });
+
+  describe('Etiquetes pròpies', () => {
+    it('crear, repetir (409), posar-la en una tasca, màxim 3 i esborrar-la', async () => {
+      const make = (name: string, color = 'menta') =>
+        http().post('/api/tags').set(auth()).send({ name, color });
+      const deures = await make('Deures').expect(201);
+      expect(deures.body).toMatchObject({
+        name: 'Deures',
+        color: 'menta',
+        visible: true,
+      });
+      const dup = await make('deures').expect(409);
+      expect(dup.body.code).toBe('TAG_EXISTS');
+      const bad = await http()
+        .post('/api/tags')
+        .set(auth())
+        .send({ name: '', color: 'vermell' })
+        .expect(400);
+      expect(bad.body.errors).toEqual({
+        name: 'name.required',
+        color: 'color.required',
+      });
+
+      const a = (await make('A', 'cel').expect(201)).body.id;
+      const b = (await make('B', 'sorra').expect(201)).body.id;
+      const c = (await make('C', 'rosat').expect(201)).body.id;
+      const withTag = await http()
+        .patch(`/api/entries/${ids.task}`)
+        .set(auth())
+        .send({ tags: [deures.body.id] })
+        .expect(200);
+      expect(withTag.body.tags).toEqual([
+        { id: deures.body.id, name: 'Deures', color: 'menta', visible: true },
+      ]);
+      const four = await http()
+        .patch(`/api/entries/${ids.task}`)
+        .set(auth())
+        .send({ tags: [deures.body.id, a, b, c] })
+        .expect(400);
+      expect(four.body.errors).toEqual({ tags: 'tags.maxSize' });
+
+      await http()
+        .delete(`/api/tags/${deures.body.id}`)
+        .set(auth())
+        .expect(204);
+      const after = await http()
+        .get(`/api/entries/${ids.task}`)
+        .set(auth())
+        .expect(200);
+      expect(after.body.tags).toEqual([]);
+      for (const id of [a, b, c])
+        await http().delete(`/api/tags/${id}`).set(auth()).expect(204);
+    });
+
+    it('400 amb una etiqueta d’un altre usuari', async () => {
+      const res = await http()
+        .patch(`/api/entries/${ids.task}`)
+        .set(auth())
+        .send({ tags: ['0123456789abcdef01234567'] })
+        .expect(400);
+      expect(res.body.errors).toEqual({ tags: 'tags.notFound' });
     });
   });
 

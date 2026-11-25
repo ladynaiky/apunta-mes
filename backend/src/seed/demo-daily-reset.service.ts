@@ -58,10 +58,14 @@ export class DemoDailyResetService
         : null;
       if (prefs?.demoSeededOn === this.appConfig.today) return false;
       await this.seed.reset(email, this.appConfig.demoUserPassword);
-      this.logger.log(`Datos de demo reiniciados para el ${this.appConfig.today}`);
+      this.logger.log(
+        `Datos de demo reiniciados para el ${this.appConfig.today}`,
+      );
       return true;
     } catch (err) {
-      this.logger.error(`No se han podido reiniciar los datos de demo: ${String(err)}`);
+      this.logger.error(
+        `No se han podido reiniciar los datos de demo: ${String(err)}`,
+      );
       return false;
     } finally {
       this.running = false;

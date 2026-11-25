@@ -3,7 +3,7 @@ import { ca } from '../../../i18n/ca';
 import type { SubjectColorToken } from '../../utils/task-title';
 import { Icon } from '../icon/icon';
 
-export const SWATCHES: SubjectColorToken[] = ['taronja', 'groc', 'lila', 'verd', 'turquesa', 'rosa', 'blau'];
+export const SWATCHES: SubjectColorToken[] = ['taronja', 'groc', 'lila', 'verd', 'turquesa', 'rosa', 'blau', 'marro'];
 
 /**
  * Selector de color de asignatura: 7 muestras de 36 dp (zona táctil 48),

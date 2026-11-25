@@ -49,3 +49,23 @@
 .tag.low { border-color: transparent; background: var(--color-low-priority-container); color: var(--color-on-low-priority-container); }
 
 .views { display: block; margin-top: var(--space-200); }
+
+/* Etiquetes pròpies */
+.tag.user { border-color: transparent; }
+.user-tag { gap: var(--space-100); }
+.tag-open {
+  flex: 1; display: flex; align-items: center; justify-content: space-between; gap: var(--space-100);
+  min-height: var(--size-touch-target); padding: 0 var(--space-50); margin-right: var(--space-100);
+  border: 0; border-radius: var(--shape-corner-medium); background: transparent; color: var(--color-on-surface-variant); cursor: pointer;
+}
+.tag-open .tag { font-size: 14px; line-height: 20px; height: 28px; padding: 0 var(--space-150); }
+.empty-tags { padding: var(--space-100) 0; color: var(--color-on-surface-variant); font: 400 14px/20px var(--font-text); }
+.tag-swatches { display: flex; gap: var(--space-150); flex-wrap: wrap; }
+.tag-swatch {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border: 0; border-radius: 50%; cursor: pointer;
+  box-shadow: inset 0 0 0 1px rgb(116 120 116 / 0.35);
+}
+.tag-swatch.selected { box-shadow: 0 0 0 2px var(--color-surface-container-low), 0 0 0 4px var(--color-on-surface); }
+.tag-swatch:focus-visible { outline: 3px solid var(--color-secondary); outline-offset: 3px; }
+.preview-tag { align-self: flex-start; }

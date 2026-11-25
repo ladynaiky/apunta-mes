@@ -102,6 +102,8 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
   protected readonly age = signal('');
   protected readonly relation = signal<'friend' | 'family' | 'class'>('friend');
   protected readonly priority = signal<'high' | 'low' | null>(null);
+  protected readonly tagIds = signal<string[]>([]);
+  protected readonly allTags = this.store.tags;
   /** Lo que se está editando (null = apuntar algo nuevo). */
   protected readonly editing = signal<Entry | null>(null);
   protected readonly loadError = signal(false);
@@ -176,6 +178,7 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
       this.age.set(e.age === null || e.age === undefined ? '' : String(e.age));
       if (e.relation) this.relation.set(e.relation);
       this.priority.set(e.priority ?? null);
+      this.tagIds.set((e.tags ?? []).map((t) => t.id));
       this.reminderDays.set(e.reminder?.daysBefore ?? REMINDER_OPTIONS[e.type].default);
       this.reminderTime.set(e.reminder?.time ?? '08:00');
       this.reminderTouched = true;
@@ -205,6 +208,12 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
     // La URL sigue al tipo (sin crear una pantalla nueva en el historial).
     const query = this.location.path().split('?')[1];
     this.location.replaceState(`/new/${type}`, query);
+  }
+
+  protected toggleTag(id: string): void {
+    const ids = this.tagIds();
+    if (ids.includes(id)) this.tagIds.set(ids.filter((x) => x !== id));
+    else if (ids.length < 3) this.tagIds.set([...ids, id]);
   }
 
   protected togglePriority(p: 'high' | 'low'): void {
@@ -276,7 +285,10 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
       date: this.date()!,
       reminder: { daysBefore: this.reminderDays(), time: this.reminderTime() },
     };
-    if (type !== 'birthday') data.priority = this.priority();
+    if (type !== 'birthday') {
+      data.priority = this.priority();
+      data.tags = this.tagIds();
+    }
     if (type === 'task') {
       Object.assign(data, {
         subject: this.subjectId(),

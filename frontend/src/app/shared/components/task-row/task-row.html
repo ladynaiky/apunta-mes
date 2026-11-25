@@ -7,8 +7,8 @@
   }
   <button type="button" class="main" [attr.aria-label]="t.details(label())" (click)="open.emit()">
     <span class="title">
-      @if (subjectName()) {
-        <span class="subject" [style.color]="subjectColor() ? 'var(--color-' + subjectColor() + ')' : null">{{ subjectName() }}</span>: {{ label().slice(subjectName()!.length + 2) }}
+      @if (shownSubject()) {
+        <span class="subject" [style.color]="subjectColor() ? 'var(--color-' + subjectColor() + ')' : null">{{ shownSubject() }}</span>: {{ label().slice(shownSubject()!.length + 2) }}
       } @else {
         {{ title() }}
       }
@@ -27,6 +27,9 @@
           }
           @if (lowPriority() && tagOn('lowPriority')) {
             <span class="tag tag-low">{{ t.lowPriority }}</span>
+          }
+          @for (tg of userTags(); track tg.id) {
+            <span class="tag tag-user" [style.background]="'var(--color-tag-' + tg.color + ')'" [style.color]="'var(--color-on-tag-' + tg.color + ')'">{{ tg.name }}</span>
           }
         }
       </span>

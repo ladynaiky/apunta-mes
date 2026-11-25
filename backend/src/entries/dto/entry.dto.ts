@@ -16,6 +16,13 @@ export class SubjectSummaryDto {
   @ApiProperty({ example: '#1F4FB8' }) colorHex: string;
 }
 
+export class TagSummaryDto {
+  @ApiProperty() id: string;
+  @ApiProperty({ example: 'Deures' }) name: string;
+  @ApiProperty({ example: 'menta' }) color: string;
+  @ApiProperty() visible: boolean;
+}
+
 export class EntryDto {
   @ApiProperty() id: string;
   @ApiProperty({ enum: ENTRY_TYPES }) type: EntryType;
@@ -28,10 +35,12 @@ export class EntryDto {
   @ApiProperty() notes: string;
   @ApiProperty({ type: ReminderDto, nullable: true })
   reminder: ReminderDto | null;
-  @ApiProperty({ enum: PRIORITIES, nullable: true }) priority: (typeof PRIORITIES)[number] | null;
+  @ApiProperty({ enum: PRIORITIES, nullable: true }) priority:
+    (typeof PRIORITIES)[number] | null;
   @ApiProperty() shared: boolean;
   @ApiProperty({ type: SubjectSummaryDto, nullable: true })
   subject: SubjectSummaryDto | null;
+  @ApiProperty({ type: [TagSummaryDto] }) tags: TagSummaryDto[];
   @ApiProperty() done: boolean;
   @ApiProperty({ nullable: true }) doneAt: Date | null;
   @ApiProperty() page: string;

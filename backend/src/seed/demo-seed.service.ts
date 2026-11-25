@@ -8,6 +8,7 @@ import { Contact } from '../contacts/contact.schema.js';
 import { Entry } from '../entries/entry.schema.js';
 import { Preferences } from '../preferences/preferences.schema.js';
 import { SubjectsService } from '../subjects/subjects.service.js';
+import { Tag } from '../tags/tag.schema.js';
 import { User } from '../users/user.schema.js';
 import {
   DEMO_CONTACTS,
@@ -39,6 +40,7 @@ export class DemoSeedService {
     @InjectModel(Entry.name) private readonly entries: Model<Entry>,
     @InjectModel(Contact.name) private readonly contacts: Model<Contact>,
     @InjectModel(Preferences.name) private readonly prefs: Model<Preferences>,
+    @InjectModel(Tag.name) private readonly tags: Model<Tag>,
     private readonly subjects: SubjectsService,
     private readonly appConfig: AppConfigService,
   ) {}
@@ -60,6 +62,7 @@ export class DemoSeedService {
       this.entries.deleteMany({ user: userId }).exec(),
       this.contacts.deleteMany({ user: userId }).exec(),
       this.prefs.deleteMany({ user: userId }).exec(),
+      this.tags.deleteMany({ user: userId }).exec(),
       this.subjects.deleteByUser(userId),
     ]);
 
@@ -94,6 +97,20 @@ export class DemoSeedService {
       createdAt: createdAt(),
     }));
     await this.entries.insertMany([...history, ...pending]);
+
+    // Etiquetas propias de ejemplo, ya puestas en dos tareas de hoy.
+    const [deures, llegir] = await this.tags.insertMany([
+      { user: userId, name: 'Deures', color: 'menta', visible: true },
+      { user: userId, name: 'Llegir', color: 'cel', visible: true },
+    ]);
+    await this.entries.updateOne(
+      { user: userId, title: 'Exercicis, pàg. 12', done: { $ne: true } },
+      { $set: { tags: [deures._id] } },
+    );
+    await this.entries.updateOne(
+      { user: userId, title: 'Llegir el capítol 3', done: { $ne: true } },
+      { $set: { tags: [llegir._id, deures._id] } },
+    );
 
     await this.contacts.insertMany(
       DEMO_CONTACTS.map((c) => ({

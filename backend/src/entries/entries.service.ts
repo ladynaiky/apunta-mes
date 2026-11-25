@@ -4,7 +4,9 @@ import { Model, QueryFilter, Types } from 'mongoose';
 import { daysBetween, monthRange, weekRange } from '../common/dates.js';
 import { notFound } from '../common/errors.js';
 import { AppConfigService } from '../config/app-config.service.js';
+import { SUBJECT_COLORS, TRIP_SUBJECT } from '../subjects/default-subjects.js';
 import { Subject } from '../subjects/subject.schema.js';
+import { Tag } from '../tags/tag.schema.js';
 import type { CreateEntryDto } from './dto/create-entry.dto.js';
 import type {
   CalendarDayDto,
@@ -21,9 +23,16 @@ type PopulatedSubject = {
   colorToken: string;
   colorHex: string;
 };
-type EntryLean = Omit<Entry, 'subject'> & {
+type PopulatedTag = {
+  _id: Types.ObjectId;
+  name: string;
+  color: string;
+  visible: boolean;
+};
+type EntryLean = Omit<Entry, 'subject' | 'tags'> & {
   _id: Types.ObjectId;
   subject: PopulatedSubject | null;
+  tags: PopulatedTag[];
 };
 
 /** Quita las claves sin valor: un campo que no llega no debe borrar lo guardado. */
@@ -49,6 +58,7 @@ export class EntriesService {
   constructor(
     @InjectModel(Entry.name) private readonly entries: Model<Entry>,
     @InjectModel(Subject.name) private readonly subjects: Model<Subject>,
+    @InjectModel(Tag.name) private readonly tagModel: Model<Tag>,
     private readonly appConfig: AppConfigService,
   ) {}
 
@@ -168,16 +178,22 @@ export class EntriesService {
   // ───────── Escrituras ─────────
 
   async create(userId: string, dto: CreateEntryDto): Promise<EntryDto> {
-    const subject = dto.subject
-      ? await this.ownedSubject(userId, dto.subject)
-      : null;
+    // Excursions: siempre la asignatura «Excursions».
+    const subject =
+      dto.type === 'trip'
+        ? await this.tripSubject(userId)
+        : dto.subject
+          ? await this.ownedSubject(userId, dto.subject)
+          : null;
     const title =
       dto.title ||
       (dto.type === 'exam' && subject ? `Examen de ${subject.name}` : '') ||
       (dto.type === 'birthday' ? (dto.personName ?? '') : '');
 
+    const tags = dto.tags ? await this.ownedTags(userId, dto.tags) : [];
     const doc = await this.entries.create({
       ...defined(dto),
+      tags,
       user: userId,
       title,
       subject: subject?._id ?? null,
@@ -193,12 +209,16 @@ export class EntriesService {
     dto: UpdateEntryDto,
   ): Promise<EntryDto> {
     const doc = await this.findOneDoc(userId, id);
-    if (dto.subject !== undefined) {
+    if (doc.type === 'trip') {
+      if (!doc.subject) doc.subject = (await this.tripSubject(userId))._id;
+    } else if (dto.subject !== undefined) {
       doc.subject = dto.subject
         ? (await this.ownedSubject(userId, dto.subject))._id
         : null;
     }
-    const { subject: _subject, done, ...rest } = dto;
+    if (dto.tags !== undefined)
+      doc.tags = await this.ownedTags(userId, dto.tags);
+    const { subject: _subject, tags: _tags, done, ...rest } = dto;
     doc.set(defined(rest));
     if (done !== undefined) this.applyDone(doc, done);
     this.assertRequiredByType(doc);
@@ -249,6 +269,35 @@ export class EntriesService {
     return subject;
   }
 
+  /** La asignatura «Excursions» del usuario; si no existe (cuentas antiguas), se crea. */
+  private async tripSubject(userId: string) {
+    const found = await this.subjects
+      .findOne({ user: userId, name: TRIP_SUBJECT.name })
+      .exec();
+    if (found) return found;
+    return this.subjects.create({
+      user: userId,
+      name: TRIP_SUBJECT.name,
+      colorToken: TRIP_SUBJECT.colorToken,
+      colorHex: SUBJECT_COLORS[TRIP_SUBJECT.colorToken],
+    });
+  }
+
+  /** Las etiquetas han de ser del usuario. */
+  private async ownedTags(
+    userId: string,
+    ids: string[],
+  ): Promise<Types.ObjectId[]> {
+    const unique = [...new Set(ids)];
+    const found = await this.tagModel
+      .find({ _id: { $in: unique }, user: userId }, '_id')
+      .lean()
+      .exec();
+    if (found.length !== unique.length)
+      throw validationError({ tags: 'tags.notFound' });
+    return unique.map((id) => new Types.ObjectId(id));
+  }
+
   private find(
     filter: QueryFilter<Entry>,
     sort: Record<string, 1 | -1> = { date: 1, createdAt: 1 },
@@ -257,6 +306,7 @@ export class EntriesService {
       .find(filter)
       .sort(sort)
       .populate('subject', 'name colorToken colorHex')
+      .populate('tags', 'name color visible')
       .lean<EntryLean[]>()
       .exec();
   }
@@ -336,6 +386,12 @@ export class EntriesService {
             colorHex: e.subject.colorHex,
           }
         : null,
+      tags: (e.tags ?? []).filter(Boolean).map((t) => ({
+        id: t._id.toHexString(),
+        name: t.name,
+        color: t.color,
+        visible: t.visible ?? true,
+      })),
       done: e.done ?? false,
       doneAt: e.doneAt ?? null,
       page: e.page ?? '',

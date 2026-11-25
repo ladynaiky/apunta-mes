@@ -42,7 +42,7 @@ describe.skipIf(!hasTestDb)('Auth (e2e)', () => {
       token = res.body.accessToken;
     });
 
-    it('crea las 7 asignaturas con sus colores', async () => {
+    it('crea las 8 asignaturas con sus colores (incluida Excursions)', async () => {
       const conn = app.get<Connection>(getConnectionToken());
       const subjects = await conn.collection('subjects').find().toArray();
       expect(subjects.map((s) => s.name)).toEqual([
@@ -53,6 +53,7 @@ describe.skipIf(!hasTestDb)('Auth (e2e)', () => {
         'Plàstica',
         'Música',
         'Mates',
+        'Excursions',
       ]);
       expect(subjects.find((s) => s.name === 'Mates')).toMatchObject({
         colorToken: 'blau',

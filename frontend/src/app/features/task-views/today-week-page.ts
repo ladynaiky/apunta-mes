@@ -31,6 +31,7 @@ import { birthdaySupport, rowTitle } from '../../shared/utils/task-title';
             <ap-task-row
               [subjectName]="e.subject?.name ?? null"
               [subjectColor]="e.subject?.colorToken ?? null"
+              [entryType]="e.type"
               [title]="rowTitle(e)"
               [supporting]="support(e)"
               [showCheckbox]="e.type !== 'birthday'"
@@ -39,6 +40,7 @@ import { birthdaySupport, rowTitle } from '../../shared/utils/task-title';
               [done]="e.done"
               [highPriority]="e.priority === 'high'"
               [lowPriority]="e.priority === 'low'"
+              [tags]="e.tags"
               (doneChange)="store.setDone(e, $event)"
               (open)="sheet.open(e, 'tasks')"
               (menu)="sheet.open(e, 'tasks')"

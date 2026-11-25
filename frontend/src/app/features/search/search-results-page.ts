@@ -31,13 +31,15 @@ import { dayMonth, dueLabel } from '../../shared/utils/dates-ca';
             <h2 class="label">{{ t.resultsLabel }}</h2>
             @for (e of entries(); track e.id + e.date) {
               <ap-task-row
-                [subjectName]="e.type === 'task' ? (e.subject?.name ?? null) : null"
+                [subjectName]="e.type === 'task' || e.type === 'trip' ? (e.subject?.name ?? null) : null"
                 [subjectColor]="e.subject?.colorToken ?? null"
+                [entryType]="e.type"
                 [title]="e.title"
                 [supporting]="supporting(e)"
                 [done]="e.done"
                 [highPriority]="e.priority === 'high'"
                 [lowPriority]="e.priority === 'low'"
+                [tags]="e.tags"
                 [showCheckbox]="e.type !== 'birthday'"
                 [leadIcon]="e.type === 'birthday' ? 'cake' : null"
                 (doneChange)="store.setDone(e, $event)"

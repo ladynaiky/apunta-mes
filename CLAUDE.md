@@ -455,6 +455,13 @@ Ajustes tras la iteración 2 (25/11/2026):
 - Aniversarios: icono `cake` en el hueco de la casilla (`task-row` `leadIcon`, 48 dp), así el texto queda alineado con las tareas. Sin casilla porque se repiten cada año.
 - Personalitzar: «Colors / Etiquetes» son dos pestañas de la misma pantalla (como «Setmana / Mes»): Colors = colores de las asignaturas, Etiquetes = interruptores de etiquetas. No es una preferencia (estado local `view`; `markWith` sigue en la API sin uso). Las tareas siempre muestran el color y las etiquetas activadas. Arriba, la vista previa «Així es veuran les tasques»; sin título «Marcar-les amb» ni línea de introducción.
 
+- Etiquetas propias (25/11/2026): módulo `tags` en la API (`GET/POST /tags`, `PATCH/DELETE /tags/:id`; nombre de hasta 20 caracteres, único por usuario sin distinguir mayúsculas → 409 TAG_EXISTS; color `rosat|menta|lavanda|sorra|cel`; `visible`). Las entradas guardan `tags` (máximo 3, del propio usuario → 400 `tags.maxSize` / `tags.notFound`); al borrar una etiqueta se quita de las tareas. Tests e2e.
+  - Frontend: `TasksStore.tags`. Personalitzar · Etiquetes: «Les meves etiquetes» (interruptor de mostrar, ⋮ que abre el modal) y «Nova etiqueta» (modal: nombre, 5 colores, vista previa, Desar/Esborrar). Apuntar/Editar: fila «Etiquetes» (chips, hasta 3; el resto se desactiva). Filas de tarea y detalle: etiqueta con `--color-tag-*` / `--color-on-tag-*`. «Desfer» reenvía los ids de las etiquetas.
+  - Demo: «Deures» (menta) y «Llegir» (cel) en Mates y Català de hoy.
+  - Alta fidelitat: mesa nueva «Personalització · Etiquetes» y etiquetas en Inici, Tasques, Apuntar y Editar. Design System: tokens `color.tag-*` y nota en Chip.
+
+- Asignatura «Excursions» (25/11/2026): octava asignatura por defecto, color `marro` (#8B5E34, 5.4:1 sobre el crema; también en el selector de colores). Al apuntar una excursión, la API le pone siempre «Excursions» (`TRIP_SUBJECT`; se crea si la cuenta no la tiene). Al editar una excursión antigua sin asignatura, se le pone. En las filas, `task-row` `entryType` = trip → «Excursió: <título>» (sin minúscula), con el color de la asignatura. La excursión de demo se llama «Museu d’Història de Catalunya». Tests: 8 asignaturas y excursión con «Excursions».
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base

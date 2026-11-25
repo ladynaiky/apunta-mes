@@ -11,7 +11,8 @@ type SubjectName =
   | 'Socials'
   | 'Plàstica'
   | 'Música'
-  | 'Mates';
+  | 'Mates'
+  | 'Excursions';
 
 const REMINDER = { daysBefore: 1, time: '08:00' };
 
@@ -102,8 +103,8 @@ export const DEMO_ENTRIES: DemoEntry[] = [
   {
     type: 'trip',
     date: '2026-11-20',
-    subject: 'Socials',
-    title: 'Excursió de Socials',
+    subject: 'Excursions',
+    title: 'Museu d’Història de Catalunya',
     place: 'Museu d’Història de Catalunya',
     departureTime: '09:00',
     returnTime: '17:00',

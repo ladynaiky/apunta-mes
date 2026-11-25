@@ -32,6 +32,8 @@ export interface Entry {
   priority: 'high' | 'low' | null;
   shared: boolean;
   subject: Subject | null;
+  /** Etiquetas propias (máximo 3). */
+  tags: Tag[];
   done: boolean;
   doneAt: string | null;
   page: string;
@@ -50,10 +52,23 @@ export interface Entry {
   createdAt: string;
 }
 
-/** Datos para crear o editar (subject como id). */
-export type EntryInput = Partial<Omit<Entry, 'id' | 'subject' | 'createdAt' | 'doneAt'>> & {
+/** Datos para crear o editar (subject y tags como ids). */
+export type EntryInput = Partial<Omit<Entry, 'id' | 'subject' | 'tags' | 'createdAt' | 'doneAt'>> & {
   subject?: string | null;
+  tags?: string[];
 };
+
+/** Colores suaves de las etiquetas propias. */
+export type TagColor = 'rosat' | 'menta' | 'lavanda' | 'sorra' | 'cel';
+export const TAG_COLORS: TagColor[] = ['rosat', 'menta', 'lavanda', 'sorra', 'cel'];
+
+/** Etiqueta creada por el usuario (El meu espai · Personalitzar · Etiquetes). */
+export interface Tag {
+  id: string;
+  name: string;
+  color: TagColor;
+  visible: boolean;
+}
 
 export interface CalendarDot {
   type: EntryType;

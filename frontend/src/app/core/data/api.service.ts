@@ -11,8 +11,7 @@ import type {
   EntryInput,
   Preferences,
   ReminderEntry,
-  Subject,
-} from './models';
+  Subject, Tag } from './models';
 
 /** Llamadas a la API de Apunta+ (todas devuelven promesas). */
 @Injectable({ providedIn: 'root' })
@@ -92,6 +91,22 @@ export class ApiService {
 
   entry(id: string): Promise<Entry> {
     return this.get(`/entries/${id}`);
+  }
+
+  tags(): Promise<Tag[]> {
+    return this.get('/tags');
+  }
+
+  createTag(data: Pick<Tag, 'name' | 'color'>): Promise<Tag> {
+    return firstValueFrom(this.http.post<Tag>(`${this.url}/tags`, data));
+  }
+
+  updateTag(id: string, data: Partial<Pick<Tag, 'name' | 'color' | 'visible'>>): Promise<Tag> {
+    return firstValueFrom(this.http.patch<Tag>(`${this.url}/tags/${id}`, data));
+  }
+
+  deleteTag(id: string): Promise<void> {
+    return firstValueFrom(this.http.delete<void>(`${this.url}/tags/${id}`));
   }
 
   deleteSubject(id: string): Promise<void> {

@@ -59,11 +59,13 @@ import { rowTitle, taskLabel } from '../../shared/utils/task-title';
           <ap-task-row
             [subjectName]="e.subject?.name ?? null"
             [subjectColor]="e.subject?.colorToken ?? null"
+            [entryType]="e.type"
             [title]="rowTitle(e)"
             [supporting]="due(e)"
             [done]="e.done"
             [highPriority]="e.priority === 'high'"
             [lowPriority]="e.priority === 'low'"
+            [tags]="e.tags"
             [showCheckbox]="false"
             [showTags]="e.type !== 'birthday'"
             (open)="sheet.open(e, 'me')"

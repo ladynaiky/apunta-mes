@@ -48,6 +48,8 @@ import { SubjectDot } from '../subject-dot/subject-dot';
       background: currentColor; opacity: 0; pointer-events: none;
       transition: opacity var(--motion-effects);
     }
+    :host(:disabled) { opacity: var(--opacity-disabled-content); cursor: default; }
+    :host(:disabled)::after { display: none; }
     :host(:hover)::after { opacity: var(--opacity-state-hover); }
     :host(:active)::after { opacity: var(--opacity-state-pressed); }
     :host(.selected) {

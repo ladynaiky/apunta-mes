@@ -237,8 +237,24 @@ export const ca = {
       turquesa: 'Turquesa',
       rosa: 'Rosa',
       blau: 'Blau',
+      marro: 'Marró', // (nou)
     } as Record<string, string>,
     visibleTags: 'Etiquetes que es mostren',
+    myTags: 'Les meves etiquetes', // (nou)
+    newTag: 'Nova etiqueta', // (nou)
+    editTag: 'Editar etiqueta', // (nou)
+    tagName: 'Nom', // (nou)
+    tagColor: 'Color', // (nou)
+    tagNameRequired: 'Escriu el nom de l’etiqueta.', // (nou)
+    tagNameTooLong: 'Màxim 20 caràcters.', // (nou)
+    saveTag: 'Desar', // (nou)
+    deleteTag: 'Esborrar l’etiqueta', // (nou)
+    deleteTagQuestion: (name: string) => `Vols esborrar l’etiqueta ${name}? Es traurà de les tasques que la tenen.`, // (nou)
+    tagSaved: 'Etiqueta desada', // (nou)
+    tagDeleted: 'Etiqueta esborrada', // (nou)
+    tagOptions: (name: string) => `Editar o esborrar l’etiqueta ${name}`, // (nou)
+    noTags: 'Encara no has creat cap etiqueta.', // (nou)
+    tagColorNames: { rosat: 'Rosat', menta: 'Menta', lavanda: 'Lavanda', sorra: 'Sorra', cel: 'Cel' } as Record<string, string>, // (nou)
     showTag: (name: string) => `Mostrar l’etiqueta ${name}`,
     tags: [
       { key: 'todo', name: 'Per fer', desc: 'Tasques pendents' },
@@ -287,6 +303,9 @@ export const ca = {
     saveChanges: 'Desar els canvis', // (nou)
     saved: 'Canvis desats', // (nou)
     priority: 'Prioritat', // (nou)
+    tags: 'Etiquetes', // (nou)
+    tagsHint: 'Fins a 3.', // (nou)
+    noTags: 'Encara no tens etiquetes. Crea-les a El meu espai · Personalitzar.', // (nou)
     loadError: 'No s’ha pogut carregar per editar-la', // (nou)
     tabs: { task: 'Tasca', exam: 'Exàmens', trip: 'Excursions', birthday: 'Aniversaris' } as Record<string, string>,
     tabsLabel: 'Tipus',
@@ -510,6 +529,8 @@ export const apiErrors: Record<string, string> = {
   'personName.required': 'Escriu qui fa anys.', // (nou)
   'colorToken.required': 'Tria un color.', // (nou)
   SUBJECT_EXISTS: 'Ja tens una assignatura amb aquest nom.', // (nou)
+  TAG_EXISTS: 'Ja tens una etiqueta amb aquest nom.', // (nou)
+  'tags.maxSize': 'Pots posar fins a 3 etiquetes.', // (nou)
   SUBJECT_IN_USE: 'Aquesta assignatura té coses apuntades. Esborra-les o canvia-les d’assignatura abans.', // (nou)
   NETWORK: 'No s’ha pogut connectar amb el servidor. Comprova la connexió i torna-ho a provar.', // (nou)
   SERVER: 'Alguna cosa no ha anat bé. Torna-ho a provar d’aquí a una estona.', // (nou)

@@ -3,7 +3,7 @@ import { ca } from '../../i18n/ca';
 import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
 import { toApiError } from '../api/api-error';
 import { ApiService } from './api.service';
-import type { Entry, EntryInput, Subject, TagKey } from './models';
+import type { Entry, EntryInput, Subject, Tag, TagKey } from './models';
 import { TodayService } from './today.service';
 
 export type LoadStatus = 'idle' | 'loading' | 'ready' | 'error';
@@ -30,6 +30,8 @@ export class TasksStore {
   readonly changes = signal(0);
   /** Etiquetas que se muestran en las filas (El meu espai · Personalitzar). */
   readonly visibleTags = signal<TagKey[]>(['todo', 'done', 'highPriority']);
+  /** Etiquetas propias del usuario. */
+  readonly tags = signal<Tag[]>([]);
   /** La última asignatura creada (Apuntar la deja elegida al volver). */
   readonly lastCreatedSubjectId = signal<string | null>(null);
 
@@ -45,12 +47,14 @@ export class TasksStore {
     this.status.set('loading');
     try {
       this.today.set(await this.todayService.load());
-      const [todayEntries, weekEntries, subjects, prefs] = await Promise.all([
+      const [todayEntries, weekEntries, subjects, prefs, tags] = await Promise.all([
         this.api.today(),
         this.api.week(),
         this.api.subjects(),
         this.api.preferences().catch(() => null),
+        this.api.tags().catch(() => null),
       ]);
+      if (tags) this.tags.set(tags);
       if (prefs) this.visibleTags.set(prefs.visibleTags);
       this.todayEntries.set(todayEntries);
       this.weekEntries.set(weekEntries);
@@ -95,13 +99,13 @@ export class TasksStore {
   }
 
   private async restore(entry: Entry): Promise<void> {
-    const { id: _id, createdAt: _c, doneAt: _d, subject, ...rest } = entry;
+    const { id: _id, createdAt: _c, doneAt: _d, subject, tags, ...rest } = entry;
     // Solo los campos con valor (los vacíos son de otros tipos de entrada).
     const data = Object.fromEntries(
       Object.entries(rest).filter(([, v]) => v !== '' && v !== null && !(Array.isArray(v) && !v.length)),
     );
     try {
-      await this.api.createEntry({ ...data, subject: subject?.id ?? null });
+      await this.api.createEntry({ ...data, subject: subject?.id ?? null, tags: tags.map((t) => t.id) });
       await this.load();
       this.changes.update((n) => n + 1);
     } catch (err) {

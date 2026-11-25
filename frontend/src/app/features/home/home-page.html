@@ -37,6 +37,7 @@
           <ap-task-row
             [subjectName]="e.subject?.name ?? null"
             [subjectColor]="e.subject?.colorToken ?? null"
+            [entryType]="e.type"
             [title]="rowTitle(e)"
             [supporting]="birthdaySupport(e)"
             [showCheckbox]="e.type !== 'birthday'"
@@ -45,6 +46,7 @@
             [done]="e.done"
             [highPriority]="e.priority === 'high'"
             [lowPriority]="e.priority === 'low'"
+            [tags]="e.tags"
             (doneChange)="store.setDone(e, $event)"
             (open)="open(e)"
             (menu)="open(e)"
@@ -61,6 +63,7 @@
             <ap-task-row
               [subjectName]="e.subject?.name ?? null"
               [subjectColor]="e.subject?.colorToken ?? null"
+              [entryType]="e.type"
               [title]="weekTitle(e)"
               [supporting]="birthdaySupport(e)"
               [showCheckbox]="e.type !== 'birthday'"
@@ -69,6 +72,7 @@
               [done]="e.done"
               [highPriority]="e.priority === 'high'"
               [lowPriority]="e.priority === 'low'"
+              [tags]="e.tags"
               (doneChange)="store.setDone(e, $event)"
               (open)="open(e)"
               (menu)="open(e)"

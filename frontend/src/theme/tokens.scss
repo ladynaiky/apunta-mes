@@ -40,6 +40,17 @@
   --color-on-priority-container: #6b2400;
   --color-low-priority-container: #e3eaf2; /* «Prioritat baixa» (25/11/2026) */
   --color-on-low-priority-container: #2f4a66;
+  /* Etiquetas propias (25/11/2026): fondos suaves con texto oscuro del mismo tono. */
+  --color-tag-rosat: #ffd9e2;
+  --color-on-tag-rosat: #6b1f3a;
+  --color-tag-menta: #cff3e2;
+  --color-on-tag-menta: #0f4d33;
+  --color-tag-lavanda: #e6deff;
+  --color-on-tag-lavanda: #3e2a7a;
+  --color-tag-sorra: #f3e5c8;
+  --color-on-tag-sorra: #5a4415;
+  --color-tag-cel: #d3eafb;
+  --color-on-tag-cel: #12456b;
 
   --color-inverse-surface: #313030; /* snackbar */
   --color-inverse-on-surface: #f4f0ef;
@@ -54,6 +65,7 @@
   --color-turquesa: #00879a;
   --color-rosa: #d02670;
   --color-blau: #1f4fb8;
+  --color-marro: #8b5e34; /* «Excursions» (25/11/2026), 5.4:1 sobre el crema */
   /* Texto sobre el color lleno (chip elegido): blanco salvo groc y lila (iteración 2). */
   --color-on-taronja: #ffffff;
   --color-on-groc: #1c1b1b;
@@ -62,6 +74,7 @@
   --color-on-turquesa: #ffffff;
   --color-on-rosa: #ffffff;
   --color-on-blau: #ffffff;
+  --color-on-marro: #ffffff;
   --color-castella: var(--color-taronja);
   --color-catala: var(--color-groc);
   --color-angles: var(--color-lila);

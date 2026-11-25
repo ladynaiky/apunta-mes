@@ -16,6 +16,9 @@
       @if (tagOn('lowPriority')) {
         <span class="tag low">{{ ca.task.lowPriority }}</span>
       }
+      @for (tg of previewTags(); track tg.id) {
+        <span class="tag user" [style.background]="'var(--color-tag-' + tg.color + ')'" [style.color]="'var(--color-on-tag-' + tg.color + ')'">{{ tg.name }}</span>
+      }
     </span>
   </div>
 
@@ -35,6 +38,23 @@
         </li>
       }
     </ul>
+
+    <!-- Etiquetes pròpies -->
+    <p class="label">{{ t.myTags }}</p>
+    <ul class="list">
+      @for (tg of tags(); track tg.id) {
+        <li class="tag-row user-tag">
+          <button type="button" class="tag-open" [attr.aria-label]="t.tagOptions(tg.name)" (click)="openTag(tg)">
+            <span class="tag user" [style.background]="'var(--color-tag-' + tg.color + ')'" [style.color]="'var(--color-on-tag-' + tg.color + ')'">{{ tg.name }}</span>
+            <ap-icon name="more_vert" />
+          </button>
+          <ap-switch [checked]="tg.visible" [label]="t.showTag(tg.name)" (checkedChange)="setTagVisible(tg, $event)" />
+        </li>
+      } @empty {
+        <li class="empty-tags">{{ t.noTags }}</li>
+      }
+    </ul>
+    <button apButton type="button" variant="text" icon="add" class="add-subject" (click)="openTag(null)">{{ t.newTag }}</button>
   }
 
   @if (view() === 'colors') {
@@ -69,6 +89,55 @@
     </div>
   }
 </ap-modal>
+
+<!-- Nova etiqueta / Editar etiqueta -->
+<ap-modal [open]="tagOpen()" [headline]="tagEditing() ? t.editTag : t.newTag" (closed)="closeTag()">
+  @if (tagOpen()) {
+    <ap-text-field [label]="t.tagName" name="tagName" [(ngModel)]="tagName" [error]="tagNameError()" />
+    <p class="field-label">{{ t.tagColor }}</p>
+    <div class="tag-swatches" role="radiogroup" [attr.aria-label]="t.tagColor">
+      @for (c of tagColors; track c) {
+        <button
+          type="button"
+          class="tag-swatch"
+          role="radio"
+          [attr.aria-checked]="tagColor() === c"
+          [attr.aria-label]="t.tagColorNames[c]"
+          [class.selected]="tagColor() === c"
+          [style.background]="'var(--color-tag-' + c + ')'"
+          [style.color]="'var(--color-on-tag-' + c + ')'"
+          (click)="tagColor.set(c)"
+        >
+          @if (tagColor() === c) {
+            <ap-icon name="check" [size]="20" />
+          }
+        </button>
+      }
+    </div>
+    <span class="tag user preview-tag" [style.background]="'var(--color-tag-' + tagColor() + ')'" [style.color]="'var(--color-on-tag-' + tagColor() + ')'">{{ tagName().trim() || t.newTag }}</span>
+    @if (tagError()) {
+      <p class="subject-error" role="alert"><ap-icon name="error" [size]="20" />{{ tagError() }}</p>
+    }
+    <div class="modal-actions">
+      @if (tagEditing()) {
+        <button apButton type="button" variant="text" class="destructive" icon="delete" (click)="confirmTagDelete.set(true)">{{ t.deleteTag }}</button>
+      } @else {
+        <span></span>
+      }
+      <button apButton type="button" variant="filled" [disabled]="saving()" (click)="saveTag()">{{ t.saveTag }}</button>
+    </div>
+  }
+</ap-modal>
+
+<ap-dialog
+  [open]="confirmTagDelete()"
+  [headline]="t.deleteTag"
+  [text]="tagEditing() ? t.deleteTagQuestion(tagEditing()!.name) : null"
+  [confirmLabel]="t.deleteSubjectConfirm"
+  [destructive]="true"
+  (cancel)="confirmTagDelete.set(false)"
+  (confirm)="deleteTag()"
+/>
 
 <ap-dialog
   [open]="confirmDelete()"

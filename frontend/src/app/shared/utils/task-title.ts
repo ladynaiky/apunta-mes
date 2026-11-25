@@ -15,7 +15,8 @@ export type SubjectColorToken =
   | 'verd'
   | 'turquesa'
   | 'rosa'
-  | 'blau';
+  | 'blau'
+  | 'marro';
 
 /** Título de la fila: los aniversarios dicen «Aniversari de l’Anna». */
 export function rowTitle(e: Entry): string {

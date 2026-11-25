@@ -73,6 +73,13 @@ export class Entry {
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Subject', default: null })
   subject: Types.ObjectId | null;
 
+  /** Etiquetas propias (máximo 3). */
+  @Prop({
+    type: [{ type: MongooseSchema.Types.ObjectId, ref: 'Tag' }],
+    default: [],
+  })
+  tags: Types.ObjectId[];
+
   /** «Per fer» / «Feta». */
   @Prop({ type: Boolean, default: false })
   done: boolean;

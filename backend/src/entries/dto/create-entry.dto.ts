@@ -135,6 +135,13 @@ export class CreateEntryDto {
   @IsBoolean({ message: 'done.invalid' })
   done?: boolean;
 
+  @ApiPropertyOptional({ type: [String], description: 'Ids de les etiquetes pròpies (màxim 3)' })
+  @IsOptional()
+  @IsArray({ message: 'tags.invalid' })
+  @ArrayMaxSize(3, { message: 'tags.maxSize' })
+  @IsMongoId({ each: true, message: 'tags.invalid' })
+  tags?: string[];
+
   // — task —
   @ApiPropertyOptional({ example: '12', description: 'Pàg.' })
   @IsOptional()
