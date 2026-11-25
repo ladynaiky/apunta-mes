@@ -196,7 +196,7 @@ export const ca = {
   me: {
     title: 'El meu espai',
     tabs: { reminders: 'Avisos', share: 'Compartir', customize: 'Personalitzar', contacts: 'Contactes' },
-    reviewReminders: 'Revisar la llista d’avisos',
+    reviewReminders: 'Buscar més tasques', // (nou, 25/11/2026)
     noReminders: 'No tens cap avís pendent',
     noRemindersText: 'Quan una tasca estigui a punt d’acabar, t’avisarem.',
     daysLeft: (n: number) => (n === 0 ? 'Acaba avui' : n === 1 ? 'Acaba demà' : `Acaba d’aquí a ${n} dies`), // demà i «d’aquí a» (nou)
