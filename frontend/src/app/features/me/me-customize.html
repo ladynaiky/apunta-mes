@@ -1,36 +1,28 @@
 @if (status() === 'error') {
   <ap-state-message kind="error" [title]="t.loadError" [text]="ca.state.checkConnection" />
 } @else if (prefs(); as p) {
-  <p class="intro">{{ t.customizeIntro }}</p>
-
-
-  <p class="label">{{ t.markWith }}</p>
-  <ap-button-group [label]="t.markWith" [options]="markOptions" [value]="p.markWith" (valueChange)="setMark($event)" />
-
   <p class="label">{{ t.preview }}</p>
   <div class="preview" aria-hidden="true">
     <span class="preview-row">
-      @if (p.markWith === 'colors') {
-        <ap-subject-dot [color]="mates()?.colorToken ?? 'blau'" />
-      }
-      <span><span class="subject">Mates</span>: exercicis, pàg. 12</span>
+      <span><span class="subject" [style.color]="'var(--color-' + (mates()?.colorToken ?? 'blau') + ')'">Mates</span>: exercicis, pàg. 12</span>
     </span>
-    @if (p.markWith === 'tags') {
-      <span class="preview-tags">
-        @if (tagOn('todo')) {
-          <span class="tag">{{ ca.task.todo }}</span>
-        }
-        @if (tagOn('highPriority')) {
-          <span class="tag priority">{{ ca.task.highPriority }}</span>
-        }
-        @if (tagOn('lowPriority')) {
-          <span class="tag low">{{ ca.task.lowPriority }}</span>
-        }
-      </span>
-    }
+    <span class="preview-tags">
+      @if (tagOn('todo')) {
+        <span class="tag">{{ ca.task.todo }}</span>
+      }
+      @if (tagOn('highPriority')) {
+        <span class="tag priority">{{ ca.task.highPriority }}</span>
+      }
+      @if (tagOn('lowPriority')) {
+        <span class="tag low">{{ ca.task.lowPriority }}</span>
+      }
+    </span>
   </div>
 
-  @if (p.markWith === 'tags') {
+  <!-- Dues vistes de la mateixa pantalla, com «Setmana / Mes»: no és una preferència. -->
+  <ap-button-group class="views" [label]="t.customizeViews" [options]="markOptions" [value]="view()" (valueChange)="view.set($any($event))" />
+
+  @if (view() === 'tags') {
     <p class="label">{{ t.visibleTags }}</p>
     <ul class="list">
       @for (tag of t.tags; track tag.key) {
@@ -45,7 +37,7 @@
     </ul>
   }
 
-  @if (p.markWith === 'colors') {
+  @if (view() === 'colors') {
   <p class="label">{{ t.subjectColors }}</p>
   <ul class="list">
     @for (s of subjects(); track s.id) {

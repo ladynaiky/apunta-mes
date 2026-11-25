@@ -52,6 +52,8 @@ export class MeCustomize implements OnInit {
   );
   protected readonly subjects = this.store.subjects;
 
+  /** Vista elegida (Colors / Etiquetes): solo cambia lo que se ve en esta pantalla. */
+  protected readonly view = signal<MarkWith>('colors');
   protected readonly markOptions = (['colors', 'tags'] as MarkWith[]).map((v) => ({
     value: v,
     label: this.t.markOptions[v],
@@ -72,9 +74,6 @@ export class MeCustomize implements OnInit {
     return this.prefs()?.visibleTags.includes(key as TagKey) ?? false;
   }
 
-  protected setMark(markWith: string): void {
-    void this.save({ markWith: markWith as MarkWith });
-  }
 
   protected setTag(key: string, on: boolean): void {
     const tags = this.prefs()!.visibleTags.filter((k) => k !== key);

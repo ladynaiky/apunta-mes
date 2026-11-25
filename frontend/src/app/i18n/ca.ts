@@ -210,8 +210,7 @@ export const ca = {
     sharedSummary: (tasks: number, contacts: number) =>
       `${tasks} ${tasks === 1 ? 'tasca compartida' : 'tasques compartides'} amb ${contacts} ${contacts === 1 ? 'contacte' : 'contactes'}`,
     shareMarked: 'Compartir les tasques marcades',
-    customizeIntro: 'Tria com vols veure les tasques.', // (nou: ja no s’agrupen)
-    markWith: 'Marcar-les amb',
+    customizeViews: 'Què vols personalitzar', // (nou)
     markOptions: { colors: 'Colors', tags: 'Etiquetes' },
     preview: 'Així es veuran les tasques',
     subjectColors: 'Color de cada assignatura',
