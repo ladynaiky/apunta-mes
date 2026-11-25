@@ -462,6 +462,8 @@ Ajustes tras la iteración 2 (25/11/2026):
 
 - Asignatura «Excursions» (25/11/2026): octava asignatura por defecto, color `marro` (#8B5E34, 5.4:1 sobre el crema; también en el selector de colores). Al apuntar una excursión, la API le pone siempre «Excursions» (`TRIP_SUBJECT`; se crea si la cuenta no la tiene). Al editar una excursión antigua sin asignatura, se le pone. En las filas, `task-row` `entryType` = trip → «Excursió: <título>» (sin minúscula), con el color de la asignatura. La excursión de demo se llama «Museu d’Història de Catalunya». Tests: 8 asignaturas y excursión con «Excursions».
 
+- Excursions, «Què cal portar»: casillas marcables (con el texto tachado) en el detalle de la tarea (`task-sheet`, se guarda al momento con `store.update` y actualiza la hoja) y en Apuntar/Editar (se guarda al desar).
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base

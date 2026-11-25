@@ -44,8 +44,11 @@
         @if (e.whatToBring.length) {
           <h3 class="label">{{ t.whatToBring }}</h3>
           <ul class="bring">
-            @for (item of e.whatToBring; track item.name) {
-              <li><ap-icon [name]="item.done ? 'check_box' : 'check_box_outline_blank'" [size]="20" />{{ item.name }}</li>
+            @for (item of e.whatToBring; track $index; let i = $index) {
+              <li [class.got]="item.done">
+                <ap-checkbox [checked]="item.done" [label]="t.bringItem(item.name)" (checkedChange)="toggleItem(e, i, $event)" />
+                <span>{{ item.name }}</span>
+              </li>
             }
           </ul>
         }

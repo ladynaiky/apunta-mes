@@ -11,6 +11,7 @@ import { TodayService } from '../../core/data/today.service';
 import { apiErrors, ca } from '../../i18n/ca';
 import { BottomSheet } from '../../shared/components/bottom-sheet/bottom-sheet';
 import { Button } from '../../shared/components/button/button';
+import { Checkbox } from '../../shared/components/checkbox/checkbox';
 import { Chip } from '../../shared/components/chip/chip';
 import { Dialog } from '../../shared/components/dialog/dialog';
 import { Icon } from '../../shared/components/icon/icon';
@@ -46,6 +47,7 @@ const REMINDER_OPTIONS: Record<EntryType, { options: number[]; default: number }
     IonContent,
     BottomSheet,
     Button,
+    Checkbox,
     Chip,
     Dialog,
     Icon,
@@ -245,6 +247,10 @@ export class NewEntryPage implements OnInit, ViewWillEnter {
     if (!name) return;
     this.bring.update((l) => [...l, { name, done: false }]);
     this.bringDraft.set('');
+  }
+
+  protected toggleItem(i: number, done: boolean): void {
+    this.bring.update((l) => l.map((it, j) => (j === i ? { ...it, done } : it)));
   }
 
   protected startEditItem(i: number): void {

@@ -77,7 +77,9 @@ h2 {
 }
 .info ap-icon,
 .bring ap-icon { color: var(--color-on-surface-variant); }
-.bring li { min-height: 32px; font-size: 14px; }
+.bring li { min-height: var(--size-touch-target); gap: var(--space-50); font-size: 16px; }
+.bring li.got span { color: var(--color-on-surface-variant); text-decoration: line-through; }
+.bring ap-checkbox { margin-left: calc(-1 * var(--space-150)); }
 
 .label {
   margin: var(--space-200) 0 var(--space-100);

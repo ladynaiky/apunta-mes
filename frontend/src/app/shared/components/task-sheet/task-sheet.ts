@@ -19,6 +19,8 @@ import { TasksStore } from '../../../core/data/tasks.store';
 import { ca } from '../../../i18n/ca';
 import { dueLabel } from '../../utils/dates-ca';
 import { Button } from '../button/button';
+import { Checkbox } from '../checkbox/checkbox';
+import { TaskSheetService } from './task-sheet.service';
 import { Icon } from '../icon/icon';
 import { IconButton } from '../icon-button/icon-button';
 import { ShareFlowService } from '../share-flow/share-flow.service';
@@ -33,7 +35,7 @@ type Mode = 'view' | 'delete';
  */
 @Component({
   selector: 'ap-task-sheet',
-  imports: [Button, Icon, IconButton, SubjectDot],
+  imports: [Button, Checkbox, Icon, IconButton, SubjectDot],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './task-sheet.html',
   styleUrl: './task-sheet.scss',
@@ -47,6 +49,7 @@ export class TaskSheet {
 
   private readonly store = inject(TasksStore);
   private readonly router = inject(Router);
+  private readonly sheetService = inject(TaskSheetService);
   private readonly shareFlow = inject(ShareFlowService);
   private readonly injector = inject(Injector);
   private readonly titleEl = viewChild<ElementRef<HTMLElement>>('title');
@@ -81,6 +84,18 @@ export class TaskSheet {
     const e = this.entry()!;
     this.close();
     void this.router.navigate(['/entries', e.id, 'edit'], { queryParams: { from: this.from() } });
+  }
+
+  /** «Què cal portar»: marcar o desmarcar un element (se guarda al momento). */
+  protected async toggleItem(e: Entry, index: number, done: boolean): Promise<void> {
+    const list = e.whatToBring.map((it, i) => (i === index ? { ...it, done } : it));
+    this.sheetService.entry.set({ ...e, whatToBring: list });
+    try {
+      this.sheetService.entry.set(await this.store.update(e.id, { whatToBring: list }));
+    } catch (err) {
+      this.sheetService.entry.set(e);
+      this.error.set(toApiError(err).message);
+    }
   }
 
   protected share(): void {

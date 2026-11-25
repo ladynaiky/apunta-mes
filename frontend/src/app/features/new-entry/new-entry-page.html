@@ -165,7 +165,8 @@
                 <input class="bring-input" [name]="'edit' + i" [attr.aria-label]="t.editItem(item.name)" [(ngModel)]="editingDraft" (keydown.enter)="$event.preventDefault(); saveItem(i)" />
                 <button apIconButton type="button" icon="check" [label]="t.saveItem" (click)="saveItem(i)"></button>
               } @else {
-                <span class="bring-name">{{ item.name }}</span>
+                <ap-checkbox [checked]="item.done" [label]="ca.sheet.bringItem(item.name)" (checkedChange)="toggleItem(i, $event)" />
+                <span class="bring-name" [class.got]="item.done">{{ item.name }}</span>
                 <button apIconButton type="button" icon="edit" [label]="t.editItem(item.name)" (click)="startEditItem(i)"></button>
                 <button apIconButton type="button" icon="delete" [label]="t.deleteItem(item.name)" (click)="removeItem(i)"></button>
               }

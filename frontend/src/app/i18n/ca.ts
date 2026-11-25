@@ -140,6 +140,7 @@ export const ca = {
     topic: (t: string) => `Tema: ${t}`,
     tripTimes: (a: string, b: string) => `Sortida ${a} · Tornada ${b}`,
     whatToBring: 'Què cal portar',
+    bringItem: (name: string) => `Ja ho tinc: ${name}`, // (nou)
     reminder: (days: number, time: string) =>
       `${days === 0 ? 'El mateix dia' : days === 7 ? '1 setmana abans' : days === 1 ? '1 dia abans' : `${days} dies abans`} · ${time}`,
     saved: 'Tasca desada',
