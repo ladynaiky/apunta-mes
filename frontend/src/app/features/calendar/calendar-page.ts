@@ -66,7 +66,8 @@ export class CalendarPage implements ViewWillEnter {
   }
 
   protected changeView(view: string): void {
-    if (view === 'month') void this.nav.navigateForward('/calendar/month', { queryParams: { from: 'calendar' } });
+    // Setmana ↔ Mes: se cambia el contenido en el sitio (sin animación ni historial), sin «salir» de Calendari.
+    if (view === 'month') void this.nav.navigateRoot('/calendar/month', { animated: false, queryParams: { from: 'calendar' } });
   }
 
   protected openDay(date: string): void {

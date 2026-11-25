@@ -358,7 +358,7 @@ export const ca = {
     nameRequired: 'Escriu el nom de l’assignatura.', // (nou)
   },
   month: {
-    title: 'Calendari setmanal/mensual',
+    title: 'Calendari',
     previous: 'Mes anterior',
     next: 'Mes següent',
     empty: 'No hi ha tasques aquest mes',

@@ -21,7 +21,7 @@ import { dayMonth, monthTitle } from '../../shared/utils/dates-ca';
   imports: [RouterLink, IonContent, ButtonGroup, IconButton, MonthCalendar, NavListItem, Progress, StateMessage, TopBar],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ap-top-bar [title]="t.title" (back)="toWeek()" />
+    <ap-top-bar [title]="ca.calendar.title" [showBack]="false" [showProfile]="true" [pending]="store.pendingToday()" />
     <ap-progress [active]="status() === 'loading'" />
     <ion-content>
       <main class="page">
@@ -73,7 +73,7 @@ import { dayMonth, monthTitle } from '../../shared/utils/dates-ca';
 export class CalendarMonthPage implements ViewWillEnter {
   private readonly api = inject(ApiService);
   private readonly todayService = inject(TodayService);
-  private readonly store = inject(TasksStore);
+  protected readonly store = inject(TasksStore);
   private readonly nav = inject(NavController);
   protected readonly t = ca.month;
   protected readonly ca = ca;
@@ -123,7 +123,7 @@ export class CalendarMonthPage implements ViewWillEnter {
   }
 
   protected toWeek(): void {
-    void this.nav.navigateBack('/tabs/calendar');
+    void this.nav.navigateRoot('/tabs/calendar', { animated: false });
   }
 
   protected openDay(date: string): void {

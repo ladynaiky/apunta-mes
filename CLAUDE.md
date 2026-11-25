@@ -445,6 +445,9 @@ Ajustes tras la iteración 2 (25/11/2026):
 - Pantalla de carga de Android: `manifest.webmanifest` `background_color` vuelve a crema `#FFFBF0` (Android pinta la pantalla de carga con ese color y el isotipo redondo); el icono de la app (maskable e iPhone) sigue sobre verde. Hay que reinstalar la app para verlo.
 - Button group: todas las opciones en píldora, separadas 8 dp (button group estándar MD3), con escala 0,97 al pulsar. También en la Alta fidelitat (Calendari, Calendari setmanal/mensual, Personalització) y en el README de ButtonGroup del Design System.
 
+- Calendari: Setmana ↔ Mes con `navigateRoot(..., { animated: false })` (sin animación ni historial); la vista mes tiene el título «Calendari», sin flecha atrás y con el perfil. Alta fidelitat: mesa «Calendari · Mes» igual.
+- Icono de la pantalla de carga: se queda como está (opción b). Android usa el mismo icono y forma que en el escritorio; no se puede tener un círculo en la carga y el cuadrado verde en el escritorio a la vez.
+
 ## 2.8 Estado de las fases
 - [x] 0. Lectura y preguntas
 - [x] 1. Repositorio base
